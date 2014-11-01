@@ -1,0 +1,17 @@
+D:\Moorthy\PhysioApplication\PhysioApplication\bin\Debug\PhysioApplication.exe.config
+D:\Moorthy\PhysioApplication\PhysioApplication\bin\Debug\PhysioApplication.exe
+D:\Moorthy\PhysioApplication\PhysioApplication\bin\Debug\PhysioApplication.pdb
+D:\Moorthy\PhysioApplication\PhysioApplication\obj\Debug\MainWindow.baml
+D:\Moorthy\PhysioApplication\PhysioApplication\obj\Debug\Window2.baml
+D:\Moorthy\PhysioApplication\PhysioApplication\obj\Debug\MainWindow.g.cs
+D:\Moorthy\PhysioApplication\PhysioApplication\obj\Debug\Window2.g.cs
+D:\Moorthy\PhysioApplication\PhysioApplication\obj\Debug\App.g.cs
+D:\Moorthy\PhysioApplication\PhysioApplication\obj\Debug\PhysioApplication_MarkupCompile.cache
+D:\Moorthy\PhysioApplication\PhysioApplication\obj\Debug\PhysioApplication.g.resources
+D:\Moorthy\PhysioApplication\PhysioApplication\obj\Debug\PhysioApplication.Properties.Resources.resources
+D:\Moorthy\PhysioApplication\PhysioApplication\obj\Debug\PhysioApplication.csproj.GenerateResource.Cache
+D:\Moorthy\PhysioApplication\PhysioApplication\obj\Debug\PhysioApplication.exe
+D:\Moorthy\PhysioApplication\PhysioApplication\obj\Debug\PhysioApplication.pdb
+D:\Moorthy\WellnessManagementFramework\PhysioApplication\PhysioApplication\bin\Debug\PhysioApplication.exe.config
+D:\Moorthy\WellnessManagementFramework\PhysioApplication\PhysioApplication\obj\Debug\PhysioApplication.exe
+D:\Moorthy\WellnessManagementFramework\PhysioApplication\PhysioApplication\obj\Debug\PhysioApplication.pdb
