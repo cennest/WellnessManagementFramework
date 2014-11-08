@@ -2,7 +2,7 @@ WellnessManagementSystem
 ======================
 
 
-1. Run the DB script at ....\WellnessManagementSystem\DataLayer\WellnessManagementSystemDBscript into local SQL database.
+1. Run the DB script at ....\WellnessManagementSystem\DataLayer\WellnessManagementFrameworkDBScript into local SQL database.
 
 
 2. Take connection string and replace connectionStrings in ...WellnessManagementSystem\DataLayer\app.config.
