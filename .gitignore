@@ -167,3 +167,8 @@ $RECYCLE.BIN/
 
 # Mac desktop service store files
 .DS_Store
+WellnessManagementSystem/BusinessLayer/obj/Debug/DesignTimeResolveAssemblyReferencesInput.cache
+WellnessManagementSystem/DataLayer/obj/Debug/DesignTimeResolveAssemblyReferencesInput.cache
+WellnessManagementSystem/WellnessManagementSystem.v11.suo
+WellnessManagementSystem/WPFUI/obj/Debug/DesignTimeResolveAssemblyReferencesInput.cache
+WellnessManagementSystem/WPFUI/obj/Debug/PhysioApplication_MarkupCompile.i.cache
