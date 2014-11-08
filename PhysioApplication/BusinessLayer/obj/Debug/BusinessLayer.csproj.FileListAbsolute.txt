@@ -1,0 +1,5 @@
+D:\Moorthy\WellnessManagementFramework\PhysioApplication\BusinessLayer\bin\Debug\BusinessLayer.dll
+D:\Moorthy\WellnessManagementFramework\PhysioApplication\BusinessLayer\bin\Debug\BusinessLayer.pdb
+D:\Moorthy\WellnessManagementFramework\PhysioApplication\BusinessLayer\obj\Debug\BusinessLayer.csprojResolveAssemblyReference.cache
+D:\Moorthy\WellnessManagementFramework\PhysioApplication\BusinessLayer\obj\Debug\BusinessLayer.dll
+D:\Moorthy\WellnessManagementFramework\PhysioApplication\BusinessLayer\obj\Debug\BusinessLayer.pdb

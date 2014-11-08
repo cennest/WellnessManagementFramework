@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhysioApplication", "PhysioApplication\PhysioApplication.csproj", "{2A539E79-E724-48D6-BEDC-5B499B8414D3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPFUI", "PhysioApplication\WPFUI.csproj", "{2A539E79-E724-48D6-BEDC-5B499B8414D3}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataLayer", "DataLayer\DataLayer.csproj", "{5794EEF9-1EF6-4DC5-ACFE-2B4F8F78BF0E}"
 EndProject
