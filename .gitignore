@@ -38,3 +38,6 @@ WellnessManagementSystem/DataLayer/obj/Debug/DesignTimeResolveAssemblyReferences
 WellnessManagementSystem/WellnessManagementSystem.v11.suo
 WellnessManagementSystem/WPFUI/obj/Debug/DesignTimeResolveAssemblyReferencesInput.cache
 WellnessManagementSystem/WPFUI/obj/Debug/PhysioApplication_MarkupCompile.i.cache
+WellnessManagementSystem/DataLayer/obj/Debug/DataLayer.csproj.FileListAbsolute.txt
+WellnessManagementSystem/DataLayer/obj/Debug/DataLayer.csprojResolveAssemblyReference.cache
+WellnessManagementSystem/DataLayer/obj/Debug/DataLayer.pdb
