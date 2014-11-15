@@ -16,7 +16,7 @@ namespace DataLayer
             {
             WellnessManagementFrameworkDBMLDataContext dataContext = new WellnessManagementFrameworkDBMLDataContext();
             User user = (from appUser in dataContext.Users
-                         where appUser.UserName == userName && appUser.Password == password
+                         where appUser.UserName.ToLower() == userName.ToLower() && appUser.Password == password
                          select appUser).FirstOrDefault();
             return user;
             }
