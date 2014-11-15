@@ -3,10 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DataLayer;
 
-namespace DataLayer
+
+namespace BusinessLayer
 {
-    public class Class1
+    public class BusinessLayerManager
     {
+       
+
     }
 }
