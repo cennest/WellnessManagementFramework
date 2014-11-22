@@ -44,13 +44,13 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="WellnessManagementFrameworkDBScript.sql" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\DatabaseEntities\DatabaseEntities.csproj">
       <Project>{839a986a-9785-4aa6-9f19-d5b33e96982a}</Project>
       <Name>DatabaseEntities</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="WellnessManagementFrameworkDBScript.sql" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
