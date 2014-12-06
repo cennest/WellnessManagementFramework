@@ -33,9 +33,14 @@ namespace PhysioApplication
                 BusinessLayerManager businessLayer = new BusinessLayerManager();
                 UserDetails userDetails = businessLayer.GetUser(UserName.Text, Password.Text);
                 if (userDetails == null)
+                {
                     MessageBox.Show(ResourceConstants.InvalidUserNameOrPassword);
+                }
                 else
-                    MessageBox.Show(ResourceConstants.LoginSuccessful);
+                {
+                    HomePage homePage = new HomePage(userDetails);
+                    homePage.Show();
+                }
             }
             catch(Exception )
             {
