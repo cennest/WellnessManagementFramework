@@ -11,7 +11,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-//using BusinessLayer;
+using BusinessLayer;
+using BusinessLayer.Entities;
 namespace PhysioApplication
 {
     /// <summary>
@@ -24,21 +25,63 @@ namespace PhysioApplication
             InitializeComponent();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void Login_Click(object sender, RoutedEventArgs e)
         {
-        //    BusinessLayerManager businessLayer = new BusinessLayerManager();
-        //    bool authenticationSuccessful=businessLayer.GetUser(UserName.Text,Password.Text);
-        //    if (authenticationSuccessful == true)
-        //    {
-        //        MessageBox.Show("Authentication Successful");
-        //        Window2 nextWindow = new Window2();
-        //        nextWindow.Show();
-        //        this.Close();
-        //    }
-        //    else
-        //    {
-        //        MessageBox.Show("Authentication Failed");
-        //    }
+            try
+            {
+
+                BusinessLayerManager businessLayer = new BusinessLayerManager();
+                UserDetails userDetails = businessLayer.GetUser(UserName.Text, Password.Text);
+                if (userDetails == null)
+                    MessageBox.Show(ResourceConstants.InvalidUserNameOrPassword);
+                else
+                    MessageBox.Show(ResourceConstants.LoginSuccessful);
+            }
+            catch(Exception )
+            {
+                MessageBox.Show(ResourceConstants.InvalidUserNameOrPassword);
+            }
         }
+        private void UserNameTextBox_click(object sender, RoutedEventArgs e)
+        {
+            if (UserName.Text == ResourceConstants.EnterUserName)
+            {
+                UserName.Text = "";
+            }
+        }
+        private void PasswordTextBox_click(object sender, RoutedEventArgs e)
+        {
+            if (UserName.Text == "")
+            {
+                UserName.Text = ResourceConstants.EnterUserName;
+            }
+            if (Password.Text == ResourceConstants.EnterPassword)
+            {
+                Password.Text = "";
+            }
+        }
+
+        private void checkEmptyFields()
+        {
+             if(UserName.Text == "")
+            {
+                UserName.Text = ResourceConstants.EnterUserName;
+            }
+            if (Password.Text == "")
+            {
+             Password.Text = ResourceConstants.EnterPassword;
+            }
+        }
+
+        private void UserName_LostFocus(object sender, RoutedEventArgs e)
+        {
+            checkEmptyFields();
+        }
+
+        private void Password_LostFocus(object sender, RoutedEventArgs e)
+        {
+            checkEmptyFields();
+        }
+
     }
 }
