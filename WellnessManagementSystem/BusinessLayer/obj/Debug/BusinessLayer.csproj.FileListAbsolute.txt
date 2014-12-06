@@ -10,3 +10,14 @@ C:\Users\user\Desktop\WellnessManagementFrameWork\WellnessManagementFramework\We
 C:\Users\user\Desktop\WellnessManagementFrameWork\WellnessManagementFramework\WellnessManagementSystem\BusinessLayer\obj\Debug\BusinessLayer.csprojResolveAssemblyReference.cache
 C:\Users\user\Desktop\WellnessManagementFrameWork\WellnessManagementFramework\WellnessManagementSystem\BusinessLayer\obj\Debug\BusinessLayer.dll
 C:\Users\user\Desktop\WellnessManagementFrameWork\WellnessManagementFramework\WellnessManagementSystem\BusinessLayer\obj\Debug\BusinessLayer.pdb
+D:\Hitesh\WellnessManagementFramework\WellnessManagementSystem\BusinessLayer\bin\Debug\BusinessLayer.dll
+D:\Hitesh\WellnessManagementFramework\WellnessManagementSystem\BusinessLayer\bin\Debug\BusinessLayer.pdb
+D:\Hitesh\WellnessManagementFramework\WellnessManagementSystem\BusinessLayer\bin\Debug\DataLayer.dll
+D:\Hitesh\WellnessManagementFramework\WellnessManagementSystem\BusinessLayer\bin\Debug\DataLayer.pdb
+D:\Hitesh\WellnessManagementFramework\WellnessManagementSystem\BusinessLayer\obj\Debug\BusinessLayer.csprojResolveAssemblyReference.cache
+D:\Hitesh\WellnessManagementFramework\WellnessManagementSystem\BusinessLayer\obj\Debug\BusinessLayer.dll
+D:\Hitesh\WellnessManagementFramework\WellnessManagementSystem\BusinessLayer\obj\Debug\BusinessLayer.pdb
+D:\Hitesh\WellnessManagementFramework\WellnessManagementSystem\BusinessLayer\bin\Debug\DatabaseEntities.dll
+D:\Hitesh\WellnessManagementFramework\WellnessManagementSystem\BusinessLayer\bin\Debug\DatabaseEntities.pdb
+D:\Hitesh\WellnessManagementFramework\WellnessManagementSystem\BusinessLayer\obj\Debug\BusinessLayer.ReportTypeResource.resources
+D:\Hitesh\WellnessManagementFramework\WellnessManagementSystem\BusinessLayer\obj\Debug\BusinessLayer.csproj.GenerateResource.Cache

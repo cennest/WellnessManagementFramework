@@ -7,7 +7,7 @@ using System.Collections;
 
 namespace BusinessLayer.Entities
 {
-    class ClientRecords
+    class BOClientRecords
     {
         public ReportType ReportType { get; set; }
         public int ClientID { get; set; }

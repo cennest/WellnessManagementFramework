@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BusinessLayer.Entities
 {
-    class Client
+    class BOClient
     {
         public int ClientID { get; set; }
         public string ClientName { get; set; }

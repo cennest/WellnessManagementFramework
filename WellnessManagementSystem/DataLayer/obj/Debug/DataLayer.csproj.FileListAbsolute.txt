@@ -10,3 +10,10 @@ C:\Users\user\Desktop\WellnessManagementFrameWork\WellnessManagementFramework\We
 C:\Users\user\Desktop\WellnessManagementFrameWork\WellnessManagementFramework\WellnessManagementSystem\DataLayer\obj\Debug\DataLayer.csprojResolveAssemblyReference.cache
 C:\Users\user\Desktop\WellnessManagementFrameWork\WellnessManagementFramework\WellnessManagementSystem\DataLayer\obj\Debug\DataLayer.dll
 C:\Users\user\Desktop\WellnessManagementFrameWork\WellnessManagementFramework\WellnessManagementSystem\DataLayer\obj\Debug\DataLayer.pdb
+D:\Hitesh\WellnessManagementFramework\WellnessManagementSystem\DataLayer\bin\Debug\DataLayer.dll
+D:\Hitesh\WellnessManagementFramework\WellnessManagementSystem\DataLayer\bin\Debug\DataLayer.pdb
+D:\Hitesh\WellnessManagementFramework\WellnessManagementSystem\DataLayer\bin\Debug\DatabaseEntities.dll
+D:\Hitesh\WellnessManagementFramework\WellnessManagementSystem\DataLayer\bin\Debug\DatabaseEntities.pdb
+D:\Hitesh\WellnessManagementFramework\WellnessManagementSystem\DataLayer\obj\Debug\DataLayer.csprojResolveAssemblyReference.cache
+D:\Hitesh\WellnessManagementFramework\WellnessManagementSystem\DataLayer\obj\Debug\DataLayer.dll
+D:\Hitesh\WellnessManagementFramework\WellnessManagementSystem\DataLayer\obj\Debug\DataLayer.pdb

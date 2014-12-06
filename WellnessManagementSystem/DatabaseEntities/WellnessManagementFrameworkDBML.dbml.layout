@@ -26,7 +26,7 @@
         <elementListCompartment Id="d84f896f-571c-4129-9ae9-0f8995aa1818" absoluteBounds="9.015, 7.96, 1.9700000000000002, 1.7878011067708335" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="60f6c9ad-973a-4a64-8b63-ef972f1d1ce8" absoluteBounds="12, 7.5, 2, 2.5401025390624996">
+    <classShape Id="60f6c9ad-973a-4a64-8b63-ef972f1d1ce8" absoluteBounds="12, 7.5, 2, 2.5401025390625005">
       <DataClassMoniker Name="/WellnessManagementFrameworkDBMLDataContext/LabReport" />
       <nestedChildShapes>
         <elementListCompartment Id="77c105d9-9bca-4cc2-a880-d96776b67461" absoluteBounds="12.015, 7.96, 1.9700000000000002, 1.9801025390625" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
@@ -68,98 +68,98 @@
         <elementListCompartment Id="16ffab72-3965-4327-b413-663a1893d14a" absoluteBounds="3.515, 9.71, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(5.5 : 4.22199625651042); (7.25 : 4.22199625651042); (7.25 : 6.25)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(5.5 : 4.22199625651042); (7.25 : 4.22199625651042); (7.25 : 6.25)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/WellnessManagementFrameworkDBMLDataContext/CategoryMaster/CategoryMaster_Client" />
       <nodes>
         <classShapeMoniker Id="ca2382e7-316f-4646-9b13-f29fea13519e" />
         <classShapeMoniker Id="0e784b21-f4b8-4305-86f6-ed208d3d2a61" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(8.25 : 7.85659912109375); (9 : 7.85659912109375)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(8.25 : 7.85659912109375); (9 : 7.85659912109375)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/WellnessManagementFrameworkDBMLDataContext/Client/Client_DietPlanReport" />
       <nodes>
         <classShapeMoniker Id="0e784b21-f4b8-4305-86f6-ed208d3d2a61" />
         <classShapeMoniker Id="57af2a4e-a823-4ab8-9077-c2c64204bbfc" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(8.25 : 6.8749995); (12.3854146666667 : 6.8749995 : JumpStart); (12.5520813333333 : 6.8749995 : JumpEnd); (13 : 6.8749995); (13 : 7.5)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(8.25 : 7.09857377734375); (12.5475246666667 : 7.09857377734375 : JumpStart); (12.7141913333333 : 7.09857377734375 : JumpEnd); (13.32422 : 7.09857377734375); (13.32422 : 7.5)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/WellnessManagementFrameworkDBMLDataContext/Client/Client_LabReport" />
       <nodes>
         <classShapeMoniker Id="0e784b21-f4b8-4305-86f6-ed208d3d2a61" />
         <classShapeMoniker Id="60f6c9ad-973a-4a64-8b63-ef972f1d1ce8" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(2.75 : 7.63064697265625); (3.07291666666667 : 7.63064697265625 : JumpStart); (3.33333333333333 : 7.63064697265625 : JumpEnd); (3.5 : 7.63064697265625)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(2.75 : 7.63064697265625); (3.07291666666667 : 7.63064697265625 : JumpStart); (3.33333333333333 : 7.63064697265625 : JumpEnd); (3.5 : 7.63064697265625)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/WellnessManagementFrameworkDBMLDataContext/OccupationMaster/OccupationMaster_OccupationReportField" />
       <nodes>
         <classShapeMoniker Id="73a8e0fc-85f4-4301-bf9a-0967358f0a6e" />
         <classShapeMoniker Id="d8d55beb-2994-4fd7-aea0-6f4ab65d5e45" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(7.7812525 : 6.25); (7.7812525 : 5.13104939778646); (9 : 5.13104939778646)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(7.7812525 : 6.25); (7.7812525 : 5.13104939778646); (9 : 5.13104939778646)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/WellnessManagementFrameworkDBMLDataContext/Client/Client_PhysicalConditionReport" />
       <nodes>
         <classShapeMoniker Id="0e784b21-f4b8-4305-86f6-ed208d3d2a61" />
         <classShapeMoniker Id="24005a6f-8ae4-41cd-ae2c-5664f7072b6e" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(1.75 : 5.7612939453125); (1.75 : 7.25); (3.07291666666667 : 7.25 : JumpStart); (3.23958333333333 : 7.25 : JumpEnd); (3.25 : 7.25); (3.25 : 9); (5.69686871654647 : 9 : JumpStart); (5.86655568820112 : 9 : JumpEnd); (5.875 : 9); (5.875 : 10.1931469726562); (6.25 : 10.1931469726562)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(1.75 : 5.7612939453125); (1.75 : 7.25); (3.07291666666667 : 7.25 : JumpStart); (3.23958333333333 : 7.25 : JumpEnd); (3.25 : 7.25); (3.25 : 9); (5.69686871654648 : 9 : JumpStart); (5.86655568820112 : 9 : JumpEnd); (5.875 : 9); (5.875 : 10.1931469726562); (6.25 : 10.1931469726562)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/WellnessManagementFrameworkDBMLDataContext/ReportFieldMaster/ReportFieldMaster_UserReportField" />
       <nodes>
         <classShapeMoniker Id="ebd5dc54-4bdb-4a34-8219-09e3755bf80a" />
         <classShapeMoniker Id="9be5fadd-00fd-43f2-9ea7-c35490b0fc97" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(2.75 : 5.75276190564904); (2.81607443490112 : 5.81883634055016 : JumpStart); (2.93392556509888 : 5.93668747074792 : JumpEnd); (3.15625 : 6.15901190564904); (3.15625 : 8.63784912109375); (3.16666666666667 : 8.63784912109375 : JumpStart); (3.33333333333333 : 8.63784912109375 : JumpEnd); (9 : 8.63784912109375)]" fixedFrom="NotFixed" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(2.75 : 4.76102954477163); (3.15625 : 6.15901190564904); (3.15625 : 8.63784912109375); (3.16666666666667 : 8.63784912109375 : JumpStart); (3.33333333333333 : 8.63784912109375 : JumpEnd); (9 : 8.63784912109375)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/WellnessManagementFrameworkDBMLDataContext/ReportFieldMaster/ReportFieldMaster_DietPlanReport" />
       <nodes>
         <classShapeMoniker Id="ebd5dc54-4bdb-4a34-8219-09e3755bf80a" />
         <classShapeMoniker Id="57af2a4e-a823-4ab8-9077-c2c64204bbfc" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(2.75 : 5.41491917154948); (5.97916666666667 : 5.41491917154948 : JumpStart); (6.14583333333333 : 5.41491917154948 : JumpEnd); (7.16666666666667 : 5.41491917154948 : JumpStart); (7.33333333333333 : 5.41491917154948 : JumpEnd); (7.69791916666667 : 5.41491917154948 : JumpStart); (7.86458583333333 : 5.41491917154948 : JumpEnd); (8.75 : 5.41491917154948); (8.75 : 6.2901025390625); (12.468748 : 6.2901025390625); (12.468748 : 7.5)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(2.75 : 5.44617117154948); (2.86576702277117 : 5.44617117154948 : JumpStart); (3.03243368943783 : 5.44617117154948 : JumpEnd); (5.97916666666667 : 5.44617117154948 : JumpStart); (6.14583333333333 : 5.44617117154948 : JumpEnd); (7.16666666666667 : 5.44617117154948 : JumpStart); (7.33333333333333 : 5.44617117154948 : JumpEnd); (7.69791916666667 : 5.44617117154948 : JumpStart); (7.86458583333333 : 5.44617117154948 : JumpEnd); (8.75 : 5.44617117154948); (8.75 : 6.2901025390625); (12.630858 : 6.2901025390625); (12.630858 : 7.5)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/WellnessManagementFrameworkDBMLDataContext/ReportFieldMaster/ReportFieldMaster_LabReport" />
       <nodes>
         <classShapeMoniker Id="ebd5dc54-4bdb-4a34-8219-09e3755bf80a" />
         <classShapeMoniker Id="60f6c9ad-973a-4a64-8b63-ef972f1d1ce8" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(2.75 : 5.73783258623798); (2.875 : 6.1362939453125); (2.875 : 5.75); (3.5 : 6.375)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+    <associationConnector edgePoints="[(2.75 : 5.37526440054087); (2.875 : 6.1362939453125); (2.875 : 5.75); (3.04498846582575 : 5.91998846582575 : JumpStart); (3.16283959602351 : 6.03783959602351 : JumpEnd); (3.5 : 6.375)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/WellnessManagementFrameworkDBMLDataContext/ReportFieldMaster/ReportFieldMaster_OccupationReportField" />
       <nodes>
         <classShapeMoniker Id="ebd5dc54-4bdb-4a34-8219-09e3755bf80a" />
         <classShapeMoniker Id="d8d55beb-2994-4fd7-aea0-6f4ab65d5e45" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(2.75 : 5.60762337889373); (5.97916666666667 : 5.60762337889373 : JumpStart); (6.14583333333333 : 5.60762337889373 : JumpEnd); (7.16666666666667 : 5.60762337889373 : JumpStart); (7.33333333333333 : 5.60762337889373 : JumpEnd); (7.69791916666667 : 5.60762337889373 : JumpStart); (7.86458583333333 : 5.60762337889373 : JumpEnd); (8.66666666666667 : 5.60762337889373 : JumpStart); (8.83333333333333 : 5.60762337889373 : JumpEnd); (9 : 5.60762337889373)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(2.75 : 5.60762337889373); (2.91268460990899 : 5.60762337889373 : JumpStart); (3.07935127657565 : 5.60762337889373 : JumpEnd); (5.97916666666667 : 5.60762337889373 : JumpStart); (6.14583333333333 : 5.60762337889373 : JumpEnd); (7.16666666666667 : 5.60762337889373 : JumpStart); (7.33333333333333 : 5.60762337889373 : JumpEnd); (7.69791916666667 : 5.60762337889373 : JumpStart); (7.86458583333333 : 5.60762337889373 : JumpEnd); (8.66666666666667 : 5.60762337889373 : JumpStart); (8.83333333333333 : 5.60762337889373 : JumpEnd); (9 : 5.60762337889373)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/WellnessManagementFrameworkDBMLDataContext/ReportFieldMaster/ReportFieldMaster_PhysicalConditionReport" />
       <nodes>
         <classShapeMoniker Id="ebd5dc54-4bdb-4a34-8219-09e3755bf80a" />
         <classShapeMoniker Id="24005a6f-8ae4-41cd-ae2c-5664f7072b6e" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(2.125 : 2.69399251302083); (2.125 : 4.375)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(2.125 : 2.69399251302083); (2.125 : 4.375)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/WellnessManagementFrameworkDBMLDataContext/ReportTypeMaster/ReportTypeMaster_ReportFieldMaster" />
       <nodes>
         <classShapeMoniker Id="8136b7ad-6985-42f6-87e4-fcc8406e8c5f" />
         <classShapeMoniker Id="ebd5dc54-4bdb-4a34-8219-09e3755bf80a" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(5.5 : 9.78407348632813); (5.79166666666667 : 9.78407348632813 : JumpStart); (5.95833333333333 : 9.78407348632813 : JumpEnd); (6.25 : 9.78407348632813)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(5.5 : 9.78407348632813); (5.79166666666667 : 9.78407348632813 : JumpStart); (5.95833333333333 : 9.78407348632813 : JumpEnd); (6.25 : 9.78407348632813)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/WellnessManagementFrameworkDBMLDataContext/User/User_UserReportField" />
       <nodes>
         <classShapeMoniker Id="ec51471f-e83b-41a2-917f-2e01dc9545a4" />
         <classShapeMoniker Id="9be5fadd-00fd-43f2-9ea7-c35490b0fc97" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(5.5 : 9.28322235486779); (6.125 : 8.65822235486779); (6.125 : 7.23159912109375); (6.25 : 7.23159912109375)]" fixedFrom="NotFixed" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(5.5 : 9.28322235486779); (6.125 : 8.65822235486779); (6.125 : 7.23159912109375); (6.25 : 7.23159912109375)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/WellnessManagementFrameworkDBMLDataContext/User/User_Client" />
       <nodes>
         <classShapeMoniker Id="ec51471f-e83b-41a2-917f-2e01dc9545a4" />
         <classShapeMoniker Id="0e784b21-f4b8-4305-86f6-ed208d3d2a61" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(5.5 : 9.3122101261268); (5.79166666666667 : 9.3122101261268 : JumpStart); (5.95833333333333 : 9.3122101261268 : JumpEnd); (9 : 9.3122101261268)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(5.5 : 9.3122101261268); (9 : 9.3122101261268)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/WellnessManagementFrameworkDBMLDataContext/User/User_DietPlanReport" />
       <nodes>
         <classShapeMoniker Id="ec51471f-e83b-41a2-917f-2e01dc9545a4" />
@@ -173,14 +173,14 @@
         <classShapeMoniker Id="60f6c9ad-973a-4a64-8b63-ef972f1d1ce8" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(5.5 : 9.28020204987981); (6.0625 : 8.71770204987981); (6.0625 : 4.64527032714844); (7.16666666666667 : 4.64527032714844 : JumpStart); (7.33333333333333 : 4.64527032714844 : JumpEnd); (9 : 4.64527032714844)]" fixedFrom="NotFixed" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(5.5 : 9.28020204987981); (6.0625 : 8.71770204987981); (6.0625 : 4.64527032714844); (7.16666666666667 : 4.64527032714844 : JumpStart); (7.33333333333333 : 4.64527032714844 : JumpEnd); (9 : 4.64527032714844)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/WellnessManagementFrameworkDBMLDataContext/User/User_PhysicalConditionReport" />
       <nodes>
         <classShapeMoniker Id="ec51471f-e83b-41a2-917f-2e01dc9545a4" />
         <classShapeMoniker Id="24005a6f-8ae4-41cd-ae2c-5664f7072b6e" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(1.75 : 8.69399251302083); (1.75 : 10.2315991210937); (3.5 : 10.2315991210937)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(1.75 : 8.69399251302083); (1.75 : 10.2315991210937); (3.5 : 10.2315991210937)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/WellnessManagementFrameworkDBMLDataContext/OccupationMaster/OccupationMaster_User" />
       <nodes>
         <classShapeMoniker Id="73a8e0fc-85f4-4301-bf9a-0967358f0a6e" />

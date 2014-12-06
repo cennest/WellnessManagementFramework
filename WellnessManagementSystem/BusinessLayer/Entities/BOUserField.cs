@@ -6,11 +6,9 @@ using System.Threading.Tasks;
 
 namespace BusinessLayer.Entities
 {
-    class ClientSummary
+    public class BOUserField
     {
-        public int ClientID {get; set;}
-        public LabReport LabReport { get; set; }
-
-
+        public int ReportFieldID { get; set; }
+        public string ReportFieldName { get; set; }
     }
 }

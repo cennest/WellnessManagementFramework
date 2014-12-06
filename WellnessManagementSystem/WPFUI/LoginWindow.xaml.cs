@@ -31,9 +31,9 @@ namespace PhysioApplication
         //    if (authenticationSuccessful == true)
         //    {
         //        MessageBox.Show("Authentication Successful");
-        //        Window2 nextWindow = new Window2();
-        //        nextWindow.Show();
-        //        this.Close();
+            Window1 nextWindow = new Window1();
+            nextWindow.Show();
+            //this.Close();
         //    }
         //    else
         //    {
