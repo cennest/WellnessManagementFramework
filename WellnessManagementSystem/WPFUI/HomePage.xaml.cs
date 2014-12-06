@@ -28,12 +28,13 @@ namespace PhysioApplication
 
         public HomePage(UserDetails userDetails)
         {
+            InitializeComponent();
             if (userDetails != null)
             {
                 AppManager appManager = AppManager.getInstance();
                 appManager.setUserID(userDetails.UserID);
                 appManager.SetUserName(userDetails.UserName);
-                DataContext = appManager;
+                DataContext = userDetails;
             }
         }
     }

@@ -24,7 +24,7 @@ namespace BusinessLayer
                 UserDetails appUser = new UserDetails();
                 appUser.UserID = user.UserId;
                 appUser.UserName = user.UserName;
-
+                appUser.OccupationID = user.OccupationID;
                 return appUser;
             }
             else

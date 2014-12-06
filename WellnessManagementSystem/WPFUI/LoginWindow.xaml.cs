@@ -13,6 +13,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using BusinessLayer;
 using BusinessLayer.Entities;
+using System.Windows.Navigation;
+
 namespace PhysioApplication
 {
     /// <summary>
@@ -40,6 +42,7 @@ namespace PhysioApplication
                 {
                     HomePage homePage = new HomePage(userDetails);
                     homePage.Show();
+                    this.Close();
                 }
             }
             catch(Exception )
