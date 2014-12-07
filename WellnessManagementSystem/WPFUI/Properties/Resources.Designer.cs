@@ -131,5 +131,14 @@ namespace PhysioApplication.Properties {
                 return ResourceManager.GetString("Button4Title", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 4.
+        /// </summary>
+        public static string NoOfButtons {
+            get {
+                return ResourceManager.GetString("NoOfButtons", resourceCulture);
+            }
+        }
     }
 }

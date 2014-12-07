@@ -141,4 +141,7 @@
   <data name="Button4Title" xml:space="preserve">
     <value>View  Historical Trends</value>
   </data>
+  <data name="NoOfButtons" xml:space="preserve">
+    <value>4</value>
+  </data>
 </root>

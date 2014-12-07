@@ -31,7 +31,6 @@ namespace PhysioApplication
         {
             try
             {
-
                 BusinessLayerManager businessLayer = new BusinessLayerManager();
                 UserDetails userDetails = businessLayer.GetUser(UserName.Text, Password.Text);
                 if (userDetails == null)
@@ -40,7 +39,9 @@ namespace PhysioApplication
                 }
                 else
                 {
-                    HomePage homePage = new HomePage(userDetails);
+                    AppManager appManager = AppManager.getInstance();
+                    appManager.SetUserDetails(userDetails); 
+                    HomePage homePage = new HomePage();
                     homePage.Show();
                     this.Close();
                 }
