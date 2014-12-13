@@ -10,7 +10,5 @@ namespace BusinessLayer.Entities
     {
         public int ClientID {get; set;}
         public BOLabReport LabReport { get; set; }
-
-
     }
 }

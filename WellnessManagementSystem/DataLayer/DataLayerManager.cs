@@ -76,6 +76,52 @@ namespace DataLayer
                 throw new Exception(exception.Message);
             }
         }
-      
+
+        public List<CategoryMaster> GetAllCategories()
+        {
+            try
+            {
+                WellnessManagementFrameworkDBMLDataContext dataContext = new WellnessManagementFrameworkDBMLDataContext();
+                List<CategoryMaster> listOfCategories = (from category in dataContext.CategoryMasters
+                                                         select category).ToList();
+                return listOfCategories;
+            }
+            catch (Exception exception)
+            {
+                throw new Exception(exception.Message);
+            }
+        }
+
+        public List<Client> GetClientsforCategories(int categoryID, int userID, int skip, int take)
+        {
+            try
+            {
+                WellnessManagementFrameworkDBMLDataContext dataContext = new WellnessManagementFrameworkDBMLDataContext();
+                List<Client> listOfClients = (from client in dataContext.Clients
+                                              where client.UserID == userID && client.CategoryID == categoryID
+                                              select client).Skip(skip).Take(take).ToList();
+                return listOfClients;
+            }
+            catch (Exception exception)
+            {
+                throw new Exception(exception.Message);
+            }
+        }
+
+        public List<Client> GetClientsForCategoryByName(int categoryID,string searchString, int userID,int skip, int take)
+        {
+            try
+            {
+                WellnessManagementFrameworkDBMLDataContext dataContext = new WellnessManagementFrameworkDBMLDataContext();
+                List<Client> listOfClients = (from client in dataContext.Clients
+                                              where client.UserID == userID && client.CategoryID == categoryID && client.ClientName.ToLower().Contains(searchString.ToLower())
+                                              select client).Skip(skip).Take(take).ToList();
+                return listOfClients;
+            }
+            catch (Exception exception)
+            {
+                throw new Exception(exception.Message);
+            }
+        }
     }
 }
