@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BusinessLayer.Entities
 {
-    class DietPlan
+    class BODietPlan
     {
        public int DietPlanID { get; set; }
        public DateTime TestDate { get; set; }

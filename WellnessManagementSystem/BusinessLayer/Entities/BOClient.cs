@@ -6,11 +6,9 @@ using System.Threading.Tasks;
 
 namespace BusinessLayer.Entities
 {
-    public class ClientSummary
+    public class BOClient
     {
         public int ClientID { get; set; }
         public string ClientName { get; set; }
-        public string ClientNotificationID { get; set; }
-        public string ClientLastNotes { get; set; }
     }
 }

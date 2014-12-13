@@ -28,6 +28,6 @@ namespace PhysioApplication{
             BusinessLayerManager businessLayer = new BusinessLayerManager();
         }
 
-        public List<ClientSummary> ClientSummary { get { return businessLayer.GetAllClientsSummary(); } }
+        public List<BOClient> ClientSummary;
     }
 }
