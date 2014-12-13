@@ -61,5 +61,21 @@ namespace DataLayer
                 throw (exception);
             }
         }
+        public User GetUser(string userName, string password)
+        {
+            try
+            {
+            WellnessManagementFrameworkDBMLDataContext dataContext = new WellnessManagementFrameworkDBMLDataContext();
+            User user = (from appUser in dataContext.Users
+                         where appUser.UserName.ToLower() == userName.ToLower() && appUser.Password == password
+                         select appUser).FirstOrDefault();
+            return user;
+            }
+            catch (Exception exception)
+            {
+                throw new Exception(exception.Message);
+            }
+        }
+      
     }
 }
