@@ -39,30 +39,31 @@ namespace BusinessLayer
                 throw (exception);
             }
         }
-        public Dictionary<string, List<BOUserField>> GetLabReportFieldsForUser(int clientID)
+        public Dictionary<string, List<BOUserField>> GetReportFieldsForUser(int userID)
         {
             DataLayerManager dataLayer = new DataLayerManager();
 
-            List<UserReportField> listOfLabReportFields= dataLayer.GetUserFields(clientID);
+            List<UserReportField> listOfReportFieldsForUser = dataLayer.GetUserFields(userID);
             Dictionary<string, List<BOUserField>> userFieldsDictionary = new Dictionary<string,List<BOUserField>>();
             for (int reportType = (int)ReportType.LabReport; reportType < (int)ReportType.PhysicalCondition; reportType++)
             {
-                List<BOUserField> userReportFields = GetUserFieldNamesForReportType(listOfLabReportFields, (int)ReportType.LabReport);
+                List<BOUserField> userReportFields = GetUserFieldNamesForReportType(listOfReportFieldsForUser, (int)ReportType.LabReport);
                 userFieldsDictionary.Add(BusinessLayerManager.reportTypeStrings[reportType].ToString(), userReportFields);
             }
             
             return userFieldsDictionary;
         }
 
-        private static List<BOUserField> GetUserFieldNamesForReportType(List<UserReportField> listOfReportFields,int reportType)
+        private static List<BOUserField> GetUserFieldNamesForReportType(List<UserReportField> listOfUserReportFields,int reportType)
         {
-            List<BOUserField> labReportFields = (from reportField in listOfReportFields
+            List<BOUserField> listOfReportFieldsForReportType = (from reportField in listOfUserReportFields
+                                                                 where reportField.ReportFieldMaster.ReportTypeID==reportType
                                                  select new BOUserField
                                                  {
                                                     ReportFieldID = reportField.ReportFieldID,
-                                                     ReportFieldName = reportField.ReportFieldMaster.ReportFieldName
+                                                    ReportFieldName = reportField.ReportFieldMaster.ReportFieldName
                                                  }).ToList();
-            return labReportFields;
+            return listOfReportFieldsForReportType;
         }
 
     }
