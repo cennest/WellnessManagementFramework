@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using BusinessLayer.Entities;
 
 namespace PhysioApplication
 {
     public class AppManager
     {
         private static AppManager instance = null;
-        private int UserID;
-        private string UserName;
+        private UserDetails userDetails;
 
         private AppManager()
         {
@@ -26,24 +26,14 @@ namespace PhysioApplication
             return instance;
         }
 
-        public void SetUserName(string userName)
+        public void SetUserDetails(UserDetails userDetails)
         {
-            this.UserName = userName;
+            this.userDetails = userDetails;
         }
 
-        public string GetUserName()
+        public UserDetails GetUserDetails()
         {
-            return this.UserName;
-        }
-
-        public void setUserID(int userID)
-        {
-            this.UserID = userID;
-        }
-
-        public int GetUserID()
-        {
-            return this.UserID;
+            return this.userDetails;
         }
     }
 }

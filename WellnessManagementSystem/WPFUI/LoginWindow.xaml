@@ -12,7 +12,7 @@
     <Grid >
         <Grid.RowDefinitions>
             <RowDefinition Height="2*"/>
-            <RowDefinition Height="10*"/>
+            <RowDefinition Height="4*"/>
             <RowDefinition Height="2*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
@@ -20,18 +20,15 @@
         </Grid.ColumnDefinitions>
 
 
-        <GroupBox Header="Athletic Conditioning Evaluation System (ACES)" Grid.Row="1" BorderBrush="#FFA620" BorderThickness="2" HorizontalAlignment="Center" >
+        <GroupBox Header="Athletic Conditioning Evaluation System (ACES)" Grid.Row="1" BorderBrush="#FFA620" BorderThickness="2" HorizontalAlignment="Center" Width="500">
             
             <StackPanel Height="Auto">
-                <TextBox Text="UserName"  Width="200" Height="50" Margin="10" Name="UserName" BorderBrush="#FFD28F" BorderThickness="2"/>
-                <TextBox Text="Password"  Width="200" Height="50" Margin="10" Name="Password" BorderBrush="#FFD28F" BorderThickness="2"/>
-            <Button Content="Login" Width="200" Height="50" Click="Button_Click" Background="{StaticResource ButtonGreenBackground}" Margin="10"/>
+                <TextBox Width="400" Text="Enter UserName" Height="50" Margin="10" PreviewMouseDown="UserNameTextBox_click" LostFocus="UserName_LostFocus" Name="UserName" Style="{StaticResource WellnessManagementSystemTextBoxStyle}"/>
+                <TextBox Width="400" Text="Enter Password" Height="50" Margin="10" PreviewMouseDown="PasswordTextBox_click" LostFocus="Password_LostFocus" Name="Password" Style="{StaticResource WellnessManagementSystemTextBoxStyle}"/>
+                <Button Content="Login" Width="200" Height="50" Click="Login_Click" Background="{StaticResource ButtonGreenBackground}" Style="{StaticResource WellnessManagementSystemButtonStyle}" Margin="10"/>
+                
             </StackPanel>
         </GroupBox>
-
-
-
-
     </Grid>
-   
+
 </Window>

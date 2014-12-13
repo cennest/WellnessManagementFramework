@@ -117,31 +117,16 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Button1Description" xml:space="preserve">
-    <value>All information pertaining to athletes including medical reports, diet, physical conditioning can be viewed here.</value>
+  <data name="EnterPassword" xml:space="preserve">
+    <value>Enter Password</value>
   </data>
-  <data name="Button1Title" xml:space="preserve">
-    <value>Access Athletes Information</value>
+  <data name="EnterUserName" xml:space="preserve">
+    <value>Enter UserName</value>
   </data>
-  <data name="Button2Description" xml:space="preserve">
-    <value>Items requiring your attention, notifications of upcoming activities etc. can be viewed here.</value>
+  <data name="InvalidUserNameOrPassword" xml:space="preserve">
+    <value>Invalid UserName or Password</value>
   </data>
-  <data name="Button2Title" xml:space="preserve">
-    <value>View Notifications</value>
-  </data>
-  <data name="Button3Description" xml:space="preserve">
-    <value>Add new tests, physical exams etc. over here</value>
-  </data>
-  <data name="Button3Title" xml:space="preserve">
-    <value>Change Settings</value>
-  </data>
-  <data name="Button4Description" xml:space="preserve">
-    <value>Graphical reports showing historical information of athletes can be generated here.</value>
-  </data>
-  <data name="Button4Title" xml:space="preserve">
-    <value>View  Historical Trends</value>
-  </data>
-  <data name="NoOfButtons" xml:space="preserve">
-    <value>4</value>
+  <data name="LoginSuccessful" xml:space="preserve">
+    <value>Login Successful</value>
   </data>
 </root>
