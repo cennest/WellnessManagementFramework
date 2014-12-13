@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace BusinessLayer.Entities
 {
-    class ClientSummary
+    class BOClientSummary
     {
         public int ClientID {get; set;}
-        public LabReport LabReport { get; set; }
+        public BOLabReport LabReport { get; set; }
 
 
     }

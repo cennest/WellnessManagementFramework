@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BusinessLayer.Entities
 {
-    class PhysicalCondition
+    class BOPhysicalCondition
     {
        public int PhysicalConditionID { get; set; }
        public DateTime TestDate { get; set; }
