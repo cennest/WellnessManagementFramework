@@ -11,6 +11,7 @@ namespace PhysioApplication
     {
         private static AppManager instance = null;
         private BOUser userDetails;
+        private List<BOUserField> labReportFieldsForUser;
 
         private AppManager()
         {
@@ -34,6 +35,16 @@ namespace PhysioApplication
         public BOUser GetUserDetails()
         {
             return this.userDetails;
+        }
+
+        public void SetLabReportFieldsForUser(List<BOUserField> labReportFields)
+        {
+            this.labReportFieldsForUser = labReportFields;
+        }
+
+        public List<BOUserField> GetLabReportFieldsForUser()
+        {
+            return this.labReportFieldsForUser;
         }
     }
 }
