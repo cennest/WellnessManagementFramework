@@ -23,8 +23,6 @@
             <RowDefinition/>
             <RowDefinition Height="10*"/>
         </Grid.RowDefinitions>
-       
-        <Button Grid.Row="0" x:Name="AddLabReport" Content="Add" Width="100" Click="AddLabReport_Click"/>
         <ListView Grid.Row="1" x:Name="lvReports">
 
         </ListView>
