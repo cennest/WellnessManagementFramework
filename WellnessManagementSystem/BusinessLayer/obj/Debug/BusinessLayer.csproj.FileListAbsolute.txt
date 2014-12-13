@@ -1,26 +1,11 @@
-D:\Moorthy\WellnessManagementFramework\PhysioApplication\BusinessLayer\bin\Debug\BusinessLayer.dll
-D:\Moorthy\WellnessManagementFramework\PhysioApplication\BusinessLayer\bin\Debug\BusinessLayer.pdb
-D:\Moorthy\WellnessManagementFramework\PhysioApplication\BusinessLayer\obj\Debug\BusinessLayer.csprojResolveAssemblyReference.cache
-D:\Moorthy\WellnessManagementFramework\PhysioApplication\BusinessLayer\obj\Debug\BusinessLayer.dll
-D:\Moorthy\WellnessManagementFramework\PhysioApplication\BusinessLayer\obj\Debug\BusinessLayer.pdb
-<<<<<<< HEAD
 C:\Users\user\Desktop\WellnessManagementFrameWork\WellnessManagementFramework\WellnessManagementSystem\BusinessLayer\bin\Debug\BusinessLayer.dll
 C:\Users\user\Desktop\WellnessManagementFrameWork\WellnessManagementFramework\WellnessManagementSystem\BusinessLayer\bin\Debug\BusinessLayer.pdb
+C:\Users\user\Desktop\WellnessManagementFrameWork\WellnessManagementFramework\WellnessManagementSystem\BusinessLayer\bin\Debug\DatabaseEntities.dll
 C:\Users\user\Desktop\WellnessManagementFrameWork\WellnessManagementFramework\WellnessManagementSystem\BusinessLayer\bin\Debug\DataLayer.dll
+C:\Users\user\Desktop\WellnessManagementFrameWork\WellnessManagementFramework\WellnessManagementSystem\BusinessLayer\bin\Debug\DatabaseEntities.pdb
 C:\Users\user\Desktop\WellnessManagementFrameWork\WellnessManagementFramework\WellnessManagementSystem\BusinessLayer\bin\Debug\DataLayer.pdb
 C:\Users\user\Desktop\WellnessManagementFrameWork\WellnessManagementFramework\WellnessManagementSystem\BusinessLayer\obj\Debug\BusinessLayer.csprojResolveAssemblyReference.cache
+C:\Users\user\Desktop\WellnessManagementFrameWork\WellnessManagementFramework\WellnessManagementSystem\BusinessLayer\obj\Debug\BusinessLayer.ReportTypeResource.resources
+C:\Users\user\Desktop\WellnessManagementFrameWork\WellnessManagementFramework\WellnessManagementSystem\BusinessLayer\obj\Debug\BusinessLayer.csproj.GenerateResource.Cache
 C:\Users\user\Desktop\WellnessManagementFrameWork\WellnessManagementFramework\WellnessManagementSystem\BusinessLayer\obj\Debug\BusinessLayer.dll
 C:\Users\user\Desktop\WellnessManagementFrameWork\WellnessManagementFramework\WellnessManagementSystem\BusinessLayer\obj\Debug\BusinessLayer.pdb
-D:\Hitesh\WellnessManagementFramework\WellnessManagementSystem\BusinessLayer\bin\Debug\BusinessLayer.dll
-D:\Hitesh\WellnessManagementFramework\WellnessManagementSystem\BusinessLayer\bin\Debug\BusinessLayer.pdb
-D:\Hitesh\WellnessManagementFramework\WellnessManagementSystem\BusinessLayer\bin\Debug\DataLayer.dll
-D:\Hitesh\WellnessManagementFramework\WellnessManagementSystem\BusinessLayer\bin\Debug\DataLayer.pdb
-D:\Hitesh\WellnessManagementFramework\WellnessManagementSystem\BusinessLayer\obj\Debug\BusinessLayer.csprojResolveAssemblyReference.cache
-D:\Hitesh\WellnessManagementFramework\WellnessManagementSystem\BusinessLayer\obj\Debug\BusinessLayer.dll
-D:\Hitesh\WellnessManagementFramework\WellnessManagementSystem\BusinessLayer\obj\Debug\BusinessLayer.pdb
-D:\Hitesh\WellnessManagementFramework\WellnessManagementSystem\BusinessLayer\bin\Debug\DatabaseEntities.dll
-D:\Hitesh\WellnessManagementFramework\WellnessManagementSystem\BusinessLayer\bin\Debug\DatabaseEntities.pdb
-D:\Hitesh\WellnessManagementFramework\WellnessManagementSystem\BusinessLayer\obj\Debug\BusinessLayer.ReportTypeResource.resources
-D:\Hitesh\WellnessManagementFramework\WellnessManagementSystem\BusinessLayer\obj\Debug\BusinessLayer.csproj.GenerateResource.Cache
-=======
->>>>>>> combine-tasks

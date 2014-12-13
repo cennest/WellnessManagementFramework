@@ -34,7 +34,7 @@ namespace PhysioApplication
         {
             InitializeComponent();
             AppManager appManager = AppManager.getInstance();
-            UserDetails userDetails = appManager.GetUserDetails();
+            BOUser userDetails = appManager.GetUserDetails();
             DataContext = userDetails;
             InitializeCustomComponents();
         }

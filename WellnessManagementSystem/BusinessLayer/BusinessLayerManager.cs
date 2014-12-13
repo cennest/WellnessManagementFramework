@@ -65,7 +65,7 @@ namespace BusinessLayer
                                                  }).ToList();
             return listOfReportFieldsForReportType;
         }
-        public UserDetails GetUser(string userName, string password)
+        public BOUser GetUser(string userName, string password)
         {
             try
             {
@@ -74,7 +74,7 @@ namespace BusinessLayer
 
             if (user != null)
             {
-                UserDetails appUser = new UserDetails();
+                BOUser appUser = new BOUser();
                 appUser.UserID = user.UserId;
                 appUser.UserName = user.UserName;
                 appUser.OccupationID = user.OccupationID;
