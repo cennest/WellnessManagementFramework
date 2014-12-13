@@ -40,14 +40,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BusinessLayerManager.cs" />
-    <Compile Include="Entities\Client.cs" />
-    <Compile Include="Entities\ClientDetail.cs" />
-    <Compile Include="Entities\ClientRecords.cs" />
-    <Compile Include="Entities\ClientSummary.cs" />
-    <Compile Include="Entities\DietPlan.cs" />
-    <Compile Include="Entities\LabReport.cs" />
-    <Compile Include="Entities\PhysicalCondition.cs" />
-    <Compile Include="Entities\UserDetails.cs" />
+    <Compile Include="Entities\BOCategory.cs" />
+    <Compile Include="Entities\BOClient.cs" />
+    <Compile Include="Entities\BOClientDetail.cs" />
+    <Compile Include="Entities\BOClientRecords.cs" />
+    <Compile Include="Entities\BOClientSummary.cs" />
+    <Compile Include="Entities\BODietPlan.cs" />
+    <Compile Include="Entities\BOLabReport.cs" />
+    <Compile Include="Entities\BOPhysicalCondition.cs" />
+    <Compile Include="Entities\BOUserDetails.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Enum.cs" />
   </ItemGroup>

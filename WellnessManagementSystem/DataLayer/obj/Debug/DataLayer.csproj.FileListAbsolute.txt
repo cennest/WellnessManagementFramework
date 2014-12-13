@@ -3,3 +3,9 @@ D:\Moorthy\WellnessManagementFramework\PhysioApplication\DataLayer\bin\Debug\Dat
 D:\Moorthy\WellnessManagementFramework\PhysioApplication\DataLayer\obj\Debug\DataLayer.csprojResolveAssemblyReference.cache
 D:\Moorthy\WellnessManagementFramework\PhysioApplication\DataLayer\obj\Debug\DataLayer.dll
 D:\Moorthy\WellnessManagementFramework\PhysioApplication\DataLayer\obj\Debug\DataLayer.pdb
+D:\Vijay\WellnessManagementFramework\WellnessManagementSystem\DataLayer\bin\Debug\DataLayer.dll
+D:\Vijay\WellnessManagementFramework\WellnessManagementSystem\DataLayer\bin\Debug\DataLayer.pdb
+D:\Vijay\WellnessManagementFramework\WellnessManagementSystem\DataLayer\bin\Debug\DatabaseEntities.dll
+D:\Vijay\WellnessManagementFramework\WellnessManagementSystem\DataLayer\bin\Debug\DatabaseEntities.pdb
+D:\Vijay\WellnessManagementFramework\WellnessManagementSystem\DataLayer\obj\Debug\DataLayer.dll
+D:\Vijay\WellnessManagementFramework\WellnessManagementSystem\DataLayer\obj\Debug\DataLayer.pdb

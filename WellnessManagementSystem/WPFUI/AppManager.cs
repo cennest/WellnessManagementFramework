@@ -10,7 +10,7 @@ namespace PhysioApplication
     public class AppManager
     {
         private static AppManager instance = null;
-        private UserDetails userDetails;
+        private BOUserDetails userDetails;
 
         private AppManager()
         {
@@ -26,12 +26,12 @@ namespace PhysioApplication
             return instance;
         }
 
-        public void SetUserDetails(UserDetails userDetails)
+        public void SetUserDetails(BOUserDetails userDetails)
         {
             this.userDetails = userDetails;
         }
 
-        public UserDetails GetUserDetails()
+        public BOUserDetails GetUserDetails()
         {
             return this.userDetails;
         }
