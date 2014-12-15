@@ -14,6 +14,7 @@ using System.Windows.Shapes;
 using BusinessLayer;
 using BusinessLayer.Entities;
 using System.Dynamic;
+using Editing;
 
 namespace PhysioApplication
 {
@@ -33,6 +34,20 @@ namespace PhysioApplication
             BindLabReportsOnListView(labReportsForUser, labReportFieldsForUser);
         }
 
+        private DataTemplate GenerateTextBlockTemplate(string property)
+        {
+            FrameworkElementFactory factory = new FrameworkElementFactory(typeof(EditBox), "valueBox" + property);
+            factory.SetBinding(EditBox.ValueProperty, new Binding { Path = new PropertyPath(property), Mode = BindingMode.TwoWay });
+
+            DataTemplate t = new DataTemplate { VisualTree = factory };
+
+            //uncomment this to enable 2-way explicit trigger
+            // Application.Current.Resources.Add(property, t);
+            return t;
+        }
+
+
+
         private void BindLabReportsOnListView(List<BOLabReport> reports, List<BOUserField> reportHeaders)
         {
             try
@@ -40,7 +55,8 @@ namespace PhysioApplication
                 GridView gridView = new GridView();
                 GridViewColumn dateColumnHeader = new GridViewColumn();
 
-                dateColumnHeader.DisplayMemberBinding = new Binding("TestDate");
+                dateColumnHeader.CellTemplate = GenerateTextBlockTemplate("TestDate");// (DataTemplate)FindResource("textBoxDT");
+
 
                 dateColumnHeader.Header = "Test Date";
                 
@@ -48,8 +64,8 @@ namespace PhysioApplication
                 foreach (BOUserField reportHeader in reportHeaders)
                 {
                     GridViewColumn columnHeader = new GridViewColumn();
-                    //we want to bind based on the ReportFieldID
-                    columnHeader.DisplayMemberBinding = new Binding(reportHeader.ReportFieldID.ToString());
+                    columnHeader.CellTemplate = GenerateTextBlockTemplate(reportHeader.ReportFieldID.ToString());// (DataTemplate)FindResource("textBoxDT");
+
                     columnHeader.Header = reportHeader.ReportFieldName;
                     gridView.Columns.Add(columnHeader);
                 }

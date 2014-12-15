@@ -57,6 +57,8 @@
       <DependentUpon>AllClientNotification.xaml</DependentUpon>
     </Compile>
     <Compile Include="AppManager.cs" />
+    <Compile Include="EditControl\editbox.cs" />
+    <Compile Include="EditControl\editboxadorner.cs" />
     <Compile Include="HomePage.xaml.cs">
       <DependentUpon>HomePage.xaml</DependentUpon>
     </Compile>
@@ -92,7 +94,7 @@
     <Page Include="LabReports.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
-	</Page>
+    </Page>
     <Page Include="Resources\DataGridStyle.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
