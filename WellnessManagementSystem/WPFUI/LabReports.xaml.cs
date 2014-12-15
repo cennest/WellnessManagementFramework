@@ -26,8 +26,9 @@ namespace PhysioApplication
         {
             InitializeComponent();
             BusinessLayerManager businessLayer = new BusinessLayerManager();
-            List<BOLabReport> labReportsForUser=businessLayer.GetLabReportsForClient(1,2);
+         
             AppManager appManager = AppManager.getInstance();
+            List<BOLabReport> labReportsForUser = businessLayer.GetLabReportsForClient(1, appManager.GetUserDetails().UserID);
             List<BOUserField> labReportFieldsForUser=appManager.GetLabReportFieldsForUser();
             BindLabReportsOnListView(labReportsForUser, labReportFieldsForUser);
         }
