@@ -143,5 +143,55 @@ namespace DataLayer
                 throw new Exception(exception.Message);
             }
         }
+        private List<DateTime> GetAllReportDatesForClient(int clientID)
+        {
+            WellnessManagementFrameworkDBMLDataContext dataContext = new WellnessManagementFrameworkDBMLDataContext();
+            var dateList = (from report in dataContext.LabReports
+                            where report.ClientID == clientID
+                            select report.TestDate).Distinct().ToList();
+            return dateList;
+
+        }
+
+        public bool SaveLabReportsForClient(List<LabReport> labReports, int clientID)
+        {
+            WellnessManagementFrameworkDBMLDataContext dataContext = new WellnessManagementFrameworkDBMLDataContext();
+
+            foreach (LabReport report in labReports)
+            {
+                LabReport existingDBReport = (from dbRecord in dataContext.LabReports
+                                              where dbRecord.ClientID == clientID && dbRecord.TestDate == report.TestDate && dbRecord.ReportFieldID == report.ReportFieldID
+                                              select dbRecord).FirstOrDefault();
+                if (existingDBReport != null)
+                {
+                    existingDBReport.ReportFieldValue = report.ReportFieldValue;
+                }
+                else
+                {
+                    report.ClientID = clientID;
+                    report.UserID = 1;//Change this
+                    dataContext.LabReports.InsertOnSubmit(report);
+                }
+                dataContext.SubmitChanges();
+            }
+
+            //check if any dates have been completely removed
+            List<DateTime> presentDates = labReports.Select(l => l.TestDate).Distinct().ToList();
+            List<DateTime> dbDates = GetAllReportDatesForClient(clientID);
+            List<DateTime> removedDates = dbDates.Except(presentDates).ToList();
+
+            foreach (DateTime date in removedDates)
+            {
+                List<LabReport> existingDBReports = (from dbRecord in dataContext.LabReports
+                                                     where dbRecord.ClientID == clientID && dbRecord.TestDate == date
+                                                     select dbRecord).ToList();
+                dataContext.LabReports.DeleteAllOnSubmit(existingDBReports);
+                dataContext.SubmitChanges();
+
+            }
+
+            return true;
+        }
+
     }
 }

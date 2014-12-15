@@ -7,6 +7,8 @@ using DataLayer;
 using BusinessLayer.Entities;
 using DatabaseEntities;
 using System.Collections;
+using System.Collections.ObjectModel;
+using System.Dynamic;
 
 namespace BusinessLayer
 {
@@ -160,6 +162,32 @@ namespace BusinessLayer
                 }
             }
             return listOfClients;
+        }
+
+        public bool SaveEditedReportsForClient(int clientID, ObservableCollection<ExpandoObject> editedLabResults)
+        {
+            List<LabReport> labReports = new List<LabReport>();
+            //Convert this Expando list to a List of BOLapReport
+            foreach (ExpandoObject expando in editedLabResults)
+            {
+                var report = expando as IDictionary<String, object>;
+                foreach (string k in report.Keys)
+                {
+                    int negative = -1;
+                    if (int.TryParse(k, out negative))
+                    {
+                        LabReport labReport = new LabReport();
+                        labReport.TestDate = DateTime.Parse((string)report["TestDate"]);
+                        labReport.ReportFieldID = int.Parse(k);
+                        labReport.ReportFieldValue = (string)report[k];
+                        labReports.Add(labReport);
+                    }
+                }
+
+            }
+            DataLayer.DataLayerManager dataLayerObject = new DataLayer.DataLayerManager();
+            dataLayerObject.SaveLabReportsForClient(labReports, clientID);
+            return true;
         }
     }
 }

@@ -15,6 +15,7 @@ using BusinessLayer;
 using BusinessLayer.Entities;
 using System.Dynamic;
 using Editing;
+using System.Collections.ObjectModel;
 
 namespace PhysioApplication
 {
@@ -23,15 +24,18 @@ namespace PhysioApplication
     /// </summary>
     public partial class LabReports : Window
     {
+        List<BOUserField> reportHeaders;
+        ObservableCollection<ExpandoObject> currentLabReports;
+        BusinessLayerManager businessLayer;
         public LabReports()
         {
             InitializeComponent();
-            BusinessLayerManager businessLayer = new BusinessLayerManager();
+            businessLayer = new BusinessLayerManager();
          
             AppManager appManager = AppManager.getInstance();
             List<BOLabReport> labReportsForUser = businessLayer.GetLabReportsForClient(1, appManager.GetUserDetails().UserID);
-            List<BOUserField> labReportFieldsForUser=appManager.GetLabReportFieldsForUser();
-            BindLabReportsOnListView(labReportsForUser, labReportFieldsForUser);
+           reportHeaders=appManager.GetLabReportFieldsForUser();
+            BindLabReportsOnListView(labReportsForUser, reportHeaders);
         }
 
         private DataTemplate GenerateTextBlockTemplate(string property)
@@ -78,9 +82,9 @@ namespace PhysioApplication
                 
 
                 lvReports.View = gridView;
-                var expandoReports = generateLabReportsGroupedByDate(reports);
-                lvReports.DataContext = expandoReports;
-                lvReports.ItemsSource = expandoReports;
+                currentLabReports = generateLabReportsGroupedByDate(reports);
+                lvReports.DataContext = currentLabReports;
+                lvReports.ItemsSource = currentLabReports;
                 lvReports.DataContextChanged += lvReports_DataContextChanged;
             }
             catch(Exception exception)
@@ -89,13 +93,13 @@ namespace PhysioApplication
 
             }
         }
-        private List<ExpandoObject> generateLabReportsGroupedByDate(List<BOLabReport> reports)
+        private ObservableCollection<ExpandoObject> generateLabReportsGroupedByDate(List<BOLabReport> reports)
         {
             try
             {
                 List<DateTime> uniqueDates = (from report in reports
                                               select report.TestDate).Distinct().ToList();
-                List<ExpandoObject> labReports = new List<ExpandoObject>();
+                ObservableCollection<ExpandoObject> labReports = new ObservableCollection<ExpandoObject>();
                 foreach (DateTime date in uniqueDates)
                 {
                     dynamic expando = new ExpandoObject();
@@ -112,6 +116,20 @@ namespace PhysioApplication
                             report[dateR.ReportFieldID.ToString()] = dateR.ReportFieldValue;
 
                         }
+
+                        //We want to add empty text fields for all other lab tests which were not conducted this day also
+                        List<int> reportHeaderList = (from header in reportHeaders
+                                                      select header.ReportFieldID).ToList();
+                        List<int> dateReportIDs = (from dateReport in dateReports
+                                                   select dateReport.ReportFieldID).ToList();
+                        //find missing reports for this date
+                        List<int> pendingReports = reportHeaderList.Except(dateReportIDs).ToList();
+                        foreach (int pending in pendingReports)
+                        {
+
+                            report[pending.ToString()] = "N/A";
+                        }
+
                         labReports.Add(expando);
                     }
                 }
@@ -130,6 +148,31 @@ namespace PhysioApplication
         private void AddLabReport_Click(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        private void btnAdd_Click(object sender, RoutedEventArgs e)
+        {
+            dynamic expando = new ExpandoObject();
+            var report = expando as IDictionary<String, object>;
+            report["TestDate"] = DateTime.Now.Date.ToShortDateString();
+            foreach (BOUserField reportHeader in reportHeaders)
+            {
+
+                report[reportHeader.ReportFieldID.ToString()] = "N/A";
+            }
+
+            currentLabReports.Add(expando);
+        }
+
+        private void btnDelete_Click(object sender, RoutedEventArgs e)
+        {
+            currentLabReports.RemoveAt(currentLabReports.Count - 1);
+        }
+
+        private void btnSave_Click(object sender, RoutedEventArgs e)
+        {
+            ObservableCollection<ExpandoObject> editedReports = (ObservableCollection<ExpandoObject>)lvReports.DataContext;
+            businessLayer.SaveEditedReportsForClient(1, editedReports);
         }
     }
 }

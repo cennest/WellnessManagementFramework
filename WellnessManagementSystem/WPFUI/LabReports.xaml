@@ -35,12 +35,18 @@
     </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition/>
-            <RowDefinition Height="10*"/>
+            <RowDefinition Height="46*"/>
+            <RowDefinition Height="342*"/>
+            <RowDefinition Height="42*"/>
+            <RowDefinition Height="39*"/>
+            <RowDefinition Height="35*"/>
         </Grid.RowDefinitions>
-        <ListView Grid.Row="1" x:Name="lvReports">
+        <ListView Grid.Row="1" x:Name="lvReports" Grid.RowSpan="1">
 
         </ListView>
+        <Button Grid.Row="2" x:Name="btnAdd" Click="btnAdd_Click">Add</Button>
+        <Button Grid.Row="3" x:Name="btnDelete" Click="btnDelete_Click">Delete</Button>
+        <Button Grid.Row="4" x:Name="btnSave" Click="btnSave_Click">Save</Button>
 
     </Grid>
 </Window>
