@@ -27,6 +27,8 @@ namespace PhysioApplication.UserControls
     {
         List<BOUserField> reportHeaders;
         ObservableCollection<ExpandoObject> currentLabReports;
+        DateTime? fromDate;
+        DateTime? toDate;
         BusinessLayerManager businessLayer;
         public LabReportUC()
         {
@@ -179,6 +181,34 @@ namespace PhysioApplication.UserControls
             ObservableCollection<ExpandoObject> editedReports = (ObservableCollection<ExpandoObject>)lvReports.DataContext;
             businessLayer.SaveEditedReportsForClient(AppManager.getInstance().currentClientID, editedReports);
         }
+
+        private void FromDate_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        {
+            fromDate =  FromDate.SelectedDate;
+            FetchLabRecordsForDate();
+        }
+
+        private void ToDate_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        {
+            toDate = ToDate.SelectedDate;
+            FetchLabRecordsForDate();
+        }
+
+        private void FetchLabRecordsForDate()
+        {
+           ObservableCollection<ExpandoObject> labReports = new ObservableCollection<ExpandoObject>();
+               foreach (ExpandoObject expando in currentLabReports)
+               {
+                   var report = expando as IDictionary<String, object>;
+                   if(DateTime.Parse((string)report["TestDate"])>=fromDate && DateTime.Parse((string)report["TestDate"])<=toDate)
+                   {
+                       labReports.Add(expando);
+                   }
+                lvReports.DataContext = labReports;
+                lvReports.ItemsSource = labReports;
+               }
+           }
+        }
         
     }
-}
+
