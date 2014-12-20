@@ -4,8 +4,8 @@
         xmlns:my="clr-namespace:PhysioApplication.GridPaging"
         xmlns:l="clr-namespace:PhysioApplication" Title="AllClientNotification"
         DataContext="{Binding RelativeSource={RelativeSource Self}}"
-        Width="600"
-        Height="600">
+        Width="Auto"
+        Height="Auto">
     <Window.Resources>
     </Window.Resources>
     <Grid>

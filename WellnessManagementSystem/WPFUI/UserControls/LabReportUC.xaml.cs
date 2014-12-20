@@ -27,15 +27,17 @@ namespace PhysioApplication.UserControls
     {
         List<BOUserField> reportHeaders;
         ObservableCollection<ExpandoObject> currentLabReports;
+        DateTime? fromDate;
+        DateTime? toDate;
         BusinessLayerManager businessLayer;
         public LabReportUC()
         {
             InitializeComponent();
             businessLayer = new BusinessLayerManager();
-         
+
             AppManager appManager = AppManager.getInstance();
-            List<BOLabReport> labReportsForUser = businessLayer.GetLabReportsForClient(1, appManager.GetUserDetails().UserID);
-           reportHeaders=appManager.GetLabReportFieldsForUser();
+            List<BOLabReport> labReportsForUser = businessLayer.GetLabReportsForClient(appManager.currentClientID, appManager.GetUserDetails().UserID);
+            reportHeaders = appManager.GetLabReportFieldsForUser();
             BindLabReportsOnListView(labReportsForUser, reportHeaders);
         }
 
@@ -159,11 +161,10 @@ namespace PhysioApplication.UserControls
             report["TestDate"] = DateTime.Now.Date.ToShortDateString();
             foreach (BOUserField reportHeader in reportHeaders)
             {
-
                 report[reportHeader.ReportFieldID.ToString()] = "N/A";
             }
 
-            currentLabReports.Add(expando);
+            currentLabReports.Insert(0, expando);
         }
 
         private void btnDelete_Click(object sender, RoutedEventArgs e)
@@ -178,8 +179,36 @@ namespace PhysioApplication.UserControls
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
             ObservableCollection<ExpandoObject> editedReports = (ObservableCollection<ExpandoObject>)lvReports.DataContext;
-            businessLayer.SaveEditedReportsForClient(1, editedReports);
+            businessLayer.SaveEditedReportsForClient(AppManager.getInstance().currentClientID, editedReports);
         }
-    
+
+        private void FromDate_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        {
+            fromDate =  FromDate.SelectedDate;
+            FetchLabRecordsForDate();
+        }
+
+        private void ToDate_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        {
+            toDate = ToDate.SelectedDate;
+            FetchLabRecordsForDate();
+        }
+
+        private void FetchLabRecordsForDate()
+        {
+           ObservableCollection<ExpandoObject> labReports = new ObservableCollection<ExpandoObject>();
+               foreach (ExpandoObject expando in currentLabReports)
+               {
+                   var report = expando as IDictionary<String, object>;
+                   if(DateTime.Parse((string)report["TestDate"])>=fromDate && DateTime.Parse((string)report["TestDate"])<=toDate)
+                   {
+                       labReports.Add(expando);
+                   }
+                lvReports.DataContext = labReports;
+                lvReports.ItemsSource = labReports;
+               }
+           }
+        }
+        
     }
-}
+

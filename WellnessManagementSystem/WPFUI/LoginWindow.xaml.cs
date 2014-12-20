@@ -31,78 +31,123 @@ namespace PhysioApplication
         {
             try
             {
-                BusinessLayerManager businessLayer = new BusinessLayerManager();
-                BOUser userDetails = businessLayer.GetUser(UserName.Text, Password.Text);
-                if (userDetails == null)
-                {
-                    MessageBox.Show(ResourceConstants.InvalidUserNameOrPassword);
-                }
-                else
-                {
-                    AppManager appManager = AppManager.getInstance();
-                    appManager.SetUserDetails(userDetails);
-                    Dictionary<string, List<BOUserField>> userReportFields = businessLayer.GetReportFieldsForUser(userDetails.UserID);
-                    foreach(KeyValuePair<string,List<BOUserField>> keyValuePair in userReportFields)
-                    {
-                        if(keyValuePair.Key=="LabReport")
-                        {
-                            appManager.SetLabReportFieldsForUser(keyValuePair.Value);
-                        }
-                    }
-
-                    LabReports labReportsPage = new LabReports();
-                    labReportsPage.Show();
-                    this.Close();
-                    //HomePage homePage = new HomePage();
-                    //homePage.Show();
-                    //this.Close();
-                }
+                ValidateUserCredentials();
             }
-            catch(Exception exception)
+            catch (Exception exception)
             {
                 MessageBox.Show(ResourceConstants.InvalidUserNameOrPassword);
             }
         }
-        private void UserNameTextBox_click(object sender, RoutedEventArgs e)
+        
+
+        private void OnKeyDownHandler(object sender, KeyEventArgs e)
         {
-            if (UserName.Text == ResourceConstants.EnterUserName)
+            if (e.Key == Key.Return)
             {
-                UserName.Text = "";
-            }
-        }
-        private void PasswordTextBox_click(object sender, RoutedEventArgs e)
-        {
-            if (UserName.Text == "")
-            {
-                UserName.Text = ResourceConstants.EnterUserName;
-            }
-            if (Password.Text == ResourceConstants.EnterPassword)
-            {
-                Password.Text = "";
+                ValidateUserCredentials();
             }
         }
 
-        private void checkEmptyFields()
+        private void ValidateUserCredentials()
         {
-             if(UserName.Text == "")
+            BusinessLayerManager businessLayer = new BusinessLayerManager();
+            BOUser userDetails = businessLayer.GetUser(UserName.Text, Password.Password);
+            if (userDetails == null)
             {
-                UserName.Text = ResourceConstants.EnterUserName;
+                MessageBox.Show(ResourceConstants.InvalidUserNameOrPassword);
             }
-            if (Password.Text == "")
+            else
             {
-             Password.Text = ResourceConstants.EnterPassword;
+                AppManager appManager = AppManager.getInstance();
+                appManager.SetUserDetails(userDetails);
+                Dictionary<string, List<BOUserField>> userReportFields = businessLayer.GetReportFieldsForUser(userDetails.UserID);
+                foreach (KeyValuePair<string, List<BOUserField>> keyValuePair in userReportFields)
+                {
+                    if (keyValuePair.Key == "LabReport")
+                    {
+                        appManager.SetLabReportFieldsForUser(keyValuePair.Value);
+                    }
+                }
+
+                HomePage homePage = new HomePage();
+                homePage.Show();
+                this.Close();
             }
         }
 
-        private void UserName_LostFocus(object sender, RoutedEventArgs e)
+        private void Password_KeyDown(object sender, KeyEventArgs e)
         {
-            checkEmptyFields();
+            if(e.Key==Key.Return)
+            {
+                ValidateUserCredentials();
+            }
         }
-
-        private void Password_LostFocus(object sender, RoutedEventArgs e)
+    }
+    public class WaterMarkTextHelper : DependencyObject
+    {
+        public static bool GetIsMonitoring(DependencyObject obj)
         {
-            checkEmptyFields();
+            return (bool)obj.GetValue(IsMonitoringProperty);
         }
-
+        public static void SetIsMonitoring(DependencyObject obj, bool value)
+        {
+            obj.SetValue(IsMonitoringProperty, value);
+        }
+        public static readonly DependencyProperty IsMonitoringProperty =
+           DependencyProperty.RegisterAttached("IsMonitoring", typeof(bool), typeof(WaterMarkTextHelper), new UIPropertyMetadata(false, OnIsMonitoringChanged));
+        public static int GetTextLength(DependencyObject obj)
+        {
+            return (int)obj.GetValue(TextLengthProperty);
+        }
+        public static void SetTextLength(DependencyObject obj, int value)
+        {
+            obj.SetValue(TextLengthProperty, value); 
+            if (value >= 1)
+                obj.SetValue(HasTextProperty, true); 
+            else 
+                obj.SetValue(HasTextProperty, false);
+        }
+        public static readonly DependencyProperty TextLengthProperty =
+           DependencyProperty.RegisterAttached("TextLength", typeof(int), typeof(WaterMarkTextHelper), new UIPropertyMetadata(0));
+        private static readonly DependencyProperty HasTextProperty =
+            DependencyProperty.RegisterAttached("HasText", typeof(bool), typeof(WaterMarkTextHelper), new FrameworkPropertyMetadata(false));
+        public bool HasText
+        {
+            get { return (bool)GetValue(HasTextProperty); }
+            set { SetValue(HasTextProperty, value); }
+        }
+        private static void OnIsMonitoringChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            if (d is TextBox)
+            {
+                TextBox txtBox = d as TextBox; 
+                if ((bool)e.NewValue)
+                    txtBox.TextChanged += TextChanged; 
+                else 
+                    txtBox.TextChanged -= TextChanged;
+            }
+            else if (d is PasswordBox)
+            {
+                PasswordBox passBox = d as PasswordBox;
+                if ((bool)e.NewValue)
+                    passBox.PasswordChanged += PasswordChanged; 
+                else 
+                    passBox.PasswordChanged -= PasswordChanged;
+            }
+        }
+        static void TextChanged(object sender, TextChangedEventArgs e)
+        {
+            TextBox txtBox = sender as TextBox; 
+            if (txtBox == null) 
+                return;
+            SetTextLength(txtBox, txtBox.Text.Length);
+        }
+        static void PasswordChanged(object sender, RoutedEventArgs e)
+        {
+            PasswordBox passBox = sender as PasswordBox; 
+            if (passBox == null)
+                return;
+            SetTextLength(passBox, passBox.Password.Length);
+        }
     }
 }

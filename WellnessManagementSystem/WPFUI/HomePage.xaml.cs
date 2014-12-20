@@ -55,6 +55,17 @@ namespace PhysioApplication
             }
             dtGrid.ItemsSource = dataTable.DefaultView;
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            Button button = (Button)sender;
+            string buttonTitle = button.Content.ToString();
+
+            //TODO: temporary same action for all the buttons
+            AllClientNotification client = new AllClientNotification();
+            client.Show();
+            this.Close();
+        }
     }
 
     public class ButtonsList

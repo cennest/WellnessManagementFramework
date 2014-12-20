@@ -1,6 +1,7 @@
 ﻿<Window x:Class="PhysioApplication.LoginWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:local="clr-namespace:PhysioApplication"
         Title="LoginWindow" Height="Auto" Width="Auto">
     <Window.Resources>
         <LinearGradientBrush x:Key="ButtonGreenBackground" StartPoint="0.5,0" EndPoint="0.5,1">
@@ -8,6 +9,116 @@
             <GradientStop Color="#99C049" Offset="0.1"/>
             <GradientStop Color="#7A9443" Offset="0.8"/>
         </LinearGradientBrush>
+        <Style x:Key="{x:Type PasswordBox}" TargetType="{x:Type PasswordBox}">
+            <Setter Property="local:WaterMarkTextHelper.IsMonitoring" Value="True"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type PasswordBox}">
+                        <ControlTemplate.Resources>
+                            <Storyboard x:Key="enterGotFocus" >
+                                <DoubleAnimation Duration="0:0:0.4" To=".2" Storyboard.TargetProperty="Opacity" Storyboard.TargetName="Message"/>
+                            </Storyboard>
+                            <Storyboard x:Key="exitGotFocus" >
+                                <DoubleAnimation Duration="0:0:0.4" Storyboard.TargetProperty="Opacity" Storyboard.TargetName="Message"/>
+                            </Storyboard>
+                            <Storyboard x:Key="enterHasText" >
+                                <DoubleAnimation Duration="0:0:0.4" From=".2" To="0" Storyboard.TargetProperty="Opacity" Storyboard.TargetName="Message"/>
+                            </Storyboard>
+                            <Storyboard x:Key="exitHasText" >
+                                <DoubleAnimation Duration="0:0:0.4" Storyboard.TargetProperty="Opacity" Storyboard.TargetName="Message"/>
+                            </Storyboard>
+                        </ControlTemplate.Resources>
+                        <Border Name="Bd" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
+                            <Grid>
+                                <ScrollViewer x:Name="PART_ContentHost" VerticalAlignment="Center" Margin="3" />
+                                <TextBlock Text="Enter Password" x:Name="Message" Foreground="Navy" IsHitTestVisible="False" FontFamily="Calibri" FontSize="18" Opacity="0.5" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="6,0,0,0"/>
+                            </Grid>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsEnabled" Value="false">
+                                <Setter TargetName="Bd" Property="Background" Value="{DynamicResource {x:Static SystemColors.ControlBrushKey}}"/>
+                                <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}"/>
+                            </Trigger>
+                            <MultiTrigger>
+                                <MultiTrigger.Conditions>
+                                    <Condition Property="local:WaterMarkTextHelper.HasText" Value="False"/>
+                                    <Condition Property="IsFocused" Value="True"/>
+                                </MultiTrigger.Conditions>
+                                <MultiTrigger.EnterActions>
+                                    <BeginStoryboard Storyboard="{StaticResource enterGotFocus}"/>
+                                </MultiTrigger.EnterActions>
+                                <MultiTrigger.ExitActions>
+                                    <BeginStoryboard Storyboard="{StaticResource exitGotFocus}"/>
+                                </MultiTrigger.ExitActions>
+                            </MultiTrigger>
+                            <Trigger Property="local:WaterMarkTextHelper.HasText" Value="True">
+                                <Trigger.EnterActions>
+                                    <BeginStoryboard Storyboard="{StaticResource enterHasText}"/>
+                                </Trigger.EnterActions>
+                                <Trigger.ExitActions>
+                                    <BeginStoryboard Storyboard="{StaticResource exitHasText}"/>
+                                </Trigger.ExitActions>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="{x:Type TextBox}" TargetType="{x:Type TextBox}">
+            <Setter Property="local:WaterMarkTextHelper.IsMonitoring" Value="True"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type TextBox}">
+                        <ControlTemplate.Resources>
+                            <Storyboard x:Key="enterGotFocus" >
+                                <DoubleAnimation Duration="0:0:0.4" To=".2" Storyboard.TargetProperty="Opacity" Storyboard.TargetName="Message"/>
+                            </Storyboard>
+                            <Storyboard x:Key="exitGotFocus" >
+                                <DoubleAnimation Duration="0:0:0.4" Storyboard.TargetProperty="Opacity" Storyboard.TargetName="Message"/>
+                            </Storyboard>
+                            <Storyboard x:Key="enterHasText" >
+                                <DoubleAnimation Duration="0:0:0.4" From=".2" To="0" Storyboard.TargetProperty="Opacity" Storyboard.TargetName="Message"/>
+                            </Storyboard>
+                            <Storyboard x:Key="exitHasText" >
+                                <DoubleAnimation Duration="0:0:0.4" Storyboard.TargetProperty="Opacity" Storyboard.TargetName="Message"/>
+                            </Storyboard>
+                        </ControlTemplate.Resources>
+                        <Border Name="Bd" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
+                            <Grid>
+                                <ScrollViewer x:Name="PART_ContentHost" VerticalAlignment="Center" Margin="3" />
+                                <TextBlock Text="Enter Username" x:Name="Message" Foreground="Navy" IsHitTestVisible="False" FontFamily="Calibri" FontSize="18" Opacity="0.5" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="6,0,0,0"/>
+                            </Grid>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsEnabled" Value="false">
+                                <Setter TargetName="Bd" Property="Background" Value="{DynamicResource {x:Static SystemColors.ControlBrushKey}}"/>
+                                <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}"/>
+                            </Trigger>
+                            <MultiTrigger>
+                                <MultiTrigger.Conditions>
+                                    <Condition Property="local:WaterMarkTextHelper.HasText" Value="False"/>
+                                    <Condition Property="IsFocused" Value="True"/>
+                                </MultiTrigger.Conditions>
+                                <MultiTrigger.EnterActions>
+                                    <BeginStoryboard Storyboard="{StaticResource enterGotFocus}"/>
+                                </MultiTrigger.EnterActions>
+                                <MultiTrigger.ExitActions>
+                                    <BeginStoryboard Storyboard="{StaticResource exitGotFocus}"/>
+                                </MultiTrigger.ExitActions>
+                            </MultiTrigger>
+                            <Trigger Property="local:WaterMarkTextHelper.HasText" Value="True">
+                                <Trigger.EnterActions>
+                                    <BeginStoryboard Storyboard="{StaticResource enterHasText}"/>
+                                </Trigger.EnterActions>
+                                <Trigger.ExitActions>
+                                    <BeginStoryboard Storyboard="{StaticResource exitHasText}"/>
+                                </Trigger.ExitActions>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
     </Window.Resources>
     <Grid >
         <Grid.RowDefinitions>
@@ -22,11 +133,10 @@
 
         <GroupBox Header="Athletic Conditioning Evaluation System (ACES)" Grid.Row="1" BorderBrush="#FFA620" BorderThickness="2" HorizontalAlignment="Center" Width="500">
             
-            <StackPanel Height="Auto">
-                <TextBox Width="400" Text="Enter UserName" Height="50" Margin="10" PreviewMouseDown="UserNameTextBox_click" LostFocus="UserName_LostFocus" Name="UserName" Style="{StaticResource WellnessManagementSystemTextBoxStyle}"/>
-                <TextBox Width="400" Text="Enter Password" Height="50" Margin="10" PreviewMouseDown="PasswordTextBox_click" LostFocus="Password_LostFocus" Name="Password" Style="{StaticResource WellnessManagementSystemTextBoxStyle}"/>
-                <Button Content="Login" Width="200" Height="50" Click="Login_Click" Background="{StaticResource ButtonGreenBackground}" Style="{StaticResource WellnessManagementSystemButtonStyle}" Margin="10"/>
-                
+            <StackPanel Height="Auto" Name="LoginStack">
+                <TextBox Width="400" Height="50" Margin="10" Name="UserName" FontSize="18" BorderBrush ="#FFD28F" BorderThickness="2" />
+                <PasswordBox Width="400" Height="50" Margin="10" Name="Password" KeyDown="Password_KeyDown" FontSize="18" BorderBrush="#FFD28F" BorderThickness="2" />
+                <Button Content="Login" Width="200" Height="50" Click="Login_Click" Background="{StaticResource ButtonGreenBackground}" Style="{StaticResource WellnessManagementSystemButtonStyle}" Margin="10" BorderBrush="Transparent"/>
             </StackPanel>
         </GroupBox>
     </Grid>
