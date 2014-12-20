@@ -12,6 +12,7 @@ namespace PhysioApplication
         private static AppManager instance = null;
         private BOUser userDetails;
         private List<BOUserField> labReportFieldsForUser;
+        public int currentClientID {get;set;}
 
         private AppManager()
         {

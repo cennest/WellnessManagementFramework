@@ -61,22 +61,10 @@ namespace PhysioApplication
             Button button = (Button)sender;
             string buttonTitle = button.Content.ToString();
 
-            System.Resources.ResourceManager resourceManager = new System.Resources.ResourceManager("PhysioApplication.Properties.Resources", Assembly.GetExecutingAssembly());
-            int noOfButtons = Convert.ToInt32(resourceManager.GetString(NO_OF_BUTTONS));
-            for (int i = 1; i < noOfButtons + 1; i++)
-            {
-                string title = resourceManager.GetString(BUTTON_TEXT + i + BUTTON_TITLE_TEXT);
-                if (title == buttonTitle)
-                {
-
-                    AllClientNotification client = new AllClientNotification();
-                    client.Show();
-                    this.Close();
-                    break;
-                }
-            }
-            
-            //Do whatever you wanted to do with MyObject.ID
+            //TODO: temporary same action for all the buttons
+            AllClientNotification client = new AllClientNotification();
+            client.Show();
+            this.Close();
         }
     }
 

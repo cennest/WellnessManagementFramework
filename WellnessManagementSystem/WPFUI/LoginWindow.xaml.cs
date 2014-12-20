@@ -69,8 +69,8 @@ namespace PhysioApplication
                     }
                 }
 
-                LabReports labReportsPage = new LabReports();
-                labReportsPage.Show();
+                HomePage homePage = new HomePage();
+                homePage.Show();
                 this.Close();
             }
         }
