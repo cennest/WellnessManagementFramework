@@ -34,10 +34,10 @@ namespace PhysioApplication.UserControls
         {
             InitializeComponent();
             businessLayer = new BusinessLayerManager();
-         
+
             AppManager appManager = AppManager.getInstance();
-            List<BOLabReport> labReportsForUser = businessLayer.GetLabReportsForClient(1, appManager.GetUserDetails().UserID);
-           reportHeaders=appManager.GetLabReportFieldsForUser();
+            List<BOLabReport> labReportsForUser = businessLayer.GetLabReportsForClient(appManager.currentClientID, appManager.GetUserDetails().UserID);
+            reportHeaders = appManager.GetLabReportFieldsForUser();
             BindLabReportsOnListView(labReportsForUser, reportHeaders);
         }
 
@@ -179,7 +179,7 @@ namespace PhysioApplication.UserControls
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
             ObservableCollection<ExpandoObject> editedReports = (ObservableCollection<ExpandoObject>)lvReports.DataContext;
-            businessLayer.SaveEditedReportsForClient(1, editedReports);
+            businessLayer.SaveEditedReportsForClient(AppManager.getInstance().currentClientID, editedReports);
         }
 
         private void FromDate_SelectedDateChanged(object sender, SelectionChangedEventArgs e)

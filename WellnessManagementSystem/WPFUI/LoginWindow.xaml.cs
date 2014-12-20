@@ -33,51 +33,13 @@ namespace PhysioApplication
             {
                 ValidateUserCredentials();
             }
-            catch(Exception exception)
+            catch (Exception exception)
             {
                 MessageBox.Show(ResourceConstants.InvalidUserNameOrPassword);
             }
         }
-        //private void UserNameTextBox_click(object sender, RoutedEventArgs e)
-        //{
-        //    if (UserName.Text == ResourceConstants.EnterUserName)
-        //    {
-        //        UserName.Text = "";
-        //    }
-        //}
-        //private void PasswordTextBox_click(object sender, RoutedEventArgs e)
-        //{
-        //    if (UserName.Text == "")
-        //    {
-        //        UserName.Text = ResourceConstants.EnterUserName;
-        //    }
-        //    if (Password.Password == ResourceConstants.EnterPassword)
-        //    {
-        //        Password.Password = "";
-        //    }
-        //}
+        
 
-        //private void checkEmptyFields()
-        //{
-        //    if (UserName.Text == "")
-        //    {
-        //        UserName.Text = ResourceConstants.EnterUserName;
-        //    }
-        //    if (Password.Password == "")
-        //    {
-        //        Password.Password = ResourceConstants.EnterPassword;
-        //    }
-        //}
-
-        //private void UserName_LostFocus(object sender, RoutedEventArgs e)
-        //{
-        //    checkEmptyFields();
-        //}
-
-        //private void Password_LostFocus(object sender, RoutedEventArgs e)
-        //{
-        //    checkEmptyFields();
-        //}
         private void OnKeyDownHandler(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Return)
@@ -107,8 +69,8 @@ namespace PhysioApplication
                     }
                 }
 
-                LabReports labReportsPage = new LabReports();
-                labReportsPage.Show();
+                HomePage homePage = new HomePage();
+                homePage.Show();
                 this.Close();
             }
         }
