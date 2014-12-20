@@ -59,15 +59,17 @@
     <Compile Include="AppManager.cs" />
     <Compile Include="EditControl\editbox.cs" />
     <Compile Include="EditControl\editboxadorner.cs" />
+    <Compile Include="GridPaging\GridPaging.xaml.cs">
+      <DependentUpon>GridPaging.xaml</DependentUpon>
+    </Compile>
     <Compile Include="HomePage.xaml.cs">
       <DependentUpon>HomePage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="LabReports.xaml.cs" />
     <Compile Include="LoginWindow.xaml.cs">
       <DependentUpon>LoginWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="LabReports.xaml.cs">
-      <DependentUpon>LabReports.xaml</DependentUpon>
-    </Compile>
+    <Compile Include="UserControls\LabReportUC.xaml.cs" />
     <Page Include="AllClientNotification.xaml">
     </Page>
     <Compile Include="ResourceConstants.Designer.cs">
@@ -75,9 +77,17 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ResourceConstants.resx</DependentUpon>
     </Compile>
+    <Page Include="GridPaging\GridPaging.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="HomePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="LabReports.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="LoginWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -91,11 +101,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="LabReports.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Resources\DataGridStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControls\LabReportUC.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

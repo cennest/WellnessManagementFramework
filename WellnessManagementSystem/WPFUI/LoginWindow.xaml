@@ -134,9 +134,9 @@
         <GroupBox Header="Athletic Conditioning Evaluation System (ACES)" Grid.Row="1" BorderBrush="#FFA620" BorderThickness="2" HorizontalAlignment="Center" Width="500">
             
             <StackPanel Height="Auto" Name="LoginStack">
-                <TextBox Width="400" Height="50" Margin="10" Name="UserName" FontSize="18"/>
-                <PasswordBox Width="400" Height="50" Margin="10" Name="Password" KeyDown="Password_KeyDown" FontSize="18"/>
-                <Button Content="Login" Width="200" Height="50" Click="Login_Click" Background="{StaticResource ButtonGreenBackground}" Style="{StaticResource WellnessManagementSystemButtonStyle}" Margin="10"/>
+                <TextBox Width="400" Height="50" Margin="10" Name="UserName" FontSize="18" BorderBrush ="#FFD28F" BorderThickness="2" />
+                <PasswordBox Width="400" Height="50" Margin="10" Name="Password" KeyDown="Password_KeyDown" FontSize="18" BorderBrush="#FFD28F" BorderThickness="2" />
+                <Button Content="Login" Width="200" Height="50" Click="Login_Click" Background="{StaticResource ButtonGreenBackground}" Style="{StaticResource WellnessManagementSystemButtonStyle}" Margin="10" BorderBrush="Transparent"/>
             </StackPanel>
         </GroupBox>
     </Grid>
