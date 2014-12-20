@@ -19,20 +19,13 @@
 		          ItemsSource="{Binding listorders}"
 		          MinRowHeight="26">
             <DataGrid.Columns>
-                <DataGridTextColumn IsReadOnly="True" Width="120"
-				                    Binding="{Binding ClientName}"
-				                    Header="ClientName">
-                    <DataGridTextColumn.ElementStyle>
-                        <Style TargetType="TextBlock">
-                            <Style.Triggers>
-                                <Trigger Property="IsMouseOver" Value="True">
-                                    <Setter Property="Foreground" Value="Blue"/>
-                                    <Setter Property="TextDecorations" Value="Underline" />
-                                </Trigger>
-                            </Style.Triggers>
-                        </Style>
-                    </DataGridTextColumn.ElementStyle>
-                </DataGridTextColumn>
+                <DataGridTemplateColumn Header="ClientName" Width="120">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Tag="{Binding ClientID}" Width="120" Text="{Binding ClientName}" MouseDown="TextBlock_MouseDown"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
                 <DataGridTextColumn IsReadOnly="True" Width="120"
 				                    Binding="{Binding ClientNotification}"
 				                    Header="ClientNotification" />
