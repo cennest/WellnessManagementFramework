@@ -6,7 +6,7 @@
              x:Name="GPaging"
              mc:Ignorable="d" 
              d:DesignHeight="36" d:DesignWidth="722">
-    <Border BorderThickness="1" CornerRadius="5" BorderBrush="#FF50DEDE">
+    <Border BorderThickness="0" CornerRadius="5" BorderBrush="#FF50DEDE">
         <Grid >
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
@@ -14,7 +14,7 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">
-                <Label Content="-" HorizontalAlignment="Left" Margin="2,2,2,2"
+                <Label Visibility="Hidden" Content="-" HorizontalAlignment="Left" Margin="2,2,2,2"
                    Name="lTotal" VerticalAlignment="Bottom" 
                    ToolTip="Total Rows"
                    FontSize="10"/>
@@ -58,8 +58,8 @@
                 <ComboBox Visibility="Hidden" Width="50" FontSize="10" ToolTip="Rows x Page" Name="cbPageSize"
                           IsEditable="False" SelectionChanged="ComboBoxSelectionChanged"
                           VerticalAlignment="Center" Margin="0,0,5,0" Height="23">
-                    <ComboBoxItem Content="50" IsSelected="False" />
-                    <ComboBoxItem Content="5" IsSelected="True" />
+                    <ComboBoxItem Content="50" />
+                    <ComboBoxItem Content="10" IsSelected="True" />
                     <ComboBoxItem Content="500" />
                     <ComboBoxItem Content="1000" />
                 </ComboBox>
