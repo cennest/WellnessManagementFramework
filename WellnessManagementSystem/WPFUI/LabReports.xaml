@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="Window1" Height="Auto" Width="Auto"
           xmlns:editing="clr-namespace:Editing"
-        xmlns:userControl="clr-namespace:PhysioApplication.UserControls">
+        xmlns:userControl="clr-namespace:PhysioApplication.UserControls" WindowStartupLocation="CenterScreen">
     <Window.Resources>
 
 

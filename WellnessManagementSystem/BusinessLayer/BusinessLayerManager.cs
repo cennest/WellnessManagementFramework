@@ -181,7 +181,7 @@ namespace BusinessLayer
             return listOfClients;
         }
 
-        public bool SaveEditedReportsForClient(int clientID, ObservableCollection<ExpandoObject> editedLabResults)
+        public bool SaveEditedReportsForClient(int clientID, ObservableCollection<ExpandoObject> editedLabResults, int userID)
         {
             List<LabReport> labReports = new List<LabReport>();
             //Convert this Expando list to a List of BOLapReport
@@ -203,7 +203,7 @@ namespace BusinessLayer
 
             }
             DataLayer.DataLayerManager dataLayerObject = new DataLayer.DataLayerManager();
-            dataLayerObject.SaveLabReportsForClient(labReports, clientID);
+            dataLayerObject.SaveLabReportsForClient(labReports, clientID,userID);
             return true;
         }
     }
