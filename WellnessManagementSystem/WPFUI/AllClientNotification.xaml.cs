@@ -76,58 +76,11 @@ namespace PhysioApplication
                 this.dgOrdersGrid.ItemsSource = this.listorders;
                 return businessLayer.GetCountOfClientsforCategories(1, 1, initialRow, finalRow);
             }
-//            string connString = "Data Source=.;Initial Catalog=WellnessManagementFrameworkDB;Integrated Security=False;User ID=cennest; Password=cennest";
-            //            var conn = new SqlConnection(connString);
-            //            const string SqlQueryCount = "select count(ReportFieldId) from dbo.ReportFieldMaster";
-            //            try
-            //            {
-            //                SqlCommand commcount = new SqlCommand(SqlQueryCount, conn);
-            //                conn.Open();
-            //                var rowCount = Convert.ToInt32(commcount.ExecuteScalar());
-            //                const string SqlQuery =
-            //                @"use WellnessManagementFrameworkDB;
-            //                WITH Members AS
-            //                (
-            //                    select ROW_NUMBER() OVER (ORDER BY ReportFieldID ASC) as row, ReportFieldID, ReportFieldName
-            //                    from  dbo.ReportFieldMaster
-            //                )
-            //                Select row, ReportFieldId, ReportFieldName
-            //                from Members 
-            //                where row BETWEEN  @InitialRow AND @EndRow order by row ASC;";
-
-//                SqlCommand command = new SqlCommand(SqlQuery, conn);
-            //                command.Parameters.AddWithValue("@InitialRow", initialRow);
-            //                command.Parameters.AddWithValue("@EndRow", finalRow);
-
-//                var reader = command.ExecuteReader();
-            //                this.listorders = new List<BOClient>();
-            //                while (reader.Read())
-            //                {
-            //                    var o = new BOClient
-            //                    {
-            //                        ClientID = Convert.ToInt32(reader["ReportFieldId"]),
-            //                        ClientName = reader["ReportFieldName"].ToString(),
-            //                        ClientNotes = "No Notes",
-            //                        ClientNotification = "No Notification"
-            //                    };
-            //                    this.listorders.Add(o);
-            //                }
-
-//                this.dgOrdersGrid.ItemsSource = this.listorders;
-            //                return rowCount;
-            //            }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
                 return 0;
             }
-            //finally
-            //{
-            //    if (conn.State != ConnectionState.Closed)
-            //    {
-            //        conn.Close();
-            //    }
-            //}
         }
 
     }
