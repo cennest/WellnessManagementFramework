@@ -32,7 +32,7 @@ namespace PhysioApplication
             try
             {
                 BusinessLayerManager businessLayer = new BusinessLayerManager();
-                UserDetails userDetails = businessLayer.GetUser(UserName.Text, Password.Text);
+                BOUser userDetails = businessLayer.GetUser(UserName.Text, Password.Text);
                 if (userDetails == null)
                 {
                     MessageBox.Show(ResourceConstants.InvalidUserNameOrPassword);
@@ -40,13 +40,25 @@ namespace PhysioApplication
                 else
                 {
                     AppManager appManager = AppManager.getInstance();
-                    appManager.SetUserDetails(userDetails); 
-                    HomePage homePage = new HomePage();
-                    homePage.Show();
+                    appManager.SetUserDetails(userDetails);
+                    Dictionary<string, List<BOUserField>> userReportFields = businessLayer.GetReportFieldsForUser(userDetails.UserID);
+                    foreach(KeyValuePair<string,List<BOUserField>> keyValuePair in userReportFields)
+                    {
+                        if(keyValuePair.Key=="LabReport")
+                        {
+                            appManager.SetLabReportFieldsForUser(keyValuePair.Value);
+                        }
+                    }
+
+                    LabReports labReportsPage = new LabReports();
+                    labReportsPage.Show();
                     this.Close();
+                    //HomePage homePage = new HomePage();
+                    //homePage.Show();
+                    //this.Close();
                 }
             }
-            catch(Exception )
+            catch(Exception exception)
             {
                 MessageBox.Show(ResourceConstants.InvalidUserNameOrPassword);
             }

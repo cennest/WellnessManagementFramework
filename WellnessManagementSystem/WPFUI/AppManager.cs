@@ -10,7 +10,8 @@ namespace PhysioApplication
     public class AppManager
     {
         private static AppManager instance = null;
-        private UserDetails userDetails;
+        private BOUser userDetails;
+        private List<BOUserField> labReportFieldsForUser;
 
         private AppManager()
         {
@@ -26,14 +27,24 @@ namespace PhysioApplication
             return instance;
         }
 
-        public void SetUserDetails(UserDetails userDetails)
+        public void SetUserDetails(BOUser userDetails)
         {
             this.userDetails = userDetails;
         }
 
-        public UserDetails GetUserDetails()
+        public BOUser GetUserDetails()
         {
             return this.userDetails;
+        }
+
+        public void SetLabReportFieldsForUser(List<BOUserField> labReportFields)
+        {
+            this.labReportFieldsForUser = labReportFields;
+        }
+
+        public List<BOUserField> GetLabReportFieldsForUser()
+        {
+            return this.labReportFieldsForUser;
         }
     }
 }

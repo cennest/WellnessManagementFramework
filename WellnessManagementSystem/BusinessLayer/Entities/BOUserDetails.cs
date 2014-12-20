@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BusinessLayer.Entities
 {
-   public class UserDetails
+   public class BOUserDetails
     {
         public int UserID { get; set; }
         public string UserName { get; set; }

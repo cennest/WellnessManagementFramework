@@ -66,7 +66,7 @@ namespace DatabaseEntities
     #endregion
 		
 		public WellnessManagementFrameworkDBMLDataContext() : 
-				base(global::DatabaseEntities.Properties.Settings.Default.WellnessManagementFrameworkDBConnectionString, mappingSource)
+				base(global::DatabaseEntities.Properties.Settings.Default.WellnessManagementFrameworkDBConnectionString1, mappingSource)
 		{
 			OnCreated();
 		}
@@ -850,8 +850,6 @@ namespace DatabaseEntities
 		
 		private int _ReportFieldID;
 		
-		private string _ReportFieldName;
-		
 		private string _ReportFieldValue;
 		
 		private int _ClientID;
@@ -876,8 +874,6 @@ namespace DatabaseEntities
     partial void OnTestDateChanged();
     partial void OnReportFieldIDChanging(int value);
     partial void OnReportFieldIDChanged();
-    partial void OnReportFieldNameChanging(string value);
-    partial void OnReportFieldNameChanged();
     partial void OnReportFieldValueChanging(string value);
     partial void OnReportFieldValueChanged();
     partial void OnClientIDChanging(int value);
@@ -956,26 +952,6 @@ namespace DatabaseEntities
 					this._ReportFieldID = value;
 					this.SendPropertyChanged("ReportFieldID");
 					this.OnReportFieldIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ReportFieldName", DbType="NVarChar(200) NOT NULL", CanBeNull=false)]
-		public string ReportFieldName
-		{
-			get
-			{
-				return this._ReportFieldName;
-			}
-			set
-			{
-				if ((this._ReportFieldName != value))
-				{
-					this.OnReportFieldNameChanging(value);
-					this.SendPropertyChanging();
-					this._ReportFieldName = value;
-					this.SendPropertyChanged("ReportFieldName");
-					this.OnReportFieldNameChanged();
 				}
 			}
 		}
@@ -1203,8 +1179,6 @@ namespace DatabaseEntities
 		
 		private int _ReportFieldID;
 		
-		private string _ReportFieldName;
-		
 		private string _ReportFieldValue;
 		
 		private int _ClientID;
@@ -1231,8 +1205,6 @@ namespace DatabaseEntities
     partial void OnTestDateChanged();
     partial void OnReportFieldIDChanging(int value);
     partial void OnReportFieldIDChanged();
-    partial void OnReportFieldNameChanging(string value);
-    partial void OnReportFieldNameChanged();
     partial void OnReportFieldValueChanging(string value);
     partial void OnReportFieldValueChanged();
     partial void OnClientIDChanging(int value);
@@ -1313,26 +1285,6 @@ namespace DatabaseEntities
 					this._ReportFieldID = value;
 					this.SendPropertyChanged("ReportFieldID");
 					this.OnReportFieldIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ReportFieldName", DbType="NVarChar(200) NOT NULL", CanBeNull=false)]
-		public string ReportFieldName
-		{
-			get
-			{
-				return this._ReportFieldName;
-			}
-			set
-			{
-				if ((this._ReportFieldName != value))
-				{
-					this.OnReportFieldNameChanging(value);
-					this.SendPropertyChanging();
-					this._ReportFieldName = value;
-					this.SendPropertyChanged("ReportFieldName");
-					this.OnReportFieldNameChanged();
 				}
 			}
 		}
@@ -1914,8 +1866,6 @@ namespace DatabaseEntities
 		
 		private int _ReportFieldID;
 		
-		private string _ReportFieldName;
-		
 		private string _ReportFieldValue;
 		
 		private int _ClientID;
@@ -1942,8 +1892,6 @@ namespace DatabaseEntities
     partial void OnTestDateChanged();
     partial void OnReportFieldIDChanging(int value);
     partial void OnReportFieldIDChanged();
-    partial void OnReportFieldNameChanging(string value);
-    partial void OnReportFieldNameChanged();
     partial void OnReportFieldValueChanging(string value);
     partial void OnReportFieldValueChanged();
     partial void OnClientIDChanging(int value);
@@ -2024,26 +1972,6 @@ namespace DatabaseEntities
 					this._ReportFieldID = value;
 					this.SendPropertyChanged("ReportFieldID");
 					this.OnReportFieldIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ReportFieldName", DbType="NVarChar(200) NOT NULL", CanBeNull=false)]
-		public string ReportFieldName
-		{
-			get
-			{
-				return this._ReportFieldName;
-			}
-			set
-			{
-				if ((this._ReportFieldName != value))
-				{
-					this.OnReportFieldNameChanging(value);
-					this.SendPropertyChanging();
-					this._ReportFieldName = value;
-					this.SendPropertyChanged("ReportFieldName");
-					this.OnReportFieldNameChanged();
 				}
 			}
 		}

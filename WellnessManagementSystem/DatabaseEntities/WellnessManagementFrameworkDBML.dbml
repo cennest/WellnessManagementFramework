@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="WellnessManagementFrameworkDB" Class="WellnessManagementFrameworkDBMLDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=POULOMEE-PC;Initial Catalog=WellnessManagementFrameworkDB;Integrated Security=True" SettingsObjectName="DatabaseEntities.Properties.Settings" SettingsPropertyName="WellnessManagementFrameworkDBConnectionString" Provider="System.Data.SqlClient" />
+  <Connection Mode="AppSettings" ConnectionString="Data Source=POULOMEE-PC;Initial Catalog=WellnessManagementFrameworkDB;Integrated Security=True" SettingsObjectName="DatabaseEntities.Properties.Settings" SettingsPropertyName="WellnessManagementFrameworkDBConnectionString1" Provider="System.Data.SqlClient" />
   <Table Name="dbo.CategoryMaster" Member="CategoryMasters">
     <Type Name="CategoryMaster">
       <Column Name="CategoryID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -36,7 +36,6 @@
       <Column Name="DietPlanReportID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="TestDate" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
       <Column Name="ReportFieldID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="ReportFieldName" Type="System.String" DbType="NVarChar(200) NOT NULL" CanBeNull="false" />
       <Column Name="ReportFieldValue" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
       <Column Name="ClientID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="UserID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
@@ -51,7 +50,6 @@
       <Column Name="LabReportID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="TestDate" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
       <Column Name="ReportFieldID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="ReportFieldName" Type="System.String" DbType="NVarChar(200) NOT NULL" CanBeNull="false" />
       <Column Name="ReportFieldValue" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
       <Column Name="ClientID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="UserID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
@@ -84,7 +82,6 @@
       <Column Name="PhysicalConditionReportID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="TestDate" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
       <Column Name="ReportFieldID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="ReportFieldName" Type="System.String" DbType="NVarChar(200) NOT NULL" CanBeNull="false" />
       <Column Name="ReportFieldValue" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
       <Column Name="ClientID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="UserID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
