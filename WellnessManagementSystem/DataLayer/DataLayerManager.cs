@@ -195,7 +195,7 @@ namespace DataLayer
                 else
                 {
                     report.ClientID = clientID;
-                    report.UserID = 1;//Change this
+                    report.UserID = 2;//Change this
                     dataContext.LabReports.InsertOnSubmit(report);
                 }
                 dataContext.SubmitChanges();
