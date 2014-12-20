@@ -132,5 +132,14 @@ namespace PhysioApplication
                 }
             }
         }
+
+        private void TextBlock_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            TextBlock block = sender as TextBlock;
+            if (block != null)
+            {
+                MessageBox.Show(""+block.Tag);
+            }
+        }
     }
 }
