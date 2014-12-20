@@ -44,5 +44,16 @@ namespace DatabaseEntities.Properties {
                 return ((string)(this["WellnessManagementFrameworkDBConnectionString1"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=192.168.0.8;Initial Catalog=WellnessManagementFrameworkDB;User ID=cen" +
+            "nest;Password=cennest")]
+        public string WellnessManagementFrameworkDBConnectionString2 {
+            get {
+                return ((string)(this["WellnessManagementFrameworkDBConnectionString2"]));
+            }
+        }
     }
 }

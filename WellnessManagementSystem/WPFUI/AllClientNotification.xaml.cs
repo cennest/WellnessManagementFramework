@@ -135,10 +135,13 @@ namespace PhysioApplication
 
         private void TextBlock_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            TextBlock block = sender as TextBlock;
-            if (block != null)
+            TextBlock textBlock = sender as TextBlock;
+            if (textBlock != null)
             {
-                MessageBox.Show(""+block.Tag);
+                AppManager.getInstance().currentClientID = Convert.ToInt32(textBlock.Tag);
+                LabReports labReports = new LabReports();
+                labReports.Show();
+                this.Close();
             }
         }
     }
