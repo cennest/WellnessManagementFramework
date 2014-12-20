@@ -1,7 +1,7 @@
 ﻿<Window x:Class="PhysioApplication.AllClientNotification"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:my="clr-namespace:PagingDemo.GridPaging"
+        xmlns:my="clr-namespace:PhysioApplication.GridPaging"
         xmlns:l="clr-namespace:PhysioApplication" Title="AllClientNotification"
         DataContext="{Binding RelativeSource={RelativeSource Self}}"
         Width="600"

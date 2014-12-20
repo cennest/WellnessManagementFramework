@@ -7,7 +7,7 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace PagingDemo.GridPaging
+namespace PhysioApplication.GridPaging
 {
     using System;
     using System.Windows;
