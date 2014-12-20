@@ -179,7 +179,9 @@ namespace PhysioApplication.UserControls
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
             ObservableCollection<ExpandoObject> editedReports = (ObservableCollection<ExpandoObject>)lvReports.DataContext;
-            businessLayer.SaveEditedReportsForClient(AppManager.getInstance().currentClientID, editedReports);
+            AppManager appmanager = AppManager.getInstance();
+            BOUser user = appmanager.GetUserDetails();
+            businessLayer.SaveEditedReportsForClient(appmanager.currentClientID, editedReports, user.UserID);
         }
 
         private void FromDate_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
