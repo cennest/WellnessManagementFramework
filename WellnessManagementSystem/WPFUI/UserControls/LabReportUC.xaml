@@ -44,7 +44,7 @@
             <RowDefinition Height="39*"/>
             <RowDefinition Height="35*"/>
         </Grid.RowDefinitions>
-        <ListView Grid.Row="1" x:Name="lvReports" Grid.RowSpan="1">
+        <ListView Grid.Row="1" x:Name="lvReports" SelectionMode="Single" Grid.RowSpan="1">
 
         </ListView>
         <Button Grid.Row="2" x:Name="btnAdd" Click="btnAdd_Click">Add</Button>
