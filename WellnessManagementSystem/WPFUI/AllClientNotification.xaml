@@ -41,7 +41,7 @@
 				                    Header="ClientLastNotes" />
             </DataGrid.Columns>
         </DataGrid>
-        <my:GridPaging Grid.Row="2" HorizontalAlignment="Stretch" Margin="10,350,5,2" 
+        <my:GridPaging Grid.Row="2" HorizontalAlignment="Stretch" Margin="10,400,5,2" 
                        x:Name="gridPaging" VerticalAlignment="Top"/>
     </Grid>
 </Window>

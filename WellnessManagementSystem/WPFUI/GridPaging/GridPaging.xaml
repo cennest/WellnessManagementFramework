@@ -55,7 +55,7 @@
             <!-- Page Size Selector -->
             <StackPanel Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Right" 
                         VerticalAlignment="Center">
-                <ComboBox Width="50" FontSize="10" ToolTip="Rows x Page" Name="cbPageSize"
+                <ComboBox Visibility="Hidden" Width="50" FontSize="10" ToolTip="Rows x Page" Name="cbPageSize"
                           IsEditable="False" SelectionChanged="ComboBoxSelectionChanged"
                           VerticalAlignment="Center" Margin="0,0,5,0" Height="23">
                     <ComboBoxItem Content="50" IsSelected="False" />
