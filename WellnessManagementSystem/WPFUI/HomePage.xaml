@@ -45,7 +45,7 @@
                 <Setter Property="VerticalAlignment" Value="Center" />
             </Style>
             <Style TargetType="DataGridRow">
-                <Setter Property="IsHitTestVisible" Value="False"/>
+                <!--<Setter Property="IsHitTestVisible" Value="False"/>-->
                 <Setter Property="VerticalAlignment" Value="Center" />
             </Style>
             
@@ -66,7 +66,7 @@
                 <DataGridTemplateColumn Header="ButtonsList">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Button Content="{Binding ButtonsList.Content}" ToolTip="{Binding ButtonsList.ToolTip}"/>
+                            <Button Click="Button_Click" Content="{Binding ButtonsList.Content}" ToolTip="{Binding ButtonsList.ToolTip}"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>

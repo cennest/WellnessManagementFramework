@@ -50,12 +50,9 @@ namespace PhysioApplication
                         }
                     }
 
-                    LabReports labReportsPage = new LabReports();
-                    labReportsPage.Show();
+                    HomePage homePage = new HomePage();
+                    homePage.Show();
                     this.Close();
-                    //HomePage homePage = new HomePage();
-                    //homePage.Show();
-                    //this.Close();
                 }
             }
             catch(Exception exception)
