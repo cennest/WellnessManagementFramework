@@ -29,7 +29,7 @@ namespace PhysioApplication
         {
             InitializeComponent();
             BusinessLayerManager businessLayer = new BusinessLayerManager();
-            this.listorders = new List<BOClient>();
+            this.clientList = new List<BOClient>();
 
             // Binding with the ChangedIndexCommand on GridPaging.........................................
             // Create de Command.
@@ -49,7 +49,7 @@ namespace PhysioApplication
 
         private readonly RoutedUICommand changedIndex;
 
-        private IList<BOClient> listorders;
+        private IList<BOClient> clientList;
 
         private void LoadData()
         {
@@ -72,8 +72,8 @@ namespace PhysioApplication
             int finalRow = initialRow + pageSize;
             try
             {
-                this.listorders = businessLayer.GetClientsforCategories(1, 1, initialRow, finalRow);
-                this.ClientDataGrid.ItemsSource = this.listorders;
+                this.clientList = businessLayer.GetClientsforCategories(1, 1, initialRow, finalRow);
+                this.ClientDataGrid.ItemsSource = this.clientList;
                 return businessLayer.GetCountOfClientsforCategories(1, 1, initialRow, finalRow);
             }
             catch (Exception ex)
