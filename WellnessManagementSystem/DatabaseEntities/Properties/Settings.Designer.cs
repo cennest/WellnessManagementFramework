@@ -33,5 +33,16 @@ namespace DatabaseEntities.Properties {
                 return ((string)(this["WellnessManagementFrameworkDBConnectionString"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=POULOMEE-PC;Initial Catalog=WellnessManagementFrameworkDB;Integrated " +
+            "Security=True")]
+        public string WellnessManagementFrameworkDBConnectionString1 {
+            get {
+                return ((string)(this["WellnessManagementFrameworkDBConnectionString1"]));
+            }
+        }
     }
 }
