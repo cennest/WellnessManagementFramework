@@ -167,7 +167,11 @@ namespace PhysioApplication.UserControls
 
         private void btnDelete_Click(object sender, RoutedEventArgs e)
         {
-            currentLabReports.RemoveAt(currentLabReports.Count - 1);
+            int selectedItem = lvReports.SelectedIndex;
+            if (selectedItem >= 0)
+            {
+                currentLabReports.RemoveAt(selectedItem);
+            }
         }
 
         private void btnSave_Click(object sender, RoutedEventArgs e)
