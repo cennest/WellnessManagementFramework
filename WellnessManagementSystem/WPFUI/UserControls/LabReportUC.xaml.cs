@@ -159,11 +159,10 @@ namespace PhysioApplication.UserControls
             report["TestDate"] = DateTime.Now.Date.ToShortDateString();
             foreach (BOUserField reportHeader in reportHeaders)
             {
-
                 report[reportHeader.ReportFieldID.ToString()] = "N/A";
             }
 
-            currentLabReports.Add(expando);
+            currentLabReports.Insert(0, expando);
         }
 
         private void btnDelete_Click(object sender, RoutedEventArgs e)
@@ -176,6 +175,6 @@ namespace PhysioApplication.UserControls
             ObservableCollection<ExpandoObject> editedReports = (ObservableCollection<ExpandoObject>)lvReports.DataContext;
             businessLayer.SaveEditedReportsForClient(1, editedReports);
         }
-    
+        
     }
 }
