@@ -9,7 +9,7 @@
     <Window.Resources>
     </Window.Resources>
     <Grid>
-        <DataGrid Name="dgOrdersGrid" Grid.Row="1" Grid.RowSpan="1" 
+        <DataGrid Name="ClientDataGrid" Grid.Row="1" Grid.RowSpan="1" 
 		          Grid.Column="1"
 		          Margin="10"
 		          HorizontalAlignment="Left"
@@ -42,7 +42,7 @@
             </DataGrid.Columns>
         </DataGrid>
         <my:GridPaging Grid.Row="2" HorizontalAlignment="Stretch" Margin="10,350,5,2" 
-                       x:Name="gridPaging1" VerticalAlignment="Top"/>
+                       x:Name="gridPaging" VerticalAlignment="Top"/>
     </Grid>
 </Window>
 

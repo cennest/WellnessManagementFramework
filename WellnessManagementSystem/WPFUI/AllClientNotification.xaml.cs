@@ -36,7 +36,7 @@ namespace PhysioApplication
             this.changedIndex = new RoutedUICommand("ChangedIndex", "ChangedIndex", typeof(AllClientNotification));
 
             // Assing the command to GridPaging Command.
-            gridPaging1.ChangedIndexCommand = this.changedIndex;
+            gridPaging.ChangedIndexCommand = this.changedIndex;
 
             // Binding Command
             CommandBinding abinding = new CommandBinding { Command = this.changedIndex };
@@ -53,17 +53,17 @@ namespace PhysioApplication
 
         private void LoadData()
         {
-            gridPaging1.ResetPageIndex();
-            var pageIndex = gridPaging1.PageIndex;
-            var pageSize = gridPaging1.PageSize;
-            gridPaging1.TotalCount = this.ExecuteQueryReturnTotalItem(pageIndex, pageSize);
+            gridPaging.ResetPageIndex();
+            var pageIndex = gridPaging.PageIndex;
+            var pageSize = gridPaging.PageSize;
+            gridPaging.TotalCount = this.ExecuteQueryReturnTotalItem(pageIndex, pageSize);
         }
 
         private void OnChangeIndexCommandHandler(object sender, ExecutedRoutedEventArgs e)
         {
-            var pageIndex = gridPaging1.PageIndex;
-            var pageSize = gridPaging1.PageSize;
-            gridPaging1.TotalCount = this.ExecuteQueryReturnTotalItem(pageIndex, pageSize);
+            var pageIndex = gridPaging.PageIndex;
+            var pageSize = gridPaging.PageSize;
+            gridPaging.TotalCount = this.ExecuteQueryReturnTotalItem(pageIndex, pageSize);
         }
 
         private int ExecuteQueryReturnTotalItem(int pageIndex, int pageSize)
@@ -73,7 +73,7 @@ namespace PhysioApplication
             try
             {
                 this.listorders = businessLayer.GetClientsforCategories(1, 1, initialRow, finalRow);
-                this.dgOrdersGrid.ItemsSource = this.listorders;
+                this.ClientDataGrid.ItemsSource = this.listorders;
                 return businessLayer.GetCountOfClientsforCategories(1, 1, initialRow, finalRow);
             }
             catch (Exception ex)
