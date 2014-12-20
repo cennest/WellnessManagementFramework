@@ -10,5 +10,7 @@ namespace BusinessLayer.Entities
     {
         public int ClientID { get; set; }
         public string ClientName { get; set; }
+        public string ClientNotes { get; set; }
+        public string ClientNotification { get; set; }
     }
 }

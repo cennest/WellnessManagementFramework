@@ -59,6 +59,9 @@
     <Compile Include="AppManager.cs" />
     <Compile Include="EditControl\editbox.cs" />
     <Compile Include="EditControl\editboxadorner.cs" />
+    <Compile Include="GridPaging\GridPaging.xaml.cs">
+      <DependentUpon>GridPaging.xaml</DependentUpon>
+    </Compile>
     <Compile Include="HomePage.xaml.cs">
       <DependentUpon>HomePage.xaml</DependentUpon>
     </Compile>
@@ -74,6 +77,10 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ResourceConstants.resx</DependentUpon>
     </Compile>
+    <Page Include="GridPaging\GridPaging.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="HomePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

@@ -133,6 +133,21 @@ namespace BusinessLayer
             }
         }
 
+
+        public int GetCountOfClientsforCategories(int categoryID, int userID, int skip, int take)
+        {
+            try
+            {
+                DataLayerManager datalayer = new DataLayerManager();
+                int countOfClients = datalayer.GetCountOfClientsforCategories(categoryID, userID, skip, take);
+                return countOfClients;
+            }
+            catch (Exception exception)
+            {
+                throw new Exception(exception.Message);
+            }
+        }
+
         public List<BOClient> GetClientsForCategoryByName(int categoryID, string searchString, int userID, int skip, int take)
         {
             try
@@ -158,6 +173,8 @@ namespace BusinessLayer
                     BOClient clientObject = new BOClient();
                     clientObject.ClientID = client.ClientID;
                     clientObject.ClientName = client.ClientName;
+                    clientObject.ClientNotes = "No Notes";
+                    clientObject.ClientNotification = "No New Notification";
                     listOfClients.Add(clientObject);
                 }
             }
