@@ -24,11 +24,14 @@ namespace PhysioApplication
     public partial class AllClientNotification : Window
     {
         BusinessLayerManager businessLayer = new BusinessLayerManager();
-
+        private readonly RoutedUICommand changedIndex;
+        private List<BOClient> clientList;
+        private List<BOClient> clientListByCategory;
+        private List<BOCategory> categoryList;
+        private List<ComboBoxItem> comboBoxItemList;
         public AllClientNotification()
         {
             InitializeComponent();
-            BusinessLayerManager businessLayer = new BusinessLayerManager();
             this.clientList = new List<BOClient>();
             this.clientListByCategory = new List<BOClient>();
 
@@ -45,13 +48,16 @@ namespace PhysioApplication
             // Binding Handler to executed.
             abinding.Executed += this.OnChangeIndexCommandHandler;
             this.CommandBindings.Add(abinding);
+            this.categoryList = businessLayer.GetAllCategories();
+            this.comboBoxItemList = new List<ComboBoxItem>();
+            foreach (BOCategory category in categoryList)
+            {
+                comboBoxItemList.Add(new ComboBoxItem { Content = category.CategoryName, Tag = category.CategoryID.ToString() });
+            }
+            this.cbPageFilter.ItemsSource = this.comboBoxItemList;
+            this.cbPageFilter.SelectedIndex = 0;
             LoadData();
         }
-
-        private readonly RoutedUICommand changedIndex;
-
-        private IList<BOClient> clientList;
-        private IList<BOClient> clientListByCategory;
 
         private void LoadData()
         {
@@ -70,6 +76,7 @@ namespace PhysioApplication
 
         private int ExecuteQueryReturnTotalItem(int pageIndex, int pageSize)
         {
+            int CategoryID = Convert.ToInt32(((ComboBoxItem)this.cbPageFilter.SelectedItem).Tag);
             int initialRow = ((pageIndex - 1) * pageSize);
             int finalRow = initialRow + pageSize;
             try
@@ -77,14 +84,14 @@ namespace PhysioApplication
                 int cachedDataCount = this.clientListByCategory.Count;
                 if (cachedDataCount < finalRow)
                 {
-                    FetchDataFromDatabase(cachedDataCount, initialRow, finalRow);
+                    FetchDataFromDatabase(cachedDataCount, initialRow, finalRow, CategoryID);
                 }
                 else
                 {
                     FetchDataFromCache(initialRow, finalRow);
                 }
                 this.ClientDataGrid.ItemsSource = this.clientList;
-                return businessLayer.GetCountOfClientsforCategories(1, 1, initialRow, finalRow);
+                return businessLayer.GetCountOfClientsforCategories(CategoryID, 1, initialRow, finalRow);
             }
             catch (Exception ex)
             {
@@ -93,9 +100,9 @@ namespace PhysioApplication
             }
         }
 
-        private void FetchDataFromDatabase(int cachedDataCount, int initialRow, int finalRow)
+        private void FetchDataFromDatabase(int cachedDataCount, int initialRow, int finalRow,  int CategoryID)
         {
-            this.clientList = businessLayer.GetClientsforCategories(1, 1, initialRow, finalRow);
+            this.clientList = businessLayer.GetClientsforCategories(CategoryID, 1, initialRow, finalRow);
             int skip = cachedDataCount - initialRow;
             int rowCounter = 0;
             if (this.clientList.Count > 0)
@@ -140,6 +147,12 @@ namespace PhysioApplication
             {
                 MessageBox.Show(""+block.Tag);
             }
+        }
+
+        private void FilterComboBoxSelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+        {
+            this.clientListByCategory = new List<BOClient>();
+            LoadData();
         }
     }
 }

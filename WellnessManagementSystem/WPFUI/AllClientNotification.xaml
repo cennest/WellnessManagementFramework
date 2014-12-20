@@ -5,18 +5,22 @@
         xmlns:l="clr-namespace:PhysioApplication" Title="AllClientNotification"
         DataContext="{Binding RelativeSource={RelativeSource Self}}"
         Width="600"
-        Height="500">
+        Height="600">
     <Window.Resources>
     </Window.Resources>
     <Grid>
+        <Label Name="FilterLabel" Content="Filter by" Width="100" Height="30" Margin="100,-50,10,400" FontSize="14" FontWeight="Normal"/>
+        <ComboBox Width="100" FontSize="10" ToolTip="Rows x Page" Name="cbPageFilter"
+                          IsEditable="False" SelectionChanged="FilterComboBoxSelectionChanged"
+                          VerticalAlignment="Center" Margin="220,-50,10,400" Height="23">
+        </ComboBox>
         <DataGrid Name="ClientDataGrid" Grid.Row="1" Grid.RowSpan="1" 
 		          Grid.Column="1"
-		          Margin="10"
+		          Margin="10,100,10,10"
 		          HorizontalAlignment="Left"
 		          VerticalAlignment="Top"
 		          AlternationCount="2"
 		          AutoGenerateColumns="False"
-		          ItemsSource="{Binding listorders}"
 		          MinRowHeight="26">
             <DataGrid.Columns>
                 <DataGridTemplateColumn Header="ClientName" Width="120">
@@ -34,7 +38,7 @@
 				                    Header="ClientLastNotes" />
             </DataGrid.Columns>
         </DataGrid>
-        <my:GridPaging Grid.Row="2" HorizontalAlignment="Stretch" Margin="10,400,5,2" 
+        <my:GridPaging Grid.Row="2" HorizontalAlignment="Stretch" Margin="10,480,5,2" 
                        x:Name="gridPaging" VerticalAlignment="Top"/>
     </Grid>
 </Window>
