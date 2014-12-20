@@ -179,7 +179,7 @@ namespace DataLayer
 
         }
 
-        public bool SaveLabReportsForClient(List<LabReport> labReports, int clientID)
+        public bool SaveLabReportsForClient(List<LabReport> labReports, int clientID,int userID)
         {
             WellnessManagementFrameworkDBMLDataContext dataContext = new WellnessManagementFrameworkDBMLDataContext();
 
@@ -195,7 +195,7 @@ namespace DataLayer
                 else
                 {
                     report.ClientID = clientID;
-                    report.UserID = 2;//Change this
+                    report.UserID = userID;//Change this
                     dataContext.LabReports.InsertOnSubmit(report);
                 }
                 dataContext.SubmitChanges();

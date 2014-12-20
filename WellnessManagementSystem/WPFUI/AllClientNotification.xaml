@@ -5,7 +5,8 @@
         xmlns:l="clr-namespace:PhysioApplication" Title="AllClientNotification"
         DataContext="{Binding RelativeSource={RelativeSource Self}}"
         Width="Auto"
-        Height="Auto">
+        Height="Auto"
+        WindowStartupLocation="CenterScreen">
     <Window.Resources>
     </Window.Resources>
     <Grid>
