@@ -57,6 +57,21 @@ namespace PhysioApplication
             this.cbPageFilter.ItemsSource = this.comboBoxItemList;
             this.cbPageFilter.SelectedIndex = 0;
             LoadData();
+            SetBreadCrumb();
+        }
+
+        private void SetBreadCrumb()
+        {
+        List<string>headers= new List<string>{"Home","All Athletes"};
+        ucBreadCrumb.ResetBreadCrumb(headers);
+        ucBreadCrumb.CrumbSelected += ucBreadCrumb_CrumbSelected;
+        
+        }
+
+        void ucBreadCrumb_CrumbSelected(string selectedString)
+        {
+            AppManager.getInstance().BreadCrumbSelected(selectedString);
+            this.Close();
         }
 
         private void LoadData()
@@ -146,6 +161,7 @@ namespace PhysioApplication
             if (textBlock != null)
             {
                 AppManager.getInstance().currentClientID = Convert.ToInt32(textBlock.Tag);
+                AppManager.getInstance().CurrentClientName = textBlock.Text;
                 LabReports labReports = new LabReports();
                 labReports.Show();
                 this.Close();
