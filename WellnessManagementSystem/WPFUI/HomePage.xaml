@@ -2,8 +2,13 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:resx="clr-namespace:PhysioApplication.Properties"
-        Title="Home Page" Height="Auto" Width="Auto" WindowStartupLocation="CenterScreen">
+        Title="Home Page" Height="Auto" Width="Auto" MinHeight="640" MinWidth="768" WindowStartupLocation="CenterScreen">
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40" />
+            <RowDefinition Height="50" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
         <Grid.Resources>
             <Style TargetType="Button">
                 <Style.Triggers>
@@ -59,18 +64,18 @@
             </Style>
             
         </Grid.Resources>
-        <StackPanel>
-        <TextBlock 
-            Height="20" 
-            Width="Auto" 
-            Margin="150,50,75,474" 
-            FontSize="15">
+        <Grid Grid.Row="0">
+            
+        </Grid>
+        <StackPanel Grid.Row="1" VerticalAlignment="Center">
+        <TextBlock  Height="20" Width="Auto"  FontSize="15" HorizontalAlignment="Center">
             Welcome 
            <TextBlock Text="{Binding UserName}"/>
             , What would you like to do?
         </TextBlock>
         </StackPanel>
-        <DataGrid Style="{StaticResource DataGridStyle1}" x:Name="dtGrid" AutoGenerateColumns="False" IsReadOnly="True" GridLinesVisibility="None" HeadersVisibility="None" Background="Transparent" Margin="0,80,0,0" BorderThickness="0">
+        
+        <DataGrid Grid.Row="2" Style="{StaticResource DataGridStyle1}" x:Name="dtGrid" AutoGenerateColumns="False" IsReadOnly="True" GridLinesVisibility="None" HeadersVisibility="None" Background="Transparent" BorderThickness="0">
             <DataGrid.Columns>
                 <DataGridTemplateColumn Header="ButtonsList">
                     <DataGridTemplateColumn.CellTemplate>

@@ -2,13 +2,15 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:local="clr-namespace:PhysioApplication"
-        Title="LoginWindow" Height="Auto" Width="Auto" WindowStartupLocation="CenterScreen">
+        Title="LoginWindow" Height="500" Width="768" MinHeight="500"
+        MaxHeight="500" MaxWidth="768" MinWidth="768" WindowStartupLocation="CenterScreen">
     <Window.Resources>
         <LinearGradientBrush x:Key="ButtonGreenBackground" StartPoint="0.5,0" EndPoint="0.5,1">
             <GradientStop Color="#EEFF92" Offset="0"/>
             <GradientStop Color="#99C049" Offset="0.1"/>
             <GradientStop Color="#7A9443" Offset="0.8"/>
         </LinearGradientBrush>
+        
         <Style x:Key="{x:Type PasswordBox}" TargetType="{x:Type PasswordBox}">
             <Setter Property="local:WaterMarkTextHelper.IsMonitoring" Value="True"/>
             <Setter Property="Template">
@@ -28,10 +30,10 @@
                                 <DoubleAnimation Duration="0:0:0.4" Storyboard.TargetProperty="Opacity" Storyboard.TargetName="Message"/>
                             </Storyboard>
                         </ControlTemplate.Resources>
-                        <Border Name="Bd" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
+                        <Border Name="Bd" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="10">
                             <Grid>
                                 <ScrollViewer x:Name="PART_ContentHost" VerticalAlignment="Center" Margin="3" />
-                                <TextBlock Text="Enter Password" x:Name="Message" Foreground="Navy" IsHitTestVisible="False" FontFamily="Calibri" FontSize="18" Opacity="0.5" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="6,0,0,0"/>
+                                <TextBlock Text="Enter Password" x:Name="Message" Foreground="Gray" IsHitTestVisible="False" FontFamily="Calibri" FontSize="18" Opacity="0.5" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="6,0,0,0"/>
                             </Grid>
                         </Border>
                         <ControlTemplate.Triggers>
@@ -64,6 +66,7 @@
                 </Setter.Value>
             </Setter>
         </Style>
+        
         <Style x:Key="{x:Type TextBox}" TargetType="{x:Type TextBox}">
             <Setter Property="local:WaterMarkTextHelper.IsMonitoring" Value="True"/>
             <Setter Property="Template">
@@ -83,10 +86,10 @@
                                 <DoubleAnimation Duration="0:0:0.4" Storyboard.TargetProperty="Opacity" Storyboard.TargetName="Message"/>
                             </Storyboard>
                         </ControlTemplate.Resources>
-                        <Border Name="Bd" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
+                        <Border Name="Bd" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="10">
                             <Grid>
                                 <ScrollViewer x:Name="PART_ContentHost" VerticalAlignment="Center" Margin="3" />
-                                <TextBlock Text="Enter Username" x:Name="Message" Foreground="Navy" IsHitTestVisible="False" FontFamily="Calibri" FontSize="18" Opacity="0.5" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="6,0,0,0"/>
+                                <TextBlock Text="Enter Username" x:Name="Message" Foreground="Gray" IsHitTestVisible="False" FontFamily="Calibri" FontSize="18" Opacity="0.5" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="6,0,0,0"/>
                             </Grid>
                         </Border>
                         <ControlTemplate.Triggers>
@@ -119,6 +122,17 @@
                 </Setter.Value>
             </Setter>
         </Style>
+
+        <!--<Style TargetType="GroupBox">
+            <Setter Property="HeaderTemplate">
+                <Setter.Value>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding}" FontWeight="Bold"/>
+                    </DataTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>-->
+
     </Window.Resources>
     <Grid >
         <Grid.RowDefinitions>
@@ -131,11 +145,49 @@
         </Grid.ColumnDefinitions>
 
 
-        <GroupBox Header="Athletic Conditioning Evaluation System (ACES)" Grid.Row="1" BorderBrush="#FFA620" BorderThickness="2" HorizontalAlignment="Center" Width="500">
+        <GroupBox Header="Athletic Conditioning Evaluation System (ACES)" Grid.Row="1" BorderBrush="#FFA620" BorderThickness="2" Width="500" FontSize="18">
+            <GroupBox.Template>
+                <ControlTemplate TargetType="{x:Type GroupBox}">
+                    <Grid SnapsToDevicePixels="true">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="6"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="6"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="6"/>
+                        </Grid.RowDefinitions>
+                        <Border CornerRadius="10" Grid.Row="1" Grid.RowSpan="3" Grid.Column="0" Grid.ColumnSpan="5" BorderThickness="{TemplateBinding BorderThickness}"
+                                BorderBrush="Transparent" Background="{TemplateBinding Background}"/>
+                        <Border x:Name="Header" Padding="3,1,3,0" Grid.Row="0" Grid.RowSpan="2" Grid.Column="2" CornerRadius="30">
+                            <ContentPresenter ContentSource="Header" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+                        </Border>
+                        <ContentPresenter Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="3" Margin="{TemplateBinding Padding}" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+                        <Border CornerRadius="10" Grid.Row="1" Grid.RowSpan="3" Grid.ColumnSpan="5" BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="White">
+                            <Border.OpacityMask>
+                                <MultiBinding Converter="{StaticResource CenterBorderGapMaskConverter}">
+                                    <Binding ElementName="Header" Path="ActualWidth"/>
+                                    <Binding RelativeSource="{RelativeSource Self}" Path="ActualWidth"/>
+                                    <Binding RelativeSource="{RelativeSource Self}" Path="ActualHeight"/>
+                                </MultiBinding>
+                            </Border.OpacityMask>
+
+                            <Border BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="{TemplateBinding BorderBrush}" CornerRadius="10">
+                                <Border BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="White" CornerRadius="10"/>
+                            </Border>
+                        </Border>
+                    </Grid>
+                </ControlTemplate>
+            </GroupBox.Template>
             
             <StackPanel Height="Auto" Name="LoginStack">
-                <TextBox Width="400" Height="50" Margin="10" Name="UserName" FontSize="18" BorderBrush ="#FFD28F" BorderThickness="2" />
-                <PasswordBox Width="400" Height="50" Margin="10" Name="Password" KeyDown="Password_KeyDown" FontSize="18" BorderBrush="#FFD28F" BorderThickness="2" />
+                <TextBox Width="400" Height="50" Margin="10" Name="UserName" FontSize="18" BorderBrush ="#FFD28F" BorderThickness="2" TextAlignment="Center" />
+                <PasswordBox  Width="400" Height="50" Margin="10" Name="Password" KeyDown="Password_KeyDown" FontSize="18" BorderBrush="#FFD28F" BorderThickness="2" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                 <Button Content="Login" Width="200" Height="50" Click="Login_Click" Background="{StaticResource ButtonGreenBackground}" Style="{StaticResource WellnessManagementSystemButtonStyle}" Margin="10" BorderBrush="Transparent"/>
             </StackPanel>
         </GroupBox>
