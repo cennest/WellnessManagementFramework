@@ -1,12 +1,15 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:converters="clr-namespace:PhysioApplication.Helper">
     <LinearGradientBrush x:Key="ButtonOrangeBackground" StartPoint="0.5,0" EndPoint="0.5,1">
         <GradientStop Color="#FFE927" Offset="0"/>
         <GradientStop Color="#F4872A" Offset="0.15"/>
         <GradientStop Color="#C9752E" Offset="0.95"/>
     </LinearGradientBrush>
     <SolidColorBrush x:Key="TextWhiteColor" Color="White"/>
- 
+
+    <converters:CenterBorderGapMaskConverter x:Key="CenterBorderGapMaskConverter"/>
+
 
     <Style x:Key="WellnessManagementSystemButtonStyle" TargetType="Button">
         <Setter Property="Background" Value="{StaticResource ButtonOrangeBackground}"/>

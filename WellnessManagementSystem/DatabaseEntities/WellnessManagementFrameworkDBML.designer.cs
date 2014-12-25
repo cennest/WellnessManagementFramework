@@ -66,7 +66,7 @@ namespace DatabaseEntities
     #endregion
 		
 		public WellnessManagementFrameworkDBMLDataContext() : 
-				base(global::DatabaseEntities.Properties.Settings.Default.WellnessManagementFrameworkDBConnectionString2, mappingSource)
+				base(global::DatabaseEntities.Properties.Settings.Default.WellnessManagementFrameworkDBConnectionString, mappingSource)
 		{
 			OnCreated();
 		}

@@ -62,6 +62,7 @@
     <Compile Include="GridPaging\GridPaging.xaml.cs">
       <DependentUpon>GridPaging.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Helper\CenterBorderGapMaskConverter.cs" />
     <Compile Include="HomePage.xaml.cs">
       <DependentUpon>HomePage.xaml</DependentUpon>
     </Compile>
