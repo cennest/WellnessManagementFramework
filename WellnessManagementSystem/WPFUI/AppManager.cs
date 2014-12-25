@@ -13,6 +13,7 @@ namespace PhysioApplication
         private BOUser userDetails;
         private List<BOUserField> labReportFieldsForUser;
         public int currentClientID {get;set;}
+        public string CurrentClientName { get; set; }
 
         private AppManager()
         {
@@ -46,6 +47,28 @@ namespace PhysioApplication
         public List<BOUserField> GetLabReportFieldsForUser()
         {
             return this.labReportFieldsForUser;
+        }
+
+        public bool BreadCrumbSelected(string crumb)
+        {
+            switch (crumb)
+            {
+                case "Home":
+                    {
+                        HomePage home = new HomePage();
+                        home.Show();
+                      
+                    }
+                    break;
+                case "All Athletes":
+                    {
+                        AllClientNotification clientPage = new AllClientNotification();
+                        clientPage.Show();
+                     
+                    }
+                    break;
+            }
+            return true;
         }
     }
 }

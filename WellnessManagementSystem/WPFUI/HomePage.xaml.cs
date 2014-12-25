@@ -37,6 +37,7 @@ namespace PhysioApplication
             BOUser userDetails = appManager.GetUserDetails();
             DataContext = userDetails;
             InitializeCustomComponents();
+            SetBreadCrumb();
         }
 
         public void InitializeCustomComponents()
@@ -66,8 +67,23 @@ namespace PhysioApplication
             client.Show();
             this.Close();
         }
-    }
+        private void SetBreadCrumb()
+        {
+            List<string> headers = new List<string> { "Home" };
+            ucBreadCrumb.ResetBreadCrumb(headers);
+            ucBreadCrumb.CrumbSelected += ucBreadCrumb_CrumbSelected;
 
+        }
+
+        private void ucBreadCrumb_CrumbSelected(string selectedString)
+        {
+            AppManager.getInstance().BreadCrumbSelected(selectedString);
+            this.Close();
+        }
+
+    }
+    
+    
     public class ButtonsList
     {
         public String Content { get; set; }

@@ -3,6 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:my="clr-namespace:PhysioApplication.GridPaging"
         xmlns:l="clr-namespace:PhysioApplication" Title="AllClientNotification"
+        xmlns:userControl="clr-namespace:PhysioApplication.UserControls"
         DataContext="{Binding RelativeSource={RelativeSource Self}}"
         Width="768" Height="auto" MinWidth="768" MinHeight="540" MaxWidth="768" MaxHeight="540"
         WindowStartupLocation="CenterScreen">
@@ -11,9 +12,10 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="60"/>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="9*"/>
+            <RowDefinition Height="80*"/>
         </Grid.RowDefinitions>
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="296,0,295.333,0">
             <Label Name="FilterLabel" Content="Filter by" Width="70" Height="30" FontSize="14" FontWeight="Normal"
                    HorizontalAlignment="Center" />
             <ComboBox Width="100" FontSize="10" ToolTip="Rows x Page" Name="cbPageFilter"
@@ -21,7 +23,9 @@
                           VerticalAlignment="Center" HorizontalAlignment="Center" Height="23">
             </ComboBox>
         </StackPanel>
-        <StackPanel Grid.Row="1" >           
+        <userControl:UCBreadCrumb Grid.Row="1" x:Name="ucBreadCrumb"></userControl:UCBreadCrumb>
+
+        <StackPanel Grid.Row="2" Margin="0,0,0.333,0.333" Grid.RowSpan="2" >
             <DataGrid Name="ClientDataGrid" 
 		          HorizontalAlignment="Center" VerticalAlignment="Top" Margin="10,0"
 		          AlternationCount="2" AutoGenerateColumns="False" MinRowHeight="26">
@@ -43,8 +47,8 @@
             </DataGrid>
             <my:GridPaging Grid.Row="2" HorizontalAlignment="Center" x:Name="gridPaging" Margin="0,30"/>
         </StackPanel>
-        
-        
+
+
     </Grid>
 </Window>
 

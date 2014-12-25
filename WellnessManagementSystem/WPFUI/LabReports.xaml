@@ -14,6 +14,7 @@
             <RowDefinition Height="53*"/>
             <RowDefinition Height="417*"/>
         </Grid.RowDefinitions>
+        <userControl:UCBreadCrumb x:Name="ucBreadCrumb"   Grid.Row="1"></userControl:UCBreadCrumb>
         <TabControl Grid.Row="2" x:Name="clientInfoTab">
             <TabItem Width="150" Header="Summary">Coming Soon!</TabItem>
             <TabItem Width="150" Header="Lab Reports">
