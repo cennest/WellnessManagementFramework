@@ -9,7 +9,7 @@
         
     </UserControl.Resources>
     <Grid>
-        <ListView x:Name="lvBreadCrumb" SelectionChanged="lvBreadCrumb_SelectionChanged">
+        <ListView x:Name="lvBreadCrumb" BorderThickness="0" SelectionChanged="lvBreadCrumb_SelectionChanged">
             <ListView.ItemsPanel>
                 <ItemsPanelTemplate>
                     <StackPanel Orientation="Horizontal"></StackPanel>
