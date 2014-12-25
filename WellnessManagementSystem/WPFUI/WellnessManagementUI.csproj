@@ -70,6 +70,12 @@
     <Compile Include="LoginWindow.xaml.cs">
       <DependentUpon>LoginWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\ACESUC.xaml.cs">
+      <DependentUpon>ACESUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Footer.xaml.cs">
+      <DependentUpon>Footer.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\LabReportUC.xaml.cs" />
     <Compile Include="UserControls\UCBreadCrumb.xaml.cs">
       <DependentUpon>UCBreadCrumb.xaml</DependentUpon>
@@ -108,6 +114,14 @@
     <Page Include="Resources\DataGridStyle.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControls\ACESUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\Footer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControls\LabReportUC.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -163,6 +177,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\Remove.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\OGQ.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
