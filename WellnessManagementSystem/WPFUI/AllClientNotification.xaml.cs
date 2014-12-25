@@ -162,7 +162,7 @@ namespace PhysioApplication
             {
                 AppManager.getInstance().currentClientID = Convert.ToInt32(textBlock.Tag);
                 AppManager.getInstance().CurrentClientName = textBlock.Text;
-                LabReports labReports = new LabReports();
+                UserReports labReports = new UserReports();
                 labReports.Show();
                 this.Close();
             }
