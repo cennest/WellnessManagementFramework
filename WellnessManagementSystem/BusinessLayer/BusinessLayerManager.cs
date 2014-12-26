@@ -14,9 +14,23 @@ namespace BusinessLayer
 {
     public class BusinessLayerManager
     {
+        
         public static Hashtable reportTypeStrings =new Hashtable(){{(int)ReportType.LabReport,ReportTypeResource.LabReport},
                                                                    {(int)ReportType.DietPlan,ReportTypeResource.DietPlan},
                                                                    {(int)ReportType.PhysicalCondition,ReportTypeResource.PhysicalCondition}};
+        public string RandomNotes(int index)
+        {
+            List<string> Notification = new List<string>{"Add Shoulder exercises to strengthen neck area","Increase time spent in breathing exercises by 15 minutes","Increase time spent in breathing exercises by 15 minutes",
+"Looks to be following schedule well","Focus on wrists exercise in water"};
+            if (index < Notification.Count)
+            {
+                return Notification[index];
+            }
+            else
+            {
+               return ("Looks to be following schedule well");
+            }
+        }
         public List<BOLabReport> GetLabReportsForClient(int clientID,int userID)
         {
             try
@@ -162,6 +176,7 @@ namespace BusinessLayer
                 throw new Exception(exception.Message);
             }
         }
+        
 
         private List<BOClient> GetClientBOForClientDBObjects(List<Client> clients)
         {
@@ -173,7 +188,7 @@ namespace BusinessLayer
                     BOClient clientObject = new BOClient();
                     clientObject.ClientID = client.ClientID;
                     clientObject.ClientName = client.ClientName;
-                    clientObject.ClientNotes = "No Notes";
+                    clientObject.ClientNotes = RandomNotes(clients.IndexOf(client));
                     clientObject.ClientNotification = "No New Notification";
                     listOfClients.Add(clientObject);
                 }

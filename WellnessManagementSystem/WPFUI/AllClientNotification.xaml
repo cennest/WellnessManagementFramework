@@ -32,7 +32,7 @@
 
         <StackPanel Grid.Row="3"   >
             <DataGrid Name="ClientDataGrid" 
-		          HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="10,0"
+		          HorizontalAlignment="Stretch"  VerticalAlignment="Top" Margin="10,0"
 		           AutoGenerateColumns="False" MinRowHeight="26">
                 <DataGrid.Columns>
                     <DataGridTemplateColumn  Header="Name" Width="*">
