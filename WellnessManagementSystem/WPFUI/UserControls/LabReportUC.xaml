@@ -37,31 +37,37 @@
         </Style>
     </UserControl.Resources>
     <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="420*"/>
-            <ColumnDefinition Width="380*"/>
-        </Grid.ColumnDefinitions>
+
         <Grid.RowDefinitions>
             <RowDefinition Height="76*"/>
             <RowDefinition Height="342*"/>
             <RowDefinition Height="39*"/>
         </Grid.RowDefinitions>
-        <ListView Grid.Row="1" x:Name="lvReports" Grid.RowSpan="1" Grid.ColumnSpan="2">
+        <ListView Grid.Row="1" x:Name="lvReports">
 
         </ListView>
-        <Label Grid.Row="0" Content="Showing Reports from" VerticalAlignment="Center" FontFamily="Calibri" FontSize="18" HorizontalAlignment="Left" Margin="0,0,0,0"/>
-        <DatePicker Name="FromDate" SelectedDateChanged="FromDate_SelectedDateChanged" Grid.Row="0" VerticalAlignment="Center" FontFamily="Calibri" FontSize="18" HorizontalAlignment="Left" Margin="200,0,0,0"/>
-        <Label Grid.Row="0" Content="To" VerticalAlignment="Center" FontFamily="Calibri" FontSize="18" HorizontalAlignment="Left" Margin="350,0,0,0" Grid.ColumnSpan="2" />
-        <DatePicker Name="ToDate" SelectedDateChanged="ToDate_SelectedDateChanged" Grid.Row="0" VerticalAlignment="Center" FontFamily="Calibri" FontSize="18" HorizontalAlignment="Left" Margin="390,0,0,0"/>
-        <Button Grid.Row="0" x:Name="btnAdd" Click="btnAdd_Click" Margin="0,0,120,0" Width="50" Height="50" Background="Transparent" BorderBrush="Transparent" HorizontalAlignment="Right" Grid.Column="1">
-            <Image Source="..\Images\Add.png" Width="40" Height="40"/>
-        </Button>
-        <Button x:Name="btnDelete" Click="btnDelete_Click" Margin="0,0,60,0" Width="50" Height="50"  Background="Transparent" BorderBrush="Transparent" HorizontalAlignment="Right" Grid.Column="1">
-            <Image Source="..\Images\Remove.png" Width="40" Height="40" Margin="1"></Image>
-        </Button>
-        <Button Grid.Row="0" x:Name="btnSave" Click="btnSave_Click" Margin="0,0,0,0" Width="50" Height="50"  Background="Transparent" BorderBrush="Transparent" HorizontalAlignment="Right" Grid.Column="1">
-            <Image Source="..\Images\Save.png" Width="40" Height="40" Margin="1"></Image>
-        </Button>
+        <DockPanel>
+            <StackPanel Margin="0,9,0,0" DockPanel.Dock="Left" Orientation="Horizontal" >
+                <Label Content="Showing Reports from" VerticalAlignment="Center" FontFamily="Calibri" FontSize="18" HorizontalAlignment="Left" Margin="0,0,0,0"/>
+                <DatePicker x:Name="FromDate" SelectedDateChanged="FromDate_SelectedDateChanged" VerticalAlignment="Center" FontFamily="Calibri" FontSize="18" HorizontalAlignment="Left" Margin="0,1"/>
+                <Label Content="to" VerticalAlignment="Center" FontFamily="Calibri" FontSize="18" HorizontalAlignment="Left" />
+                <DatePicker x:Name="ToDate" SelectedDateChanged="ToDate_SelectedDateChanged" VerticalAlignment="Center" FontFamily="Calibri" FontSize="18" HorizontalAlignment="Left" Margin="0,1"/>
+            </StackPanel>
+
+            <Button x:Name="btnSave" Click="btnSave_Click" Margin="0,9,0,-9" Width="50" Height="50"  Background="Transparent" BorderBrush="Transparent" DockPanel.Dock="Right">
+                <Image Source="..\Images\Save.png" Width="40" Height="40" Margin="1"/>
+            </Button>
+
+            <Button DockPanel.Dock="Right" x:Name="btnAdd" Click="btnAdd_Click" Width="50" Height="50" Background="Transparent" BorderBrush="Transparent" Margin="0,9,0,-9" >
+                <Image Source="..\Images\Add.png" Width="40" Height="40"/>
+            </Button>
+            <Button x:Name="btnDelete" DockPanel.Dock="Right" Click="btnDelete_Click" Width="50" Height="50"  Background="Transparent" BorderBrush="Transparent" HorizontalAlignment="Right" Margin="0,9,0,-9">
+                <Image Source="..\Images\Remove.png" Width="40" Height="40" Margin="1"/>
+            </Button>
+
+
+
+        </DockPanel>
 
     </Grid>
 </UserControl>
