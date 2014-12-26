@@ -22,7 +22,7 @@
             </Setter>
         </Style>
         <Style x:Key="myHeaderStyle" TargetType="{x:Type GridViewColumnHeader}">
-            <Setter Property="Background" Value="{StaticResource ButtonOrangeBackground}"/>
+            <Setter Property="Background" Value="#F79646"/>
             <Setter Property="Width" Value="150"/>
             <Setter Property="Height" Value="30"/>
             <Setter Property="FontFamily" Value="Calibri"/>

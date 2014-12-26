@@ -16,7 +16,7 @@
             <RowDefinition Height=".00001*" />
             <RowDefinition Height=".1*" />
             <RowDefinition Height="*" />
-            <RowDefinition Height=".08*" />
+            <RowDefinition Height=".1*" />
         </Grid.RowDefinitions>
         <userControl:FilterUC Grid.Row="0" HorizontalAlignment="Stretch" Margin="0,0,40,0"></userControl:FilterUC>
         <StackPanel  Grid.Row="1" Orientation="Horizontal" Visibility="Collapsed" HorizontalAlignment="Right" Margin="0,0,30,0">
@@ -31,8 +31,8 @@
         <userControl:UCBreadCrumb Margin="20,0,0,0" Grid.Row="2" x:Name="ucBreadCrumb"></userControl:UCBreadCrumb>
 
         <StackPanel Grid.Row="3"   >
-            <DataGrid Name="ClientDataGrid" 
-		          HorizontalAlignment="Stretch"  VerticalAlignment="Top" Margin="10,0"
+            <DataGrid Name="ClientDataGrid" AlternatingRowBackground="Gray"
+		          HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="10,0"
 		           AutoGenerateColumns="False" MinRowHeight="26">
                 <DataGrid.Columns>
                     <DataGridTemplateColumn  Header="Name" Width="*">
