@@ -4,7 +4,8 @@
         xmlns:resx="clr-namespace:PhysioApplication.Properties"
         xmlns:userControl="clr-namespace:PhysioApplication.UserControls"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d" x:Class="PhysioApplication.HomePage"
-        Title="Home Page" WindowState="Maximized" WindowStyle="SingleBorderWindow" WindowStartupLocation="CenterScreen">
+        Title="Home Page" WindowState="Maximized" WindowStyle="SingleBorderWindow" WindowStartupLocation="CenterScreen"
+    MinWidth="768" MinHeight="540">
     <Grid ShowGridLines="False">
         <Grid.Resources>
             <Style TargetType="{x:Type Button}">
@@ -45,8 +46,14 @@
                 <Setter Property="BorderThickness" Value="0"/>
                 <Setter Property="Margin" Value="8,8,8,8"/>
                 <Setter Property="VerticalAlignment" Value="Center" />
+                <Style.Triggers>
+                    <Trigger Property="DataGridCell.IsSelected" Value="True">
+                        <Setter Property="Background" Value="Transparent" />
+                        <Setter Property="Foreground" Value="Black" />
+                    </Trigger>
+                </Style.Triggers>
             </Style>
-
+            
             <!--<Style TargetType="DataGridRowHeader" x:Key="ColumnHeaderStyle1">
                 <Setter Property="Padding" Value="0"/>
             </Style>-->
@@ -66,7 +73,7 @@
             <RowDefinition Height=".1*" />
             <RowDefinition Height=".2*" />
             <RowDefinition Height="*" />
-            <RowDefinition Height=".08*" />
+            <RowDefinition Height=".1*" />
         </Grid.RowDefinitions>
         <userControl:ACESUC Grid.Row="0"/>
         <userControl:UCBreadCrumb Margin="20,0,0,0" Grid.Row="1" x:Name="ucBreadCrumb" />
@@ -77,19 +84,30 @@
 					<TextBlock Foreground="blue" Text="{Binding UserName}"/>
 				</InlineUIContainer><Run Text=" , What would you like to do?"/></TextBlock>
         </StackPanel>
-
-        <DataGrid Grid.Row="3" Style="{StaticResource DataGridStyle1}" x:Name="dtGrid" AutoGenerateColumns="False" IsReadOnly="True" GridLinesVisibility="None" HeadersVisibility="None" Background="Transparent" BorderThickness="0">
-            <DataGrid.Columns>
-                <DataGridTemplateColumn Header="ButtonsList">
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <Button Click="Button_Click" Content="{Binding ButtonsList.Content}" ToolTip="{Binding ButtonsList.ToolTip}"/>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
-                <DataGridTextColumn Header="Description" Binding="{Binding Description}" />
-            </DataGrid.Columns>
-        </DataGrid>
-        <userControl:Footer Grid.Row="4" Loaded="Footer_Loaded"/>
+        
+        <Grid Grid.Row="3">
+            <DataGrid  Style="{StaticResource DataGridStyle1}" x:Name="dtGrid" AutoGenerateColumns="False" IsReadOnly="True" GridLinesVisibility="None" HeadersVisibility="None" 
+                  Background="Transparent" BorderThickness="0" HorizontalAlignment="Center" VerticalAlignment="Top" MinWidth="768">
+                <DataGrid.Columns>
+                    <DataGridTemplateColumn Header="ButtonsList">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Click="Button_Click" Content="{Binding ButtonsList.Content}" ToolTip="{Binding ButtonsList.ToolTip}"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <!--<DataGridTextColumn Header="Description" Binding="{Binding Description}" />-->
+                    <DataGridTemplateColumn Header="Description">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock  Text="{Binding Description}" TextWrapping="Wrap"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
+        
+        <userControl:Footer Grid.Row="4"/>
     </Grid>
 </Window>
