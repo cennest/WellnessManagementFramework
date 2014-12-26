@@ -15,6 +15,7 @@ using BusinessLayer.Entities;
 using BusinessLayer;
 using System.Data;
 using System.Data.SqlClient;
+using System.Windows.Navigation;
 
 namespace PhysioApplication
 {
@@ -162,8 +163,9 @@ namespace PhysioApplication
             {
                 AppManager.getInstance().currentClientID = Convert.ToInt32(textBlock.Tag);
                 AppManager.getInstance().CurrentClientName = textBlock.Text;
-                LabReports labReports = new LabReports();
-                labReports.Show();
+                UserReports labReports = new UserReports();
+                labReports.ShowDialog();
+                
                 this.Close();
             }
         }

@@ -34,7 +34,7 @@ namespace PhysioApplication.UserControls
             {
                 lvBreadCrumb.Items.Add(new ListViewItem { Content = ">" , IsHitTestVisible=false});
             }
-            lvBreadCrumb.Items.Add(new ListViewItem{Content=text, IsEnabled= isLast});
+            lvBreadCrumb.Items.Add(new ListViewItem{Content=text, IsEnabled= !isLast, FontWeight= isLast?FontWeights.Bold:FontWeights.Medium, Foreground=isLast?Brushes.Black:Brushes.Blue});
             return true;
         }
         public bool ResetBreadCrumb(List<string> crumbs)
@@ -44,11 +44,11 @@ namespace PhysioApplication.UserControls
             {
                 if (crumbs.IndexOf(crumb) == crumbs.Count - 1)
                 {
-                    AddBreadCrumb(crumb, false);
+                    AddBreadCrumb(crumb, true);
                 }
                 else
                 {
-                    AddBreadCrumb(crumb, true);
+                    AddBreadCrumb(crumb, false);
                 }
             }
             return true;

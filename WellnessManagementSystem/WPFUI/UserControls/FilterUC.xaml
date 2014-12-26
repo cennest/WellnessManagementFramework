@@ -1,0 +1,27 @@
+﻿<UserControl x:Class="PhysioApplication.UserControls.FilterUC"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             >
+    <!--<DockPanel HorizontalAlignment="Stretch" Width="800">
+        <TextBlock DockPanel.Dock="Left" Text="ACES" ></TextBlock>
+        <TextBox DockPanel.Dock="Right" HorizontalAlignment="Right" Text="Search by Name" Width="100"></TextBox>
+        <ComboBox  DockPanel.Dock="Right" HorizontalAlignment="Right" Width="100"></ComboBox>
+        <TextBlock Text="Filter by"  DockPanel.Dock="Right" HorizontalAlignment="Right" ></TextBlock>
+        
+    </DockPanel>-->
+        <DockPanel HorizontalAlignment="Stretch">
+            <TextBlock Padding="5" DockPanel.Dock="Left" VerticalAlignment="Center" FontFamily="Calibri" FontSize="25" FontWeight="Bold">ACES</TextBlock>
+        <TextBox DockPanel.Dock="Right" HorizontalAlignment="Right" VerticalAlignment="Center" Width="100" Height="20" Margin="15,0,5,0" Text="Search by Name"/>
+        <ComboBox DockPanel.Dock="Right" HorizontalAlignment="Right" Width="100" FontSize="10" ToolTip="Rows x Page" x:Name="cbPageFilter"
+    			IsEditable="False" 
+    			VerticalAlignment="Center"  Height="23"/>
+        <TextBlock  DockPanel.Dock="Right" VerticalAlignment="Center" HorizontalAlignment="Right"  Width="70" x:Name="FilterLabel" Text="Filter by"  FontSize="14" FontWeight="Normal"
+    			 />
+        
+           
+        </DockPanel>
+    
+</UserControl>

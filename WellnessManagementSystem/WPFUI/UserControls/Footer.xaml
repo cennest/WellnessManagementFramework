@@ -1,0 +1,11 @@
+﻿<UserControl x:Class="PhysioApplication.UserControls.Footer"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             >
+    <Grid Background="#FFA620">
+        <TextBlock Margin="10,0,0,0" FontFamily="Calibri(Bold)" FontWeight="Medium" VerticalAlignment="Center" Height="Auto" HorizontalAlignment="Stretch">Powered By Cennest Technologies</TextBlock>
+    </Grid>
+</UserControl>
