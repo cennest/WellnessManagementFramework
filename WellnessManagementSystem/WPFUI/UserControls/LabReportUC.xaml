@@ -35,39 +35,47 @@
             <!--<Setter Property="GridView.ColumnHeaderTemplate" Value="{StaticResource MyGridColumnHeaderTemplate}" />
             <Setter Property="ItemContainerStyle" Value="{StaticResource MyListViewItemContainerStyle}" />-->
         </Style>
+        <Style TargetType="{x:Type DatePickerTextBox}">
+            <Setter Property="Text" Value=" " />
+
+        </Style>
+
     </UserControl.Resources>
     <Grid>
 
         <Grid.RowDefinitions>
-            <RowDefinition Height="76*"/>
-            <RowDefinition Height="342*"/>
-            <RowDefinition Height="39*"/>
+            <RowDefinition Height=".2*"/>
+            <RowDefinition Height=".1*"/> 
+            <RowDefinition Height="*"/>
+           
         </Grid.RowDefinitions>
-        <ListView Grid.Row="1" x:Name="lvReports">
-
-        </ListView>
+        
         <DockPanel>
-            <StackPanel Margin="0,9,0,0" DockPanel.Dock="Left" Orientation="Horizontal" >
-                <Label Content="Showing Reports from" VerticalAlignment="Center" FontFamily="Calibri" FontSize="18" HorizontalAlignment="Left" Margin="0,0,0,0"/>
-                <DatePicker x:Name="FromDate" SelectedDateChanged="FromDate_SelectedDateChanged" VerticalAlignment="Center" FontFamily="Calibri" FontSize="18" HorizontalAlignment="Left" Margin="0,1"/>
-                <Label Content="to" VerticalAlignment="Center" FontFamily="Calibri" FontSize="18" HorizontalAlignment="Left" />
+            <StackPanel  VerticalAlignment="Center" DockPanel.Dock="Left" Orientation="Horizontal" >
+                <Label Content="Show Reports from" VerticalAlignment="Center" FontFamily="Calibri(Body)" FontSize="14" HorizontalAlignment="Left" Margin="0,0,0,0"/>
+
+                <DatePicker  x:Name="FromDate" SelectedDateChanged="FromDate_SelectedDateChanged" VerticalAlignment="Center" FontFamily="Calibri" FontSize="18" HorizontalAlignment="Left" Margin="0,6,0,5.333"/>
+                <Label Content="to" VerticalAlignment="Center" FontFamily="Calibri(body)" FontSize="14" HorizontalAlignment="Left" />
                 <DatePicker x:Name="ToDate" SelectedDateChanged="ToDate_SelectedDateChanged" VerticalAlignment="Center" FontFamily="Calibri" FontSize="18" HorizontalAlignment="Left" Margin="0,1"/>
             </StackPanel>
 
-            <Button x:Name="btnSave" Click="btnSave_Click" Margin="0,9,0,-9" Width="50" Height="50"  Background="Transparent" BorderBrush="Transparent" DockPanel.Dock="Right">
-                <Image Source="..\Images\Save.png" Width="40" Height="40" Margin="1"/>
+            <Button x:Name="btnSave" Click="btnSave_Click" Width="30" Height="30"  Background="Transparent" BorderBrush="Transparent" DockPanel.Dock="Right" Margin="0,10">
+                <Image Source="..\Images\Save.png" Width="20" Height="20" Margin="1"/>
             </Button>
 
-            <Button DockPanel.Dock="Right" x:Name="btnAdd" Click="btnAdd_Click" Width="50" Height="50" Background="Transparent" BorderBrush="Transparent" Margin="0,9,0,-9" >
-                <Image Source="..\Images\Add.png" Width="40" Height="40"/>
+            <Button DockPanel.Dock="Right" x:Name="btnAdd" Click="btnAdd_Click" Width="30" Height="30" Background="Transparent" BorderBrush="Transparent" Margin="0,10"  >
+                <Image Source="..\Images\Add.png" Width="20" Height="20"/>
             </Button>
-            <Button x:Name="btnDelete" DockPanel.Dock="Right" Click="btnDelete_Click" Width="50" Height="50"  Background="Transparent" BorderBrush="Transparent" HorizontalAlignment="Right" Margin="0,9,0,-9">
-                <Image Source="..\Images\Remove.png" Width="40" Height="40" Margin="1"/>
+            <Button x:Name="btnDelete" DockPanel.Dock="Right" Click="btnDelete_Click" Width="30" Height="30"  Background="Transparent" BorderBrush="Transparent" HorizontalAlignment="Right" Margin="0,10" >
+                <Image Source="..\Images\Remove.png" Width="20" Height="20" Margin="1"/>
             </Button>
 
 
 
         </DockPanel>
+        <TextBlock Grid.Row="1" Margin="5,0,0,0" Text="View Report(s)" FontFamily="Calibri(Body)" FontSize="18" FontWeight="Bold" ></TextBlock>
+        <ListView Grid.Row="2" x:Name="lvReports"/>
+
 
     </Grid>
 </UserControl>
