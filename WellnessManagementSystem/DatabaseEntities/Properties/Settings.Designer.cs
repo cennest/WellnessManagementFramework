@@ -12,7 +12,7 @@ namespace DatabaseEntities.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "11.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "12.0.0.0")]
     internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
         
         private static Settings defaultInstance = ((Settings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new Settings())));
@@ -48,8 +48,8 @@ namespace DatabaseEntities.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=192.168.0.8;Initial Catalog=WellnessManagementFrameworkDB;User ID=cen" +
-            "nest;Password=cennest")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=NILESH-BHOR-PC\\SQLExpress;Initial Catalog=WellnessManagementFramework" +
+            "DB;Integrated Security=True")]
         public string WellnessManagementFrameworkDBConnectionString2 {
             get {
                 return ((string)(this["WellnessManagementFrameworkDBConnectionString2"]));

@@ -36,7 +36,6 @@
 		           AutoGenerateColumns="False" MinRowHeight="26">
                 <DataGrid.Columns>
                     <DataGridTemplateColumn  Header="Name" Width="*">
-
                         
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
