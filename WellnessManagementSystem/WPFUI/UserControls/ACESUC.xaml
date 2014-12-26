@@ -7,7 +7,7 @@
             >
     <Grid>
         <DockPanel HorizontalAlignment="Stretch">
-            <TextBlock Padding="5" DockPanel.Dock="Left" FontFamily="Calibri" FontSize="25" FontWeight="Bold">ACES</TextBlock>
+            <TextBlock Padding="5" DockPanel.Dock="Left" FontFamily="Calibri(Body)" FontSize="40" FontWeight="Bold">ACES</TextBlock>
             <Image DockPanel.Dock="Right" Source="..\Images\OGQ.png" HorizontalAlignment="Right"></Image>
         </DockPanel>
     </Grid>

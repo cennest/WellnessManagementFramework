@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
              >
-    <Grid Background="#FFA620">
-        <TextBlock Margin="10,0,0,0" FontFamily="Calibri(Bold)" FontWeight="Medium" VerticalAlignment="Center" Height="Auto" HorizontalAlignment="Stretch">Powered By Cennest Technologies</TextBlock>
+    <Grid Background="#FFE2B7">
+        <TextBlock Margin="10,0,0,0" FontFamily="Calibri(Body)" FontSize="18" VerticalAlignment="Center" Height="Auto" HorizontalAlignment="Stretch">Powered By Cennest Technologies</TextBlock>
     </Grid>
 </UserControl>

@@ -13,7 +13,7 @@
             <RowDefinition Height=".00001*" />
             <RowDefinition Height=".1*" />
             <RowDefinition Height="*" />
-            <RowDefinition Height=".1*" />
+            <RowDefinition Height=".07*" />
         </Grid.RowDefinitions>
         <userControl:FilterUC Grid.Row="0" HorizontalAlignment="Stretch" Margin="0,0,40,0"></userControl:FilterUC>
         <userControl:UCBreadCrumb Margin="20,0,0,0" x:Name="ucBreadCrumb"   Grid.Row="2"/>
