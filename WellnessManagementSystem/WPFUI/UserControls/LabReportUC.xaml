@@ -22,7 +22,7 @@
             </Setter>
         </Style>
         <Style x:Key="myHeaderStyle" TargetType="{x:Type GridViewColumnHeader}">
-            <Setter Property="Background" Value="{StaticResource ButtonOrangeBackground}"/>
+            <Setter Property="Background" Value="#F79646"/>
             <Setter Property="Width" Value="150"/>
             <Setter Property="Height" Value="30"/>
             <Setter Property="FontFamily" Value="Calibri"/>
@@ -37,7 +37,6 @@
         </Style>
         <Style TargetType="{x:Type DatePickerTextBox}">
             <Setter Property="Text" Value=" " />
-
         </Style>
 
     </UserControl.Resources>
@@ -74,7 +73,14 @@
 
         </DockPanel>
         <TextBlock Grid.Row="1" Margin="5,0,0,0" Text="View Report(s)" FontFamily="Calibri(Body)" FontSize="18" FontWeight="Bold" ></TextBlock>
-        <ListView Grid.Row="2" x:Name="lvReports"/>
+        
+        <ListView Grid.Row="2" x:Name="lvReports">
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem">
+                    <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                </Style>
+            </ListView.ItemContainerStyle>
+        </ListView>
 
 
     </Grid>

@@ -200,7 +200,7 @@
                 </Grid.RowDefinitions>
                 <TextBox Width="500" Grid.Row="1" Name="UserName" FontSize="18" BorderBrush ="#FFD28F" BorderThickness="2" TextAlignment="Center" />
                 <PasswordBox  Width="500" Grid.Row="3"   x:Name="Password" KeyDown="Password_KeyDown" FontSize="18"  BorderBrush="#FFD28F" BorderThickness="2" HorizontalAlignment="Center" HorizontalContentAlignment="Center" />
-                <Button Content="Login" Grid.Row="5" Width="300" Click="Login_Click" Background="{StaticResource ButtonGreenBackground}" Style="{StaticResource WellnessManagementSystemButtonStyle}" BorderBrush="Transparent" />
+                <Button Content="Login" Grid.Row="5" Width="200" Click="Login_Click" Background="{StaticResource ButtonGreenBackground}" Style="{StaticResource MetroButton}" BorderBrush="Transparent" MaxHeight="60" />
             </Grid>
         </GroupBox>
         <userControl:Footer Grid.Row="5"></userControl:Footer>

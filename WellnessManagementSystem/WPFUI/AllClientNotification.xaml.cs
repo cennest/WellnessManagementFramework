@@ -107,7 +107,8 @@ namespace PhysioApplication
                     FetchDataFromCache(initialRow, finalRow);
                 }
                 this.ClientDataGrid.ItemsSource = this.clientList;
-                return businessLayer.GetCountOfClientsforCategories(CategoryID, 1, initialRow, finalRow);
+                BOUser userDetail = AppManager.getInstance().GetUserDetails();
+                return businessLayer.GetCountOfClientsforCategories(CategoryID, userDetail.UserID, initialRow, finalRow);
             }
             catch (Exception ex)
             {
@@ -118,7 +119,8 @@ namespace PhysioApplication
 
         private void FetchDataFromDatabase(int cachedDataCount, int initialRow, int finalRow,  int CategoryID)
         {
-            this.clientList = businessLayer.GetClientsforCategories(CategoryID, 1, initialRow, finalRow);
+            BOUser userDetail = AppManager.getInstance().GetUserDetails();
+            this.clientList = businessLayer.GetClientsforCategories(CategoryID, userDetail.UserID, initialRow, finalRow);
             int skip = cachedDataCount - initialRow;
             int rowCounter = 0;
             if (this.clientList.Count > 0)
