@@ -23,7 +23,7 @@ namespace PhysioApplication.UserControls
     public partial class FilterUC : UserControl
     {
         BusinessLayerManager businessLayer = new BusinessLayerManager();
-        public delegate void OptionChangedEventHandler();
+        public delegate void OptionChangedEventHandler(bool isSearchByName,string name);
         public event OptionChangedEventHandler OptionChanged;
 
         public FilterUC()
@@ -43,7 +43,15 @@ namespace PhysioApplication.UserControls
         {
             if (this.OptionChanged != null)
             {
-                this.OptionChanged();
+                this.OptionChanged(false,"");
+            }
+        }
+
+        private void SearchButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (this.OptionChanged != null)
+            {
+                this.OptionChanged(true,this.SearchTextBlock.Text);
             }
         }
     }

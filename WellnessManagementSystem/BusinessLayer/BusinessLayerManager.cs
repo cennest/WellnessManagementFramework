@@ -163,6 +163,20 @@ namespace BusinessLayer
             }
         }
 
+        public int GetCountOfClientsForCategoryByName(int categoryID, string searchString, int userID)
+        {
+            try
+            {
+                DataLayerManager datalayer = new DataLayerManager();
+                int countOfClients = datalayer.GetCountOfClientsForCategoryByName(categoryID, searchString, userID);
+                return countOfClients;
+            }
+            catch (Exception exception)
+            {
+                throw new Exception(exception.Message);
+            }
+        }
+
         private List<BOClient> GetClientBOForClientDBObjects(List<Client> clients)
         {
             List<BOClient> listOfClients = new List<BOClient>();

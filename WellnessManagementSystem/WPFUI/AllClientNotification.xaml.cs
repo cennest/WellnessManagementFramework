@@ -27,6 +27,8 @@ namespace PhysioApplication
         private readonly RoutedUICommand changedIndex;
         private Hashtable listOfAllClientsByCategoryHasTable;
         private int userID;
+        private bool isSearchByName;
+        private string nameToSearch;
         public AllClientNotification()
         {
             InitializeComponent();
@@ -100,7 +102,15 @@ namespace PhysioApplication
                 }
                 List<BOClient> clientList = FetchDataFromTemporaryStorage(skip, take, CategoryID);
                 this.ClientDataGrid.ItemsSource = clientList;
-                int totalRow = businessLayer.GetCountOfClientsforCategories(CategoryID, this.userID);
+                int totalRow = 0;
+                if (isSearchByName == true)
+                {
+                    totalRow = businessLayer.GetCountOfClientsForCategoryByName(CategoryID, this.nameToSearch ,this.userID);
+                }
+                else
+                {
+                    totalRow = businessLayer.GetCountOfClientsforCategories(CategoryID, this.userID);
+                }
                 return totalRow;
             }
             catch (Exception ex)
@@ -177,8 +187,13 @@ namespace PhysioApplication
                 this.Close();
             }
         }
-        void uc_OptionChanged()
+        void uc_OptionChanged(bool isSearchByName, string name)
         {
+            this.isSearchByName = isSearchByName;
+            if (this.isSearchByName == true)
+            {
+                this.nameToSearch = name;
+            }
             LoadData();
         }
     }
