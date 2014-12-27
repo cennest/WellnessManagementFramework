@@ -237,7 +237,7 @@ namespace DataLayer
                                                          where physicalConditioningReport.TestDate >= fromDate && physicalConditioningReport.TestDate <= toDate
                                                          select physicalConditioningReport).Skip(skip).Take(take).ToList();
                 }
-                return listOfPhysicalConditioningReports;
+                return listOfPhysicalConditioningReports.OrderByDescending(t => t.TestDate).ToList();
             }
             catch (Exception ex)
             {
@@ -267,7 +267,7 @@ namespace DataLayer
                                                          physicalConditioningReport.TestDate <= toDate
                                                          select physicalConditioningReport).Skip(skip).Take(take).ToList();
                 }
-                return listOfPhysicalConditioningReports;
+                return listOfPhysicalConditioningReports.OrderByDescending(t => t.TestDate).ToList();
             }
             catch (Exception ex)
             {
