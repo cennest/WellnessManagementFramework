@@ -12,6 +12,6 @@ namespace BusinessLayer.Entities
       public BOClient Client { get; set; }
       public BODietPlan DietPlan { get; set; }
       public BOLabReport LabReport { get; set; }
-      public BOPhysicalCondition PhysicalCondition { get; set; }
+      public BOPhysicalConditionReport PhysicalCondition { get; set; }
     }
 }
