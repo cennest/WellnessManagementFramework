@@ -37,7 +37,6 @@
         </Style>
         <Style TargetType="{x:Type DatePickerTextBox}">
             <Setter Property="Text" Value=" " />
-
         </Style>
 
     </UserControl.Resources>
@@ -73,7 +72,14 @@
 
         </DockPanel>
         <TextBlock Grid.Row="1" Margin="5,0,0,0" Text="View Report(s)" FontFamily="Calibri(Body)" FontSize="18" FontWeight="Bold" ></TextBlock>
-        <ListView Grid.Row="2" x:Name="lvReports"/>
+        
+        <ListView Grid.Row="2" x:Name="lvReports">
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem">
+                    <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                </Style>
+            </ListView.ItemContainerStyle>
+        </ListView>
 
 
     </Grid>

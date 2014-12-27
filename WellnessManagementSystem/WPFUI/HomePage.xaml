@@ -11,12 +11,13 @@
             <Style TargetType="{x:Type Button}">
                 <Setter Property="Background" Value="#FF9A31" />
                 <Setter Property="Height" Value="50" />
-                <Setter Property="Width" Value="300" />
+                <!--<Setter Property="Width" Value="300" />-->
                 <!--<Setter Property="Margin" Value="70,0,20,0"/>-->
                 <Setter Property="Foreground" Value="White"/>
                 <Setter Property="FontWeight" Value="Bold" />
                 <Setter Property="FontSize" Value="13" />
                 <Setter Property="TextBlock.TextAlignment" Value="Center" />
+                <Setter Property="HorizontalAlignment" Value="Stretch" />
                 <Setter Property="Template">
                     <Setter.Value>
                         <ControlTemplate TargetType="{x:Type Button}">
@@ -83,13 +84,12 @@
             <TextBlock   Width="Auto"  FontSize="15" HorizontalAlignment="Center"><Run Text="Welcome "/><InlineUIContainer> 
 					<TextBlock Foreground="blue" Text="{Binding UserName}"/>
 				</InlineUIContainer><Run Text=" , What would you like to do?"/></TextBlock>
-        </StackPanel>
-        
+        </StackPanel>        
         <Grid Grid.Row="3" Width="auto">
             <DataGrid  Style="{StaticResource DataGridStyle1}" x:Name="dtGrid" AutoGenerateColumns="False" IsReadOnly="True" GridLinesVisibility="None" HeadersVisibility="None" 
-                  Background="Transparent" BorderThickness="0" HorizontalAlignment="Center" VerticalAlignment="Top" MinWidth="768" ColumnWidth="auto" Margin="15,0">
+                  Background="Transparent" BorderThickness="0" HorizontalAlignment="Center" VerticalAlignment="Top" MinWidth="768" MaxWidth="960" ColumnWidth="auto" Padding="15,0">
                 <DataGrid.Columns>
-                    <DataGridTemplateColumn Header="ButtonsList">
+                    <DataGridTemplateColumn Header="ButtonsList" Width="1*">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <Button Click="Button_Click" Content="{Binding ButtonsList.Content}" ToolTip="{Binding ButtonsList.ToolTip}"/>
@@ -97,7 +97,7 @@
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
                     <!--<DataGridTextColumn Header="Description" Binding="{Binding Description}" />-->
-                    <DataGridTemplateColumn Header="Description">
+                    <DataGridTemplateColumn Header="Description" Width="2*">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <TextBlock  Text="{Binding Description}" TextWrapping="Wrap" Width="auto"/>
@@ -107,7 +107,6 @@
                 </DataGrid.Columns>
             </DataGrid>
         </Grid>
-        
         <userControl:Footer Grid.Row="4"/>
     </Grid>
 </Window>
