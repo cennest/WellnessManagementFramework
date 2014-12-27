@@ -104,14 +104,14 @@ namespace PhysioApplication
                 int cachedDataCount = this.clientListByCategory.Count;
                 if (cachedDataCount < finalRow)
                 {
-                    FetchDataFromDatabase(cachedDataCount, initialRow, finalRow, CategoryID);
+                    FetchDataFromDatabase(cachedDataCount, initialRow, pageSize, CategoryID);
                 }
                 else
                 {
                     FetchDataFromCache(initialRow, finalRow);
                 }
                 this.ClientDataGrid.ItemsSource = this.clientList;
-                int totalRow = businessLayer.GetCountOfClientsforCategories(CategoryID, this.userID, initialRow, finalRow);
+                int totalRow = businessLayer.GetCountOfClientsforCategories(CategoryID, this.userID);
                 return totalRow;
             }
             catch (Exception ex)

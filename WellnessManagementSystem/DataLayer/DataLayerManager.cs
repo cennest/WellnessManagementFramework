@@ -118,7 +118,7 @@ namespace DataLayer
             }
         }
 
-        public int GetCountOfClientsforCategories(int categoryID, int userID, int skip, int take)
+        public int GetCountOfClientsforCategories(int categoryID, int userID)
         {
             try
             {

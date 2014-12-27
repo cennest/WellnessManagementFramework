@@ -134,12 +134,12 @@ namespace BusinessLayer
         }
 
 
-        public int GetCountOfClientsforCategories(int categoryID, int userID, int skip, int take)
+        public int GetCountOfClientsforCategories(int categoryID, int userID)
         {
             try
             {
                 DataLayerManager datalayer = new DataLayerManager();
-                int countOfClients = datalayer.GetCountOfClientsforCategories(categoryID, userID, skip, take);
+                int countOfClients = datalayer.GetCountOfClientsforCategories(categoryID, userID);
                 return countOfClients;
             }
             catch (Exception exception)
