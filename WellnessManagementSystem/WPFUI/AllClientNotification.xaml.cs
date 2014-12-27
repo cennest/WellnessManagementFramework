@@ -94,22 +94,19 @@ namespace PhysioApplication
             gridPaging.TotalCount = this.ExecuteQueryReturnTotalItem(pageIndex, pageSize);
         }
 
-        private int ExecuteQueryReturnTotalItem(int pageIndex, int pageSize)
+        private int ExecuteQueryReturnTotalItem(int pageIndex, int take)
         {
             int CategoryID = Convert.ToInt32(((ComboBoxItem)this.cbPageFilter.SelectedItem).Tag);
-            int initialRow = ((pageIndex - 1) * pageSize);
-            int finalRow = initialRow + pageSize;
+            int skip = ((pageIndex - 1) * take);
+            int finalRow = skip + take;
             try
             {
                 int cachedDataCount = this.clientListByCategory.Count;
                 if (cachedDataCount < finalRow)
                 {
-                    FetchDataFromDatabase(cachedDataCount, initialRow, pageSize, CategoryID);
+                    FetchDataFromDatabase(cachedDataCount, skip, take, CategoryID);
                 }
-                else
-                {
-                    FetchDataFromCache(initialRow, finalRow);
-                }
+                FetchDataFromCache(skip, take);
                 this.ClientDataGrid.ItemsSource = this.clientList;
                 int totalRow = businessLayer.GetCountOfClientsforCategories(CategoryID, this.userID);
                 return totalRow;
@@ -121,17 +118,17 @@ namespace PhysioApplication
             }
         }
 
-        private void FetchDataFromDatabase(int cachedDataCount, int initialRow, int finalRow,  int CategoryID)
+        private void FetchDataFromDatabase(int cachedDataCount, int skip, int take,  int CategoryID)
         {
-            this.clientList = businessLayer.GetClientsforCategories(CategoryID, this.userID, initialRow, finalRow);
-            int skip = cachedDataCount - initialRow;
+            List<BOClient>  clientListForCategory = businessLayer.GetClientsforCategories(CategoryID, this.userID, skip, take);
+            int skipDataFromAddingToCategoryList = cachedDataCount - skip;
             int rowCounter = 0;
-            if (this.clientList.Count > 0)
+            if (clientListForCategory.Count > 0)
             {
-                foreach (BOClient client in this.clientList)
+                foreach (BOClient client in clientListForCategory)
                 {
                     rowCounter++;
-                    if (rowCounter > skip)
+                    if (rowCounter > skipDataFromAddingToCategoryList)
                     {
                         this.clientListByCategory.Add(client);
                     }
@@ -139,25 +136,12 @@ namespace PhysioApplication
             }
         }
 
-        private void FetchDataFromCache(int initialRow, int finalRow)
+        private void FetchDataFromCache(int skip, int take)
         {
             this.clientList = new List<BOClient>();
             if (this.clientListByCategory.Count > 0)
             {
-                int rowCounter = 0;
-                foreach (BOClient client in this.clientListByCategory)
-                {
-                    rowCounter++;
-                    if (rowCounter > finalRow)
-                    {
-                        break;
-                    }
-                    if (rowCounter <= initialRow)
-                    {
-                        continue;
-                    }
-                    this.clientList.Add(client);
-                }
+                this.clientList = this.clientListByCategory.Skip(skip).Take(take).ToList();
             }
         }
 
