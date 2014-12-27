@@ -206,5 +206,54 @@ namespace BusinessLayer
             dataLayerObject.SaveLabReportsForClient(labReports, clientID,userID);
             return true;
         }
+
+        public List<BOPhysicalCondition> GetPhysicalConditioningReportsWithinDates(int userID, int clientID, int skip, int take, DateTime? fromDate, DateTime? toDate)
+        {
+            try
+            {
+                BOPhysicalCondition physicalConditioning = new BOPhysicalCondition();
+                physicalConditioning.PhysicalConditionID = 1;
+                physicalConditioning.TestDate = DateTime.Now;
+                physicalConditioning.MSKAssessment = "We need to show five rows of information per cell here. Anything more than that will be handled differently";
+                physicalConditioning.Advice = "We need to show five rows of information per cell here. Anything more than that needs to be handled differently with an ellipsis shown at the end to indicate more content is present. On double clicking of the … (that is ellipsis) we should be able to see the entire row";
+                BOPhysicalCondition physicalConditioning2 = new BOPhysicalCondition();
+                physicalConditioning2.PhysicalConditionID = 2;
+                physicalConditioning2.TestDate = DateTime.Now;
+                physicalConditioning2.MSKAssessment = "We need to show five rows of information per cell here. Anything more than that will be handled differently";
+                physicalConditioning2.Advice = "We need to show five rows of information per cell here.";
+                List<BOPhysicalCondition> physicalConditioningReports = new List<BOPhysicalCondition>();
+                physicalConditioningReports.Add(physicalConditioning);
+                physicalConditioningReports.Add(physicalConditioning2);
+                return physicalConditioningReports;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+        public List<BOPhysicalCondition> GetPhysicalConditioningReportsForCategoryByName(int userID, int clientID, int categoryID, string searchString, DateTime? fromDate, DateTime? toDate, int skip, int take)
+        {
+            try
+            {
+                BOPhysicalCondition physicalConditioning = new BOPhysicalCondition();
+                physicalConditioning.PhysicalConditionID = 1;
+                physicalConditioning.TestDate = DateTime.Now;
+                physicalConditioning.MSKAssessment = "We need to show five rows of information per cell here. Anything more than that will be handled differently";
+                physicalConditioning.Advice = "We need to show five rows of information per cell here. Anything more than that needs to be handled differently with an ellipsis shown at the end to indicate more content is present. On double clicking of the … (that is ellipsis) we should be able to see the entire row";
+                BOPhysicalCondition physicalConditioning2 = new BOPhysicalCondition();
+                physicalConditioning2.PhysicalConditionID = 2;
+                physicalConditioning2.TestDate = DateTime.Now;
+                physicalConditioning2.MSKAssessment = "We need to show five rows of information per cell here. Anything more than that will be handled differently";
+                physicalConditioning2.Advice = "We need to show five rows of information per cell here.";
+                List<BOPhysicalCondition> physicalConditioningReports = new List<BOPhysicalCondition>();
+                physicalConditioningReports.Add(physicalConditioning);
+                physicalConditioningReports.Add(physicalConditioning2);
+                return physicalConditioningReports;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
     }
 }

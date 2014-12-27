@@ -36,6 +36,8 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -66,8 +68,14 @@
     <Compile Include="HomePage.xaml.cs">
       <DependentUpon>HomePage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\DietPlan.xaml.cs">
+      <DependentUpon>DietPlan.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\FilterUC.xaml.cs">
       <DependentUpon>FilterUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\PhysicalConditioning.xaml.cs">
+      <DependentUpon>PhysicalConditioning.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserReports.xaml.cs" />
     <Compile Include="LoginWindow.xaml.cs">
@@ -98,7 +106,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="UserControls\DietPlan.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UserControls\FilterUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\PhysicalConditioning.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -22,8 +22,12 @@
             <TabItem  Background="#FFA620" Header="Lab Reports" Width="150">
                 <userControl:LabReportUC/>
             </TabItem>
-            <TabItem Background="#FFA620" Header="Diet Plan" Width="150" Content="Coming Soon!"/>
-            <TabItem Background="#FFA620" Header="Phy Conditioning" Width="150" Content="Coming Soon!"/>
+            <TabItem Background="#FFA620" Header="Diet Plan" Width="150">
+                <userControl:DietPlan/>
+            </TabItem>
+            <TabItem Background="#FFA620" Header="Phy Conditioning" Width="150">
+                <userControl:PhysicalConditioning/>
+            </TabItem>
             <TabItem  Background="#FFA620" Header="Notes" Width="150" Content="Coming Soon!"/>
         </TabControl>
         <userControl:Footer Grid.Row="4"/>
