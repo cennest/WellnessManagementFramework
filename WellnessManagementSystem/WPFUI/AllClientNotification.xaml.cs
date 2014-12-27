@@ -30,11 +30,15 @@ namespace PhysioApplication
         private List<BOClient> clientListByCategory;
         private List<BOCategory> categoryList;
         private List<ComboBoxItem> comboBoxItemList;
+        private int userID;
         public AllClientNotification()
         {
             InitializeComponent();
             this.clientList = new List<BOClient>();
             this.clientListByCategory = new List<BOClient>();
+            BOUser userDetail = new BOUser();
+            userDetail = AppManager.getInstance().GetUserDetails();
+            this.userID = userDetail.UserID;
 
             // Binding with the ChangedIndexCommand on GridPaging.........................................
             // Create de Command.
@@ -107,8 +111,8 @@ namespace PhysioApplication
                     FetchDataFromCache(initialRow, finalRow);
                 }
                 this.ClientDataGrid.ItemsSource = this.clientList;
-                BOUser userDetail = AppManager.getInstance().GetUserDetails();
-                return businessLayer.GetCountOfClientsforCategories(CategoryID, userDetail.UserID, initialRow, finalRow);
+                int totalRow = businessLayer.GetCountOfClientsforCategories(CategoryID, this.userID, initialRow, finalRow);
+                return totalRow;
             }
             catch (Exception ex)
             {
@@ -119,8 +123,7 @@ namespace PhysioApplication
 
         private void FetchDataFromDatabase(int cachedDataCount, int initialRow, int finalRow,  int CategoryID)
         {
-            BOUser userDetail = AppManager.getInstance().GetUserDetails();
-            this.clientList = businessLayer.GetClientsforCategories(CategoryID, userDetail.UserID, initialRow, finalRow);
+            this.clientList = businessLayer.GetClientsforCategories(CategoryID, this.userID, initialRow, finalRow);
             int skip = cachedDataCount - initialRow;
             int rowCounter = 0;
             if (this.clientList.Count > 0)
