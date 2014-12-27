@@ -9,7 +9,7 @@
         >
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height=".2*" />
+            <RowDefinition Height=".15*" />
             <RowDefinition Height=".00001*" />
             <RowDefinition Height=".1*" />
             <RowDefinition Height="*" />
@@ -18,13 +18,13 @@
         <userControl:FilterUC Grid.Row="0" HorizontalAlignment="Stretch" Margin="0,0,40,0"></userControl:FilterUC>
         <userControl:UCBreadCrumb Margin="20,0,0,0" x:Name="ucBreadCrumb"   Grid.Row="2"/>
         <TabControl SelectedIndex="1" Grid.Row="3"  x:Name="clientInfoTab">
-            <TabItem Background="#FFA620"  Header="Summary" Width="170" Content="Coming Soon!"/>
-            <TabItem  Background="#FFA620" Header="Lab Reports" Width="170">
+            <TabItem Height="60" Background="#FFA620"  FontFamily="Calibri(Body)" FontSize="17" Header="Summary" Width="170" Content="Coming Soon!"/>
+            <TabItem Height="60" Background="#FFA620" FontFamily="Calibri(Body)" FontSize="17" Header="Lab Reports" Width="170">
                 <userControl:LabReportUC/>
             </TabItem>
-            <TabItem Background="#FFA620" Header="Diet Plan" Width="170" Content="Coming Soon!"/>
-            <TabItem Background="#FFA620" Header="Phy Conditioning" Width="170" Content="Coming Soon!"/>
-            <TabItem  Background="#FFA620" Header="Notes" Width="170" Content="Coming Soon!"/>
+            <TabItem Height="60" Background="#FFA620" FontFamily="Calibri(Body)" FontSize="17" Header="Diet Plan" Width="170" Content="Coming Soon!"/>
+            <TabItem Height="60" Background="#FFA620" FontFamily="Calibri(Body)" FontSize="17" Header="Phy Conditioning" Width="170" Content="Coming Soon!"/>
+            <TabItem  Height="60" Background="#FFA620" FontFamily="Calibri(Body)" FontSize="17" Header="Notes" Width="170" Content="Coming Soon!"/>
         </TabControl>
         <userControl:Footer Grid.Row="4"/>
     </Grid>
