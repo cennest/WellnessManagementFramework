@@ -14,6 +14,7 @@ using System.Windows.Shapes;
 using BusinessLayer.Entities;
 using BusinessLayer;
 using System.Windows.Navigation;
+using System.Collections;
 
 namespace PhysioApplication
 {
@@ -24,12 +25,12 @@ namespace PhysioApplication
     {
         BusinessLayerManager businessLayer = new BusinessLayerManager();
         private readonly RoutedUICommand changedIndex;
-        private List<BOClient> clientListByCategory;
+        private Hashtable listOfAllClientsByCategoryHasTable;
         private int userID;
         public AllClientNotification()
         {
             InitializeComponent();
-            this.clientListByCategory = new List<BOClient>();
+            this.listOfAllClientsByCategoryHasTable = new Hashtable();
             BOUser userDetail = new BOUser();
             userDetail = AppManager.getInstance().GetUserDetails();
             this.userID = userDetail.UserID;
@@ -87,12 +88,17 @@ namespace PhysioApplication
             int finalRow = skip + take;
             try
             {
-                int cachedDataCount = this.clientListByCategory.Count;
+                List<BOClient> clientListByCategory = (List<BOClient>)this.listOfAllClientsByCategoryHasTable[CategoryID];
+                if (clientListByCategory == null)
+                {
+                    clientListByCategory = new List<BOClient>();
+                }
+                int cachedDataCount = clientListByCategory.Count;
                 if (cachedDataCount < finalRow)
                 {
                     FetchDataFromDatabaseToTemporaryStorage(cachedDataCount, skip, take, CategoryID);
                 }
-                List<BOClient> clientList = FetchDataFromTemporaryStorage(skip, take);
+                List<BOClient> clientList = FetchDataFromTemporaryStorage(skip, take, CategoryID);
                 this.ClientDataGrid.ItemsSource = clientList;
                 int totalRow = businessLayer.GetCountOfClientsforCategories(CategoryID, this.userID);
                 return totalRow;
@@ -108,6 +114,11 @@ namespace PhysioApplication
         {
             try
             {
+                List<BOClient> clientListByCategory = (List<BOClient>)this.listOfAllClientsByCategoryHasTable[CategoryID];
+                if (clientListByCategory == null)
+                {
+                    clientListByCategory = new List<BOClient>();
+                }
                 List<BOClient> clientListForCategory = businessLayer.GetClientsforCategories(CategoryID, this.userID, skip, take);
                 int skipDataFromAddingToCategoryList = cachedDataCount - skip;
                 int rowCounter = 0;
@@ -118,9 +129,11 @@ namespace PhysioApplication
                         rowCounter++;
                         if (rowCounter > skipDataFromAddingToCategoryList)
                         {
-                            this.clientListByCategory.Add(client);
+                            clientListByCategory.Add(client);
                         }
                     }
+                    this.listOfAllClientsByCategoryHasTable.Remove(CategoryID);
+                    this.listOfAllClientsByCategoryHasTable.Add(CategoryID, clientListByCategory);
                 }
             }
             catch (Exception ex)
@@ -129,14 +142,19 @@ namespace PhysioApplication
             }
         }
 
-        private List<BOClient> FetchDataFromTemporaryStorage(int skip, int take)
+        private List<BOClient> FetchDataFromTemporaryStorage(int skip, int take, int CategoryID)
         {
             try
             {
                 List<BOClient> listOfClients = new List<BOClient>();
-                if (this.clientListByCategory.Count > 0)
+                List<BOClient>  clientListByCategory = (List<BOClient>)this.listOfAllClientsByCategoryHasTable[CategoryID];
+                if (clientListByCategory == null)
                 {
-                    listOfClients = this.clientListByCategory.Skip(skip).Take(take).ToList();
+                    clientListByCategory = new List<BOClient>();
+                }
+                if (clientListByCategory.Count > 0)
+                {
+                    listOfClients = clientListByCategory.Skip(skip).Take(take).ToList();
                 }
                 return listOfClients;
             }
@@ -161,7 +179,6 @@ namespace PhysioApplication
         }
         void uc_OptionChanged()
         {
-            this.clientListByCategory = new List<BOClient>();
             LoadData();
         }
     }
