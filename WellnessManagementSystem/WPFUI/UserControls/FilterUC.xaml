@@ -16,7 +16,7 @@
             <TextBlock Padding="5" DockPanel.Dock="Left" VerticalAlignment="Center" FontFamily="Calibri" FontSize="25" FontWeight="Bold">ACES</TextBlock>
         <TextBox DockPanel.Dock="Right" HorizontalAlignment="Right" VerticalAlignment="Center" Width="100" Height="20" Margin="15,0,5,0" Text="Search by Name"/>
         <ComboBox DockPanel.Dock="Right" HorizontalAlignment="Right" Width="100" FontSize="10" ToolTip="Rows x Page" x:Name="cbPageFilter"
-    			IsEditable="False" 
+    			IsEditable="False" SelectionChanged="FilterComboBoxSelectionChanged"
     			VerticalAlignment="Center"  Height="23"/>
         <TextBlock  DockPanel.Dock="Right" VerticalAlignment="Center" HorizontalAlignment="Right"  Width="70" x:Name="FilterLabel" Text="Filter by"  FontSize="14" FontWeight="Normal"
     			 />

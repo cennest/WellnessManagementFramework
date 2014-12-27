@@ -13,8 +13,6 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using BusinessLayer.Entities;
 using BusinessLayer;
-using System.Data;
-using System.Data.SqlClient;
 using System.Windows.Navigation;
 
 namespace PhysioApplication
@@ -27,8 +25,6 @@ namespace PhysioApplication
         BusinessLayerManager businessLayer = new BusinessLayerManager();
         private readonly RoutedUICommand changedIndex;
         private List<BOClient> clientListByCategory;
-        private List<BOCategory> categoryList;
-        private List<ComboBoxItem> comboBoxItemList;
         private int userID;
         public AllClientNotification()
         {
@@ -51,24 +47,16 @@ namespace PhysioApplication
             // Binding Handler to executed.
             abinding.Executed += this.OnChangeIndexCommandHandler;
             this.CommandBindings.Add(abinding);
-            this.categoryList = businessLayer.GetAllCategories();
-            this.comboBoxItemList = new List<ComboBoxItem>();
-            foreach (BOCategory category in categoryList)
-            {
-                comboBoxItemList.Add(new ComboBoxItem { Content = category.CategoryName, Tag = category.CategoryID.ToString() });
-            }
-            this.cbPageFilter.ItemsSource = this.comboBoxItemList;
-            this.cbPageFilter.SelectedIndex = 0;
             LoadData();
             SetBreadCrumb();
         }
 
         private void SetBreadCrumb()
         {
-        List<string>headers= new List<string>{"Home","All Athletes"};
-        ucBreadCrumb.ResetBreadCrumb(headers);
-        ucBreadCrumb.CrumbSelected += ucBreadCrumb_CrumbSelected;
-        
+            List<string> headers = new List<string> { "Home", "All Athletes" };
+            ucBreadCrumb.ResetBreadCrumb(headers);
+            ucBreadCrumb.CrumbSelected += ucBreadCrumb_CrumbSelected;
+
         }
 
         void ucBreadCrumb_CrumbSelected(string selectedString)
@@ -94,7 +82,7 @@ namespace PhysioApplication
 
         private int ExecuteQueryReturnTotalItem(int pageIndex, int take)
         {
-            int CategoryID = Convert.ToInt32(((ComboBoxItem)this.cbPageFilter.SelectedItem).Tag);
+            int CategoryID = Convert.ToInt32(((ComboBoxItem)ucFilterUC.cbPageFilter.SelectedItem).Tag);
             int skip = ((pageIndex - 1) * take);
             int finalRow = skip + take;
             try
@@ -157,8 +145,7 @@ namespace PhysioApplication
                 this.Close();
             }
         }
-
-        private void FilterComboBoxSelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+        void uc_OptionChanged()
         {
             this.clientListByCategory = new List<BOClient>();
             LoadData();
