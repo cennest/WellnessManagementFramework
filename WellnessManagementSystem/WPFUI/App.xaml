@@ -4,6 +4,9 @@
              StartupUri="LoginWindow.xaml">
     <Application.Resources>
         <ResourceDictionary>
+            <Style x:Key="appFontFamily" TargetType="{x:Type Control}">
+                <Setter Property="FontFamily" Value="Calibri(Body)"/>
+            </Style>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="Resource.xaml"/>
                 <ResourceDictionary Source="/Resources/DataGridStyle.xaml" />

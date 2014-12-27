@@ -34,7 +34,7 @@
                         <Border Name="Bd" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="10">
                             <Grid>
                                 <ScrollViewer x:Name="PART_ContentHost" VerticalAlignment="Center" Margin="3" />
-                                <TextBlock Text="Enter your Password" x:Name="Message" Foreground="Gray" IsHitTestVisible="False" FontFamily="Calibri(Body)"  FontStyle="Italic" FontWeight="Bold" FontSize="18" Opacity="0.5" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="6,0,0,0"/>
+                                <TextBlock Text="Enter your Password" Style="{StaticResource appFontFamily}" x:Name="Message" Foreground="Gray" IsHitTestVisible="False" FontStyle="Italic" FontWeight="Bold" FontSize="18" Opacity="0.5" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="6,0,0,0"/>
                             </Grid>
                         </Border>
                         <ControlTemplate.Triggers>
@@ -90,7 +90,7 @@
                         <Border Name="Bd" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="10">
                             <Grid>
                                 <ScrollViewer x:Name="PART_ContentHost" VerticalAlignment="Center" Margin="3" />
-                                <TextBlock Text="Enter your User Name" FontFamily="Calibri(Body)"  FontStyle="Italic" FontWeight="Bold" FontSize="18" x:Name="Message" Foreground="Gray" IsHitTestVisible="False"  Opacity="0.5" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="6,0,0,0"/>
+                                <TextBlock Text="Enter your User Name" Style="{StaticResource appFontFamily}"  FontStyle="Italic" FontWeight="Bold" FontSize="18" x:Name="Message" Foreground="Gray" IsHitTestVisible="False"  Opacity="0.5" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="6,0,0,0"/>
                             </Grid>
                         </Border>
                         <ControlTemplate.Triggers>
@@ -148,7 +148,7 @@
         </Grid.ColumnDefinitions>
 
         <userControl:ACESUC Grid.Row="0"></userControl:ACESUC>
-        <GroupBox Header="Athletic Conditioning Evaluation System (ACES)" Grid.Row="2" BorderBrush="#FFA620" BorderThickness="2" Width="700" FontSize="20" FontFamily="Calibri(Body)">
+        <GroupBox Header="Athletic Conditioning Evaluation System (ACES)" Grid.Row="2" BorderBrush="#FFA620" BorderThickness="2" Width="700" FontSize="20" Style="{StaticResource appFontFamily}">
             <GroupBox.Template>
                 <ControlTemplate TargetType="{x:Type GroupBox}">
                     <Grid SnapsToDevicePixels="true">
