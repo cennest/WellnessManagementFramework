@@ -47,6 +47,7 @@ namespace PhysioApplication
             // Binding Handler to executed.
             abinding.Executed += this.OnChangeIndexCommandHandler;
             this.CommandBindings.Add(abinding);
+            //ucFilterUC.OptionChanged += new UserControls.FilterUC.OptionChangedEventHandler(uc_OptionChanged);
             LoadData();
             SetBreadCrumb();
         }
@@ -56,7 +57,6 @@ namespace PhysioApplication
             List<string> headers = new List<string> { "Home", "All Athletes" };
             ucBreadCrumb.ResetBreadCrumb(headers);
             ucBreadCrumb.CrumbSelected += ucBreadCrumb_CrumbSelected;
-
         }
 
         void ucBreadCrumb_CrumbSelected(string selectedString)
@@ -106,30 +106,44 @@ namespace PhysioApplication
 
         private void FetchDataFromDatabaseToTemporaryStorage(int cachedDataCount, int skip, int take, int CategoryID)
         {
-            List<BOClient>  clientListForCategory = businessLayer.GetClientsforCategories(CategoryID, this.userID, skip, take);
-            int skipDataFromAddingToCategoryList = cachedDataCount - skip;
-            int rowCounter = 0;
-            if (clientListForCategory.Count > 0)
+            try
             {
-                foreach (BOClient client in clientListForCategory)
+                List<BOClient> clientListForCategory = businessLayer.GetClientsforCategories(CategoryID, this.userID, skip, take);
+                int skipDataFromAddingToCategoryList = cachedDataCount - skip;
+                int rowCounter = 0;
+                if (clientListForCategory.Count > 0)
                 {
-                    rowCounter++;
-                    if (rowCounter > skipDataFromAddingToCategoryList)
+                    foreach (BOClient client in clientListForCategory)
                     {
-                        this.clientListByCategory.Add(client);
+                        rowCounter++;
+                        if (rowCounter > skipDataFromAddingToCategoryList)
+                        {
+                            this.clientListByCategory.Add(client);
+                        }
                     }
                 }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
             }
         }
 
         private List<BOClient> FetchDataFromTemporaryStorage(int skip, int take)
         {
-            List<BOClient> listOfClients = new List<BOClient>();
-            if (this.clientListByCategory.Count > 0)
+            try
             {
-                listOfClients = this.clientListByCategory.Skip(skip).Take(take).ToList();
+                List<BOClient> listOfClients = new List<BOClient>();
+                if (this.clientListByCategory.Count > 0)
+                {
+                    listOfClients = this.clientListByCategory.Skip(skip).Take(take).ToList();
+                }
+                return listOfClients;
             }
-            return listOfClients;
+            catch (Exception ex)
+            {
+                return new List<BOClient>();
+            }
         }
 
         private void TextBlock_MouseDown(object sender, MouseButtonEventArgs e)
