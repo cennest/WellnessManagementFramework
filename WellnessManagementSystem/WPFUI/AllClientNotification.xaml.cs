@@ -26,7 +26,6 @@ namespace PhysioApplication
     {
         BusinessLayerManager businessLayer = new BusinessLayerManager();
         private readonly RoutedUICommand changedIndex;
-        private List<BOClient> clientList;
         private List<BOClient> clientListByCategory;
         private List<BOCategory> categoryList;
         private List<ComboBoxItem> comboBoxItemList;
@@ -34,7 +33,6 @@ namespace PhysioApplication
         public AllClientNotification()
         {
             InitializeComponent();
-            this.clientList = new List<BOClient>();
             this.clientListByCategory = new List<BOClient>();
             BOUser userDetail = new BOUser();
             userDetail = AppManager.getInstance().GetUserDetails();
@@ -104,10 +102,10 @@ namespace PhysioApplication
                 int cachedDataCount = this.clientListByCategory.Count;
                 if (cachedDataCount < finalRow)
                 {
-                    FetchDataFromDatabase(cachedDataCount, skip, take, CategoryID);
+                    FetchDataFromDatabaseToTemporaryStorage(cachedDataCount, skip, take, CategoryID);
                 }
-                FetchDataFromCache(skip, take);
-                this.ClientDataGrid.ItemsSource = this.clientList;
+                List<BOClient> clientList = FetchDataFromTemporaryStorage(skip, take);
+                this.ClientDataGrid.ItemsSource = clientList;
                 int totalRow = businessLayer.GetCountOfClientsforCategories(CategoryID, this.userID);
                 return totalRow;
             }
@@ -118,7 +116,7 @@ namespace PhysioApplication
             }
         }
 
-        private void FetchDataFromDatabase(int cachedDataCount, int skip, int take,  int CategoryID)
+        private void FetchDataFromDatabaseToTemporaryStorage(int cachedDataCount, int skip, int take, int CategoryID)
         {
             List<BOClient>  clientListForCategory = businessLayer.GetClientsforCategories(CategoryID, this.userID, skip, take);
             int skipDataFromAddingToCategoryList = cachedDataCount - skip;
@@ -136,13 +134,14 @@ namespace PhysioApplication
             }
         }
 
-        private void FetchDataFromCache(int skip, int take)
+        private List<BOClient> FetchDataFromTemporaryStorage(int skip, int take)
         {
-            this.clientList = new List<BOClient>();
+            List<BOClient> listOfClients = new List<BOClient>();
             if (this.clientListByCategory.Count > 0)
             {
-                this.clientList = this.clientListByCategory.Skip(skip).Take(take).ToList();
+                listOfClients = this.clientListByCategory.Skip(skip).Take(take).ToList();
             }
+            return listOfClients;
         }
 
         private void TextBlock_MouseDown(object sender, MouseButtonEventArgs e)
