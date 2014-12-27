@@ -34,7 +34,7 @@ namespace PhysioApplication.UserControls
             {
                 lvBreadCrumb.Items.Add(new ListViewItem { Content = ">" , IsHitTestVisible=false});
             }
-            lvBreadCrumb.Items.Add(new ListViewItem{Content=text, IsEnabled= !isLast, FontWeight= isLast?FontWeights.Bold:FontWeights.Medium, Foreground=isLast?Brushes.Black:Brushes.Blue});
+            lvBreadCrumb.Items.Add(new ListViewItem{Content=text, IsEnabled= !isLast,FontSize=16, FontWeight= isLast?FontWeights.Bold:FontWeights.Medium, Foreground=isLast?Brushes.Black:Brushes.Blue});
             return true;
         }
         public bool ResetBreadCrumb(List<string> crumbs)
