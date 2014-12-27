@@ -81,6 +81,11 @@ namespace PhysioApplication
             this.Close();
         }
 
+        private void Footer_Loaded(object sender, RoutedEventArgs e)
+        {
+
+        }
+
     }
     
     

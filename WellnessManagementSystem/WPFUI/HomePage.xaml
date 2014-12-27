@@ -74,7 +74,7 @@
             <RowDefinition Height=".1*" />
             <RowDefinition Height=".2*" />
             <RowDefinition Height="*" />
-            <RowDefinition Height=".1*" />
+            <RowDefinition Height=".08*" />
         </Grid.RowDefinitions>
         <userControl:ACESUC Grid.Row="0"/>
         <userControl:UCBreadCrumb Margin="20,0,0,0" Grid.Row="1" x:Name="ucBreadCrumb" />
@@ -84,8 +84,7 @@
             <TextBlock   Width="Auto"  FontSize="15" HorizontalAlignment="Center"><Run Text="Welcome "/><InlineUIContainer> 
 					<TextBlock Foreground="blue" Text="{Binding UserName}"/>
 				</InlineUIContainer><Run Text=" , What would you like to do?"/></TextBlock>
-        </StackPanel>
-        
+        </StackPanel>        
         <Grid Grid.Row="3" Width="auto">
             <DataGrid  Style="{StaticResource DataGridStyle1}" x:Name="dtGrid" AutoGenerateColumns="False" IsReadOnly="True" GridLinesVisibility="None" HeadersVisibility="None" 
                   Background="Transparent" BorderThickness="0" HorizontalAlignment="Center" VerticalAlignment="Top" MinWidth="768" MaxWidth="960" ColumnWidth="auto" Padding="15,0">
@@ -108,7 +107,6 @@
                 </DataGrid.Columns>
             </DataGrid>
         </Grid>
-        
         <userControl:Footer Grid.Row="4"/>
     </Grid>
 </Window>

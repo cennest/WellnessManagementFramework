@@ -17,7 +17,7 @@ namespace DataLayer
                 WellnessManagementFrameworkDBMLDataContext dataContext = new WellnessManagementFrameworkDBMLDataContext();
                 List<LabReport> listOfLabReports = (from labReport in dataContext.LabReports
                                                     where labReport.UserID == userID && labReport.ClientID == clientID
-                                                    select labReport).ToList();
+                                                    select labReport).OrderByDescending(t=>t.TestDate).ToList();
 
                 return listOfLabReports;
             }
@@ -36,7 +36,7 @@ namespace DataLayer
                 List<LabReport> listOfLabReports = (from labReport in dataContext.LabReports
                                                     where labReport.UserID == userID && labReport.ClientID == clientID
                                                     && labReport.TestDate>=fromDate && labReport.TestDate<=toDate
-                                                    select labReport).ToList();
+                                                    select labReport).OrderByDescending(t=>t.TestDate).ToList() ;
 
                 return listOfLabReports;
             }

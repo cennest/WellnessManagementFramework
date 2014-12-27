@@ -102,7 +102,7 @@ namespace PhysioApplication.UserControls
             try
             {
                 List<DateTime> uniqueDates = (from report in reports
-                                              select report.TestDate).Distinct().ToList();
+                                              select report.TestDate).Distinct().OrderByDescending(t=>t.Date).ToList();
                 ObservableCollection<ExpandoObject> labReports = new ObservableCollection<ExpandoObject>();
                 foreach (DateTime date in uniqueDates)
                 {
