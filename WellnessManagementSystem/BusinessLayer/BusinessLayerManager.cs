@@ -221,5 +221,54 @@ namespace BusinessLayer
             dataLayerObject.SaveLabReportsForClient(labReports, clientID,userID);
             return true;
         }
+
+        public List<BOPhysicalConditionReport> GetPhysicalConditioningReportsWithinDates(int userID, int clientID, int skip, int take, DateTime? fromDate, DateTime? toDate)
+        {
+            try
+            {
+
+                DataLayerManager dataLayer = new DataLayerManager();
+                List<PhysicalConditionReport> listOfPhysicalConditionReports = dataLayer.GetPhysicalConditioningReportsWithinDates(userID, clientID, skip, take, fromDate, toDate);
+                List<BOPhysicalConditionReport> physicalConditioningReports = GetPhysicalConditioningReportBOForPhysicalConditioningReportDBObjects(listOfPhysicalConditionReports);
+                return physicalConditioningReports;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public List<BOPhysicalConditionReport> GetPhysicalConditioningReportsForCategoryByName(int userID, int clientID, int categoryID, string searchString, DateTime? fromDate, DateTime? toDate, int skip, int take)
+        {
+            try
+            {
+                DataLayerManager dataLayer = new DataLayerManager();
+                List<PhysicalConditionReport> listOfPhysicalConditioningReports = dataLayer.GetPhysicalConditioningReportsForCategoryByName(userID, clientID, categoryID, searchString, fromDate, toDate, skip, take);
+                List<BOPhysicalConditionReport> physicalConditioningReports = GetPhysicalConditioningReportBOForPhysicalConditioningReportDBObjects(listOfPhysicalConditioningReports);
+                return physicalConditioningReports;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        private List<BOPhysicalConditionReport> GetPhysicalConditioningReportBOForPhysicalConditioningReportDBObjects(List<PhysicalConditionReport> physicalConditioningReports)
+        {
+            List<BOPhysicalConditionReport> listOfPhysicalConditioningReports = new List<BOPhysicalConditionReport>();
+            if (physicalConditioningReports.Count > 0)
+            {
+                foreach (PhysicalConditionReport PhysicalConditioningReport in physicalConditioningReports)
+                {
+                    BOPhysicalConditionReport physicalConditioningReportObject = new BOPhysicalConditionReport();
+                    physicalConditioningReportObject.PhysicalConditionID = PhysicalConditioningReport.PhysicalConditionReportID;
+                    physicalConditioningReportObject.TestDate = PhysicalConditioningReport.TestDate;
+                    physicalConditioningReportObject.MSKAssessment = PhysicalConditioningReport.MSKAssessmentImpressions;
+                    physicalConditioningReportObject.Advice = PhysicalConditioningReport.Advice;
+                    listOfPhysicalConditioningReports.Add(physicalConditioningReportObject);
+                }
+            }
+            return listOfPhysicalConditioningReports;
+        }
     }
 }
