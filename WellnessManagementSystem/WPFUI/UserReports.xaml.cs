@@ -24,6 +24,8 @@ namespace PhysioApplication
     /// </summary>
     public partial class UserReports : Window
     {
+        private bool isSearchByName;
+        private string nameToSearch;
 
         public UserReports()
         {
@@ -44,9 +46,19 @@ namespace PhysioApplication
             ucBreadCrumb.ResetBreadCrumb(headers);
         }
 
-        private void cbPageFilter_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        void uc_OptionChanged(bool isSearchByName, string name)
         {
-
+            this.isSearchByName = isSearchByName;
+            if (this.isSearchByName == true)
+            {
+                this.nameToSearch = name;
+                AllClientNotification allClientNotifications = new AllClientNotification();
+                allClientNotifications.ucFilterUC.ComboBoxPageFilter.SelectedIndex = this.ucFilterUC.ComboBoxPageFilter.SelectedIndex;
+                allClientNotifications.ucFilterUC.SearchTextBlock.Text = this.ucFilterUC.SearchTextBlock.Text;
+                allClientNotifications.ReloadData(true, this.ucFilterUC.SearchTextBlock.Text);
+                allClientNotifications.ShowDialog();
+                this.Close();
+            }
         }
     }
 

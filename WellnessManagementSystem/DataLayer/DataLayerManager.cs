@@ -92,7 +92,7 @@ namespace DataLayer
             }
         }
 
-        public List<Client> GetClientsforCategories(int categoryID, int userID, int skip, int take)
+        public List<Client> GetClientsForCategories(int categoryID, int userID, int skip, int take)
         {
             try
             {
@@ -118,7 +118,7 @@ namespace DataLayer
             }
         }
 
-        public int GetCountOfClientsforCategories(int categoryID, int userID, int skip, int take)
+        public int GetCountOfClientsForCategories(int categoryID, int userID)
         {
             try
             {
@@ -169,6 +169,33 @@ namespace DataLayer
                 throw new Exception(exception.Message);
             }
         }
+
+        public int GetCountOfClientsForCategoryByName(int categoryID, string searchString, int userID)
+        {
+            try
+            {
+                WellnessManagementFrameworkDBMLDataContext dataContext = new WellnessManagementFrameworkDBMLDataContext();
+                int countOfClients = 0;
+                if (categoryID == Convert.ToInt32(Category.All))
+                {
+                    countOfClients = (from client in dataContext.Clients
+                                      where client.UserID == userID && client.ClientName.ToLower().Contains(searchString.ToLower())
+                                      select client).Count();
+                }
+                else
+                {
+                    countOfClients = (from client in dataContext.Clients
+                                      where client.UserID == userID && client.CategoryID == categoryID && client.ClientName.ToLower().Contains(searchString.ToLower())
+                                      select client).Count();
+                }
+                return countOfClients;
+            }
+            catch (Exception exception)
+            {
+                throw new Exception(exception.Message);
+            }
+        }
+
         private List<DateTime> GetAllReportDatesForClient(int clientID)
         {
             WellnessManagementFrameworkDBMLDataContext dataContext = new WellnessManagementFrameworkDBMLDataContext();

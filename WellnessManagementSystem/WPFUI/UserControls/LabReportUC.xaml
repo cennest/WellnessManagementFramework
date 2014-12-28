@@ -8,6 +8,38 @@
              d:DesignHeight="300" d:DesignWidth="800">
     <UserControl.Resources>
 
+        <Style TargetType="{x:Type Label}">
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="FontFamily" Value="Calibri(body)" />
+            <Setter Property="FontSize" Value="14" />
+            <Setter Property="HorizontalAlignment" Value="Left" />
+        </Style>
+
+        <Style TargetType="{x:Type DatePicker}">
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="FontFamily" Value="Calibri" />
+            <Setter Property="FontSize" Value="18" />
+            <Setter Property="HorizontalAlignment" Value="Left" />
+        </Style>
+        
+        <Style TargetType="{x:Type Image}">
+            <Setter Property="Width" Value="20" />
+            <Setter Property="Height" Value="20" />
+        </Style>
+
+        <Style TargetType="{x:Type Button}">
+            <Setter Property="Width" Value="30" />
+            <Setter Property="Height" Value="30" />
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="BorderBrush" Value="Transparent" />
+        </Style>
+        
+        <Style TargetType="{x:Type TextBlock}">
+            <Setter Property="Margin" Value="5,0,0,0" />
+            <Setter Property="FontFamily" Value="Calibri(Body)" />
+            <Setter Property="FontSize" Value="18" />
+            <Setter Property="FontWeight" Value="Bold" />
+        </Style>
         <Style TargetType="{x:Type editing:EditBox}" >
             <Setter Property="HorizontalAlignment" Value="Left"  />
             <Setter Property="Template">
@@ -51,28 +83,23 @@
         
         <DockPanel>
             <StackPanel  VerticalAlignment="Center" DockPanel.Dock="Left" Orientation="Horizontal" >
-                <Label Content="Show Reports from" VerticalAlignment="Center" FontFamily="Calibri(Body)" FontSize="14" HorizontalAlignment="Left" Margin="0,0,0,0"/>
-
-                <DatePicker  x:Name="FromDate" SelectedDateChanged="FromDate_SelectedDateChanged" VerticalAlignment="Center" FontFamily="Calibri" FontSize="18" HorizontalAlignment="Left" Margin="0,6,0,5.333"/>
-                <Label Content="to" VerticalAlignment="Center" FontFamily="Calibri(body)" FontSize="14" HorizontalAlignment="Left" />
-                <DatePicker x:Name="ToDate" SelectedDateChanged="ToDate_SelectedDateChanged" VerticalAlignment="Center" FontFamily="Calibri" FontSize="18" HorizontalAlignment="Left" Margin="0,1"/>
+                <Label Content="Show Reports from" Margin="0,0,0,0"/>
+                <DatePicker  x:Name="FromDate" SelectedDateChanged="FromDate_SelectedDateChanged" Margin="0,6,0,5.333"/>
+                <Label Content="to" />
+                <DatePicker x:Name="ToDate" SelectedDateChanged="ToDate_SelectedDateChanged" Margin="0,1"/>
             </StackPanel>
 
-            <Button x:Name="btnSave" Margin="0,5,50,0" Click="btnSave_Click" Width="30" Height="30"  Background="Transparent" BorderBrush="Transparent" DockPanel.Dock="Right" >
-                <Image Source="..\Images\Save.png" Width="20" Height="20" Margin="1"/>
+            <Button x:Name="btnSave" Margin="0,5,50,0" Click="btnSave_Click" DockPanel.Dock="Right" >
+                <Image Source="..\Images\Save.png" Margin="1"/>
             </Button>
-            <Button DockPanel.Dock="Right" x:Name="btnAdd" Click="btnAdd_Click" Width="30" Height="30" Background="Transparent" BorderBrush="Transparent" Margin="0,10"  >
-                <Image Source="..\Images\Add.png" Width="20" Height="20"/>
+            <Button DockPanel.Dock="Right" x:Name="btnAdd" Click="btnAdd_Click" Margin="0,10"  >
+                <Image Source="..\Images\Add.png"/>
             </Button>
-            <Button x:Name="btnDelete" DockPanel.Dock="Right" Click="btnDelete_Click" Width="30" Height="30"  Background="Transparent" BorderBrush="Transparent" HorizontalAlignment="Right" Margin="0,10" >
-                <Image Source="..\Images\Remove.png" Width="20" Height="20" Margin="1"/>
+            <Button x:Name="btnDelete" DockPanel.Dock="Right" Click="btnDelete_Click" HorizontalAlignment="Right" Margin="0,10" >
+                <Image Source="..\Images\Remove.png" Margin="1"/>
             </Button>
-
-
-
         </DockPanel>
-        <TextBlock Grid.Row="1" Margin="5,0,0,0" Text="View Report(s)" FontFamily="Calibri(Body)" FontSize="18" FontWeight="Bold" ></TextBlock>
-        
+        <TextBlock Grid.Row="1" Text="View Report(s)" ></TextBlock>
         <ListView Grid.Row="2" x:Name="lvReports">
             <ListView.ItemContainerStyle>
                 <Style TargetType="ListViewItem">
@@ -80,7 +107,5 @@
                 </Style>
             </ListView.ItemContainerStyle>
         </ListView>
-
-
     </Grid>
 </UserControl>

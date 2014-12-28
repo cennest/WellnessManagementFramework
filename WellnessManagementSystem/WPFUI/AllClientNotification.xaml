@@ -8,12 +8,6 @@
          WindowStyle="SingleBorderWindow"
         Title="All Athletes"  WindowState="Maximized"
         WindowStartupLocation="CenterScreen">
-    <Window.Resources>
-        <Style TargetType="{x:Type Label}">
-            <Setter Property="FontSize" Value="14" />
-            <Setter Property="FontWeight" Value="Normal" />
-        </Style>
-    </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height=".2*" />
@@ -22,17 +16,7 @@
             <RowDefinition Height="*" />
             <RowDefinition Height=".08*" />
         </Grid.RowDefinitions>
-        <userControl:FilterUC Grid.Row="0" HorizontalAlignment="Stretch" Margin="0,0,40,0"></userControl:FilterUC>
-        <StackPanel  Grid.Row="1" Orientation="Horizontal" Visibility="Visible" HorizontalAlignment="Right" Margin="0,0,30,0">
-            <Label Name="FilterLabel" Content="Filter by" Width="70" Height="30"
-                   HorizontalAlignment="Center" />
-            <ComboBox Width="100" FontSize="10" ToolTip="Rows x Page" Name="cbPageFilter"
-                          IsEditable="False" SelectionChanged="FilterComboBoxSelectionChanged"
-                          VerticalAlignment="Center" HorizontalAlignment="Center" Height="23">
-            </ComboBox>
-            <TextBox VerticalAlignment="Center" Width="100" Height="20" Margin="15,0,5,0" Text="Search by Name"></TextBox>
-        </StackPanel>
-        
+        <userControl:FilterUC x:Name="ucFilterUC" OptionChanged ="uc_OptionChanged" Grid.Row="0" HorizontalAlignment="Stretch" Margin="0,0,40,0"></userControl:FilterUC>
         <userControl:UCBreadCrumb Margin="20,0,0,0" Grid.Row="2" x:Name="ucBreadCrumb"></userControl:UCBreadCrumb>
 
         <StackPanel Grid.Row="3">

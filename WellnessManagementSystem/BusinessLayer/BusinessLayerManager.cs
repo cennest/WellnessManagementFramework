@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,23 +14,9 @@ namespace BusinessLayer
 {
     public class BusinessLayerManager
     {
-        
         public static Hashtable reportTypeStrings =new Hashtable(){{(int)ReportType.LabReport,ReportTypeResource.LabReport},
                                                                    {(int)ReportType.DietPlan,ReportTypeResource.DietPlan},
                                                                    {(int)ReportType.PhysicalCondition,ReportTypeResource.PhysicalCondition}};
-        public string RandomNotes(int index)
-        {
-            List<string> Notification = new List<string>{"Add Shoulder exercises to strengthen neck area","Increase time spent in breathing exercises by 15 minutes","Increase time spent in breathing exercises by 15 minutes",
-"Looks to be following schedule well","Focus on wrists exercise in water"};
-            if (index < Notification.Count)
-            {
-                return Notification[index];
-            }
-            else
-            {
-               return ("Looks to be following schedule well");
-            }
-        }
         public List<BOLabReport> GetLabReportsForClient(int clientID,int userID)
         {
             try
@@ -132,12 +118,12 @@ namespace BusinessLayer
             }
         }
 
-        public List<BOClient> GetClientsforCategories(int categoryID, int userID, int skip, int take)
+        public List<BOClient> GetClientsForCategories(int categoryID, int userID, int skip, int take)
         {
             try
             {
                 DataLayerManager datalayer = new DataLayerManager();
-                List<Client> listOfClients = datalayer.GetClientsforCategories(categoryID, userID, skip, take);
+                List<Client> listOfClients = datalayer.GetClientsForCategories(categoryID, userID, skip, take);
                 List<BOClient> clients = GetClientBOForClientDBObjects(listOfClients);
                 return clients;
             }
@@ -148,12 +134,12 @@ namespace BusinessLayer
         }
 
 
-        public int GetCountOfClientsforCategories(int categoryID, int userID, int skip, int take)
+        public int GetCountOfClientsForCategories(int categoryID, int userID)
         {
             try
             {
                 DataLayerManager datalayer = new DataLayerManager();
-                int countOfClients = datalayer.GetCountOfClientsforCategories(categoryID, userID, skip, take);
+                int countOfClients = datalayer.GetCountOfClientsForCategories(categoryID, userID);
                 return countOfClients;
             }
             catch (Exception exception)
@@ -167,7 +153,7 @@ namespace BusinessLayer
             try
             {
                 DataLayerManager datalayer = new DataLayerManager();
-                List<Client> listOfClients = datalayer.GetClientsforCategories(categoryID, userID, skip, take);
+                List<Client> listOfClients = datalayer.GetClientsForCategoryByName(categoryID,searchString, userID, skip, take);
                 List<BOClient> clients = GetClientBOForClientDBObjects(listOfClients);
                 return clients;
             }
@@ -176,7 +162,20 @@ namespace BusinessLayer
                 throw new Exception(exception.Message);
             }
         }
-        
+
+        public int GetCountOfClientsForCategoryByName(int categoryID, string searchString, int userID)
+        {
+            try
+            {
+                DataLayerManager datalayer = new DataLayerManager();
+                int countOfClients = datalayer.GetCountOfClientsForCategoryByName(categoryID, searchString, userID);
+                return countOfClients;
+            }
+            catch (Exception exception)
+            {
+                throw new Exception(exception.Message);
+            }
+        }
 
         private List<BOClient> GetClientBOForClientDBObjects(List<Client> clients)
         {
@@ -188,7 +187,7 @@ namespace BusinessLayer
                     BOClient clientObject = new BOClient();
                     clientObject.ClientID = client.ClientID;
                     clientObject.ClientName = client.ClientName;
-                    clientObject.ClientNotes = RandomNotes(clients.IndexOf(client));
+                    clientObject.ClientNotes = "No Notes";
                     clientObject.ClientNotification = "No New Notification";
                     listOfClients.Add(clientObject);
                 }
