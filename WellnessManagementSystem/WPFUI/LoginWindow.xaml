@@ -12,8 +12,14 @@
             <GradientStop Color="#7A9443" Offset="0.8"/>
         </LinearGradientBrush>
 
+        <SolidColorBrush x:Key="borderBrushColor" Color="#FFD28F"/>
+
         <Style x:Key="{x:Type PasswordBox}" TargetType="{x:Type PasswordBox}">
             <Setter Property="local:WaterMarkTextHelper.IsMonitoring" Value="True"/>
+            <Setter Property="BorderThickness" Value="2"/>
+            <Setter Property="BorderBrush" Value="{StaticResource borderBrushColor}" />
+            <Setter Property="HorizontalAlignment" Value="Center" />
+            <Setter Property="HorizontalContentAlignment" Value="Center" />
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type PasswordBox}">
@@ -70,6 +76,9 @@
 
         <Style x:Key="{x:Type TextBox}" TargetType="{x:Type TextBox}">
             <Setter Property="local:WaterMarkTextHelper.IsMonitoring" Value="True"/>
+            <Setter Property="BorderThickness" Value="2"/>
+            <Setter Property="BorderBrush" Value="{StaticResource borderBrushColor}" />
+            <Setter Property="TextAlignment" Value="Center" />
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type TextBox}">
@@ -124,15 +133,52 @@
             </Setter>
         </Style>
 
-        <!--<Style TargetType="GroupBox">
-            <Setter Property="HeaderTemplate">
+        <Style x:Key="{x:Type GroupBox}" TargetType="{x:Type GroupBox}">
+            <Setter Property="BorderBrush" Value="#FFA620" />
+            <Setter Property="BorderThickness" Value="2" />
+            <Setter Property="Width" Value="700" />
+            <Setter Property="FontSize" Value="20" />
+            <Setter Property="Template">
                 <Setter.Value>
-                    <DataTemplate>
-                        <TextBlock Text="{Binding}" FontWeight="Bold"/>
-                    </DataTemplate>
+                    <ControlTemplate TargetType="{x:Type GroupBox}">
+                        <Grid SnapsToDevicePixels="true">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="6"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="6"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="6"/>
+                            </Grid.RowDefinitions>
+                            <Border CornerRadius="10" Grid.Row="1" Grid.RowSpan="3" Grid.Column="0" Grid.ColumnSpan="5" BorderThickness="{TemplateBinding BorderThickness}"
+                                BorderBrush="Transparent" Background="{TemplateBinding Background}"/>
+                            <Border x:Name="Header" Padding="3,1,3,0" Grid.Row="0" Grid.RowSpan="2" Grid.Column="2" CornerRadius="30">
+                                <ContentPresenter ContentSource="Header" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+                            </Border>
+                            <ContentPresenter Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="3" Margin="{TemplateBinding Padding}" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+                            <Border CornerRadius="10" Grid.Row="1" Grid.RowSpan="3" Grid.ColumnSpan="5" BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="White">
+                                <Border.OpacityMask>
+                                    <MultiBinding Converter="{StaticResource CenterBorderGapMaskConverter}">
+                                        <Binding ElementName="Header" Path="ActualWidth"/>
+                                        <Binding RelativeSource="{RelativeSource Self}" Path="ActualWidth"/>
+                                        <Binding RelativeSource="{RelativeSource Self}" Path="ActualHeight"/>
+                                    </MultiBinding>
+                                </Border.OpacityMask>
+
+                                <Border BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="{TemplateBinding BorderBrush}" CornerRadius="10">
+                                    <Border BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="White" CornerRadius="10"/>
+                                </Border>
+                            </Border>
+                        </Grid>
+                    </ControlTemplate>
                 </Setter.Value>
             </Setter>
-        </Style>-->
+        </Style>
 
     </Window.Resources>
     <Grid >
@@ -148,46 +194,7 @@
         </Grid.ColumnDefinitions>
 
         <userControl:ACESUC Grid.Row="0"></userControl:ACESUC>
-        <GroupBox Header="Athletic Conditioning Evaluation System (ACES)" Grid.Row="2" BorderBrush="#FFA620" BorderThickness="2" Width="700" FontSize="20">
-            <GroupBox.Template>
-                <ControlTemplate TargetType="{x:Type GroupBox}">
-                    <Grid SnapsToDevicePixels="true">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="6"/>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="6"/>
-                        </Grid.ColumnDefinitions>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="*"/>
-                            <RowDefinition Height="6"/>
-                        </Grid.RowDefinitions>
-                        <Border CornerRadius="10" Grid.Row="1" Grid.RowSpan="3" Grid.Column="0" Grid.ColumnSpan="5" BorderThickness="{TemplateBinding BorderThickness}"
-                                BorderBrush="Transparent" Background="{TemplateBinding Background}"/>
-                        <Border x:Name="Header" Padding="3,1,3,0" Grid.Row="0" Grid.RowSpan="2" Grid.Column="2" CornerRadius="30">
-                            <ContentPresenter ContentSource="Header" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
-                        </Border>
-                        <ContentPresenter Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="3" Margin="{TemplateBinding Padding}" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
-                        <Border CornerRadius="10" Grid.Row="1" Grid.RowSpan="3" Grid.ColumnSpan="5" BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="White">
-                            <Border.OpacityMask>
-                                <MultiBinding Converter="{StaticResource CenterBorderGapMaskConverter}">
-                                    <Binding ElementName="Header" Path="ActualWidth"/>
-                                    <Binding RelativeSource="{RelativeSource Self}" Path="ActualWidth"/>
-                                    <Binding RelativeSource="{RelativeSource Self}" Path="ActualHeight"/>
-                                </MultiBinding>
-                            </Border.OpacityMask>
-
-                            <Border BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="{TemplateBinding BorderBrush}" CornerRadius="10">
-                                <Border BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="White" CornerRadius="10"/>
-                            </Border>
-                        </Border>
-                    </Grid>
-                </ControlTemplate>
-            </GroupBox.Template>
-
+        <GroupBox Header="Athletic Conditioning Evaluation System (ACES)" Grid.Row="2" >
             <Grid x:Name="LoginStack" Height="Auto" >
                 <Grid.RowDefinitions>
                     <RowDefinition Height=".2*"/>
@@ -198,9 +205,9 @@
                     <RowDefinition Height=".2*"/>
                     <RowDefinition Height=".2*"/>
                 </Grid.RowDefinitions>
-                <TextBox Width="500" Grid.Row="1" Name="UserName" BorderBrush ="#FFD28F" BorderThickness="2" TextAlignment="Center" />
-                <PasswordBox  Width="500" Grid.Row="3" x:Name="Password" KeyDown="Password_KeyDown" BorderBrush="#FFD28F" BorderThickness="2" HorizontalAlignment="Center" HorizontalContentAlignment="Center" />
-                <Button Content="Login" Grid.Row="5" Width="200" Click="Login_Click" Background="{StaticResource ButtonGreenBackground}" Style="{StaticResource MetroButton}" BorderBrush="Transparent" MaxHeight="60" />
+                <TextBox Width="500" Grid.Row="1" Name="UserName" />
+                <PasswordBox  Width="500" Grid.Row="3" x:Name="Password" KeyDown="Password_KeyDown" />
+                <Button Content="Login" Grid.Row="5" Width="200" Click="Login_Click" Background="{StaticResource ButtonGreenBackground}" Style="{StaticResource MetroButton}" MaxHeight="60" />
             </Grid>
         </GroupBox>
         <userControl:Footer Grid.Row="5"></userControl:Footer>

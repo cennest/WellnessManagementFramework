@@ -55,6 +55,15 @@
             
             <Style x:Key="DataGridStyle1" TargetType="{x:Type DataGrid}">
                 <Setter Property="ColumnHeaderStyle" Value="{DynamicResource ColumnHeaderStyle1}"/>
+                <Setter Property="AutoGenerateColumns" Value="False" />
+                <Setter Property="IsReadOnly" Value="True" />
+                <Setter Property="GridLinesVisibility" Value="None" />
+                <Setter Property="HeadersVisibility" Value="None" />
+                <Setter Property="Background" Value="Transparent" />
+                <Setter Property="BorderThickness" Value="0" />
+                <Setter Property="HorizontalAlignment" Value="Center" />
+                <Setter Property="VerticalAlignment" Value="Top" />
+                <Setter Property="Padding" Value="15,0" />
             </Style>
 
             <Style TargetType="{x:Type DataGridRow}">
@@ -73,13 +82,13 @@
         <userControl:UCBreadCrumb Margin="20,0,0,0" Grid.Row="1" x:Name="ucBreadCrumb" />
 
         <StackPanel Grid.Row="2" VerticalAlignment="Center">
-            <TextBlock   Width="Auto"  FontSize="15" HorizontalAlignment="Center"><Run Text="Welcome "/><InlineUIContainer> 
-					<TextBlock Foreground="blue" Text="{Binding UserName}"/>
+            <TextBlock Width="Auto" FontSize="15" HorizontalAlignment="Center"><Run Text="Welcome "/>
+                <InlineUIContainer> 
+			<TextBlock Foreground="blue" Text="{Binding UserName}"/>
 				</InlineUIContainer><Run Text=" , What would you like to do?"/></TextBlock>
         </StackPanel>        
         <Grid Grid.Row="3" Width="auto">
-            <DataGrid  Style="{StaticResource DataGridStyle1}" x:Name="dtGrid" AutoGenerateColumns="False" IsReadOnly="True" GridLinesVisibility="None" HeadersVisibility="None" 
-                  Background="Transparent" BorderThickness="0" HorizontalAlignment="Center" VerticalAlignment="Top" MinWidth="768" MaxWidth="960" ColumnWidth="auto" Padding="15,0">
+            <DataGrid  Style="{StaticResource DataGridStyle1}" x:Name="dtGrid" MinWidth="768" MaxWidth="960" ColumnWidth="auto">
                 <DataGrid.Columns>
                     <DataGridTemplateColumn Header="ButtonsList" Width="1*">
                         <DataGridTemplateColumn.CellTemplate>
