@@ -105,17 +105,24 @@ namespace PhysioApplication
         private List<BOClient> GetClientList(int CategoryID, int skip, int take, int finalRow)
         {
             List<BOClient> clientList = new List<BOClient>();
-            List<BOClient> clientListByCategory = (List<BOClient>)this.listOfAllClientsByCategoryHasTable[CategoryID];
-            if (clientListByCategory == null)
+            if (this.isSearchByName == true)
             {
-                clientListByCategory = new List<BOClient>();
+                clientList = businessLayer.GetClientsForCategoryByName(CategoryID, this.nameToSearch, this.userID, skip, take);
             }
-            int cachedDataCount = clientListByCategory.Count;
-            if (cachedDataCount < finalRow)
+            else
             {
-                FetchDataFromDatabaseToTemporaryStorage(cachedDataCount, skip, take, CategoryID);
+                List<BOClient> clientListByCategory = (List<BOClient>)this.listOfAllClientsByCategoryHasTable[CategoryID];
+                if (clientListByCategory == null)
+                {
+                    clientListByCategory = new List<BOClient>();
+                }
+                int cachedDataCount = clientListByCategory.Count;
+                if (cachedDataCount < finalRow)
+                {
+                    FetchDataFromDatabaseToTemporaryStorage(cachedDataCount, skip, take, CategoryID);
+                }
+                clientList = FetchDataFromTemporaryStorage(skip, take, CategoryID);
             }
-            clientList = FetchDataFromTemporaryStorage(skip, take, CategoryID);
             return clientList;
         }
 
