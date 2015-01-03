@@ -84,7 +84,7 @@ namespace PhysioApplication
 
         private int ExecuteQueryReturnTotalItem(int pageIndex, int take)
         {
-            int CategoryID = Convert.ToInt32(((ComboBoxItem)ucFilterUC.CBPageFilter.SelectedItem).Tag);
+            int CategoryID = Convert.ToInt32(((ComboBoxItem)ucFilterUC.ComboBoxPageFilter.SelectedItem).Tag);
             int skip = ((pageIndex - 1) * take);
             int finalRow = skip + take;
             try

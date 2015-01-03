@@ -35,8 +35,8 @@ namespace PhysioApplication.UserControls
             {
                 comboBoxItemList.Add(new ComboBoxItem { Content = category.CategoryName, Tag = category.CategoryID.ToString() });
             }
-            this.CBPageFilter.ItemsSource = comboBoxItemList;
-            this.CBPageFilter.SelectedIndex = 0;
+            this.ComboBoxPageFilter.ItemsSource = comboBoxItemList;
+            this.ComboBoxPageFilter.SelectedIndex = 0;
         }
 
         private void FilterComboBoxSelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
