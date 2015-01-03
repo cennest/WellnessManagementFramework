@@ -24,6 +24,8 @@ namespace PhysioApplication
     /// </summary>
     public partial class UserReports : Window
     {
+        private bool isSearchByName;
+        private string nameToSearch;
 
         public UserReports()
         {
@@ -47,6 +49,15 @@ namespace PhysioApplication
         private void cbPageFilter_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
+        }
+
+        void uc_OptionChanged(bool isSearchByName, string name)
+        {
+            this.isSearchByName = isSearchByName;
+            if (this.isSearchByName == true)
+            {
+                this.nameToSearch = name;
+            }
         }
     }
 
