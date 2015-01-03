@@ -15,7 +15,7 @@
             <RowDefinition Height="*" />
             <RowDefinition Height=".06*" />
         </Grid.RowDefinitions>
-        <userControl:FilterUC Grid.Row="0" HorizontalAlignment="Stretch" Margin="0,0,40,0"></userControl:FilterUC>
+        <userControl:FilterUC OptionChanged = "uc_OptionChanged" Grid.Row="0" HorizontalAlignment="Stretch" Margin="0,0,40,0"></userControl:FilterUC>
         <userControl:UCBreadCrumb Margin="20,0,0,0" x:Name="ucBreadCrumb"   Grid.Row="2"/>
         <TabControl SelectedIndex="1" Grid.Row="3"  x:Name="clientInfoTab">
             <TabItem Height="60" Background="#FFA620"  FontFamily="Calibri(Body)" FontSize="17" Header="Summary" Width="170" Content="Coming Soon!"/>
