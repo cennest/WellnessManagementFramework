@@ -179,13 +179,13 @@ namespace DataLayer
                 if (categoryID == Convert.ToInt32(Category.All))
                 {
                     countOfClients = (from client in dataContext.Clients
-                                      where client.UserID == userID
+                                      where client.UserID == userID && client.ClientName.ToLower().Contains(searchString.ToLower())
                                       select client).Count();
                 }
                 else
                 {
                     countOfClients = (from client in dataContext.Clients
-                                      where client.UserID == userID && client.CategoryID == categoryID
+                                      where client.UserID == userID && client.CategoryID == categoryID && client.ClientName.ToLower().Contains(searchString.ToLower())
                                       select client).Count();
                 }
                 return countOfClients;

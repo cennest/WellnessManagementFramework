@@ -153,7 +153,7 @@ namespace BusinessLayer
             try
             {
                 DataLayerManager datalayer = new DataLayerManager();
-                List<Client> listOfClients = datalayer.GetClientsforCategories(categoryID, userID, skip, take);
+                List<Client> listOfClients = datalayer.GetClientsForCategoryByName(categoryID,searchString, userID, skip, take);
                 List<BOClient> clients = GetClientBOForClientDBObjects(listOfClients);
                 return clients;
             }
