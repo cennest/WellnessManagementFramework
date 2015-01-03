@@ -21,13 +21,12 @@
         <userControl:FilterUC x:Name="ucFilterUC" OptionChanged = "uc_OptionChanged" Grid.Row="0" HorizontalAlignment="Stretch" Margin="0,0,40,0"></userControl:FilterUC>
         <userControl:UCBreadCrumb Margin="20,0,0,0" Grid.Row="2" x:Name="ucBreadCrumb"></userControl:UCBreadCrumb>
 
-        <StackPanel Grid.Row="3"   >
+        <StackPanel Grid.Row="3">
             <DataGrid Name="ClientDataGrid" AlternatingRowBackground="Gray"
 		          HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="10,0"
 		           AutoGenerateColumns="False" MinRowHeight="26">
                 <DataGrid.Columns>
                     <DataGridTemplateColumn  Header="Name" Width="*">
-                        
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <TextBlock TextAlignment="Center" Tag="{Binding ClientID}" Text="{Binding ClientName}" MouseDown="TextBlock_MouseDown"/>

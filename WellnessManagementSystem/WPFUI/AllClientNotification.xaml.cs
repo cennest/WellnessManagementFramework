@@ -84,7 +84,7 @@ namespace PhysioApplication
 
         private int ExecuteQueryReturnTotalItem(int pageIndex, int take)
         {
-            int CategoryID = Convert.ToInt32(((ComboBoxItem)ucFilterUC.cbPageFilter.SelectedItem).Tag);
+            int CategoryID = Convert.ToInt32(((ComboBoxItem)ucFilterUC.ComboBoxPageFilter.SelectedItem).Tag);
             int skip = ((pageIndex - 1) * take);
             int finalRow = skip + take;
             try
@@ -250,7 +250,13 @@ namespace PhysioApplication
                 this.Close();
             }
         }
+
         void uc_OptionChanged(bool isSearchByName, string name)
+        {
+            ReloadData(isSearchByName, name);
+        }
+
+        public void ReloadData(bool isSearchByName, string name)
         {
             this.isSearchByName = isSearchByName;
             if (this.isSearchByName == true)
