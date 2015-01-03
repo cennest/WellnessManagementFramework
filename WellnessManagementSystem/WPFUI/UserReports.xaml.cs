@@ -55,7 +55,7 @@ namespace PhysioApplication
                 AllClientNotification allClientNotifications = new AllClientNotification();
                 allClientNotifications.ucFilterUC.CBPageFilter.SelectedIndex = this.ucFilterUC.CBPageFilter.SelectedIndex;
                 allClientNotifications.ucFilterUC.SearchTextBlock.Text = this.ucFilterUC.SearchTextBlock.Text;
-                allClientNotifications.uc_OptionChanged(true, this.ucFilterUC.SearchTextBlock.Text);
+                allClientNotifications.ReloadData(true, this.ucFilterUC.SearchTextBlock.Text);
                 allClientNotifications.ShowDialog();
                 this.Close();
             }

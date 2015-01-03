@@ -251,7 +251,12 @@ namespace PhysioApplication
             }
         }
 
-        public void uc_OptionChanged(bool isSearchByName, string name)
+        void uc_OptionChanged(bool isSearchByName, string name)
+        {
+            ReloadData(isSearchByName, name);
+        }
+
+        public void ReloadData(bool isSearchByName, string name)
         {
             this.isSearchByName = isSearchByName;
             if (this.isSearchByName == true)
