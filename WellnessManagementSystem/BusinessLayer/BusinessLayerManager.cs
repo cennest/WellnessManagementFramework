@@ -118,12 +118,12 @@ namespace BusinessLayer
             }
         }
 
-        public List<BOClient> GetClientsforCategories(int categoryID, int userID, int skip, int take)
+        public List<BOClient> GetClientsForCategories(int categoryID, int userID, int skip, int take)
         {
             try
             {
                 DataLayerManager datalayer = new DataLayerManager();
-                List<Client> listOfClients = datalayer.GetClientsforCategories(categoryID, userID, skip, take);
+                List<Client> listOfClients = datalayer.GetClientsForCategories(categoryID, userID, skip, take);
                 List<BOClient> clients = GetClientBOForClientDBObjects(listOfClients);
                 return clients;
             }
@@ -134,12 +134,12 @@ namespace BusinessLayer
         }
 
 
-        public int GetCountOfClientsforCategories(int categoryID, int userID)
+        public int GetCountOfClientsForCategories(int categoryID, int userID)
         {
             try
             {
                 DataLayerManager datalayer = new DataLayerManager();
-                int countOfClients = datalayer.GetCountOfClientsforCategories(categoryID, userID);
+                int countOfClients = datalayer.GetCountOfClientsForCategories(categoryID, userID);
                 return countOfClients;
             }
             catch (Exception exception)

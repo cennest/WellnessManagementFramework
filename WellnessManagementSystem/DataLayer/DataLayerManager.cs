@@ -92,7 +92,7 @@ namespace DataLayer
             }
         }
 
-        public List<Client> GetClientsforCategories(int categoryID, int userID, int skip, int take)
+        public List<Client> GetClientsForCategories(int categoryID, int userID, int skip, int take)
         {
             try
             {
@@ -118,7 +118,7 @@ namespace DataLayer
             }
         }
 
-        public int GetCountOfClientsforCategories(int categoryID, int userID)
+        public int GetCountOfClientsForCategories(int categoryID, int userID)
         {
             try
             {

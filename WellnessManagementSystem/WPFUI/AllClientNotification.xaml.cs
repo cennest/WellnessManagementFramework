@@ -105,26 +105,54 @@ namespace PhysioApplication
         {
             try
             {
-                BusinessLayerManager businessLayer = new BusinessLayerManager();
                 List<BOClient> clientList = new List<BOClient>();
                 if (this.isSearchByName == true)
                 {
-                    clientList = businessLayer.GetClientsForCategoryByName(CategoryID, this.nameToSearch, this.userID, skip, take);
+                    clientList = this.GetClientListForCategoryByName(CategoryID, skip, take, finalRow);
                 }
                 else
                 {
-                    List<BOClient> clientListByCategory = (List<BOClient>)this.listOfAllClientsByCategoryHasTable[CategoryID];
-                    if (clientListByCategory == null)
-                    {
-                        clientListByCategory = new List<BOClient>();
-                    }
-                    int cachedDataCount = clientListByCategory.Count;
-                    if (cachedDataCount < finalRow)
-                    {
-                        FetchDataFromDatabaseToTemporaryStorage(cachedDataCount, skip, take, CategoryID);
-                    }
-                    clientList = FetchDataFromTemporaryStorage(skip, take, CategoryID);
+                    clientList = this.GetClientListByCategory(CategoryID, skip, take, finalRow);
                 }
+                return clientList;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        private List<BOClient> GetClientListForCategoryByName(int CategoryID, int skip, int take, int finalRow)
+        {
+            try
+            {
+                BusinessLayerManager businessLayer = new BusinessLayerManager();
+                List<BOClient> clientList = new List<BOClient>();
+                clientList = businessLayer.GetClientsForCategoryByName(CategoryID, this.nameToSearch, this.userID, skip, take);
+                return clientList;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        private List<BOClient> GetClientListByCategory(int CategoryID, int skip, int take, int finalRow)
+        {
+            try
+            {
+                List<BOClient> clientList = new List<BOClient>();
+                List<BOClient> clientListByCategory = (List<BOClient>)this.listOfAllClientsByCategoryHasTable[CategoryID];
+                if (clientListByCategory == null)
+                {
+                    clientListByCategory = new List<BOClient>();
+                }
+                int cachedDataCount = clientListByCategory.Count;
+                if (cachedDataCount < finalRow)
+                {
+                    FetchDataFromDatabaseToTemporaryStorage(cachedDataCount, skip, take, CategoryID);
+                }
+                clientList = FetchDataFromTemporaryStorage(skip, take, CategoryID);
                 return clientList;
             }
             catch (Exception ex)
@@ -145,7 +173,7 @@ namespace PhysioApplication
                 }
                 else
                 {
-                    totalRow = businessLayer.GetCountOfClientsforCategories(CategoryID, this.userID);
+                    totalRow = businessLayer.GetCountOfClientsForCategories(CategoryID, this.userID);
                 }
                 return totalRow;
             }
@@ -165,7 +193,7 @@ namespace PhysioApplication
                 {
                     clientListByCategory = new List<BOClient>();
                 }
-                List<BOClient> clientListForCategory = businessLayer.GetClientsforCategories(CategoryID, this.userID, skip, take);
+                List<BOClient> clientListForCategory = businessLayer.GetClientsForCategories(CategoryID, this.userID, skip, take);
                 int skipDataFromAddingToCategoryList = cachedDataCount - skip;
                 int rowCounter = 0;
                 if (clientListForCategory.Count > 0)
