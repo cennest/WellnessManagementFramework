@@ -90,27 +90,9 @@ namespace PhysioApplication
             int finalRow = skip + take;
             try
             {
-                List<BOClient> clientListByCategory = (List<BOClient>)this.listOfAllClientsByCategoryHasTable[CategoryID];
-                if (clientListByCategory == null)
-                {
-                    clientListByCategory = new List<BOClient>();
-                }
-                int cachedDataCount = clientListByCategory.Count;
-                if (cachedDataCount < finalRow)
-                {
-                    FetchDataFromDatabaseToTemporaryStorage(cachedDataCount, skip, take, CategoryID);
-                }
-                List<BOClient> clientList = FetchDataFromTemporaryStorage(skip, take, CategoryID);
+                List<BOClient> clientList = this.GetClientList(CategoryID, skip, take, finalRow);
                 this.ClientDataGrid.ItemsSource = clientList;
-                int totalRow = 0;
-                if (isSearchByName == true)
-                {
-                    totalRow = businessLayer.GetCountOfClientsForCategoryByName(CategoryID, this.nameToSearch ,this.userID);
-                }
-                else
-                {
-                    totalRow = businessLayer.GetCountOfClientsforCategories(CategoryID, this.userID);
-                }
+                int totalRow = this.GetTotalNumberOfRows();
                 return totalRow;
             }
             catch (Exception ex)
@@ -119,6 +101,37 @@ namespace PhysioApplication
                 return 0;
             }
         }
+
+        private List<BOClient> GetClientList(int CategoryID, int skip, int take, int finalRow)
+        {
+            List<BOClient> clientList = new List<BOClient>();
+            List<BOClient> clientListByCategory = (List<BOClient>)this.listOfAllClientsByCategoryHasTable[CategoryID];
+            if (clientListByCategory == null)
+            {
+                clientListByCategory = new List<BOClient>();
+            }
+            int cachedDataCount = clientListByCategory.Count;
+            if (cachedDataCount < finalRow)
+            {
+                FetchDataFromDatabaseToTemporaryStorage(cachedDataCount, skip, take, CategoryID);
+            }
+            clientList = FetchDataFromTemporaryStorage(skip, take, CategoryID);
+            return clientList;
+        }
+
+        private int GetTotalNumberOfRows()
+        {
+            int totalRow = 0;
+            if (this.isSearchByName == true)
+                {
+                    totalRow = businessLayer.GetCountOfClientsForCategoryByName(CategoryID, this.nameToSearch ,this.userID);
+                }
+                else
+                {
+                    totalRow = businessLayer.GetCountOfClientsforCategories(CategoryID, this.userID);
+                } 
+            return totalRow;
+        } 
 
         private void FetchDataFromDatabaseToTemporaryStorage(int cachedDataCount, int skip, int take, int CategoryID)
         {
@@ -183,7 +196,6 @@ namespace PhysioApplication
                 AppManager.getInstance().CurrentClientName = textBlock.Text;
                 UserReports labReports = new UserReports();
                 labReports.ShowDialog();
-                
                 this.Close();
             }
         }
