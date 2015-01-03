@@ -92,7 +92,7 @@ namespace PhysioApplication
             {
                 List<BOClient> clientList = this.GetClientList(CategoryID, skip, take, finalRow);
                 this.ClientDataGrid.ItemsSource = clientList;
-                int totalRow = this.GetTotalNumberOfRows();
+                int totalRow = this.GetTotalNumberOfRows(CategoryID);
                 return totalRow;
             }
             catch (Exception ex)
@@ -119,18 +119,25 @@ namespace PhysioApplication
             return clientList;
         }
 
-        private int GetTotalNumberOfRows()
+        private int GetTotalNumberOfRows(int CategoryID)
         {
-            int totalRow = 0;
-            if (this.isSearchByName == true)
+            try
+            {
+                int totalRow = 0;
+                if (this.isSearchByName == true)
                 {
-                    totalRow = businessLayer.GetCountOfClientsForCategoryByName(CategoryID, this.nameToSearch ,this.userID);
+                    totalRow = businessLayer.GetCountOfClientsForCategoryByName(CategoryID, this.nameToSearch, this.userID);
                 }
                 else
                 {
                     totalRow = businessLayer.GetCountOfClientsforCategories(CategoryID, this.userID);
-                } 
-            return totalRow;
+                }
+                return totalRow;
+            }
+            catch (Exception ex)
+            {
+                return 0;
+            }
         } 
 
         private void FetchDataFromDatabaseToTemporaryStorage(int cachedDataCount, int skip, int take, int CategoryID)
