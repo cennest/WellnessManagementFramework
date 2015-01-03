@@ -12,16 +12,47 @@
         <TextBlock Text="Filter by"  DockPanel.Dock="Right" HorizontalAlignment="Right" ></TextBlock>
         
     </DockPanel>-->
-        <DockPanel HorizontalAlignment="Stretch">
-            <TextBlock Padding="5" DockPanel.Dock="Left" VerticalAlignment="Center" FontFamily="Calibri" FontSize="25" FontWeight="Bold">ACES</TextBlock>
-        <TextBox DockPanel.Dock="Right" HorizontalAlignment="Right" VerticalAlignment="Center" Width="100" Height="20" Margin="15,0,5,0" Text="Search by Name"/>
-        <ComboBox DockPanel.Dock="Right" HorizontalAlignment="Right" Width="100" FontSize="10" ToolTip="Rows x Page" x:Name="cbPageFilter"
-    			IsEditable="False" 
-    			VerticalAlignment="Center"  Height="23"/>
-        <TextBlock  DockPanel.Dock="Right" VerticalAlignment="Center" HorizontalAlignment="Right"  Width="70" x:Name="FilterLabel" Text="Filter by"  FontSize="14" FontWeight="Normal"
-    			 />
+    <UserControl.Resources>
+        <Style x:Key="acesStyle" TargetType="{x:Type TextBlock}" >
+            <Setter Property="FontFamily" Value="Calibri" />
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="FontSize" Value="25" />
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="Padding" Value="5" />
+        </Style>
+
+        <Style TargetType="{x:Type TextBox}" >
+            <Setter Property="HorizontalAlignment" Value="Right"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Width" Value="100" />
+            <Setter Property="Height" Value="20" />
+            <Setter Property="Margin" Value="15,0,5,0" />
+        </Style>
+
+        <Style TargetType="ComboBox">
+            <Setter Property="HorizontalAlignment" Value="Right"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Width" Value="100" />
+            <Setter Property="FontSize" Value="10" />
+            <Setter Property="Height" Value="23" />
+            <Setter Property="IsEditable" Value="False" />
+            <Setter Property="Margin" Value="15,0,5,0" />
+        </Style>
         
-           
+        <Style x:Key="filterStyle"  TargetType="{x:Type TextBlock}" >
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="HorizontalAlignment" Value="Right"/>
+            <Setter Property="FontSize" Value="14" />
+            <Setter Property="FontWeight" Value="Normal" />
+            <Setter Property="Width" Value="70" />
+        </Style>
+    </UserControl.Resources>
+    
+    <DockPanel HorizontalAlignment="Stretch">
+        <TextBlock DockPanel.Dock="Left" Style="{StaticResource acesStyle}">ACES</TextBlock>
+        <TextBox DockPanel.Dock="Right" Text="Search by Name"/>
+        <ComboBox DockPanel.Dock="Right" ToolTip="Rows x Page" x:Name="cbPageFilter" />
+        <TextBlock  DockPanel.Dock="Right" Style="{StaticResource filterStyle}" x:Name="FilterLabel" Text="Filter by" />   
         </DockPanel>
     
 </UserControl>

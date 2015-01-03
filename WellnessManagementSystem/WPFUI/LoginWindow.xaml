@@ -34,7 +34,7 @@
                         <Border Name="Bd" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="10">
                             <Grid>
                                 <ScrollViewer x:Name="PART_ContentHost" VerticalAlignment="Center" Margin="3" />
-                                <TextBlock Text="Enter your Password" Style="{StaticResource textBlockStyle}" x:Name="Message" IsHitTestVisible="False" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                <TextBlock Text="Enter your Password" Style="{StaticResource textBlockStyle}" x:Name="Message" />
                             </Grid>
                         </Border>
                         <ControlTemplate.Triggers>
@@ -90,7 +90,7 @@
                         <Border Name="Bd" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="10">
                             <Grid>
                                 <ScrollViewer x:Name="PART_ContentHost" VerticalAlignment="Center" Margin="3" />
-                                <TextBlock Text="Enter your User Name" Style="{StaticResource textBlockStyle}" x:Name="Message" IsHitTestVisible="False" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                <TextBlock Text="Enter your User Name" Style="{StaticResource textBlockStyle}" x:Name="Message" />
                             </Grid>
                         </Border>
                         <ControlTemplate.Triggers>

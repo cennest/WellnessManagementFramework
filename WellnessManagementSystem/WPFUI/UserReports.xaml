@@ -8,6 +8,16 @@
         WindowStartupLocation="CenterScreen"
         >
     <Grid>
+        <Grid.Resources>
+            <Style TargetType="TabItem">
+                <Setter Property="Background" Value="#FFA620" />
+                <Setter Property="FontFamily" Value="Calibri(Body)" />
+                <Setter Property="FontSize" Value="17" />
+                <Setter Property="Height" Value="60" />
+                <Setter Property="Width" Value="170" />
+            </Style>
+        </Grid.Resources>
+        
         <Grid.RowDefinitions>
             <RowDefinition Height=".15*" />
             <RowDefinition Height=".00001*" />
@@ -16,15 +26,15 @@
             <RowDefinition Height=".06*" />
         </Grid.RowDefinitions>
         <userControl:FilterUC Grid.Row="0" HorizontalAlignment="Stretch" Margin="0,0,40,0"></userControl:FilterUC>
-        <userControl:UCBreadCrumb Margin="20,0,0,0" x:Name="ucBreadCrumb"   Grid.Row="2"/>
+        <userControl:UCBreadCrumb Margin="20,0,0,0" x:Name="ucBreadCrumb" Grid.Row="2"/>
         <TabControl SelectedIndex="1" Grid.Row="3"  x:Name="clientInfoTab">
-            <TabItem Height="60" Background="#FFA620"  FontFamily="Calibri(Body)" FontSize="17" Header="Summary" Width="170" Content="Coming Soon!"/>
-            <TabItem Height="60" Background="#FFA620" FontFamily="Calibri(Body)" FontSize="17" Header="Lab Reports" Width="170">
+            <TabItem Header="Summary" Content="Coming Soon!"/>
+            <TabItem Header="Lab Reports">
                 <userControl:LabReportUC/>
             </TabItem>
-            <TabItem Height="60" Background="#FFA620" FontFamily="Calibri(Body)" FontSize="17" Header="Diet Plan" Width="170" Content="Coming Soon!"/>
-            <TabItem Height="60" Background="#FFA620" FontFamily="Calibri(Body)" FontSize="17" Header="Phy Conditioning" Width="170" Content="Coming Soon!"/>
-            <TabItem  Height="60" Background="#FFA620" FontFamily="Calibri(Body)" FontSize="17" Header="Notes" Width="170" Content="Coming Soon!"/>
+            <TabItem Header="Diet Plan" Content="Coming Soon!"/>
+            <TabItem Header="Phy Conditioning" Content="Coming Soon!"/>
+            <TabItem Header="Notes" Content="Coming Soon!"/>
         </TabControl>
         <userControl:Footer Grid.Row="4"/>
     </Grid>

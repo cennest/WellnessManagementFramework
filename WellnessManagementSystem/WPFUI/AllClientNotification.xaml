@@ -9,6 +9,10 @@
         Title="All Athletes"  WindowState="Maximized"
         WindowStartupLocation="CenterScreen">
     <Window.Resources>
+        <Style TargetType="{x:Type Label}">
+            <Setter Property="FontSize" Value="14" />
+            <Setter Property="FontWeight" Value="Normal" />
+        </Style>
     </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
@@ -19,8 +23,8 @@
             <RowDefinition Height=".08*" />
         </Grid.RowDefinitions>
         <userControl:FilterUC Grid.Row="0" HorizontalAlignment="Stretch" Margin="0,0,40,0"></userControl:FilterUC>
-        <StackPanel  Grid.Row="1" Orientation="Horizontal" Visibility="Collapsed" HorizontalAlignment="Right" Margin="0,0,30,0">
-            <Label Name="FilterLabel" Content="Filter by" Width="70" Height="30" FontSize="14" FontWeight="Normal"
+        <StackPanel  Grid.Row="1" Orientation="Horizontal" Visibility="Visible" HorizontalAlignment="Right" Margin="0,0,30,0">
+            <Label Name="FilterLabel" Content="Filter by" Width="70" Height="30"
                    HorizontalAlignment="Center" />
             <ComboBox Width="100" FontSize="10" ToolTip="Rows x Page" Name="cbPageFilter"
                           IsEditable="False" SelectionChanged="FilterComboBoxSelectionChanged"
@@ -28,33 +32,28 @@
             </ComboBox>
             <TextBox VerticalAlignment="Center" Width="100" Height="20" Margin="15,0,5,0" Text="Search by Name"></TextBox>
         </StackPanel>
+        
         <userControl:UCBreadCrumb Margin="20,0,0,0" Grid.Row="2" x:Name="ucBreadCrumb"></userControl:UCBreadCrumb>
 
-        <StackPanel Grid.Row="3"   >
+        <StackPanel Grid.Row="3">
             <DataGrid Name="ClientDataGrid" AlternatingRowBackground="Gray"
 		          HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="10,0"
 		           AutoGenerateColumns="False" MinRowHeight="26">
                 <DataGrid.Columns>
                     <DataGridTemplateColumn  Header="Name" Width="*">
-                        
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <TextBlock TextAlignment="Center" Tag="{Binding ClientID}" Text="{Binding ClientName}" MouseDown="TextBlock_MouseDown"/>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
-                    <DataGridTextColumn IsReadOnly="True"
-				                    Binding="{Binding ClientNotification}"
-				                    Header="Notification" Width="*"/>
-                    <DataGridTextColumn IsReadOnly="True" 
-				                    Binding="{Binding ClientNotes}"
-				                    Header="Last Notes" Width="*"/>
+                    <DataGridTextColumn IsReadOnly="True" Binding="{Binding ClientNotification}" Header="Notification" Width="*"/>
+                    <DataGridTextColumn IsReadOnly="True" Binding="{Binding ClientNotes}" Header="Last Notes" Width="*"/>
                 </DataGrid.Columns>
             </DataGrid>
             <my:GridPaging Grid.Row="2" HorizontalAlignment="Center" x:Name="gridPaging" Margin="0,30"/>
         </StackPanel>
         <userControl:Footer Grid.Row="4"></userControl:Footer>
-
     </Grid>
 </Window>
 
