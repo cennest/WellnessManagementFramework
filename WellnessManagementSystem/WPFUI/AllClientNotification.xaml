@@ -8,8 +8,6 @@
          WindowStyle="SingleBorderWindow"
         Title="All Athletes"  WindowState="Maximized"
         WindowStartupLocation="CenterScreen">
-    <Window.Resources>
-    </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height=".2*" />

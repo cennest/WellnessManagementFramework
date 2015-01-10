@@ -55,5 +55,38 @@ namespace DatabaseEntities.Properties {
                 return ((string)(this["WellnessManagementFrameworkDBConnectionString2"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=192.168.0.5;Initial Catalog=WellnessManagementFrameworkDB;User ID=cen" +
+            "nest")]
+        public string WellnessManagementFrameworkDBConnectionString3 {
+            get {
+                return ((string)(this["WellnessManagementFrameworkDBConnectionString3"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=192.168.0.10;Initial Catalog=WellnessManagementFrameworkDB;User ID=ce" +
+            "nnest;Password=cennest")]
+        public string WellnessManagementFrameworkDBConnectionString4 {
+            get {
+                return ((string)(this["WellnessManagementFrameworkDBConnectionString4"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=192.168.0.18;Initial Catalog=WellnessManagementFrameworkDB;User ID=ce" +
+            "nnest;Password=cennest")]
+        public string WellnessManagementFrameworkDBConnectionString5 {
+            get {
+                return ((string)(this["WellnessManagementFrameworkDBConnectionString5"]));
+            }
+        }
     }
 }

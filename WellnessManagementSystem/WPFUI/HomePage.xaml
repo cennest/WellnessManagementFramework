@@ -11,8 +11,6 @@
             <Style TargetType="{x:Type Button}">
                 <Setter Property="Background" Value="#FF9A31" />
                 <Setter Property="Height" Value="50" />
-                <!--<Setter Property="Width" Value="300" />-->
-                <!--<Setter Property="Margin" Value="70,0,20,0"/>-->
                 <Setter Property="Foreground" Value="White"/>
                 <Setter Property="FontWeight" Value="Bold" />
                 <Setter Property="FontSize" Value="13" />
@@ -55,16 +53,20 @@
                 </Style.Triggers>
             </Style>
             
-            <!--<Style TargetType="DataGridRowHeader" x:Key="ColumnHeaderStyle1">
-                <Setter Property="Padding" Value="0"/>
-            </Style>-->
-
             <Style x:Key="DataGridStyle1" TargetType="{x:Type DataGrid}">
                 <Setter Property="ColumnHeaderStyle" Value="{DynamicResource ColumnHeaderStyle1}"/>
+                <Setter Property="AutoGenerateColumns" Value="False" />
+                <Setter Property="IsReadOnly" Value="True" />
+                <Setter Property="GridLinesVisibility" Value="None" />
+                <Setter Property="HeadersVisibility" Value="None" />
+                <Setter Property="Background" Value="Transparent" />
+                <Setter Property="BorderThickness" Value="0" />
+                <Setter Property="HorizontalAlignment" Value="Center" />
+                <Setter Property="VerticalAlignment" Value="Top" />
+                <Setter Property="Padding" Value="15,0" />
             </Style>
 
             <Style TargetType="{x:Type DataGridRow}">
-                <!--<Setter Property="IsHitTestVisible" Value="False"/>-->
                 <Setter Property="VerticalAlignment" Value="Center" />
             </Style>
 
@@ -79,15 +81,13 @@
         <userControl:ACESUC Grid.Row="0"/>
         <userControl:UCBreadCrumb Margin="20,0,0,0" Grid.Row="1" x:Name="ucBreadCrumb" />
 
-
         <StackPanel Grid.Row="2" VerticalAlignment="Center">
-            <TextBlock   Width="Auto"  FontSize="15" HorizontalAlignment="Center"><Run Text="Welcome "/><InlineUIContainer> 
-					<TextBlock Foreground="blue" Text="{Binding UserName}"/>
+            <TextBlock Width="Auto" FontSize="15" HorizontalAlignment="Center"><Run Text="Welcome "/><InlineUIContainer> 
+			<TextBlock Foreground="blue" Text="{Binding UserName}"/>
 				</InlineUIContainer><Run Text=" , What would you like to do?"/></TextBlock>
         </StackPanel>        
         <Grid Grid.Row="3" Width="auto">
-            <DataGrid  Style="{StaticResource DataGridStyle1}" x:Name="dtGrid" AutoGenerateColumns="False" IsReadOnly="True" GridLinesVisibility="None" HeadersVisibility="None" 
-                  Background="Transparent" BorderThickness="0" HorizontalAlignment="Center" VerticalAlignment="Top" MinWidth="768" MaxWidth="960" ColumnWidth="auto" Padding="15,0">
+            <DataGrid  Style="{StaticResource DataGridStyle1}" x:Name="dtGrid" MinWidth="768" MaxWidth="960" ColumnWidth="auto">
                 <DataGrid.Columns>
                     <DataGridTemplateColumn Header="ButtonsList" Width="1*">
                         <DataGridTemplateColumn.CellTemplate>
@@ -96,7 +96,6 @@
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
-                    <!--<DataGridTextColumn Header="Description" Binding="{Binding Description}" />-->
                     <DataGridTemplateColumn Header="Description" Width="2*">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
