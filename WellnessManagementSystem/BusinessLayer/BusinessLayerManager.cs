@@ -221,6 +221,45 @@ namespace BusinessLayer
             return true;
         }
 
+        public bool SavePhysicalConditionReportsForClient(List<int> deletedPhysicalConditionRecordIds,List<BOPhysicalConditionReport> physicalConditionReportList, int clientID, int userID)
+        {
+            try
+            {
+                List<PhysicalConditionReport> physicalConditionList = new List<PhysicalConditionReport>();
+                foreach (BOPhysicalConditionReport physicalConditionReport in physicalConditionReportList)
+                {
+                    PhysicalConditionReport physicalCondition = new PhysicalConditionReport();
+                    physicalCondition.PhysicalConditionReportID = physicalConditionReport.PhysicalConditionID;
+                    physicalCondition.TestDate = physicalConditionReport.TestDate;
+                    physicalCondition.MSKAssessmentImpressions = physicalConditionReport.MSKAssessment;
+                    physicalCondition.Advice = physicalConditionReport.Advice;
+                    physicalCondition.ReportFieldID = 1;
+                    physicalCondition.ReportFieldValue = "1";
+                    physicalConditionList.Add(physicalCondition);
+                }
+                DataLayer.DataLayerManager dataLayerObject = new DataLayer.DataLayerManager();
+                dataLayerObject.SavePhysicalConditionReportsForClient(deletedPhysicalConditionRecordIds,physicalConditionList, clientID, userID);
+                return true;
+            }
+            catch(Exception exception)
+            {
+                throw new Exception(exception.Message);
+            }
+        }
+
+        public int GetPhysicalConditioningReportsCount(int userID,int clientID,DateTime? fromDate,DateTime? toDate)
+        {
+            try
+            {
+                DataLayerManager dataLayer = new DataLayerManager();
+                int physicalConditioningReportCount = dataLayer.GetPhysicalConditioningReportsCount(userID, clientID, fromDate,toDate);
+                return physicalConditioningReportCount;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
         public List<BOPhysicalConditionReport> GetPhysicalConditioningReportsWithinDates(int userID, int clientID, int skip, int take, DateTime? fromDate, DateTime? toDate)
         {
             try

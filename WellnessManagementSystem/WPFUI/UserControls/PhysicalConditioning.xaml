@@ -3,14 +3,16 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:my="clr-namespace:PhysioApplication.GridPaging"
              mc:Ignorable="d"
              xmlns:editing="clr-namespace:Editing"
              d:DesignHeight="300" d:DesignWidth="800">
     <UserControl.Resources>
 
-        <Style x:Key="dataGridHeaderStyle" TargetType="{x:Type DataGridColumnHeader}">
+        <Style TargetType="{x:Type DataGridColumnHeader}">
             <Setter Property="Background" Value="#F79646"/>
             <Setter Property="HorizontalAlignment" Value="Stretch"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
             <Setter Property="Height" Value="30"/>
             <Setter Property="FontFamily" Value="Calibri"/>
             <Setter Property="FontSize" Value="12"/>
@@ -19,8 +21,25 @@
             <Setter Property="BorderBrush" Value="White"/>
             <Setter Property="BorderThickness" Value="1"/>
         </Style>
-        <Style x:Key="DataGridCellStyle" TargetType="DataGridCell">
+        
+        <Style TargetType="{x:Type DataGrid}">
+            <Setter Property="RowBackground" Value="#D9D9D9" />
+            <Setter Property="AlternatingRowBackground" Value="#F2F2F2" />
+        </Style>
+        <Style x:Key="RowHeaderStyle" TargetType="DataGridRowHeader">
+            <Setter Property="Background" Value="#F79646"/>
+            <Setter Property="HorizontalAlignment" Value="Stretch"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="Height" Value="30"/>
+            <Setter Property="FontFamily" Value="Calibri"/>
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Foreground" Value="White"/>
+        </Style>
+        <Style x:Key="DataGridCellStyle" TargetType="{x:Type DataGridCell}">
             <Setter Property="BorderBrush" Value="White"/>
+            <Setter Property="HorizontalAlignment" Value="Stretch"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
             <Setter Property="BorderThickness" Value="2"/>
             <Setter Property="Height" Value="30"/>
             <Setter Property="FontFamily" Value="Calibri"/>
@@ -38,6 +57,8 @@
             <RowDefinition Height=".2*"/>
             <RowDefinition Height=".1*"/>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="0.2*"/>
+            <RowDefinition Height="0.2*"/>
 
         </Grid.RowDefinitions>
 
@@ -64,18 +85,48 @@
         </DockPanel>
         <TextBlock Grid.Row="1" Margin="5,0,0,0" Text="View Conditioning Report(s)" FontFamily="Calibri(Body)" FontSize="18" FontWeight="Bold" ></TextBlock>
 
-        <DataGrid RowBackground="#D9D9D9" Name="physicalConditionGrid" AlternatingRowBackground="#F2F2F2" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="10,0"
-		           AutoGenerateColumns="False" MinRowHeight="26" Grid.Row="2" CellStyle="{StaticResource DataGridCellStyle}"  ColumnHeaderStyle="{StaticResource dataGridHeaderStyle}" GridLinesVisibility="None">
-           
-                <DataGrid.Columns>
-                <DataGridTextColumn Header="Test Date" Width="0.2*" Binding="{Binding TestDate}">
+        <DataGrid Name="physicalConditionGrid" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="10,0"
+		           AutoGenerateColumns="False" MinRowHeight="26" CellStyle="{StaticResource DataGridCellStyle}" Grid.Row="2" GridLinesVisibility="None" CanUserAddRows="False">
+
+            <!--<DataGrid.RowHeaderStyle>
+                <Style TargetType="DataGridRowHeader">
+                    <Setter Property="Content"
+              Value="{Binding TestDate}" />
+                    <Setter Property="Background" Value="#F79646"/>
+                    <Setter Property="HorizontalAlignment" Value="Center"/>
+                    <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                    <Setter Property="Height" Value="30"/>
+                    <Setter Property="FontFamily" Value="Calibri"/>
+                    <Setter Property="FontSize" Value="12"/>
+                    <Setter Property="FontWeight" Value="Bold"/>
+                    <Setter Property="Foreground" Value="White"/>
+                    <Setter Property="Width" Value="100"/>
+                </Style>
+            </DataGrid.RowHeaderStyle>-->
+            <DataGrid.Columns>
+
+                <DataGridTextColumn Header="Test Date" Width="0.2*" Binding="{Binding TestDate}" TextBlock.FontWeight="Bold" >
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="{x:Type TextBlock}">
+                            <Setter Property="Background" Value="#F79646"/>
+                            <Setter Property="HorizontalAlignment" Value="Stretch"/>
+
+                            <Setter Property="Height" Value="30"/>
+                            <Setter Property="FontFamily" Value="Calibri"/>
+                            <Setter Property="FontSize" Value="12"/>
+                            <Setter Property="FontWeight" Value="Bold"/>
+                            <Setter Property="Foreground" Value="White"/>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
                 </DataGridTextColumn>
+
+
                 <DataGridTextColumn Binding="{Binding MSKAssessment}"
 				                    Header="MSK Assessment" Width="0.4*" />
-                <DataGridTextColumn IsReadOnly="True" 
-				                    Binding="{Binding Advice}"
-				                    Header="Advice" Width="0.4*"/>
+                <DataGridTextColumn Binding="{Binding Advice}"
+				                    Header="Advice" Width="0.4*" IsReadOnly="False"/>
             </DataGrid.Columns>
         </DataGrid>
+        <my:GridPaging HorizontalAlignment="Center" x:Name="gridPaging" Grid.Row="3" />
     </Grid>
 </UserControl>
