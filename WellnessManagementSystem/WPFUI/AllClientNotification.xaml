@@ -16,7 +16,7 @@
             <RowDefinition Height="*" />
             <RowDefinition Height=".08*" />
         </Grid.RowDefinitions>
-        <userControl:FilterUC x:Name="ucFilterUC" OptionChanged ="uc_OptionChanged" Grid.Row="0" HorizontalAlignment="Stretch" Margin="0,0,40,0"></userControl:FilterUC>
+        <userControl:FilterUC x:Name="ucFilterUC" OptionChanged = "uc_OptionChanged" Grid.Row="0" HorizontalAlignment="Stretch" Margin="0,0,40,0"></userControl:FilterUC>
         <userControl:UCBreadCrumb Margin="20,0,0,0" Grid.Row="2" x:Name="ucBreadCrumb"></userControl:UCBreadCrumb>
 
         <StackPanel Grid.Row="3">
@@ -31,8 +31,12 @@
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
-                    <DataGridTextColumn IsReadOnly="True" Binding="{Binding ClientNotification}" Header="Notification" Width="*"/>
-                    <DataGridTextColumn IsReadOnly="True" Binding="{Binding ClientNotes}" Header="Last Notes" Width="*"/>
+                    <DataGridTextColumn IsReadOnly="True"
+				                    Binding="{Binding ClientNotification}"
+				                    Header="Notification" Width="*"/>
+                    <DataGridTextColumn IsReadOnly="True" 
+				                    Binding="{Binding ClientNotes}"
+				                    Header="Last Notes" Width="*"/>
                 </DataGrid.Columns>
             </DataGrid>
             <my:GridPaging Grid.Row="2" HorizontalAlignment="Center" x:Name="gridPaging" Margin="0,30"/>

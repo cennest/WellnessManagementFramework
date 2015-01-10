@@ -82,8 +82,7 @@
         <userControl:UCBreadCrumb Margin="20,0,0,0" Grid.Row="1" x:Name="ucBreadCrumb" />
 
         <StackPanel Grid.Row="2" VerticalAlignment="Center">
-            <TextBlock Width="Auto" FontSize="15" HorizontalAlignment="Center"><Run Text="Welcome "/>
-                <InlineUIContainer> 
+            <TextBlock Width="Auto" FontSize="15" HorizontalAlignment="Center"><Run Text="Welcome "/><InlineUIContainer> 
 			<TextBlock Foreground="blue" Text="{Binding UserName}"/>
 				</InlineUIContainer><Run Text=" , What would you like to do?"/></TextBlock>
         </StackPanel>        

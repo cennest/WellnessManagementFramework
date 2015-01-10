@@ -6,6 +6,15 @@
              mc:Ignorable="d" 
             >
     <UserControl.Resources>
+        
+        <Style x:Key="commonStyle" TargetType="{x:Type Control}">
+            <Setter Property="HorizontalAlignment" Value="Right"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center" />
+            <Setter Property="Height" Value="23" />
+            <Setter Property="Margin" Value="15,0,5,0" />
+        </Style>
+        
         <Style x:Key="acesStyle" TargetType="{x:Type TextBlock}" >
             <Setter Property="FontFamily" Value="Calibri" />
             <Setter Property="VerticalAlignment" Value="Center"/>
@@ -14,37 +23,33 @@
             <Setter Property="Padding" Value="5" />
         </Style>
 
-        <Style TargetType="{x:Type TextBox}" >
-            <Setter Property="HorizontalAlignment" Value="Right"/>
-            <Setter Property="VerticalAlignment" Value="Center"/>
+        <Style TargetType="{x:Type TextBox}" BasedOn="{StaticResource commonStyle}" >
             <Setter Property="Width" Value="100" />
-            <Setter Property="Height" Value="20" />
-            <Setter Property="Margin" Value="15,0,5,0" />
         </Style>
 
-        <Style TargetType="ComboBox">
-            <Setter Property="HorizontalAlignment" Value="Right"/>
+        <Style TargetType="ComboBox" BasedOn="{StaticResource commonStyle}">
             <Setter Property="Width" Value="100" />
             <Setter Property="FontSize" Value="10" />
-            <Setter Property="Height" Value="23" />
             <Setter Property="IsEditable" Value="False" />
-            <Setter Property="VerticalAlignment" Value="Center" />
-            <Setter Property="Margin" Value="15,0,5,0" />
         </Style>
         
         <Style x:Key="filterStyle"  TargetType="{x:Type TextBlock}" >
             <Setter Property="VerticalAlignment" Value="Center"/>
             <Setter Property="HorizontalAlignment" Value="Right"/>
-            <Setter Property="FontSize" Value="25" />
+            <Setter Property="FontSize" Value="14" />
             <Setter Property="FontWeight" Value="Normal" />
             <Setter Property="Width" Value="70" />
+        </Style>
+        
+        <Style TargetType="Button" BasedOn="{StaticResource commonStyle}">
+            <Setter Property="Width" Value="50" />
         </Style>
     </UserControl.Resources>
 
     <DockPanel HorizontalAlignment="Stretch">
-        <Button DockPanel.Dock="Right" Content="Search"  x:Name="Search" VerticalAlignment="Center" HorizontalAlignment="Right" Width="50" Height="20" Margin="15,0,5,0" Click="SearchButton_Click"/>
+        <Button DockPanel.Dock="Right" Content="Search" x:Name="Search" Click="SearchButton_Click"/>
         <TextBlock DockPanel.Dock="Left" Style="{StaticResource acesStyle}">ACES</TextBlock>
-        <TextBox DockPanel.Dock="Right" Text="Search by Name" x:Name="SearchTextBlock"/>
+        <TextBox DockPanel.Dock="Right" Text="Search by Name" x:Name="SearchTextBlock" />
         <ComboBox DockPanel.Dock="Right" ToolTip="Rows x Page" x:Name="ComboBoxPageFilter" SelectionChanged="FilterComboBoxSelectionChanged" />
         <TextBlock  DockPanel.Dock="Right" Style="{StaticResource filterStyle}" x:Name="FilterLabel" Text="Filter by" />
     </DockPanel>

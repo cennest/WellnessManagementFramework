@@ -7,7 +7,7 @@
              xmlns:editing="clr-namespace:Editing"
              d:DesignHeight="300" d:DesignWidth="800">
     <UserControl.Resources>
-
+        
         <Style TargetType="{x:Type Label}">
             <Setter Property="VerticalAlignment" Value="Center" />
             <Setter Property="FontFamily" Value="Calibri(body)" />
