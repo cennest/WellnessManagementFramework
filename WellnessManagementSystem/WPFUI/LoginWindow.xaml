@@ -14,6 +14,19 @@
 
         <SolidColorBrush x:Key="borderBrushColor" Color="#FFD28F"/>
 
+        <Style x:Key="textBlockStyle" TargetType="{x:Type TextBlock}" >
+            <Setter Property="FontFamily" Value="Calibri(Body)" />
+            <Setter Property="FontSize" Value="18" />
+            <Setter Property="Margin" Value="6,0,0,0" />
+            <Setter Property="FontStyle" Value="Italic" />
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="Opacity" Value="0.5" />
+            <Setter Property="Foreground" Value="Gray" />
+            <Setter Property="IsHitTestVisible" Value="False" />
+            <Setter Property="HorizontalAlignment" Value="Center" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+        </Style>
+        
         <Style x:Key="{x:Type PasswordBox}" TargetType="{x:Type PasswordBox}">
             <Setter Property="local:WaterMarkTextHelper.IsMonitoring" Value="True"/>
             <Setter Property="BorderThickness" Value="2"/>
