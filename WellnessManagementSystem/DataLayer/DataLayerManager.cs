@@ -10,14 +10,14 @@ namespace DataLayer
 {
     public class DataLayerManager
     {
-        public List<LabReport> GetLabReportsForClient(int clientID,int userID)
+        public List<LabReport> GetLabReportsForClient(int clientID, int userID)
         {
             try
             {
                 WellnessManagementFrameworkDBMLDataContext dataContext = new WellnessManagementFrameworkDBMLDataContext();
                 List<LabReport> listOfLabReports = (from labReport in dataContext.LabReports
                                                     where labReport.UserID == userID && labReport.ClientID == clientID
-                                                    select labReport).OrderByDescending(t=>t.TestDate).ToList();
+                                                    select labReport).OrderByDescending(t => t.TestDate).ToList();
 
                 return listOfLabReports;
             }
@@ -35,8 +35,8 @@ namespace DataLayer
                 WellnessManagementFrameworkDBMLDataContext dataContext = new WellnessManagementFrameworkDBMLDataContext();
                 List<LabReport> listOfLabReports = (from labReport in dataContext.LabReports
                                                     where labReport.UserID == userID && labReport.ClientID == clientID
-                                                    && labReport.TestDate>=fromDate && labReport.TestDate<=toDate
-                                                    select labReport).OrderByDescending(t=>t.TestDate).ToList() ;
+                                                    && labReport.TestDate >= fromDate && labReport.TestDate <= toDate
+                                                    select labReport).OrderByDescending(t => t.TestDate).ToList();
 
                 return listOfLabReports;
             }
@@ -65,11 +65,11 @@ namespace DataLayer
         {
             try
             {
-            WellnessManagementFrameworkDBMLDataContext dataContext = new WellnessManagementFrameworkDBMLDataContext();
-            User user = (from appUser in dataContext.Users
-                         where appUser.UserName.ToLower() == userName.ToLower() && appUser.Password == password
-                         select appUser).FirstOrDefault();
-            return user;
+                WellnessManagementFrameworkDBMLDataContext dataContext = new WellnessManagementFrameworkDBMLDataContext();
+                User user = (from appUser in dataContext.Users
+                             where appUser.UserName.ToLower() == userName.ToLower() && appUser.Password == password
+                             select appUser).FirstOrDefault();
+                return user;
             }
             catch (Exception exception)
             {
@@ -92,7 +92,7 @@ namespace DataLayer
             }
         }
 
-        public List<Client> GetClientsforCategories(int categoryID, int userID, int skip, int take)
+        public List<Client> GetClientsForCategories(int categoryID, int userID, int skip, int take)
         {
             try
             {
@@ -118,7 +118,7 @@ namespace DataLayer
             }
         }
 
-        public int GetCountOfClientsforCategories(int categoryID, int userID, int skip, int take)
+        public int GetCountOfClientsForCategories(int categoryID, int userID)
         {
             try
             {
@@ -127,14 +127,14 @@ namespace DataLayer
                 if (categoryID == Convert.ToInt32(Category.All))
                 {
                     countOfClients = (from client in dataContext.Clients
-                                     where client.UserID == userID
-                                     select client).Count();
+                                      where client.UserID == userID
+                                      select client).Count();
                 }
                 else
                 {
                     countOfClients = (from client in dataContext.Clients
-                                     where client.UserID == userID && client.CategoryID == categoryID
-                                     select client).Count();
+                                      where client.UserID == userID && client.CategoryID == categoryID
+                                      select client).Count();
                 }
                 return countOfClients;
             }
@@ -144,7 +144,7 @@ namespace DataLayer
             }
         }
 
-        public List<Client> GetClientsForCategoryByName(int categoryID,string searchString, int userID,int skip, int take)
+        public List<Client> GetClientsForCategoryByName(int categoryID, string searchString, int userID, int skip, int take)
         {
             try
             {
@@ -169,6 +169,33 @@ namespace DataLayer
                 throw new Exception(exception.Message);
             }
         }
+
+        public int GetCountOfClientsForCategoryByName(int categoryID, string searchString, int userID)
+        {
+            try
+            {
+                WellnessManagementFrameworkDBMLDataContext dataContext = new WellnessManagementFrameworkDBMLDataContext();
+                int countOfClients = 0;
+                if (categoryID == Convert.ToInt32(Category.All))
+                {
+                    countOfClients = (from client in dataContext.Clients
+                                      where client.UserID == userID && client.ClientName.ToLower().Contains(searchString.ToLower())
+                                      select client).Count();
+                }
+                else
+                {
+                    countOfClients = (from client in dataContext.Clients
+                                      where client.UserID == userID && client.CategoryID == categoryID && client.ClientName.ToLower().Contains(searchString.ToLower())
+                                      select client).Count();
+                }
+                return countOfClients;
+            }
+            catch (Exception exception)
+            {
+                throw new Exception(exception.Message);
+            }
+        }
+
         private List<DateTime> GetAllReportDatesForClient(int clientID)
         {
             WellnessManagementFrameworkDBMLDataContext dataContext = new WellnessManagementFrameworkDBMLDataContext();
@@ -179,7 +206,7 @@ namespace DataLayer
 
         }
 
-        public bool SaveLabReportsForClient(List<LabReport> labReports, int clientID,int userID)
+        public bool SaveLabReportsForClient(List<LabReport> labReports, int clientID, int userID)
         {
             WellnessManagementFrameworkDBMLDataContext dataContext = new WellnessManagementFrameworkDBMLDataContext();
 
@@ -219,5 +246,60 @@ namespace DataLayer
             return true;
         }
 
+        public List<PhysicalConditionReport> GetPhysicalConditioningReportsWithinDates(int userID, int clientID, int skip, int take, DateTime? fromDate, DateTime? toDate)
+        {
+            try
+            {
+                WellnessManagementFrameworkDBMLDataContext dataContext = new WellnessManagementFrameworkDBMLDataContext();
+                List<PhysicalConditionReport> listOfPhysicalConditioningReports = null;
+                if (fromDate == null || toDate == null)
+                {
+                    listOfPhysicalConditioningReports = (from physicalConditioningReport in dataContext.PhysicalConditionReports
+                                                         where physicalConditioningReport.UserID == userID && physicalConditioningReport.ClientID == clientID
+                                                         select physicalConditioningReport).Skip(skip).Take(take).ToList();
+                }
+                else
+                {
+                    listOfPhysicalConditioningReports = (from physicalConditioningReport in dataContext.PhysicalConditionReports
+                                                         where physicalConditioningReport.TestDate >= fromDate && physicalConditioningReport.TestDate <= toDate
+                                                         select physicalConditioningReport).Skip(skip).Take(take).ToList();
+                }
+                return listOfPhysicalConditioningReports.OrderByDescending(t => t.TestDate).ToList();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public List<PhysicalConditionReport> GetPhysicalConditioningReportsForCategoryByName(int userID, int clientID, int categoryID, string searchString, DateTime? fromDate, DateTime? toDate, int skip, int take)
+        {
+            try
+            {
+                WellnessManagementFrameworkDBMLDataContext dataContext = new WellnessManagementFrameworkDBMLDataContext();
+                List<PhysicalConditionReport> listOfPhysicalConditioningReports = null;
+                if (fromDate == null || toDate == null)
+                {
+                    listOfPhysicalConditioningReports = (from physicalConditioningReport in dataContext.PhysicalConditionReports
+                                                         where physicalConditioningReport.UserID == userID && physicalConditioningReport.Client.CategoryID == categoryID && physicalConditioningReport.Client.ClientName.ToLower() == searchString.ToLower()
+                                                         select physicalConditioningReport).Skip(skip).Take(take).ToList();
+                }
+                else
+                {
+                    listOfPhysicalConditioningReports = (from physicalConditioningReport in dataContext.PhysicalConditionReports
+                                                         where physicalConditioningReport.UserID == userID &&
+                                                         physicalConditioningReport.Client.CategoryID == categoryID &&
+                                                         physicalConditioningReport.Client.ClientName.ToLower() == searchString.ToLower() &&
+                                                         physicalConditioningReport.TestDate >= fromDate &&
+                                                         physicalConditioningReport.TestDate <= toDate
+                                                         select physicalConditioningReport).Skip(skip).Take(take).ToList();
+                }
+                return listOfPhysicalConditioningReports.OrderByDescending(t => t.TestDate).ToList();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
     }
 }
