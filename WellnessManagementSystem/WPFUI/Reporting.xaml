@@ -5,14 +5,29 @@
         xmlns:chartingToolkit="clr-namespace:System.Windows.Controls.DataVisualization.Charting;assembly=System.Windows.Controls.DataVisualization.Toolkit">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="4*"/>
-            <RowDefinition Height="166*"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
+        <TextBlock FontSize="25" Grid.Row="0" TextAlignment="Center"></TextBlock>
+        <DockPanel LastChildFill="False" Grid.Row="1" Margin="0">
+            <DatePicker DockPanel.Dock="Right" x:Name="ToDate" VerticalAlignment="Center" FontFamily="Calibri" FontSize="14" HorizontalAlignment="Left"/>
+            <Label DockPanel.Dock="Right" Content="to :" VerticalAlignment="Center" FontFamily="Calibri(body)" FontSize="14" HorizontalAlignment="Left" Margin="20,0,0,0"/>
+            <DatePicker DockPanel.Dock="Right" x:Name="FromDate" VerticalAlignment="Center" FontFamily="Calibri" FontSize="14" HorizontalAlignment="Left" Margin="0,6,0,5.333"/>
+            <Label DockPanel.Dock="Right" Content="Show Reports from :" VerticalAlignment="Center" FontFamily="Calibri(Body)" FontSize="14" HorizontalAlignment="Left" Margin="50,0,0,0"/>
 
-        <ComboBox x:Name="ComboBoxForCategory" Grid.Row="1" SelectionChanged="FilterComboBoxForCategorySelectionChanged" Margin="498,10,208,514"  />
-        <ComboBox x:Name="ComboBoxForReport" Grid.Row="1" SelectionChanged="FilterComboBoxForTestsSelectionChanged" Margin="195,10,505,514"/>
+            <ComboBox DockPanel.Dock="Right" ToolTip="Test" x:Name="ComboBoxForTest" Height="25" Width="120" Margin="0"/>
+            <Label DockPanel.Dock="Right" FontSize="16" Content="Test :" Height="30" Width="50" />
+        </DockPanel>
+        <DockPanel LastChildFill="False"  Grid.Row="2">
+            <ComboBox DockPanel.Dock="Right" ToolTip="Category" x:Name="ComboBoxForCategory" Height="25" Width="120" Margin="10,0,0,0" />
+            <Label DockPanel.Dock="Right"  FontSize="16" Content="Category :" Height="30" Width="99" Margin="20,0,0,0" />
+            <ComboBox DockPanel.Dock="Right" ToolTip="Report Type" x:Name="ComboBoxForReport" Height="25" Width="120" Margin="20,0,0,0"/>
+            <Label DockPanel.Dock="Right"  FontSize="16" Content="Client :" Height="30" Width="69"  Margin="10,0,0,0" />
+        </DockPanel>
 
-        <chartingToolkit:Chart  Name="lineChart" Title="Line Series Demo" VerticalAlignment="Top" Height="226" MouseDoubleClick="Chart_MouseLeftButtonDown" Grid.Row="1" Margin="0,111,0,0">
+        <chartingToolkit:Chart Grid.Row="3" Name="lineChart" VerticalAlignment="Top" Height="400" MouseDoubleClick="Chart_MouseLeftButtonDown" Margin="0,70,0,0">
             <chartingToolkit:LineSeries Name="firstSeries"  DependentValuePath="Value" IndependentValuePath="Key" ItemsSource="{Binding}" IsSelectionEnabled="True">
             </chartingToolkit:LineSeries>
             <chartingToolkit:LineSeries Name="secondSeries" DependentValuePath="Value" IndependentValuePath="Key" ItemsSource="{Binding}" IsSelectionEnabled="True" Visibility="Hidden">
