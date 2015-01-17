@@ -8,6 +8,9 @@
          WindowStyle="SingleBorderWindow"
         Title="All Athletes"  WindowState="Maximized"
         WindowStartupLocation="CenterScreen">
+    <Window.Resources>
+        <ResourceDictionary Source="/Resources/DataGridStyle.xaml" />
+    </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height=".2*" />
@@ -27,7 +30,18 @@
                     <DataGridTemplateColumn  Header="Name" Width="*">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <TextBlock TextAlignment="Center" Tag="{Binding ClientID}" Text="{Binding ClientName}" MouseDown="TextBlock_MouseDown"/>
+                                <TextBlock TextAlignment="Center" Tag="{Binding ClientID}" Text="{Binding ClientName}" MouseDown="TextBlock_MouseDown">
+                                    <TextBlock.Style>
+                                        <Style TargetType="TextBlock">
+                                            <Style.Triggers>
+                                                <Trigger Property="IsMouseOver" Value="True">
+                                                    <Setter Property="Foreground" Value="#23527c"/>
+                                                    <Setter Property="TextDecorations" Value="Underline" />
+                                                </Trigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </TextBlock.Style>
+                                </TextBlock>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>

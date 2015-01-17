@@ -70,8 +70,8 @@ namespace DatabaseEntities.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=192.168.0.10;Initial Catalog=WellnessManagementFrameworkDB;User ID=ce" +
-            "nnest;Password=cennest")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=192.168.0.10;Initial Catalog=WellnessManagementFrameworkDB;Persist Se" +
+            "curity Info=True;User ID=cennest;Password=cennest")]
         public string WellnessManagementFrameworkDBConnectionString4 {
             get {
                 return ((string)(this["WellnessManagementFrameworkDBConnectionString4"]));
@@ -81,8 +81,19 @@ namespace DatabaseEntities.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=192.168.0.18;Initial Catalog=WellnessManagementFrameworkDB;User ID=ce" +
-            "nnest;Password=cennest")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=192.168.0.9;Initial Catalog=WellnessManagementFrameworkDB1;Persist Se" +
+            "curity Info=True;User ID=cennest;Password=cennest")]
+        public string WellnessManagementFrameworkDB1ConnectionString {
+            get {
+                return ((string)(this["WellnessManagementFrameworkDB1ConnectionString"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=192.168.0.9;Initial Catalog=WellnessManagementFrameworkDB;Persist Sec" +
+            "urity Info=True;User ID=cennest;Password=cennest")]
         public string WellnessManagementFrameworkDBConnectionString5 {
             get {
                 return ((string)(this["WellnessManagementFrameworkDBConnectionString5"]));

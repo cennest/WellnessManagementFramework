@@ -32,9 +32,13 @@
             <TabItem Header="Lab Reports">
                 <userControl:LabReportUC/>
             </TabItem>
-            <TabItem Header="Diet Plan" Content="Coming Soon!"/>
-            <TabItem Header="Phy Conditioning" Content="Coming Soon!"/>
-            <TabItem Header="Notes" Content="Coming Soon!"/>
+            <TabItem Background="#FFA620" Header="Diet Plan" Width="150">
+                <userControl:DietPlan/>
+            </TabItem>
+            <TabItem Background="#FFA620" Header="Phy Conditioning" Width="150">
+                <userControl:PhysicalConditioning/>
+            </TabItem>
+            <TabItem  Background="#FFA620" Header="Notes" Width="150" Content="Coming Soon!"/>
         </TabControl>
         <userControl:Footer Grid.Row="4"/>
     </Grid>

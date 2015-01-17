@@ -246,30 +246,131 @@ namespace DataLayer
             return true;
         }
 
+        public bool SavePhysicalConditionReportsForClient(List<int> deletedPhysicalConditionList, List<PhysicalConditionReport> currentPhysicalConditionList, int clientID, int userID)
+        {
+            try
+            {
+                WellnessManagementFrameworkDBMLDataContext dataContext = new WellnessManagementFrameworkDBMLDataContext();
+
+                foreach (PhysicalConditionReport physicalConditionReport in currentPhysicalConditionList)
+                {
+                    PhysicalConditionReport existingReport = (from dbRecord in dataContext.PhysicalConditionReports
+                                                              where dbRecord.PhysicalConditionReportID == physicalConditionReport.PhysicalConditionReportID
+                                                              select dbRecord).FirstOrDefault();
+                    if (existingReport != null)
+                    {
+                        existingReport.TestDate = physicalConditionReport.TestDate;
+                        existingReport.MSKAssessmentImpressions = physicalConditionReport.MSKAssessmentImpressions;
+                        existingReport.Advice = physicalConditionReport.Advice;
+                    }
+                    else
+                    {
+                        physicalConditionReport.UserID = userID;
+                        physicalConditionReport.ClientID = clientID;
+                        dataContext.PhysicalConditionReports.InsertOnSubmit(physicalConditionReport);
+                    }
+                    dataContext.SubmitChanges();
+                }
+
+                //deletion
+                List<PhysicalConditionReport> physicalConditionReportlistToBeDeleted = new List<PhysicalConditionReport>();
+                foreach (int physicalConditionID in deletedPhysicalConditionList)
+                {
+                    PhysicalConditionReport physicalConditionReport = (from physicalConditionReportObj in dataContext.PhysicalConditionReports
+                                                                       where physicalConditionReportObj.PhysicalConditionReportID == physicalConditionID
+                                                                       select physicalConditionReportObj).FirstOrDefault();
+                    if (physicalConditionReport != null)
+                    {
+                        physicalConditionReportlistToBeDeleted.Add(physicalConditionReport);
+                    }
+                }
+                if (physicalConditionReportlistToBeDeleted.Count > 0)
+                {
+                    dataContext.PhysicalConditionReports.DeleteAllOnSubmit(physicalConditionReportlistToBeDeleted);
+                    dataContext.SubmitChanges();
+                }
+
+                return true;
+            }
+            catch(Exception exception)
+            {
+                throw new Exception(exception.Message);
+
+            }
+
+        }
+
         public List<PhysicalConditionReport> GetPhysicalConditioningReportsWithinDates(int userID, int clientID, int skip, int take, DateTime? fromDate, DateTime? toDate)
         {
             try
             {
                 WellnessManagementFrameworkDBMLDataContext dataContext = new WellnessManagementFrameworkDBMLDataContext();
                 List<PhysicalConditionReport> listOfPhysicalConditioningReports = null;
-                if (fromDate == null || toDate == null)
+                if (fromDate != null && toDate == null)
                 {
                     listOfPhysicalConditioningReports = (from physicalConditioningReport in dataContext.PhysicalConditionReports
-                                                         where physicalConditioningReport.UserID == userID && physicalConditioningReport.ClientID == clientID
+                                                         where physicalConditioningReport.UserID == userID && physicalConditioningReport.ClientID == clientID && physicalConditioningReport.TestDate >= fromDate && physicalConditioningReport.TestDate <= DateTime.Now.Date 
+                                                         orderby physicalConditioningReport.TestDate descending
+                                                         select physicalConditioningReport).Skip(skip).Take(take).ToList();
+                }
+                else if (fromDate == null && toDate != null)
+                {
+                    listOfPhysicalConditioningReports = (from physicalConditioningReport in dataContext.PhysicalConditionReports
+                                                         where physicalConditioningReport.UserID == userID && physicalConditioningReport.ClientID == clientID && physicalConditioningReport.TestDate <= DateTime.Now.Date
+                                                         orderby physicalConditioningReport.TestDate descending
+                                                         select physicalConditioningReport).Skip(skip).Take(take).ToList();
+                }
+                else if (fromDate != null && toDate != null)
+                {
+                    listOfPhysicalConditioningReports = (from physicalConditioningReport in dataContext.PhysicalConditionReports
+                                                         where physicalConditioningReport.UserID == userID && physicalConditioningReport.ClientID == clientID && physicalConditioningReport.TestDate >= fromDate && physicalConditioningReport.TestDate <= toDate
+                                                         orderby physicalConditioningReport.TestDate descending
                                                          select physicalConditioningReport).Skip(skip).Take(take).ToList();
                 }
                 else
                 {
                     listOfPhysicalConditioningReports = (from physicalConditioningReport in dataContext.PhysicalConditionReports
-                                                         where physicalConditioningReport.TestDate >= fromDate && physicalConditioningReport.TestDate <= toDate
+                                                         where physicalConditioningReport.UserID == userID && physicalConditioningReport.ClientID == clientID
+                                                         orderby physicalConditioningReport.TestDate descending
                                                          select physicalConditioningReport).Skip(skip).Take(take).ToList();
-                }
-                return listOfPhysicalConditioningReports.OrderByDescending(t => t.TestDate).ToList();
+                } 
+                return listOfPhysicalConditioningReports;
             }
             catch (Exception ex)
             {
                 throw new Exception(ex.Message);
             }
+        }
+
+        public int GetPhysicalConditioningReportsCount(int userID, int clientID, DateTime? fromDate, DateTime? toDate)
+        {
+            WellnessManagementFrameworkDBMLDataContext dataContext = new WellnessManagementFrameworkDBMLDataContext();
+            int count = 0;
+            if (fromDate != null && toDate == null)
+            {
+                count = (from physicalConditioningReport in dataContext.PhysicalConditionReports
+                         where physicalConditioningReport.UserID == userID && physicalConditioningReport.ClientID == clientID && physicalConditioningReport.TestDate >= fromDate && physicalConditioningReport.TestDate <= DateTime.Now.Date
+                         select physicalConditioningReport).Count();
+            }
+            else if (fromDate == null && toDate != null)
+            {
+                count = (from physicalConditioningReport in dataContext.PhysicalConditionReports
+                         where physicalConditioningReport.UserID == userID && physicalConditioningReport.ClientID == clientID && physicalConditioningReport.TestDate <= DateTime.Now.Date
+                         select physicalConditioningReport).Count();
+            }
+            else if (fromDate != null && toDate != null)
+            {
+                count = (from physicalConditioningReport in dataContext.PhysicalConditionReports
+                         where physicalConditioningReport.UserID == userID && physicalConditioningReport.ClientID == clientID && physicalConditioningReport.TestDate >= fromDate && physicalConditioningReport.TestDate <= toDate
+                         select physicalConditioningReport).Count();
+            }
+            else 
+            {
+                count = (from physicalConditioningReport in dataContext.PhysicalConditionReports
+                         where physicalConditioningReport.UserID == userID && physicalConditioningReport.ClientID == clientID
+                         select physicalConditioningReport).Count();
+            }
+            return count;
         }
 
         public List<PhysicalConditionReport> GetPhysicalConditioningReportsForCategoryByName(int userID, int clientID, int categoryID, string searchString, DateTime? fromDate, DateTime? toDate, int skip, int take)
@@ -282,6 +383,7 @@ namespace DataLayer
                 {
                     listOfPhysicalConditioningReports = (from physicalConditioningReport in dataContext.PhysicalConditionReports
                                                          where physicalConditioningReport.UserID == userID && physicalConditioningReport.Client.CategoryID == categoryID && physicalConditioningReport.Client.ClientName.ToLower() == searchString.ToLower()
+                                                         orderby physicalConditioningReport.TestDate descending
                                                          select physicalConditioningReport).Skip(skip).Take(take).ToList();
                 }
                 else
@@ -292,9 +394,10 @@ namespace DataLayer
                                                          physicalConditioningReport.Client.ClientName.ToLower() == searchString.ToLower() &&
                                                          physicalConditioningReport.TestDate >= fromDate &&
                                                          physicalConditioningReport.TestDate <= toDate
+                                                         orderby physicalConditioningReport.TestDate descending
                                                          select physicalConditioningReport).Skip(skip).Take(take).ToList();
                 }
-                return listOfPhysicalConditioningReports.OrderByDescending(t => t.TestDate).ToList();
+                return listOfPhysicalConditioningReports;
             }
             catch (Exception ex)
             {

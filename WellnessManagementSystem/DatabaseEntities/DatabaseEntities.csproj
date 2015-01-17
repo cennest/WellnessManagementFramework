@@ -70,6 +70,7 @@
   <ItemGroup>
     <None Include="WellnessManagementFrameworkDBML.dbml.layout">
       <DependentUpon>WellnessManagementFrameworkDBML.dbml</DependentUpon>
+      <SubType>Designer</SubType>
     </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
