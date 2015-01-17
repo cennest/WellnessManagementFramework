@@ -41,6 +41,56 @@ namespace BusinessLayer
                 throw (exception);
             }
         }
+
+        public List<BOLabReport> GetLabReportsForClientID(int clientID,int userID, int reportID)
+        {
+            try
+            {
+                DataLayerManager dataLayer = new DataLayerManager();
+                List<LabReport> reports = dataLayer.GetLabReportsForClientID(clientID, userID, reportID);
+                List<BOLabReport> labReports = (from report in reports
+                                                select new BOLabReport
+                                                {
+                                                    LabReportID = report.LabReportID,
+                                                    ReportFieldName = report.ReportFieldMaster.ReportFieldName,
+                                                    ReportFieldValue = report.ReportFieldValue,
+                                                    ReportFieldID = report.ReportFieldID,
+                                                    TestDate = report.TestDate,
+                                                    Remark1 = report.Remark1,
+                                                    Remark2 = report.Remark2
+                                                }).ToList();
+                return labReports;
+            }
+            catch (Exception exception)
+            {
+                throw (exception);
+            }
+        }
+
+        public Hashtable GetLabReportsForCategory(int categoryID, int userID, int reportID)
+        {
+            try
+            {
+                DataLayerManager dataLayer = new DataLayerManager();
+                List<int> clientList = dataLayer.GetClientsForCategoryID(categoryID, userID);
+                Hashtable listOfReportForCategoryHasTable = new Hashtable();
+                if (clientList.Count > 0)
+                {
+                    foreach (int clientID in clientList)
+                    {
+                        List<BOLabReport> labReports = this.GetLabReportsForClientID(clientID, userID, reportID);
+                        listOfReportForCategoryHasTable.Remove(clientID);
+                        listOfReportForCategoryHasTable.Add(clientID, labReports);
+                    }
+                }
+                return listOfReportForCategoryHasTable;
+            }
+            catch (Exception exception)
+            {
+                throw (exception);
+            }
+        }
+
         public Dictionary<string, List<BOUserField>> GetReportFieldsForUser(int userID)
         {
             DataLayerManager dataLayer = new DataLayerManager();
@@ -111,6 +161,32 @@ namespace BusinessLayer
                     }
                 }
                 return Categories;
+            }
+            catch (Exception exception)
+            {
+                throw new Exception(exception.Message);
+            }
+        }
+
+        public List<BOReportFieldMaster> GetAllReports()
+        {
+            try
+            {
+                DataLayerManager datalayer = new DataLayerManager();
+                List<ReportFieldMaster> listOfReports = datalayer.GetAllTests();
+                List<BOReportFieldMaster> reports = new List<BOReportFieldMaster>();
+                if (listOfReports.Count > 0)
+                {
+                    foreach (ReportFieldMaster report in listOfReports)
+                    {
+                        BOReportFieldMaster reportObject = new BOReportFieldMaster();
+                        reportObject.ReportFieldID = report.ReportFieldID;
+                        reportObject.ReportFieldName = report.ReportFieldName;
+                        reportObject.ReportTypeID = report.ReportTypeID;
+                        reports.Add(reportObject);
+                    }
+                }
+                return reports;
             }
             catch (Exception exception)
             {

@@ -1,0 +1,19 @@
+﻿<Window x:Class="PhysioApplication.GraphReport"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:DV="clr-namespace:System.Windows.Controls.DataVisualization;assembly=System.Windows.Controls.DataVisualization.Toolkit"
+        xmlns:DVC="clr-namespace:System.Windows.Controls.DataVisualization.Charting;assembly=System.Windows.Controls.DataVisualization.Toolkit"
+        Title="GraphReport" Height="600" Width="500">
+    <Grid>
+        <ComboBox x:Name="ComboBoxForCategory" SelectionChanged="FilterComboBoxForCategorySelectionChanged" Width="150" Height="30" Margin="71,77,271,462" />
+        <ComboBox x:Name="ComboBoxForReport" SelectionChanged="FilterComboBoxForTestsSelectionChanged" Width="150" Height="30" Margin="321,77,21,462"/>
+        <!-- Line Chart -->
+      <DVC:Chart Canvas.Top="80" Canvas.Left="10" Name="mcChart" Width="400" Height="250" Background="LightSteelBlue" Margin="50,200,0,0">
+        <DVC:Chart.Series>
+           <DVC:LineSeries Title="Calcium" IndependentValueBinding="{Binding Path=Key}"
+    		DependentValueBinding="{Binding Path=Value}">
+           </DVC:LineSeries>
+       </DVC:Chart.Series>
+     </DVC:Chart>
+    </Grid>
+</Window>
