@@ -90,6 +90,10 @@ namespace PhysioApplication
             try
             {
                 List<BOClient> clientList = this.GetClientList(CategoryID, skip, take, finalRow);
+                if (clientList == null)
+                {
+                    clientList = new List<BOClient>();
+                }
                 this.ClientDataGrid.ItemsSource = clientList;
                 int totalRow = this.GetTotalNumberOfRows(CategoryID);
                 return totalRow;

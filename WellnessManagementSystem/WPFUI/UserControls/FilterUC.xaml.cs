@@ -41,17 +41,33 @@ namespace PhysioApplication.UserControls
 
         private void FilterComboBoxSelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
         {
-            if (this.OptionChanged != null)
-            {
-                this.OptionChanged(false,"");
-            }
+            this.SearchTextBlock.Text = "";
+            bool isSearchByName = false;
+            this.SearchData(isSearchByName, "");
         }
 
         private void SearchButton_Click(object sender, RoutedEventArgs e)
         {
+            bool isSearchByName = true;
+            string name = this.SearchTextBlock.Text;
+            this.SearchData(isSearchByName, name);
+        }
+
+        private void Search_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Return)
+            {
+                bool isSearchByName = true;
+                string name = this.SearchTextBlock.Text;
+                this.SearchData(isSearchByName, name);
+            }
+        }
+
+        private void SearchData(bool isSearchByName, string name)
+        {
             if (this.OptionChanged != null)
             {
-                this.OptionChanged(true,this.SearchTextBlock.Text);
+                this.OptionChanged(isSearchByName, name);
             }
         }
     }

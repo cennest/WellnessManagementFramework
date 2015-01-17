@@ -49,7 +49,30 @@
     <DockPanel HorizontalAlignment="Stretch">
         <Button DockPanel.Dock="Right" Content="Search" x:Name="Search" Click="SearchButton_Click"/>
         <TextBlock DockPanel.Dock="Left" Style="{StaticResource acesStyle}">ACES</TextBlock>
-        <TextBox DockPanel.Dock="Right" Text="Search by Name" x:Name="SearchTextBlock" />
+        <TextBox DockPanel.Dock="Right" Height="22" Width="100" x:Name="SearchTextBlock" KeyDown="Search_KeyDown">
+            <TextBox.Style>
+                <Style TargetType="TextBox" xmlns:sys="clr-namespace:System;assembly=mscorlib">
+                    <Style.Resources>
+                        <VisualBrush x:Key="CueBannerBrush" AlignmentX="Left" AlignmentY="Center" Stretch="None">
+                            <VisualBrush.Visual>
+                                <Label Content="Search by Name" Foreground="LightGray" />
+                            </VisualBrush.Visual>
+                        </VisualBrush>
+                    </Style.Resources>
+                    <Style.Triggers>
+                        <Trigger Property="Text" Value="{x:Static sys:String.Empty}">
+                            <Setter Property="Background" Value="{StaticResource CueBannerBrush}" />
+                        </Trigger>
+                        <Trigger Property="Text" Value="{x:Null}">
+                            <Setter Property="Background" Value="{StaticResource CueBannerBrush}" />
+                        </Trigger>
+                        <Trigger Property="IsKeyboardFocused" Value="True">
+                            <Setter Property="Background" Value="White" />
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </TextBox.Style>
+        </TextBox>
         <ComboBox DockPanel.Dock="Right" ToolTip="Rows x Page" x:Name="ComboBoxPageFilter" SelectionChanged="FilterComboBoxSelectionChanged" />
         <TextBlock  DockPanel.Dock="Right" Style="{StaticResource filterStyle}" x:Name="FilterLabel" Text="Filter by" />
     </DockPanel>
