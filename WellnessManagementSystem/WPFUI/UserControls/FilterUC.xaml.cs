@@ -43,8 +43,7 @@ namespace PhysioApplication.UserControls
         {
             this.SearchTextBlock.Text = "";
             bool isSearchByName = false;
-            string name = "";
-            this.SearchData(isSearchByName, name);
+            this.SearchData(isSearchByName, "");
         }
 
         private void SearchButton_Click(object sender, RoutedEventArgs e)
