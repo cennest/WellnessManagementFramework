@@ -233,8 +233,6 @@ namespace BusinessLayer
                     physicalCondition.TestDate = physicalConditionReport.TestDate;
                     physicalCondition.MSKAssessmentImpressions = physicalConditionReport.MSKAssessment;
                     physicalCondition.Advice = physicalConditionReport.Advice;
-                    physicalCondition.ReportFieldID = 1;
-                    physicalCondition.ReportFieldValue = "1";
                     physicalConditionList.Add(physicalCondition);
                 }
                 DataLayer.DataLayerManager dataLayerObject = new DataLayer.DataLayerManager();

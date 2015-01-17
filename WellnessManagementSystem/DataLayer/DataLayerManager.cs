@@ -262,9 +262,6 @@ namespace DataLayer
                         existingReport.TestDate = physicalConditionReport.TestDate;
                         existingReport.MSKAssessmentImpressions = physicalConditionReport.MSKAssessmentImpressions;
                         existingReport.Advice = physicalConditionReport.Advice;
-                        existingReport.ReportFieldID = physicalConditionReport.ReportFieldID;
-                        existingReport.ReportFieldValue = physicalConditionReport.ReportFieldValue;
-
                     }
                     else
                     {

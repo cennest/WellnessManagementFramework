@@ -6,6 +6,16 @@
              mc:Ignorable="d" 
              >
     <Grid Background="#FFE2B7">
-        <TextBlock Margin="10,0,0,0" FontFamily="Calibri(Body)" FontSize="18" VerticalAlignment="Center" Height="Auto" HorizontalAlignment="Stretch">Powered By Cennest Technologies</TextBlock>
+        <Grid.Resources>
+            <Style TargetType="TextBlock">
+                <Setter Property="FontFamily" Value="Calibri(Body)" />
+                <Setter Property="Margin" Value="10,0,0,0" />
+                <Setter Property="FontSize" Value="18" />
+                <Setter Property="VerticalAlignment" Value="Center" />
+                <Setter Property="Height" Value="Auto" />
+                <Setter Property="HorizontalAlignment" Value="Stretch" />
+            </Style>
+        </Grid.Resources>
+        <TextBlock >Powered By Cennest Technologies</TextBlock>
     </Grid>
 </UserControl>

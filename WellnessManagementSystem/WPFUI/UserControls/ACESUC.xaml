@@ -6,8 +6,17 @@
              mc:Ignorable="d"
             >
     <Grid>
+        <Grid.Resources>
+            <Style TargetType="{x:Type TextBlock}" >
+                <Setter Property="FontFamily" Value="Calibri(Body)" />
+                <Setter Property="FontSize" Value="40" />
+                <Setter Property="FontWeight" Value="Bold" />
+                <Setter Property="Padding" Value="5" />
+            </Style>
+        </Grid.Resources>
+        
         <DockPanel HorizontalAlignment="Stretch">
-            <TextBlock Padding="5" DockPanel.Dock="Left" FontFamily="Calibri(Body)" FontSize="40" FontWeight="Bold">ACES</TextBlock>
+            <TextBlock DockPanel.Dock="Left">ACES</TextBlock>
             <Image DockPanel.Dock="Right" Source="..\Images\OGQ.png" HorizontalAlignment="Right"></Image>
         </DockPanel>
     </Grid>

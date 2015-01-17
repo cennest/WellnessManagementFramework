@@ -66,7 +66,7 @@ namespace DatabaseEntities
     #endregion
 		
 		public WellnessManagementFrameworkDBMLDataContext() : 
-				base(global::DatabaseEntities.Properties.Settings.Default.WellnessManagementFrameworkDBConnectionString4, mappingSource)
+				base(global::DatabaseEntities.Properties.Settings.Default.WellnessManagementFrameworkDBConnectionString5, mappingSource)
 		{
 			OnCreated();
 		}
@@ -848,10 +848,6 @@ namespace DatabaseEntities
 		
 		private System.DateTime _TestDate;
 		
-		private int _ReportFieldID;
-		
-		private string _ReportFieldValue;
-		
 		private int _ClientID;
 		
 		private int _UserID;
@@ -859,8 +855,6 @@ namespace DatabaseEntities
 		private string _Suggestions;
 		
 		private EntityRef<Client> _Client;
-		
-		private EntityRef<ReportFieldMaster> _ReportFieldMaster;
 		
 		private EntityRef<User> _User;
 		
@@ -872,10 +866,6 @@ namespace DatabaseEntities
     partial void OnDietPlanReportIDChanged();
     partial void OnTestDateChanging(System.DateTime value);
     partial void OnTestDateChanged();
-    partial void OnReportFieldIDChanging(int value);
-    partial void OnReportFieldIDChanged();
-    partial void OnReportFieldValueChanging(string value);
-    partial void OnReportFieldValueChanged();
     partial void OnClientIDChanging(int value);
     partial void OnClientIDChanged();
     partial void OnUserIDChanging(int value);
@@ -887,7 +877,6 @@ namespace DatabaseEntities
 		public DietPlanReport()
 		{
 			this._Client = default(EntityRef<Client>);
-			this._ReportFieldMaster = default(EntityRef<ReportFieldMaster>);
 			this._User = default(EntityRef<User>);
 			OnCreated();
 		}
@@ -928,50 +917,6 @@ namespace DatabaseEntities
 					this._TestDate = value;
 					this.SendPropertyChanged("TestDate");
 					this.OnTestDateChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ReportFieldID", DbType="Int NOT NULL")]
-		public int ReportFieldID
-		{
-			get
-			{
-				return this._ReportFieldID;
-			}
-			set
-			{
-				if ((this._ReportFieldID != value))
-				{
-					if (this._ReportFieldMaster.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnReportFieldIDChanging(value);
-					this.SendPropertyChanging();
-					this._ReportFieldID = value;
-					this.SendPropertyChanged("ReportFieldID");
-					this.OnReportFieldIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ReportFieldValue", DbType="NVarChar(MAX) NOT NULL", CanBeNull=false)]
-		public string ReportFieldValue
-		{
-			get
-			{
-				return this._ReportFieldValue;
-			}
-			set
-			{
-				if ((this._ReportFieldValue != value))
-				{
-					this.OnReportFieldValueChanging(value);
-					this.SendPropertyChanging();
-					this._ReportFieldValue = value;
-					this.SendPropertyChanged("ReportFieldValue");
-					this.OnReportFieldValueChanged();
 				}
 			}
 		}
@@ -1074,40 +1019,6 @@ namespace DatabaseEntities
 						this._ClientID = default(int);
 					}
 					this.SendPropertyChanged("Client");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ReportFieldMaster_DietPlanReport", Storage="_ReportFieldMaster", ThisKey="ReportFieldID", OtherKey="ReportFieldID", IsForeignKey=true)]
-		public ReportFieldMaster ReportFieldMaster
-		{
-			get
-			{
-				return this._ReportFieldMaster.Entity;
-			}
-			set
-			{
-				ReportFieldMaster previousValue = this._ReportFieldMaster.Entity;
-				if (((previousValue != value) 
-							|| (this._ReportFieldMaster.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._ReportFieldMaster.Entity = null;
-						previousValue.DietPlanReports.Remove(this);
-					}
-					this._ReportFieldMaster.Entity = value;
-					if ((value != null))
-					{
-						value.DietPlanReports.Add(this);
-						this._ReportFieldID = value.ReportFieldID;
-					}
-					else
-					{
-						this._ReportFieldID = default(int);
-					}
-					this.SendPropertyChanged("ReportFieldMaster");
 				}
 			}
 		}
@@ -1864,10 +1775,6 @@ namespace DatabaseEntities
 		
 		private System.DateTime _TestDate;
 		
-		private int _ReportFieldID;
-		
-		private string _ReportFieldValue;
-		
 		private int _ClientID;
 		
 		private int _UserID;
@@ -1877,8 +1784,6 @@ namespace DatabaseEntities
 		private string _Advice;
 		
 		private EntityRef<Client> _Client;
-		
-		private EntityRef<ReportFieldMaster> _ReportFieldMaster;
 		
 		private EntityRef<User> _User;
 		
@@ -1890,10 +1795,6 @@ namespace DatabaseEntities
     partial void OnPhysicalConditionReportIDChanged();
     partial void OnTestDateChanging(System.DateTime value);
     partial void OnTestDateChanged();
-    partial void OnReportFieldIDChanging(int value);
-    partial void OnReportFieldIDChanged();
-    partial void OnReportFieldValueChanging(string value);
-    partial void OnReportFieldValueChanged();
     partial void OnClientIDChanging(int value);
     partial void OnClientIDChanged();
     partial void OnUserIDChanging(int value);
@@ -1907,7 +1808,6 @@ namespace DatabaseEntities
 		public PhysicalConditionReport()
 		{
 			this._Client = default(EntityRef<Client>);
-			this._ReportFieldMaster = default(EntityRef<ReportFieldMaster>);
 			this._User = default(EntityRef<User>);
 			OnCreated();
 		}
@@ -1948,50 +1848,6 @@ namespace DatabaseEntities
 					this._TestDate = value;
 					this.SendPropertyChanged("TestDate");
 					this.OnTestDateChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ReportFieldID", DbType="Int NOT NULL")]
-		public int ReportFieldID
-		{
-			get
-			{
-				return this._ReportFieldID;
-			}
-			set
-			{
-				if ((this._ReportFieldID != value))
-				{
-					if (this._ReportFieldMaster.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnReportFieldIDChanging(value);
-					this.SendPropertyChanging();
-					this._ReportFieldID = value;
-					this.SendPropertyChanged("ReportFieldID");
-					this.OnReportFieldIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ReportFieldValue", DbType="NVarChar(MAX) NOT NULL", CanBeNull=false)]
-		public string ReportFieldValue
-		{
-			get
-			{
-				return this._ReportFieldValue;
-			}
-			set
-			{
-				if ((this._ReportFieldValue != value))
-				{
-					this.OnReportFieldValueChanging(value);
-					this.SendPropertyChanging();
-					this._ReportFieldValue = value;
-					this.SendPropertyChanged("ReportFieldValue");
-					this.OnReportFieldValueChanged();
 				}
 			}
 		}
@@ -2118,40 +1974,6 @@ namespace DatabaseEntities
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ReportFieldMaster_PhysicalConditionReport", Storage="_ReportFieldMaster", ThisKey="ReportFieldID", OtherKey="ReportFieldID", IsForeignKey=true)]
-		public ReportFieldMaster ReportFieldMaster
-		{
-			get
-			{
-				return this._ReportFieldMaster.Entity;
-			}
-			set
-			{
-				ReportFieldMaster previousValue = this._ReportFieldMaster.Entity;
-				if (((previousValue != value) 
-							|| (this._ReportFieldMaster.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._ReportFieldMaster.Entity = null;
-						previousValue.PhysicalConditionReports.Remove(this);
-					}
-					this._ReportFieldMaster.Entity = value;
-					if ((value != null))
-					{
-						value.PhysicalConditionReports.Add(this);
-						this._ReportFieldID = value.ReportFieldID;
-					}
-					else
-					{
-						this._ReportFieldID = default(int);
-					}
-					this.SendPropertyChanged("ReportFieldMaster");
-				}
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User_PhysicalConditionReport", Storage="_User", ThisKey="UserID", OtherKey="UserId", IsForeignKey=true)]
 		public User User
 		{
@@ -2221,13 +2043,9 @@ namespace DatabaseEntities
 		
 		private EntitySet<UserReportField> _UserReportFields;
 		
-		private EntitySet<DietPlanReport> _DietPlanReports;
-		
 		private EntitySet<LabReport> _LabReports;
 		
 		private EntitySet<OccupationReportField> _OccupationReportFields;
-		
-		private EntitySet<PhysicalConditionReport> _PhysicalConditionReports;
 		
 		private EntityRef<ReportTypeMaster> _ReportTypeMaster;
 		
@@ -2246,10 +2064,8 @@ namespace DatabaseEntities
 		public ReportFieldMaster()
 		{
 			this._UserReportFields = new EntitySet<UserReportField>(new Action<UserReportField>(this.attach_UserReportFields), new Action<UserReportField>(this.detach_UserReportFields));
-			this._DietPlanReports = new EntitySet<DietPlanReport>(new Action<DietPlanReport>(this.attach_DietPlanReports), new Action<DietPlanReport>(this.detach_DietPlanReports));
 			this._LabReports = new EntitySet<LabReport>(new Action<LabReport>(this.attach_LabReports), new Action<LabReport>(this.detach_LabReports));
 			this._OccupationReportFields = new EntitySet<OccupationReportField>(new Action<OccupationReportField>(this.attach_OccupationReportFields), new Action<OccupationReportField>(this.detach_OccupationReportFields));
-			this._PhysicalConditionReports = new EntitySet<PhysicalConditionReport>(new Action<PhysicalConditionReport>(this.attach_PhysicalConditionReports), new Action<PhysicalConditionReport>(this.detach_PhysicalConditionReports));
 			this._ReportTypeMaster = default(EntityRef<ReportTypeMaster>);
 			OnCreated();
 		}
@@ -2331,19 +2147,6 @@ namespace DatabaseEntities
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ReportFieldMaster_DietPlanReport", Storage="_DietPlanReports", ThisKey="ReportFieldID", OtherKey="ReportFieldID")]
-		public EntitySet<DietPlanReport> DietPlanReports
-		{
-			get
-			{
-				return this._DietPlanReports;
-			}
-			set
-			{
-				this._DietPlanReports.Assign(value);
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ReportFieldMaster_LabReport", Storage="_LabReports", ThisKey="ReportFieldID", OtherKey="ReportFieldID")]
 		public EntitySet<LabReport> LabReports
 		{
@@ -2367,19 +2170,6 @@ namespace DatabaseEntities
 			set
 			{
 				this._OccupationReportFields.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ReportFieldMaster_PhysicalConditionReport", Storage="_PhysicalConditionReports", ThisKey="ReportFieldID", OtherKey="ReportFieldID")]
-		public EntitySet<PhysicalConditionReport> PhysicalConditionReports
-		{
-			get
-			{
-				return this._PhysicalConditionReports;
-			}
-			set
-			{
-				this._PhysicalConditionReports.Assign(value);
 			}
 		}
 		
@@ -2449,18 +2239,6 @@ namespace DatabaseEntities
 			entity.ReportFieldMaster = null;
 		}
 		
-		private void attach_DietPlanReports(DietPlanReport entity)
-		{
-			this.SendPropertyChanging();
-			entity.ReportFieldMaster = this;
-		}
-		
-		private void detach_DietPlanReports(DietPlanReport entity)
-		{
-			this.SendPropertyChanging();
-			entity.ReportFieldMaster = null;
-		}
-		
 		private void attach_LabReports(LabReport entity)
 		{
 			this.SendPropertyChanging();
@@ -2480,18 +2258,6 @@ namespace DatabaseEntities
 		}
 		
 		private void detach_OccupationReportFields(OccupationReportField entity)
-		{
-			this.SendPropertyChanging();
-			entity.ReportFieldMaster = null;
-		}
-		
-		private void attach_PhysicalConditionReports(PhysicalConditionReport entity)
-		{
-			this.SendPropertyChanging();
-			entity.ReportFieldMaster = this;
-		}
-		
-		private void detach_PhysicalConditionReports(PhysicalConditionReport entity)
 		{
 			this.SendPropertyChanging();
 			entity.ReportFieldMaster = null;
