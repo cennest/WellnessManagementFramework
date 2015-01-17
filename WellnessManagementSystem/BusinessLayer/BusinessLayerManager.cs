@@ -307,5 +307,81 @@ namespace BusinessLayer
             }
             return listOfPhysicalConditioningReports;
         }
+
+        public bool SaveDietPlanReportsForClient(List<int> deleteDietPlanRecordIds, List<BODietPlan> dietPlanReportList, int clientID, int userID)
+        {
+            try
+            {
+                List<DietPlanReport> dietPlanList = new List<DietPlanReport>();
+                foreach (BODietPlan dietPlanReport in dietPlanReportList)
+                {
+                    DietPlanReport dietPlan = new DietPlanReport();
+                    dietPlan.DietPlanReportID = dietPlanReport.DietPlanReportID;
+                    dietPlan.BMI = dietPlanReport.BMI;
+                    dietPlan.Morning = dietPlanReport.Morning;
+                    dietPlan.Afternoon = dietPlanReport.Afternoon;
+                    dietPlan.Evening = dietPlanReport.Evening;
+                    dietPlan.Night = dietPlanReport.Night;
+                    dietPlanList.Add(dietPlan);
+                }
+                DataLayer.DataLayerManager dataLayerObject = new DataLayer.DataLayerManager();
+                dataLayerObject.SaveDietPlanReportsForClient(deleteDietPlanRecordIds, dietPlanList, clientID, userID);
+                return true;
+            }
+            catch (Exception exception)
+            {
+                throw new Exception(exception.Message);
+            }
+        }
+
+        public int GetDietPlanReportsCount(int userID, int clientID, DateTime? fromDate, DateTime? toDate)
+        {
+            try
+            {
+                DataLayerManager dataLayer = new DataLayerManager();
+                int dietPlanReportCount = dataLayer.GetDietPlanReportsCount(userID, clientID, fromDate, toDate);
+                return dietPlanReportCount;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+        public List<BODietPlan> GetDietPlanReportsWithinDates(int userID, int clientID, int skip, int take, DateTime? fromDate, DateTime? toDate)
+        {
+            try
+            {
+
+                DataLayerManager dataLayer = new DataLayerManager();
+                List<DietPlanReport> listOfDietPlanReports = dataLayer.GetDietPlanReportsWithinDates(userID, clientID, skip, take, fromDate, toDate);
+                List<BODietPlan> dietPlanReports = GetDietPlanReportBOForDietPlanReportDBObjects(listOfDietPlanReports);
+                return dietPlanReports;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        private List<BODietPlan> GetDietPlanReportBOForDietPlanReportDBObjects(List<DietPlanReport> dietPlanReports)
+        {
+            List<BODietPlan> listOfDietPlanReports = new List<BODietPlan>();
+            if (dietPlanReports.Count > 0)
+            {
+                foreach (DietPlanReport dietPlanReport in dietPlanReports)
+                {
+                    BODietPlan dietPlanReportObject = new BODietPlan();
+                    dietPlanReportObject.DietPlanReportID = dietPlanReport.DietPlanReportID;
+                    dietPlanReportObject.TestDate = dietPlanReport.TestDate;
+                    dietPlanReportObject.BMI = dietPlanReport.BMI;
+                    dietPlanReportObject.Morning = dietPlanReport.Morning;
+                    dietPlanReportObject.Afternoon = dietPlanReport.Afternoon;
+                    dietPlanReportObject.Evening = dietPlanReport.Evening;
+                    dietPlanReportObject.Night = dietPlanReport.Night;
+                    listOfDietPlanReports.Add(dietPlanReportObject);
+                }
+            }
+            return listOfDietPlanReports;
+        }
     }
 }
