@@ -14,10 +14,10 @@ namespace BusinessLayer
 {
     public class BusinessLayerManager
     {
-        public static Hashtable reportTypeStrings =new Hashtable(){{(int)ReportType.LabReport,ReportTypeResource.LabReport},
+        public static Hashtable reportTypeStrings = new Hashtable(){{(int)ReportType.LabReport,ReportTypeResource.LabReport},
                                                                    {(int)ReportType.DietPlan,ReportTypeResource.DietPlan},
                                                                    {(int)ReportType.PhysicalCondition,ReportTypeResource.PhysicalCondition}};
-        public List<BOLabReport> GetLabReportsForClient(int clientID,int userID)
+        public List<BOLabReport> GetLabReportsForClient(int clientID, int userID)
         {
             try
             {
@@ -46,25 +46,25 @@ namespace BusinessLayer
             DataLayerManager dataLayer = new DataLayerManager();
 
             List<UserReportField> listOfReportFieldsForUser = dataLayer.GetUserFields(userID);
-            Dictionary<string, List<BOUserField>> userFieldsDictionary = new Dictionary<string,List<BOUserField>>();
+            Dictionary<string, List<BOUserField>> userFieldsDictionary = new Dictionary<string, List<BOUserField>>();
             for (int reportType = (int)ReportType.LabReport; reportType < (int)ReportType.PhysicalCondition; reportType++)
             {
                 List<BOUserField> userReportFields = GetUserFieldNamesForReportType(listOfReportFieldsForUser, (int)ReportType.LabReport);
                 userFieldsDictionary.Add(BusinessLayerManager.reportTypeStrings[reportType].ToString(), userReportFields);
             }
-            
+
             return userFieldsDictionary;
         }
 
-        private static List<BOUserField> GetUserFieldNamesForReportType(List<UserReportField> listOfUserReportFields,int reportType)
+        private static List<BOUserField> GetUserFieldNamesForReportType(List<UserReportField> listOfUserReportFields, int reportType)
         {
             List<BOUserField> listOfReportFieldsForReportType = (from reportField in listOfUserReportFields
-                                                                 where reportField.ReportFieldMaster.ReportTypeID==reportType
-                                                 select new BOUserField
-                                                 {
-                                                    ReportFieldID = reportField.ReportFieldID,
-                                                    ReportFieldName = reportField.ReportFieldMaster.ReportFieldName
-                                                 }).ToList();
+                                                                 where reportField.ReportFieldMaster.ReportTypeID == reportType
+                                                                 select new BOUserField
+                                                                 {
+                                                                     ReportFieldID = reportField.ReportFieldID,
+                                                                     ReportFieldName = reportField.ReportFieldMaster.ReportFieldName
+                                                                 }).ToList();
             return listOfReportFieldsForReportType;
         }
         public BOUser GetUser(string userName, string password)
@@ -78,8 +78,8 @@ namespace BusinessLayer
                 {
                     BOUser appUser = new BOUser();
                     appUser.UserID = user.UserId;
-               	    appUser.UserName = user.UserName;
-               	    appUser.OccupationID = user.OccupationID;
+                    appUser.UserName = user.UserName;
+                    appUser.OccupationID = user.OccupationID;
                     return appUser;
                 }
                 else
@@ -153,7 +153,7 @@ namespace BusinessLayer
             try
             {
                 DataLayerManager datalayer = new DataLayerManager();
-                List<Client> listOfClients = datalayer.GetClientsForCategoryByName(categoryID,searchString, userID, skip, take);
+                List<Client> listOfClients = datalayer.GetClientsForCategoryByName(categoryID, searchString, userID, skip, take);
                 List<BOClient> clients = GetClientBOForClientDBObjects(listOfClients);
                 return clients;
             }
@@ -217,11 +217,11 @@ namespace BusinessLayer
 
             }
             DataLayer.DataLayerManager dataLayerObject = new DataLayer.DataLayerManager();
-            dataLayerObject.SaveLabReportsForClient(labReports, clientID,userID);
+            dataLayerObject.SaveLabReportsForClient(labReports, clientID, userID);
             return true;
         }
 
-        public bool SavePhysicalConditionReportsForClient(List<int> deletedPhysicalConditionRecordIds,List<BOPhysicalConditionReport> physicalConditionReportList, int clientID, int userID)
+        public bool SavePhysicalConditionReportsForClient(List<int> deletedPhysicalConditionRecordIds, List<BOPhysicalConditionReport> physicalConditionReportList, int clientID, int userID)
         {
             try
             {
@@ -236,21 +236,21 @@ namespace BusinessLayer
                     physicalConditionList.Add(physicalCondition);
                 }
                 DataLayer.DataLayerManager dataLayerObject = new DataLayer.DataLayerManager();
-                dataLayerObject.SavePhysicalConditionReportsForClient(deletedPhysicalConditionRecordIds,physicalConditionList, clientID, userID);
+                dataLayerObject.SavePhysicalConditionReportsForClient(deletedPhysicalConditionRecordIds, physicalConditionList, clientID, userID);
                 return true;
             }
-            catch(Exception exception)
+            catch (Exception exception)
             {
                 throw new Exception(exception.Message);
             }
         }
 
-        public int GetPhysicalConditioningReportsCount(int userID,int clientID,DateTime? fromDate,DateTime? toDate)
+        public int GetPhysicalConditioningReportsCount(int userID, int clientID, DateTime? fromDate, DateTime? toDate)
         {
             try
             {
                 DataLayerManager dataLayer = new DataLayerManager();
-                int physicalConditioningReportCount = dataLayer.GetPhysicalConditioningReportsCount(userID, clientID, fromDate,toDate);
+                int physicalConditioningReportCount = dataLayer.GetPhysicalConditioningReportsCount(userID, clientID, fromDate, toDate);
                 return physicalConditioningReportCount;
             }
             catch (Exception ex)
@@ -306,6 +306,81 @@ namespace BusinessLayer
                 }
             }
             return listOfPhysicalConditioningReports;
+        }
+
+        public List<BOLabReport> GetLabReportsForClientID(int clientID, int userID, int reportID)
+        {
+            try
+            {
+                DataLayerManager dataLayer = new DataLayerManager();
+                List<LabReport> reports = dataLayer.GetLabReportsForClientID(clientID, userID, reportID);
+                List<BOLabReport> labReports = (from report in reports
+                                                select new BOLabReport
+                                                {
+                                                    LabReportID = report.LabReportID,
+                                                    ReportFieldName = report.ReportFieldMaster.ReportFieldName,
+                                                    ReportFieldValue = report.ReportFieldValue,
+                                                    ReportFieldID = report.ReportFieldID,
+                                                    TestDate = report.TestDate,
+                                                    Remark1 = report.Remark1,
+                                                    Remark2 = report.Remark2
+                                                }).ToList();
+                return labReports;
+            }
+            catch (Exception exception)
+            {
+                throw (exception);
+            }
+        }
+
+        public Hashtable GetLabReportsForCategory(int categoryID, int userID, int reportID)
+        {
+            try
+            {
+                DataLayerManager dataLayer = new DataLayerManager();
+                List<int> clientList = dataLayer.GetClientsForCategoryID(categoryID, userID);
+                Hashtable listOfReportForCategoryHasTable = new Hashtable();
+                if (clientList.Count > 0)
+                {
+                    foreach (int clientID in clientList)
+                    {
+                        List<BOLabReport> labReports = this.GetLabReportsForClientID(clientID, userID, reportID);
+                        listOfReportForCategoryHasTable.Remove(clientID);
+                        listOfReportForCategoryHasTable.Add(clientID, labReports);
+                    }
+                }
+                return listOfReportForCategoryHasTable;
+            }
+            catch (Exception exception)
+            {
+                throw (exception);
+            }
+        }
+
+        public List<BOReporting> GetAllReports()
+        {
+            try
+            {
+                DataLayerManager datalayer = new DataLayerManager();
+                List<ReportFieldMaster> listOfReports = datalayer.GetAllTests();
+                List<BOReporting> reports = new List<BOReporting>();
+                if (listOfReports.Count > 0)
+                {
+                    foreach (ReportFieldMaster report in listOfReports)
+                    {
+                        BOReporting reportObject = new BOReporting();
+                        reportObject.ReportFieldID = report.ReportFieldID;
+                        reportObject.ReportFieldName = report.ReportFieldName;
+                        reportObject.ReportTypeID = report.ReportTypeID;
+                        reports.Add(reportObject);
+                    }
+                }
+                return reports;
+            }
+            catch (Exception exception)
+            {
+                throw new Exception(exception.Message);
+            }
         }
     }
 }

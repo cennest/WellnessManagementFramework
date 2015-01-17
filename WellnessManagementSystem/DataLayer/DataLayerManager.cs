@@ -292,7 +292,7 @@ namespace DataLayer
 
                 return true;
             }
-            catch(Exception exception)
+            catch (Exception exception)
             {
                 throw new Exception(exception.Message);
 
@@ -309,7 +309,7 @@ namespace DataLayer
                 if (fromDate != null && toDate == null)
                 {
                     listOfPhysicalConditioningReports = (from physicalConditioningReport in dataContext.PhysicalConditionReports
-                                                         where physicalConditioningReport.UserID == userID && physicalConditioningReport.ClientID == clientID && physicalConditioningReport.TestDate >= fromDate && physicalConditioningReport.TestDate <= DateTime.Now.Date 
+                                                         where physicalConditioningReport.UserID == userID && physicalConditioningReport.ClientID == clientID && physicalConditioningReport.TestDate >= fromDate && physicalConditioningReport.TestDate <= DateTime.Now.Date
                                                          orderby physicalConditioningReport.TestDate descending
                                                          select physicalConditioningReport).Skip(skip).Take(take).ToList();
                 }
@@ -333,7 +333,7 @@ namespace DataLayer
                                                          where physicalConditioningReport.UserID == userID && physicalConditioningReport.ClientID == clientID
                                                          orderby physicalConditioningReport.TestDate descending
                                                          select physicalConditioningReport).Skip(skip).Take(take).ToList();
-                } 
+                }
                 return listOfPhysicalConditioningReports;
             }
             catch (Exception ex)
@@ -364,7 +364,7 @@ namespace DataLayer
                          where physicalConditioningReport.UserID == userID && physicalConditioningReport.ClientID == clientID && physicalConditioningReport.TestDate >= fromDate && physicalConditioningReport.TestDate <= toDate
                          select physicalConditioningReport).Count();
             }
-            else 
+            else
             {
                 count = (from physicalConditioningReport in dataContext.PhysicalConditionReports
                          where physicalConditioningReport.UserID == userID && physicalConditioningReport.ClientID == clientID
@@ -402,6 +402,66 @@ namespace DataLayer
             catch (Exception ex)
             {
                 throw new Exception(ex.Message);
+            }
+        }
+
+        public List<LabReport> GetLabReportsForClientID(int clientID, int userID, int reportID)
+        {
+            try
+            {
+                WellnessManagementFrameworkDBMLDataContext dataContext = new WellnessManagementFrameworkDBMLDataContext();
+                List<LabReport> listOfLabReports = (from labReport in dataContext.LabReports
+                                                    where labReport.UserID == userID && labReport.ClientID == clientID
+                                                    && labReport.ReportFieldID == reportID
+                                                    select labReport).OrderByDescending(t => t.TestDate).ToList();
+
+                return listOfLabReports;
+            }
+            catch (Exception exception)
+            {
+                throw (exception);
+            }
+        }
+
+        public List<ReportFieldMaster> GetAllTests()
+        {
+            try
+            {
+                WellnessManagementFrameworkDBMLDataContext dataContext = new WellnessManagementFrameworkDBMLDataContext();
+                List<ReportFieldMaster> listOfReports = (from test in dataContext.ReportFieldMasters
+                                                         where test.ReportTypeID == 1
+                                                         select test).ToList();
+                return listOfReports;
+            }
+            catch (Exception exception)
+            {
+                throw new Exception(exception.Message);
+            }
+        }
+
+        public List<int> GetClientsForCategoryID(int categoryID, int userID)
+        {
+            try
+            {
+                WellnessManagementFrameworkDBMLDataContext dataContext = new WellnessManagementFrameworkDBMLDataContext();
+                List<int> listOfClientIDs = null;
+                if (categoryID == Convert.ToInt32(Category.AllSports))
+                {
+                    listOfClientIDs = (from client in dataContext.Clients
+                                       where client.UserID == userID
+                                       select client.ClientID).ToList();
+                }
+                else
+                {
+                    listOfClientIDs = (from client in dataContext.Clients
+                                       where client.UserID == userID && client.CategoryID == categoryID
+                                       select client.ClientID).ToList();
+                }
+                return listOfClientIDs;
+            }
+            catch (Exception exception)
+            {
+                throw new Exception(exception.Message);
             }
         }
     }

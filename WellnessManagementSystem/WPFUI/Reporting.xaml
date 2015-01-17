@@ -1,0 +1,22 @@
+﻿<Window x:Class="PhysioApplication.Reporting"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Reporting" Height="609" Width="888.475"
+        xmlns:chartingToolkit="clr-namespace:System.Windows.Controls.DataVisualization.Charting;assembly=System.Windows.Controls.DataVisualization.Toolkit">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="4*"/>
+            <RowDefinition Height="166*"/>
+        </Grid.RowDefinitions>
+
+        <ComboBox x:Name="ComboBoxForCategory" Grid.Row="1" SelectionChanged="FilterComboBoxForCategorySelectionChanged" Margin="498,10,208,514"  />
+        <ComboBox x:Name="ComboBoxForReport" Grid.Row="1" SelectionChanged="FilterComboBoxForTestsSelectionChanged" Margin="195,10,505,514"/>
+
+        <chartingToolkit:Chart  Name="lineChart" Title="Line Series Demo" VerticalAlignment="Top" Height="226" MouseDoubleClick="Chart_MouseLeftButtonDown" Grid.Row="1" Margin="0,111,0,0">
+            <chartingToolkit:LineSeries Name="firstSeries"  DependentValuePath="Value" IndependentValuePath="Key" ItemsSource="{Binding}" IsSelectionEnabled="True">
+            </chartingToolkit:LineSeries>
+            <chartingToolkit:LineSeries Name="secondSeries" DependentValuePath="Value" IndependentValuePath="Key" ItemsSource="{Binding}" IsSelectionEnabled="True" Visibility="Hidden">
+            </chartingToolkit:LineSeries>
+        </chartingToolkit:Chart>
+    </Grid>
+</Window>

@@ -48,6 +48,7 @@
     <Compile Include="Entities\BODietPlan.cs" />
     <Compile Include="Entities\BOLabReport.cs" />
     <Compile Include="Entities\BOPhysicalConditionReport.cs" />
+    <Compile Include="Entities\BOReporting.cs" />
     <Compile Include="Entities\BOUser.cs" />
     <Compile Include="Entities\BOUserField.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
