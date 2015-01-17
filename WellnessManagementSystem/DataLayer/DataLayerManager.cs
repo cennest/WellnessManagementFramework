@@ -404,5 +404,139 @@ namespace DataLayer
                 throw new Exception(ex.Message);
             }
         }
+
+        public bool SaveDietPlanReportsForClient(List<int> deletedDietPlanList, List<DietPlanReport> currentDietPlanList, int clientID, int userID)
+        {
+            try
+            {
+                WellnessManagementFrameworkDBMLDataContext dataContext = new WellnessManagementFrameworkDBMLDataContext();
+
+                foreach (DietPlanReport dietPlanReport in currentDietPlanList)
+                {
+                    DietPlanReport existingReport = (from dbRecord in dataContext.DietPlanReports
+                                                     where dbRecord.DietPlanReportID == dietPlanReport.DietPlanReportID
+                                                              select dbRecord).FirstOrDefault();
+                    if (existingReport != null)
+                    {
+                        existingReport.TestDate = dietPlanReport.TestDate;
+                        existingReport.BMI = dietPlanReport.BMI;
+                        existingReport.Morning = dietPlanReport.Morning;
+                        existingReport.Afternoon = dietPlanReport.Afternoon;
+                        existingReport.Evening = dietPlanReport.Evening;
+                        existingReport.Night = dietPlanReport.Night;
+                    }
+                    else
+                    {
+                        dietPlanReport.UserID = userID;
+                        dietPlanReport.ClientID = clientID;
+                        dataContext.DietPlanReports.InsertOnSubmit(dietPlanReport);
+                    }
+                    dataContext.SubmitChanges();
+                }
+
+                //deletion
+                List<DietPlanReport> dietPlanReportlistToBeDeleted = new List<DietPlanReport>();
+                foreach (int dietPlanReportID in deletedDietPlanList)
+                {
+                    DietPlanReport dietPlanReport = (from dietPlanReportObj in dataContext.DietPlanReports
+                                                     where dietPlanReportObj.DietPlanReportID == dietPlanReportID
+                                                     select dietPlanReportObj).FirstOrDefault();
+                    if (dietPlanReport != null)
+                    {
+                        dietPlanReportlistToBeDeleted.Add(dietPlanReport);
+                    }
+                }
+                if (dietPlanReportlistToBeDeleted.Count > 0)
+                {
+                    dataContext.DietPlanReports.DeleteAllOnSubmit(dietPlanReportlistToBeDeleted);
+                    dataContext.SubmitChanges();
+                }
+
+                return true;
+            }
+            catch(Exception exception)
+            {
+                throw new Exception(exception.Message);
+
+            }
+
+        }
+
+        public List<DietPlanReport> GetDietPlanReportsWithinDates(int userID, int clientID, int skip, int take, DateTime? fromDate, DateTime? toDate)
+        {
+            try
+            {
+                WellnessManagementFrameworkDBMLDataContext dataContext = new WellnessManagementFrameworkDBMLDataContext();
+                List<DietPlanReport> listOfDietPlanReports = null;
+                if (fromDate != null && toDate == null)
+                {
+                    listOfDietPlanReports = (from dietPlanReport in dataContext.DietPlanReports
+                                             where dietPlanReport.UserID == userID && dietPlanReport.ClientID == clientID 
+                                             && dietPlanReport.TestDate >= fromDate && dietPlanReport.TestDate <= DateTime.Now.Date
+                                             orderby dietPlanReport.TestDate descending
+                                             select dietPlanReport).Skip(skip).Take(take).ToList();
+                }
+                else if (fromDate == null && toDate != null)
+                {
+                    listOfDietPlanReports = (from dietPlanReport in dataContext.DietPlanReports
+                                                         where dietPlanReport.UserID == userID && dietPlanReport.ClientID == clientID 
+                                                         && dietPlanReport.TestDate <= DateTime.Now.Date
+                                                         orderby dietPlanReport.TestDate descending
+                                                         select dietPlanReport).Skip(skip).Take(take).ToList();
+                }
+                else if (fromDate != null && toDate != null)
+                {
+                    listOfDietPlanReports = (from dietPlanReport in dataContext.DietPlanReports
+                                                         where dietPlanReport.UserID == userID && dietPlanReport.ClientID == clientID 
+                                                         && dietPlanReport.TestDate >= fromDate && dietPlanReport.TestDate <= toDate
+                                                         orderby dietPlanReport.TestDate descending
+                                                         select dietPlanReport).Skip(skip).Take(take).ToList();
+                }
+                else
+                {
+                    listOfDietPlanReports = (from dietPlanReport in dataContext.DietPlanReports
+                                                         where dietPlanReport.UserID == userID && dietPlanReport.ClientID == clientID
+                                                         orderby dietPlanReport.TestDate descending
+                                                         select dietPlanReport).Skip(skip).Take(take).ToList();
+                }
+                return listOfDietPlanReports;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public int GetDietPlanReportsCount(int userID, int clientID, DateTime? fromDate, DateTime? toDate)
+        {
+            WellnessManagementFrameworkDBMLDataContext dataContext = new WellnessManagementFrameworkDBMLDataContext();
+            int count = 0;
+            if (fromDate != null && toDate == null)
+            {
+                count = (from dietPlanReport in dataContext.DietPlanReports
+                         where dietPlanReport.UserID == userID && dietPlanReport.ClientID == clientID
+                         && dietPlanReport.TestDate >= fromDate && dietPlanReport.TestDate <= DateTime.Now.Date
+                         select dietPlanReport).Count();
+            }
+            else if (fromDate == null && toDate != null)
+            {
+                count = (from dietPlanReport in dataContext.DietPlanReports
+                         where dietPlanReport.UserID == userID && dietPlanReport.ClientID == clientID && dietPlanReport.TestDate <= DateTime.Now.Date
+                         select dietPlanReport).Count();
+            }
+            else if (fromDate != null && toDate != null)
+            {
+                count = (from dietPlanReport in dataContext.DietPlanReports
+                         where dietPlanReport.UserID == userID && dietPlanReport.ClientID == clientID && dietPlanReport.TestDate >= fromDate && dietPlanReport.TestDate <= toDate
+                         select dietPlanReport).Count();
+            }
+            else 
+            {
+                count = (from dietPlanReport in dataContext.DietPlanReports
+                         where dietPlanReport.UserID == userID && dietPlanReport.ClientID == clientID
+                         select dietPlanReport).Count();
+            }
+            return count;
+        }
     }
 }

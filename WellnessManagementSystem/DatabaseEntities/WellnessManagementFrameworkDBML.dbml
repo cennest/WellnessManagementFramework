@@ -37,7 +37,11 @@
       <Column Name="TestDate" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
       <Column Name="ClientID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="UserID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="Suggestions" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Morning" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Afternoon" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Evening" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Night" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="BMI" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
       <Association Name="Client_DietPlanReport" Member="Client" ThisKey="ClientID" OtherKey="ClientID" Type="Client" IsForeignKey="true" />
       <Association Name="User_DietPlanReport" Member="User" ThisKey="UserID" OtherKey="UserId" Type="User" IsForeignKey="true" />
     </Type>

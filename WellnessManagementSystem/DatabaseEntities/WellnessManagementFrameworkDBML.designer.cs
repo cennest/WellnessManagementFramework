@@ -852,7 +852,15 @@ namespace DatabaseEntities
 		
 		private int _UserID;
 		
-		private string _Suggestions;
+		private string _Morning;
+		
+		private string _Afternoon;
+		
+		private string _Evening;
+		
+		private string _Night;
+		
+		private string _BMI;
 		
 		private EntityRef<Client> _Client;
 		
@@ -870,8 +878,16 @@ namespace DatabaseEntities
     partial void OnClientIDChanged();
     partial void OnUserIDChanging(int value);
     partial void OnUserIDChanged();
-    partial void OnSuggestionsChanging(string value);
-    partial void OnSuggestionsChanged();
+    partial void OnMorningChanging(string value);
+    partial void OnMorningChanged();
+    partial void OnAfternoonChanging(string value);
+    partial void OnAfternoonChanged();
+    partial void OnEveningChanging(string value);
+    partial void OnEveningChanged();
+    partial void OnNightChanging(string value);
+    partial void OnNightChanged();
+    partial void OnBMIChanging(string value);
+    partial void OnBMIChanged();
     #endregion
 		
 		public DietPlanReport()
@@ -969,22 +985,102 @@ namespace DatabaseEntities
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Suggestions", DbType="NVarChar(MAX)")]
-		public string Suggestions
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Morning", DbType="NVarChar(MAX)")]
+		public string Morning
 		{
 			get
 			{
-				return this._Suggestions;
+				return this._Morning;
 			}
 			set
 			{
-				if ((this._Suggestions != value))
+				if ((this._Morning != value))
 				{
-					this.OnSuggestionsChanging(value);
+					this.OnMorningChanging(value);
 					this.SendPropertyChanging();
-					this._Suggestions = value;
-					this.SendPropertyChanged("Suggestions");
-					this.OnSuggestionsChanged();
+					this._Morning = value;
+					this.SendPropertyChanged("Morning");
+					this.OnMorningChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Afternoon", DbType="NVarChar(MAX)")]
+		public string Afternoon
+		{
+			get
+			{
+				return this._Afternoon;
+			}
+			set
+			{
+				if ((this._Afternoon != value))
+				{
+					this.OnAfternoonChanging(value);
+					this.SendPropertyChanging();
+					this._Afternoon = value;
+					this.SendPropertyChanged("Afternoon");
+					this.OnAfternoonChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Evening", DbType="NVarChar(MAX)")]
+		public string Evening
+		{
+			get
+			{
+				return this._Evening;
+			}
+			set
+			{
+				if ((this._Evening != value))
+				{
+					this.OnEveningChanging(value);
+					this.SendPropertyChanging();
+					this._Evening = value;
+					this.SendPropertyChanged("Evening");
+					this.OnEveningChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Night", DbType="NVarChar(MAX)")]
+		public string Night
+		{
+			get
+			{
+				return this._Night;
+			}
+			set
+			{
+				if ((this._Night != value))
+				{
+					this.OnNightChanging(value);
+					this.SendPropertyChanging();
+					this._Night = value;
+					this.SendPropertyChanged("Night");
+					this.OnNightChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BMI", DbType="NChar(10)")]
+		public string BMI
+		{
+			get
+			{
+				return this._BMI;
+			}
+			set
+			{
+				if ((this._BMI != value))
+				{
+					this.OnBMIChanging(value);
+					this.SendPropertyChanging();
+					this._BMI = value;
+					this.SendPropertyChanged("BMI");
+					this.OnBMIChanged();
 				}
 			}
 		}
