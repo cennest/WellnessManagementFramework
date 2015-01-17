@@ -98,7 +98,7 @@ namespace DataLayer
             {
                 WellnessManagementFrameworkDBMLDataContext dataContext = new WellnessManagementFrameworkDBMLDataContext();
                 List<Client> listOfClients = null;
-                if (categoryID == Convert.ToInt32(Category.All))
+                if (categoryID == Convert.ToInt32(Category.AllSports))
                 {
                     listOfClients = (from client in dataContext.Clients
                                      where client.UserID == userID
@@ -124,7 +124,7 @@ namespace DataLayer
             {
                 WellnessManagementFrameworkDBMLDataContext dataContext = new WellnessManagementFrameworkDBMLDataContext();
                 int countOfClients = 0;
-                if (categoryID == Convert.ToInt32(Category.All))
+                if (categoryID == Convert.ToInt32(Category.AllSports))
                 {
                     countOfClients = (from client in dataContext.Clients
                                       where client.UserID == userID
@@ -150,7 +150,7 @@ namespace DataLayer
             {
                 WellnessManagementFrameworkDBMLDataContext dataContext = new WellnessManagementFrameworkDBMLDataContext();
                 List<Client> listOfClients = null;
-                if (categoryID == Convert.ToInt32(Category.All))
+                if (categoryID == Convert.ToInt32(Category.AllSports))
                 {
                     listOfClients = (from client in dataContext.Clients
                                      where client.UserID == userID && client.ClientName.ToLower().Contains(searchString.ToLower())
@@ -176,7 +176,7 @@ namespace DataLayer
             {
                 WellnessManagementFrameworkDBMLDataContext dataContext = new WellnessManagementFrameworkDBMLDataContext();
                 int countOfClients = 0;
-                if (categoryID == Convert.ToInt32(Category.All))
+                if (categoryID == Convert.ToInt32(Category.AllSports))
                 {
                     countOfClients = (from client in dataContext.Clients
                                       where client.UserID == userID && client.ClientName.ToLower().Contains(searchString.ToLower())

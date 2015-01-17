@@ -42,7 +42,7 @@
                     Name="btnLast" VerticalAlignment="Center" Width="30" Click="BtnLastClick" />
                 <Button Content="Next" Grid.Column="5" Height="23" Width="30" HorizontalAlignment="Left" Margin="20,1,1,1" 
                     Name="btnNext" VerticalAlignment="Center" Click="BtnNextClick" />
-                <Button Content="Pre" Grid.Column="1" Height="23" HorizontalAlignment="Left" Margin="10,1,1,1" 
+                <Button Content="Prev" Grid.Column="1" Height="23" HorizontalAlignment="Left" Margin="10,1,1,1" 
                     Name="btnPrevious" VerticalAlignment="Center" Width="30" Click="BtnPreviousClick" />
                 <Button Content="First" Grid.Column="0" Height="23" HorizontalAlignment="Right" Margin="0,1,1,1" 
                     Name="btnFirst" VerticalAlignment="Center" Width="30" Click="BtnFirstClick" />
