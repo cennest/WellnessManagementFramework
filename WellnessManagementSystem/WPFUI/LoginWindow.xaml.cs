@@ -14,6 +14,8 @@ using System.Windows.Shapes;
 using BusinessLayer;
 using BusinessLayer.Entities;
 using System.Windows.Navigation;
+using System.IO.IsolatedStorage;
+using System.IO;
 
 namespace PhysioApplication
 {
@@ -22,17 +24,46 @@ namespace PhysioApplication
     /// </summary>
     public partial class LoginWindow : Window
     {
+        public static string fileName = "isoFile";
+
         public LoginWindow()
         {
             InitializeComponent();
+
             AppManager appManager = AppManager.getInstance();
             appManager.CurrentWindow=this;
+            GetLoginCredentialFromStorageFile(); 
+        }
+
+        private void GetLoginCredentialFromStorageFile()
+        {
+            try
+            {
+                IsolatedStorageFile isolatedStorage = IsolatedStorageFile.GetUserStoreForAssembly();
+                StreamReader reader = new StreamReader(new IsolatedStorageFileStream(fileName, FileMode.OpenOrCreate, isolatedStorage));
+                if (reader != null)
+                {
+                    while (!reader.EndOfStream)
+                    {
+                        string userName = reader.ReadLine();
+                        UserName.Text = userName;
+                        string password = reader.ReadLine();
+                        Password.Password = password;
+                    }
+                }
+                reader.Close();
+            }
+            catch (Exception exception)
+            {
+                MessageBox.Show(ResourceConstants.InvalidUserNameOrPassword);
+            }
         }
 
         private void Login_Click(object sender, RoutedEventArgs e)
         {
             try
             {
+                SaveLoginCredentialInStorageFile();
                 ValidateUserCredentials();
             }
             catch (Exception exception)
@@ -40,12 +71,30 @@ namespace PhysioApplication
                 MessageBox.Show(ResourceConstants.InvalidUserNameOrPassword);
             }
         }
-        
+
+        private void SaveLoginCredentialInStorageFile()
+        {
+            if (RMCheckBox.IsChecked == true)
+            {
+                string userName = UserName.Text.Trim().ToString();
+                string password = Password.Password.Trim().ToString();
+                if ((userName != null && password != null) && (userName != "" && password != ""))
+                {
+                    IsolatedStorageFile isolatedStorage = IsolatedStorageFile.GetUserStoreForAssembly();
+                    StreamWriter srWriter = new StreamWriter(new IsolatedStorageFileStream(fileName, FileMode.Create, isolatedStorage));
+                    srWriter.WriteLine(userName);
+                    srWriter.WriteLine(password);
+                    srWriter.Flush();
+                    srWriter.Close();
+                }
+            }
+        }
 
         private void OnKeyDownHandler(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Return)
             {
+                SaveLoginCredentialInStorageFile();
                 ValidateUserCredentials();
             }
         }
@@ -82,6 +131,7 @@ namespace PhysioApplication
         {
             if(e.Key==Key.Return)
             {
+                SaveLoginCredentialInStorageFile();
                 ValidateUserCredentials();
             }
         }

@@ -103,9 +103,9 @@ namespace DatabaseEntities.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=192.168.0.4;Initial Catalog=WellnessManagementFrameworkDB;User ID=cen" +
-            "nest;Password=cennest")]
-        public string WellnessManagementFrameworkDBConnectionString6 {
+       [global::System.Configuration.DefaultSettingValueAttribute("Data Source=192.168.0.4;Initial Catalog=WellnessManagementFrameworkDB;Persist Sec" +
+            "urity Info=True;User ID=cennest;Password=cennest")]
+       public string WellnessManagementFrameworkDBConnectionString6 {
             get {
                 return ((string)(this["WellnessManagementFrameworkDBConnectionString6"]));
             }
@@ -114,9 +114,9 @@ namespace DatabaseEntities.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=192.168.0.21;Initial Catalog=WellnessManagementFrameworkDB;User ID=ce" +
-            "nnest;Password=cennest")]
-        public string WellnessManagementFrameworkDBConnectionString7 {
+       [global::System.Configuration.DefaultSettingValueAttribute("Data Source=192.168.0.21;Initial Catalog=WellnessManagementFrameworkDB;Persist Se" +
+            "curity Info=True;User ID=cennest;Password=cennest")]
+       public string WellnessManagementFrameworkDBConnectionString7 {
             get {
                 return ((string)(this["WellnessManagementFrameworkDBConnectionString7"]));
             }
