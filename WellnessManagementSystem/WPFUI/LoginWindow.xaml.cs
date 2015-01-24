@@ -29,10 +29,10 @@ namespace PhysioApplication
         public LoginWindow()
         {
             InitializeComponent();
-            GetData(); 
+            GetLoginCredentialFromStorageFile(); 
         }
 
-        private void GetData()
+        private void GetLoginCredentialFromStorageFile()
         {
             try
             {
@@ -60,7 +60,7 @@ namespace PhysioApplication
         {
             try
             {
-                SaveData();
+                SaveLoginCredentialInStorageFile();
                 ValidateUserCredentials();
             }
             catch (Exception exception)
@@ -69,7 +69,7 @@ namespace PhysioApplication
             }
         }
 
-        private void SaveData()
+        private void SaveLoginCredentialInStorageFile()
         {
             if (RMCheckBox.IsChecked == true)
             {
@@ -91,7 +91,7 @@ namespace PhysioApplication
         {
             if (e.Key == Key.Return)
             {
-                SaveData();
+                SaveLoginCredentialInStorageFile();
                 ValidateUserCredentials();
             }
         }
@@ -127,7 +127,7 @@ namespace PhysioApplication
         {
             if(e.Key==Key.Return)
             {
-                SaveData();
+                SaveLoginCredentialInStorageFile();
                 ValidateUserCredentials();
             }
         }
