@@ -19,6 +19,9 @@ namespace BusinessLayer
         const string ELAPSED_TEST = "Date elapsed for test on ";
         const string NO_NOTIFICATION = "No New Notification";
         const string NOTIFICATION_DATE_FORMATE = "dd MMMM, yyyy";
+        const int TEST_INTERVAL = 3; // values in Months
+        const int NOTIFICATION_TIME = 30; // Values in Days
+
         
         public static Hashtable reportTypeStrings =new Hashtable(){{(int)ReportType.LabReport,ReportTypeResource.LabReport},
                                                                    {(int)ReportType.DietPlan,ReportTypeResource.DietPlan},
@@ -212,9 +215,9 @@ namespace BusinessLayer
                 {
                     return notification = NO_NOTIFICATION;
                 }
-                DateTime nextLabReportDate = lastLabReportDate.Value.AddMonths(3);
+                DateTime nextLabReportDate = lastLabReportDate.Value.AddMonths(TEST_INTERVAL);
                 TimeSpan timeSpan = nextLabReportDate.Subtract(DateTime.Now);
-                if (timeSpan.Days > 30)
+                if (timeSpan.Days > NOTIFICATION_TIME)
                 {
                     notification = NO_NOTIFICATION;
                 }
