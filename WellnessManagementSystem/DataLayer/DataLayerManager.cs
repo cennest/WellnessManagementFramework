@@ -118,6 +118,32 @@ namespace DataLayer
             }
         }
 
+        public List<Client> GetClientsForCategories(int categoryID, int userID)
+        {
+            try
+            {
+                WellnessManagementFrameworkDBMLDataContext dataContext = new WellnessManagementFrameworkDBMLDataContext();
+                List<Client> listOfClients = null;
+                if (categoryID == Convert.ToInt32(Category.AllSports))
+                {
+                    listOfClients = (from client in dataContext.Clients
+                                     where client.UserID == userID
+                                     select client).ToList();
+                }
+                else
+                {
+                    listOfClients = (from client in dataContext.Clients
+                                     where client.UserID == userID && client.CategoryID == categoryID
+                                     select client).ToList();
+                }
+                return listOfClients;
+            }
+            catch (Exception exception)
+            {
+                throw new Exception(exception.Message);
+            }
+        }
+
         public int GetCountOfClientsForCategories(int categoryID, int userID)
         {
             try

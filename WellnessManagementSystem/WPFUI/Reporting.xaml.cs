@@ -28,23 +28,36 @@ namespace PhysioApplication
         public Reporting()
         {
             InitializeComponent();
-            //BusinessLayerManager businessLayer = new BusinessLayerManager();
-            //List<BOCategory> categoryList = businessLayer.GetAllCategories();
-            //List<ComboBoxItem> comboBoxItemListForCategory = new List<ComboBoxItem>();
-            //foreach (BOCategory category in categoryList)
-            //{
-            //    comboBoxItemListForCategory.Add(new ComboBoxItem { Content = category.CategoryName, Tag = category.CategoryID.ToString() });
-            //}
-            //this.ComboBoxForCategory.ItemsSource = comboBoxItemListForCategory;
-            //this.ComboBoxForCategory.SelectedIndex = 0;
-            //List<BOReporting> reportList = businessLayer.GetAllReports();
-            //List<ComboBoxItem> comboBoxItemListForReport = new List<ComboBoxItem>();
-            //foreach (BOReporting report in reportList)
-            //{
-            //    comboBoxItemListForReport.Add(new ComboBoxItem { Content = report.ReportFieldName, Tag = report.ReportFieldID.ToString() });
-            //}
-            //this.ComboBoxForReport.ItemsSource = comboBoxItemListForReport;
-            //this.ComboBoxForReport.SelectedIndex = 0;
+            BusinessLayerManager businessLayer = new BusinessLayerManager();
+            List<BOCategory> categoryList = businessLayer.GetAllCategories();
+            List<ComboBoxItem> comboBoxItemListForCategory = new List<ComboBoxItem>();
+            foreach (BOCategory category in categoryList)
+            {
+                comboBoxItemListForCategory.Add(new ComboBoxItem { Content = category.CategoryName, Tag = category.CategoryID.ToString() });
+            }
+            this.ComboBoxForCategory.ItemsSource = comboBoxItemListForCategory;
+            this.ComboBoxForCategory.SelectedIndex = 0;
+
+            List<BOReporting> reportList = businessLayer.GetAllReports();
+            List<ComboBoxItem> comboBoxItemListForTest = new List<ComboBoxItem>();
+            foreach (BOReporting report in reportList)
+            {
+                comboBoxItemListForTest.Add(new ComboBoxItem { Content = report.ReportFieldName, Tag = report.ReportFieldID.ToString() });
+            }
+            this.ComboBoxForTest.ItemsSource = comboBoxItemListForTest;
+            this.ComboBoxForTest.SelectedIndex = 0;
+
+            this.categoryID = Convert.ToInt32(((ComboBoxItem)ComboBoxForCategory.SelectedItem).Tag);
+            BOUser userDetail =  AppManager.getInstance().GetUserDetails();
+            int userID = 1;
+            List<BOClient> clientList = businessLayer.GetClientsForCategories(categoryID, userID);
+            List<ComboBoxItem> comboBoxItemListForClient = new List<ComboBoxItem>();
+            foreach (BOClient client in clientList)
+            {
+                comboBoxItemListForClient.Add(new ComboBoxItem { Content = client.ClientName, Tag = client.ClientID.ToString() });
+            }
+            this.ComboBoxForClient.ItemsSource = comboBoxItemListForClient;
+            this.ComboBoxForClient.SelectedIndex = 0;
 
             LoadFirstSeries();
         }
@@ -122,6 +135,29 @@ namespace PhysioApplication
         private void Chart_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             LoadSecondSeries();
+        }
+
+        private void FilterComboBoxSelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+        {
+            try
+            {
+                BusinessLayerManager businessLayer = new BusinessLayerManager();
+                this.categoryID = Convert.ToInt32(((ComboBoxItem)ComboBoxForCategory.SelectedItem).Tag);
+                BOUser userDetail = AppManager.getInstance().GetUserDetails();
+                int userID = 1;
+                List<BOClient> clientList = businessLayer.GetClientsForCategories(categoryID, userID);
+                List<ComboBoxItem> comboBoxItemListForClient = new List<ComboBoxItem>();
+                foreach (BOClient client in clientList)
+                {
+                    comboBoxItemListForClient.Add(new ComboBoxItem { Content = client.ClientName, Tag = client.ClientID.ToString() });
+                }
+                this.ComboBoxForClient.ItemsSource = comboBoxItemListForClient;
+                this.ComboBoxForClient.SelectedIndex = 0;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
     }
 }

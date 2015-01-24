@@ -133,6 +133,20 @@ namespace BusinessLayer
             }
         }
 
+        public List<BOClient> GetClientsForCategories(int categoryID, int userID)
+        {
+            try
+            {
+                DataLayerManager datalayer = new DataLayerManager();
+                List<Client> listOfClients = datalayer.GetClientsForCategories(categoryID, userID);
+                List<BOClient> clients = GetClientBOForClientDBObjects(listOfClients);
+                return clients;
+            }
+            catch (Exception exception)
+            {
+                throw new Exception(exception.Message);
+            }
+        }
 
         public int GetCountOfClientsForCategories(int categoryID, int userID)
         {

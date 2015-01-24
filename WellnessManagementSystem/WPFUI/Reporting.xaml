@@ -6,8 +6,8 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="2*"/>
-            <RowDefinition Height="2*"/>
-            <RowDefinition Height="2*"/>
+            <RowDefinition Height="5*"/>
+            <RowDefinition Height="5*"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <TextBlock FontSize="25" Grid.Row="0" TextAlignment="Center"></TextBlock>
@@ -21,10 +21,10 @@
             <Label DockPanel.Dock="Right" FontSize="16" Content="Test :" Height="30" Width="50" />
         </DockPanel>
         <DockPanel LastChildFill="False"  Grid.Row="2">
-            <ComboBox DockPanel.Dock="Right" ToolTip="Category" x:Name="ComboBoxForCategory" Height="25" Width="120" Margin="10,0,0,0" />
-            <Label DockPanel.Dock="Right"  FontSize="16" Content="Category :" Height="30" Width="99" Margin="20,0,0,0" />
-            <ComboBox DockPanel.Dock="Right" ToolTip="Report Type" x:Name="ComboBoxForReport" Height="25" Width="120" Margin="20,0,0,0"/>
-            <Label DockPanel.Dock="Right"  FontSize="16" Content="Client :" Height="30" Width="69"  Margin="10,0,0,0" />
+            <ComboBox DockPanel.Dock="Right" ToolTip="Client" x:Name="ComboBoxForClient" Height="25" Width="150" Margin="10,6,0,6" />
+            <Label DockPanel.Dock="Right"  FontSize="16" Content="Client :" Height="30" Width="64" Margin="20,3,0,3" />
+            <ComboBox DockPanel.Dock="Right" ToolTip="Category Type" x:Name="ComboBoxForCategory" SelectionChanged="FilterComboBoxSelectionChanged" Height="25" Width="148" Margin="20,6,0,5"/>
+            <Label DockPanel.Dock="Right"  FontSize="16" Content="Category :" Height="30" Width="85"  Margin="10,3,0,3" />
         </DockPanel>
 
         <chartingToolkit:Chart Grid.Row="3" Name="lineChart" VerticalAlignment="Top" Height="400" MouseDoubleClick="Chart_MouseLeftButtonDown" Margin="0,70,0,0">
