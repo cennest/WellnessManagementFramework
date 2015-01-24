@@ -555,6 +555,28 @@ namespace DataLayer
             return count;
         }
 
-        //public 
+        public bool SaveNote(int clientID, string note)
+        {
+            WellnessManagementFrameworkDBMLDataContext dataContext = new WellnessManagementFrameworkDBMLDataContext();
+            Client client = (from clientObj in dataContext.Clients
+                             where clientObj.ClientID == clientID
+                             select clientObj).FirstOrDefault();
+            if (client != null)
+            {
+                client.Notes = note;
+                dataContext.SubmitChanges();
+                return true;
+            }
+            return false;
+        }
+
+        public string GetNoteForClient(int clientID)
+        {
+            WellnessManagementFrameworkDBMLDataContext dataContext = new WellnessManagementFrameworkDBMLDataContext();
+            Client client = (from clientObj in dataContext.Clients
+                             where clientObj.ClientID == clientID
+                             select clientObj).FirstOrDefault();
+            return client.Notes;
+        }
     }
 }

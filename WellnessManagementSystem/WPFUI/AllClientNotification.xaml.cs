@@ -15,6 +15,8 @@ using BusinessLayer.Entities;
 using BusinessLayer;
 using System.Windows.Navigation;
 using System.Collections;
+using System.IO;
+using System.Text.RegularExpressions;
 
 namespace PhysioApplication
 {
@@ -23,6 +25,7 @@ namespace PhysioApplication
     /// </summary>
     public partial class AllClientNotification : Window
     {
+        const int CHARS_IN_NOTE = 60;
         private readonly RoutedUICommand changedIndex;
         private Hashtable listOfAllClientsByCategoryHasTable;
         private int userID;
@@ -117,6 +120,12 @@ namespace PhysioApplication
                 else
                 {
                     clientList = this.GetClientListByCategory(CategoryID, skip, take, finalRow);
+                    List<BOClient> clients = new List<BOClient>();
+                    foreach (BOClient client in clientList)
+                    {
+                        client.ClientNotes = FormateNoteValue(client.ClientNotes);
+                        clients.Add(client);
+                    }
                 }
                 return clientList;
             }
@@ -124,6 +133,32 @@ namespace PhysioApplication
             {
                 throw ex;
             }
+        }
+
+        public string FormateNoteValue(string noteValue)
+        {
+            string note = null;
+            if (noteValue != null)
+            {
+                RichTextBox rtBox = new RichTextBox();
+                var document = rtBox.Document;
+                var range = new TextRange(document.ContentStart, document.ContentEnd);
+                var ms = new MemoryStream();
+                var writer = new StreamWriter(ms);
+                writer.Write(noteValue);
+                writer.Flush();
+                ms.Seek(0, SeekOrigin.Begin);
+                range.Load(ms, DataFormats.Rtf);
+                note = range.Text;
+                note = note.Substring(0, Math.Min(note.Length, CHARS_IN_NOTE)).Trim();
+                note = Regex.Replace(note, @"\t|\n|\r", "");
+                note = note + "...";
+            }
+            else
+            {
+                note = "No Notes";
+            }
+            return note;
         }
 
         private List<BOClient> GetClientListForCategoryByName(int CategoryID, int skip, int take, int finalRow)

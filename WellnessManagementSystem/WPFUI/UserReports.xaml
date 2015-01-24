@@ -38,7 +38,9 @@
             <TabItem Background="#FFA620" Header="Phy Conditioning" Width="150">
                 <userControl:PhysicalConditioning/>
             </TabItem>
-            <TabItem  Background="#FFA620" Header="Notes" Width="150" Content="Coming Soon!"/>
+            <TabItem  Background="#FFA620" Header="Notes" Width="150">
+                <userControl:ClientNote/>
+            </TabItem>
         </TabControl>
         <userControl:Footer Grid.Row="4"/>
     </Grid>
