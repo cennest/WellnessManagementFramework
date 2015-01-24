@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="WellnessManagementFrameworkDB" Class="WellnessManagementFrameworkDBMLDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=192.168.0.9;Initial Catalog=WellnessManagementFrameworkDB;Persist Security Info=True;User ID=cennest" SettingsObjectName="DatabaseEntities.Properties.Settings" SettingsPropertyName="WellnessManagementFrameworkDBConnectionString5" Provider="System.Data.SqlClient" />
+  <Connection Mode="AppSettings" ConnectionString="Data Source=192.168.0.21;Initial Catalog=WellnessManagementFrameworkDB;User ID=cennest" SettingsObjectName="DatabaseEntities.Properties.Settings" SettingsPropertyName="WellnessManagementFrameworkDBConnectionString7" Provider="System.Data.SqlClient" />
   <Table Name="dbo.CategoryMaster" Member="CategoryMasters">
     <Type Name="CategoryMaster">
       <Column Name="CategoryID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
