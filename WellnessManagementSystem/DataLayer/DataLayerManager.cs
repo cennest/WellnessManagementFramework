@@ -170,6 +170,22 @@ namespace DataLayer
             }
         }
 
+        public DateTime? GetLastLabReportDateForClient(int clientID)
+        {
+            try
+            {
+                WellnessManagementFrameworkDBMLDataContext dataContext = new WellnessManagementFrameworkDBMLDataContext();
+                DateTime? labReportDate = (from report in dataContext.LabReports
+                                          where report.ClientID == clientID
+                                          select (DateTime?)report.TestDate).Max();
+               return labReportDate;
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
         public int GetCountOfClientsForCategoryByName(int categoryID, string searchString, int userID)
         {
             try
@@ -538,5 +554,7 @@ namespace DataLayer
             }
             return count;
         }
+
+        //public 
     }
 }

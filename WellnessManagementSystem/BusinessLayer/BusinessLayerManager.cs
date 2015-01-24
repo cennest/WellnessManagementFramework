@@ -14,6 +14,12 @@ namespace BusinessLayer
 {
     public class BusinessLayerManager
     {
+        //Notification string
+        const string UPCOMMING_TEST = "Upcoming test date on ";
+        const string ELAPSED_TEST = "Date elapsed for test on ";
+        const string NO_NOTIFICATION = "No New Notification";
+        const string NOTIFICATION_DATE_FORMATE = "dd MMMM, yyyy";
+        
         public static Hashtable reportTypeStrings =new Hashtable(){{(int)ReportType.LabReport,ReportTypeResource.LabReport},
                                                                    {(int)ReportType.DietPlan,ReportTypeResource.DietPlan},
                                                                    {(int)ReportType.PhysicalCondition,ReportTypeResource.PhysicalCondition}};
@@ -188,11 +194,48 @@ namespace BusinessLayer
                     clientObject.ClientID = client.ClientID;
                     clientObject.ClientName = client.ClientName;
                     clientObject.ClientNotes = "No Notes";
-                    clientObject.ClientNotification = "No New Notification";
+                    clientObject.ClientNotification = GetLastLabReportDateForClient(client.ClientID);
                     listOfClients.Add(clientObject);
                 }
             }
             return listOfClients;
+        }
+
+        public string GetLastLabReportDateForClient(int clientID)
+        {
+            try
+            {
+                string notification = null;
+                DataLayerManager datalayer = new DataLayerManager();
+                DateTime? lastLabReportDate = datalayer.GetLastLabReportDateForClient(clientID);
+                if (lastLabReportDate == null)
+                {
+                    return notification = NO_NOTIFICATION;
+                }
+                DateTime nextLabReportDate = lastLabReportDate.Value.AddMonths(3);
+                TimeSpan timeSpan = nextLabReportDate.Subtract(DateTime.Now);
+                if (timeSpan.Days > 30)
+                {
+                    notification = NO_NOTIFICATION;
+                }
+                else
+                {
+                    if (nextLabReportDate > DateTime.Now)
+                    {
+                        notification = UPCOMMING_TEST + nextLabReportDate.ToString(NOTIFICATION_DATE_FORMATE);
+                    }
+                    else if (nextLabReportDate < DateTime.Now)
+                    {
+
+                        notification = ELAPSED_TEST + nextLabReportDate.ToString(NOTIFICATION_DATE_FORMATE);
+                    }
+                }
+                return notification;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
         }
 
         public bool SaveEditedReportsForClient(int clientID, ObservableCollection<ExpandoObject> editedLabResults, int userID)
