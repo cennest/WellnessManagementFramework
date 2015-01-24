@@ -120,13 +120,13 @@ namespace PhysioApplication
                 }
                 else
                 {
-                    clientList = this.GetClientListByCategory(CategoryID, skip, take, finalRow);
-                    List<BOClient> clients = new List<BOClient>();
-                    foreach (BOClient client in clientList)
-                    {
-                        client.ClientNotes = FormateNoteValue(client.ClientNotes);
-                        clients.Add(client);
-                    }
+                    clientList = this.GetClientListByCategory(CategoryID, skip, take, finalRow);   
+                }
+                List<BOClient> clients = new List<BOClient>();
+                foreach (BOClient client in clientList)
+                {
+                    client.ClientNotes = FormateNoteValue(client.ClientNotes);
+                    clients.Add(client);
                 }
                 return clientList;
             }
