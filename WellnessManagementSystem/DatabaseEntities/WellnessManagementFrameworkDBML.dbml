@@ -7,15 +7,6 @@
       <Association Name="CategoryMaster_Client" Member="Clients" ThisKey="CategoryID" OtherKey="CategoryID" Type="Client" />
     </Type>
   </Table>
-  <Table Name="dbo.UserReportField" Member="UserReportFields">
-    <Type Name="UserReportField">
-      <Column Name="UserReportFieldID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="UserID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="ReportFieldID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Association Name="ReportFieldMaster_UserReportField" Member="ReportFieldMaster" ThisKey="ReportFieldID" OtherKey="ReportFieldID" Type="ReportFieldMaster" IsForeignKey="true" />
-      <Association Name="User_UserReportField" Member="User" ThisKey="UserID" OtherKey="UserId" Type="User" IsForeignKey="true" />
-    </Type>
-  </Table>
   <Table Name="dbo.Client" Member="Clients">
     <Type Name="Client">
       <Column Name="ClientID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -24,6 +15,7 @@
       <Column Name="ClientAddress" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
       <Column Name="UserID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="CategoryID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Notes" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
       <Association Name="Client_DietPlanReport" Member="DietPlanReports" ThisKey="ClientID" OtherKey="ClientID" Type="DietPlanReport" />
       <Association Name="Client_LabReport" Member="LabReports" ThisKey="ClientID" OtherKey="ClientID" Type="LabReport" />
       <Association Name="Client_PhysicalConditionReport" Member="PhysicalConditionReports" ThisKey="ClientID" OtherKey="ClientID" Type="PhysicalConditionReport" />
@@ -95,9 +87,9 @@
       <Column Name="ReportFieldID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="ReportFieldName" Type="System.String" DbType="NVarChar(200) NOT NULL" CanBeNull="false" />
       <Column Name="ReportTypeID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Association Name="ReportFieldMaster_UserReportField" Member="UserReportFields" ThisKey="ReportFieldID" OtherKey="ReportFieldID" Type="UserReportField" />
       <Association Name="ReportFieldMaster_LabReport" Member="LabReports" ThisKey="ReportFieldID" OtherKey="ReportFieldID" Type="LabReport" />
       <Association Name="ReportFieldMaster_OccupationReportField" Member="OccupationReportFields" ThisKey="ReportFieldID" OtherKey="ReportFieldID" Type="OccupationReportField" />
+      <Association Name="ReportFieldMaster_UserReportField" Member="UserReportFields" ThisKey="ReportFieldID" OtherKey="ReportFieldID" Type="UserReportField" />
       <Association Name="ReportTypeMaster_ReportFieldMaster" Member="ReportTypeMaster" ThisKey="ReportTypeID" OtherKey="ReportTypeID" Type="ReportTypeMaster" IsForeignKey="true" />
     </Type>
   </Table>
@@ -116,12 +108,21 @@
       <Column Name="UserAddress" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
       <Column Name="Password" Type="System.String" DbType="NVarChar(200) NOT NULL" CanBeNull="false" />
       <Column Name="OccupationID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Association Name="User_UserReportField" Member="UserReportFields" ThisKey="UserId" OtherKey="UserID" Type="UserReportField" />
       <Association Name="User_Client" Member="Clients" ThisKey="UserId" OtherKey="UserID" Type="Client" />
       <Association Name="User_DietPlanReport" Member="DietPlanReports" ThisKey="UserId" OtherKey="UserID" Type="DietPlanReport" />
       <Association Name="User_LabReport" Member="LabReports" ThisKey="UserId" OtherKey="UserID" Type="LabReport" />
       <Association Name="User_PhysicalConditionReport" Member="PhysicalConditionReports" ThisKey="UserId" OtherKey="UserID" Type="PhysicalConditionReport" />
+      <Association Name="User_UserReportField" Member="UserReportFields" ThisKey="UserId" OtherKey="UserID" Type="UserReportField" />
       <Association Name="OccupationMaster_User" Member="OccupationMaster" ThisKey="OccupationID" OtherKey="OccupationID" Type="OccupationMaster" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.UserReportField" Member="UserReportFields">
+    <Type Name="UserReportField">
+      <Column Name="UserReportFieldID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="UserID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ReportFieldID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="ReportFieldMaster_UserReportField" Member="ReportFieldMaster" ThisKey="ReportFieldID" OtherKey="ReportFieldID" Type="ReportFieldMaster" IsForeignKey="true" />
+      <Association Name="User_UserReportField" Member="User" ThisKey="UserID" OtherKey="UserId" Type="User" IsForeignKey="true" />
     </Type>
   </Table>
 </Database>

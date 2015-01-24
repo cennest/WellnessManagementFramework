@@ -33,9 +33,6 @@ namespace DatabaseEntities
     partial void InsertCategoryMaster(CategoryMaster instance);
     partial void UpdateCategoryMaster(CategoryMaster instance);
     partial void DeleteCategoryMaster(CategoryMaster instance);
-    partial void InsertUserReportField(UserReportField instance);
-    partial void UpdateUserReportField(UserReportField instance);
-    partial void DeleteUserReportField(UserReportField instance);
     partial void InsertClient(Client instance);
     partial void UpdateClient(Client instance);
     partial void DeleteClient(Client instance);
@@ -63,6 +60,9 @@ namespace DatabaseEntities
     partial void InsertUser(User instance);
     partial void UpdateUser(User instance);
     partial void DeleteUser(User instance);
+    partial void InsertUserReportField(UserReportField instance);
+    partial void UpdateUserReportField(UserReportField instance);
+    partial void DeleteUserReportField(UserReportField instance);
     #endregion
 		
 		public WellnessManagementFrameworkDBMLDataContext() : 
@@ -100,14 +100,6 @@ namespace DatabaseEntities
 			get
 			{
 				return this.GetTable<CategoryMaster>();
-			}
-		}
-		
-		public System.Data.Linq.Table<UserReportField> UserReportFields
-		{
-			get
-			{
-				return this.GetTable<UserReportField>();
 			}
 		}
 		
@@ -180,6 +172,14 @@ namespace DatabaseEntities
 			get
 			{
 				return this.GetTable<User>();
+			}
+		}
+		
+		public System.Data.Linq.Table<UserReportField> UserReportFields
+		{
+			get
+			{
+				return this.GetTable<UserReportField>();
 			}
 		}
 	}
@@ -298,198 +298,6 @@ namespace DatabaseEntities
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.UserReportField")]
-	public partial class UserReportField : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _UserReportFieldID;
-		
-		private int _UserID;
-		
-		private int _ReportFieldID;
-		
-		private EntityRef<ReportFieldMaster> _ReportFieldMaster;
-		
-		private EntityRef<User> _User;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnUserReportFieldIDChanging(int value);
-    partial void OnUserReportFieldIDChanged();
-    partial void OnUserIDChanging(int value);
-    partial void OnUserIDChanged();
-    partial void OnReportFieldIDChanging(int value);
-    partial void OnReportFieldIDChanged();
-    #endregion
-		
-		public UserReportField()
-		{
-			this._ReportFieldMaster = default(EntityRef<ReportFieldMaster>);
-			this._User = default(EntityRef<User>);
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserReportFieldID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int UserReportFieldID
-		{
-			get
-			{
-				return this._UserReportFieldID;
-			}
-			set
-			{
-				if ((this._UserReportFieldID != value))
-				{
-					this.OnUserReportFieldIDChanging(value);
-					this.SendPropertyChanging();
-					this._UserReportFieldID = value;
-					this.SendPropertyChanged("UserReportFieldID");
-					this.OnUserReportFieldIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserID", DbType="Int NOT NULL")]
-		public int UserID
-		{
-			get
-			{
-				return this._UserID;
-			}
-			set
-			{
-				if ((this._UserID != value))
-				{
-					if (this._User.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnUserIDChanging(value);
-					this.SendPropertyChanging();
-					this._UserID = value;
-					this.SendPropertyChanged("UserID");
-					this.OnUserIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ReportFieldID", DbType="Int NOT NULL")]
-		public int ReportFieldID
-		{
-			get
-			{
-				return this._ReportFieldID;
-			}
-			set
-			{
-				if ((this._ReportFieldID != value))
-				{
-					if (this._ReportFieldMaster.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnReportFieldIDChanging(value);
-					this.SendPropertyChanging();
-					this._ReportFieldID = value;
-					this.SendPropertyChanged("ReportFieldID");
-					this.OnReportFieldIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ReportFieldMaster_UserReportField", Storage="_ReportFieldMaster", ThisKey="ReportFieldID", OtherKey="ReportFieldID", IsForeignKey=true)]
-		public ReportFieldMaster ReportFieldMaster
-		{
-			get
-			{
-				return this._ReportFieldMaster.Entity;
-			}
-			set
-			{
-				ReportFieldMaster previousValue = this._ReportFieldMaster.Entity;
-				if (((previousValue != value) 
-							|| (this._ReportFieldMaster.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._ReportFieldMaster.Entity = null;
-						previousValue.UserReportFields.Remove(this);
-					}
-					this._ReportFieldMaster.Entity = value;
-					if ((value != null))
-					{
-						value.UserReportFields.Add(this);
-						this._ReportFieldID = value.ReportFieldID;
-					}
-					else
-					{
-						this._ReportFieldID = default(int);
-					}
-					this.SendPropertyChanged("ReportFieldMaster");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User_UserReportField", Storage="_User", ThisKey="UserID", OtherKey="UserId", IsForeignKey=true)]
-		public User User
-		{
-			get
-			{
-				return this._User.Entity;
-			}
-			set
-			{
-				User previousValue = this._User.Entity;
-				if (((previousValue != value) 
-							|| (this._User.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._User.Entity = null;
-						previousValue.UserReportFields.Remove(this);
-					}
-					this._User.Entity = value;
-					if ((value != null))
-					{
-						value.UserReportFields.Add(this);
-						this._UserID = value.UserId;
-					}
-					else
-					{
-						this._UserID = default(int);
-					}
-					this.SendPropertyChanged("User");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-	}
-	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Client")]
 	public partial class Client : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -507,6 +315,8 @@ namespace DatabaseEntities
 		private int _UserID;
 		
 		private int _CategoryID;
+		
+		private string _Notes;
 		
 		private EntitySet<DietPlanReport> _DietPlanReports;
 		
@@ -534,6 +344,8 @@ namespace DatabaseEntities
     partial void OnUserIDChanged();
     partial void OnCategoryIDChanging(int value);
     partial void OnCategoryIDChanged();
+    partial void OnNotesChanging(string value);
+    partial void OnNotesChanged();
     #endregion
 		
 		public Client()
@@ -670,6 +482,26 @@ namespace DatabaseEntities
 					this._CategoryID = value;
 					this.SendPropertyChanged("CategoryID");
 					this.OnCategoryIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Notes", DbType="NVarChar(MAX)")]
+		public string Notes
+		{
+			get
+			{
+				return this._Notes;
+			}
+			set
+			{
+				if ((this._Notes != value))
+				{
+					this.OnNotesChanging(value);
+					this.SendPropertyChanging();
+					this._Notes = value;
+					this.SendPropertyChanged("Notes");
+					this.OnNotesChanged();
 				}
 			}
 		}
@@ -2137,11 +1969,11 @@ namespace DatabaseEntities
 		
 		private int _ReportTypeID;
 		
-		private EntitySet<UserReportField> _UserReportFields;
-		
 		private EntitySet<LabReport> _LabReports;
 		
 		private EntitySet<OccupationReportField> _OccupationReportFields;
+		
+		private EntitySet<UserReportField> _UserReportFields;
 		
 		private EntityRef<ReportTypeMaster> _ReportTypeMaster;
 		
@@ -2159,9 +1991,9 @@ namespace DatabaseEntities
 		
 		public ReportFieldMaster()
 		{
-			this._UserReportFields = new EntitySet<UserReportField>(new Action<UserReportField>(this.attach_UserReportFields), new Action<UserReportField>(this.detach_UserReportFields));
 			this._LabReports = new EntitySet<LabReport>(new Action<LabReport>(this.attach_LabReports), new Action<LabReport>(this.detach_LabReports));
 			this._OccupationReportFields = new EntitySet<OccupationReportField>(new Action<OccupationReportField>(this.attach_OccupationReportFields), new Action<OccupationReportField>(this.detach_OccupationReportFields));
+			this._UserReportFields = new EntitySet<UserReportField>(new Action<UserReportField>(this.attach_UserReportFields), new Action<UserReportField>(this.detach_UserReportFields));
 			this._ReportTypeMaster = default(EntityRef<ReportTypeMaster>);
 			OnCreated();
 		}
@@ -2230,19 +2062,6 @@ namespace DatabaseEntities
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ReportFieldMaster_UserReportField", Storage="_UserReportFields", ThisKey="ReportFieldID", OtherKey="ReportFieldID")]
-		public EntitySet<UserReportField> UserReportFields
-		{
-			get
-			{
-				return this._UserReportFields;
-			}
-			set
-			{
-				this._UserReportFields.Assign(value);
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ReportFieldMaster_LabReport", Storage="_LabReports", ThisKey="ReportFieldID", OtherKey="ReportFieldID")]
 		public EntitySet<LabReport> LabReports
 		{
@@ -2266,6 +2085,19 @@ namespace DatabaseEntities
 			set
 			{
 				this._OccupationReportFields.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ReportFieldMaster_UserReportField", Storage="_UserReportFields", ThisKey="ReportFieldID", OtherKey="ReportFieldID")]
+		public EntitySet<UserReportField> UserReportFields
+		{
+			get
+			{
+				return this._UserReportFields;
+			}
+			set
+			{
+				this._UserReportFields.Assign(value);
 			}
 		}
 		
@@ -2323,18 +2155,6 @@ namespace DatabaseEntities
 			}
 		}
 		
-		private void attach_UserReportFields(UserReportField entity)
-		{
-			this.SendPropertyChanging();
-			entity.ReportFieldMaster = this;
-		}
-		
-		private void detach_UserReportFields(UserReportField entity)
-		{
-			this.SendPropertyChanging();
-			entity.ReportFieldMaster = null;
-		}
-		
 		private void attach_LabReports(LabReport entity)
 		{
 			this.SendPropertyChanging();
@@ -2354,6 +2174,18 @@ namespace DatabaseEntities
 		}
 		
 		private void detach_OccupationReportFields(OccupationReportField entity)
+		{
+			this.SendPropertyChanging();
+			entity.ReportFieldMaster = null;
+		}
+		
+		private void attach_UserReportFields(UserReportField entity)
+		{
+			this.SendPropertyChanging();
+			entity.ReportFieldMaster = this;
+		}
+		
+		private void detach_UserReportFields(UserReportField entity)
 		{
 			this.SendPropertyChanging();
 			entity.ReportFieldMaster = null;
@@ -2492,8 +2324,6 @@ namespace DatabaseEntities
 		
 		private int _OccupationID;
 		
-		private EntitySet<UserReportField> _UserReportFields;
-		
 		private EntitySet<Client> _Clients;
 		
 		private EntitySet<DietPlanReport> _DietPlanReports;
@@ -2501,6 +2331,8 @@ namespace DatabaseEntities
 		private EntitySet<LabReport> _LabReports;
 		
 		private EntitySet<PhysicalConditionReport> _PhysicalConditionReports;
+		
+		private EntitySet<UserReportField> _UserReportFields;
 		
 		private EntityRef<OccupationMaster> _OccupationMaster;
 		
@@ -2524,11 +2356,11 @@ namespace DatabaseEntities
 		
 		public User()
 		{
-			this._UserReportFields = new EntitySet<UserReportField>(new Action<UserReportField>(this.attach_UserReportFields), new Action<UserReportField>(this.detach_UserReportFields));
 			this._Clients = new EntitySet<Client>(new Action<Client>(this.attach_Clients), new Action<Client>(this.detach_Clients));
 			this._DietPlanReports = new EntitySet<DietPlanReport>(new Action<DietPlanReport>(this.attach_DietPlanReports), new Action<DietPlanReport>(this.detach_DietPlanReports));
 			this._LabReports = new EntitySet<LabReport>(new Action<LabReport>(this.attach_LabReports), new Action<LabReport>(this.detach_LabReports));
 			this._PhysicalConditionReports = new EntitySet<PhysicalConditionReport>(new Action<PhysicalConditionReport>(this.attach_PhysicalConditionReports), new Action<PhysicalConditionReport>(this.detach_PhysicalConditionReports));
+			this._UserReportFields = new EntitySet<UserReportField>(new Action<UserReportField>(this.attach_UserReportFields), new Action<UserReportField>(this.detach_UserReportFields));
 			this._OccupationMaster = default(EntityRef<OccupationMaster>);
 			OnCreated();
 		}
@@ -2657,19 +2489,6 @@ namespace DatabaseEntities
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User_UserReportField", Storage="_UserReportFields", ThisKey="UserId", OtherKey="UserID")]
-		public EntitySet<UserReportField> UserReportFields
-		{
-			get
-			{
-				return this._UserReportFields;
-			}
-			set
-			{
-				this._UserReportFields.Assign(value);
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User_Client", Storage="_Clients", ThisKey="UserId", OtherKey="UserID")]
 		public EntitySet<Client> Clients
 		{
@@ -2719,6 +2538,19 @@ namespace DatabaseEntities
 			set
 			{
 				this._PhysicalConditionReports.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User_UserReportField", Storage="_UserReportFields", ThisKey="UserId", OtherKey="UserID")]
+		public EntitySet<UserReportField> UserReportFields
+		{
+			get
+			{
+				return this._UserReportFields;
+			}
+			set
+			{
+				this._UserReportFields.Assign(value);
 			}
 		}
 		
@@ -2776,18 +2608,6 @@ namespace DatabaseEntities
 			}
 		}
 		
-		private void attach_UserReportFields(UserReportField entity)
-		{
-			this.SendPropertyChanging();
-			entity.User = this;
-		}
-		
-		private void detach_UserReportFields(UserReportField entity)
-		{
-			this.SendPropertyChanging();
-			entity.User = null;
-		}
-		
 		private void attach_Clients(Client entity)
 		{
 			this.SendPropertyChanging();
@@ -2834,6 +2654,210 @@ namespace DatabaseEntities
 		{
 			this.SendPropertyChanging();
 			entity.User = null;
+		}
+		
+		private void attach_UserReportFields(UserReportField entity)
+		{
+			this.SendPropertyChanging();
+			entity.User = this;
+		}
+		
+		private void detach_UserReportFields(UserReportField entity)
+		{
+			this.SendPropertyChanging();
+			entity.User = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.UserReportField")]
+	public partial class UserReportField : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _UserReportFieldID;
+		
+		private int _UserID;
+		
+		private int _ReportFieldID;
+		
+		private EntityRef<ReportFieldMaster> _ReportFieldMaster;
+		
+		private EntityRef<User> _User;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnUserReportFieldIDChanging(int value);
+    partial void OnUserReportFieldIDChanged();
+    partial void OnUserIDChanging(int value);
+    partial void OnUserIDChanged();
+    partial void OnReportFieldIDChanging(int value);
+    partial void OnReportFieldIDChanged();
+    #endregion
+		
+		public UserReportField()
+		{
+			this._ReportFieldMaster = default(EntityRef<ReportFieldMaster>);
+			this._User = default(EntityRef<User>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserReportFieldID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int UserReportFieldID
+		{
+			get
+			{
+				return this._UserReportFieldID;
+			}
+			set
+			{
+				if ((this._UserReportFieldID != value))
+				{
+					this.OnUserReportFieldIDChanging(value);
+					this.SendPropertyChanging();
+					this._UserReportFieldID = value;
+					this.SendPropertyChanged("UserReportFieldID");
+					this.OnUserReportFieldIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserID", DbType="Int NOT NULL")]
+		public int UserID
+		{
+			get
+			{
+				return this._UserID;
+			}
+			set
+			{
+				if ((this._UserID != value))
+				{
+					if (this._User.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnUserIDChanging(value);
+					this.SendPropertyChanging();
+					this._UserID = value;
+					this.SendPropertyChanged("UserID");
+					this.OnUserIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ReportFieldID", DbType="Int NOT NULL")]
+		public int ReportFieldID
+		{
+			get
+			{
+				return this._ReportFieldID;
+			}
+			set
+			{
+				if ((this._ReportFieldID != value))
+				{
+					if (this._ReportFieldMaster.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnReportFieldIDChanging(value);
+					this.SendPropertyChanging();
+					this._ReportFieldID = value;
+					this.SendPropertyChanged("ReportFieldID");
+					this.OnReportFieldIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ReportFieldMaster_UserReportField", Storage="_ReportFieldMaster", ThisKey="ReportFieldID", OtherKey="ReportFieldID", IsForeignKey=true)]
+		public ReportFieldMaster ReportFieldMaster
+		{
+			get
+			{
+				return this._ReportFieldMaster.Entity;
+			}
+			set
+			{
+				ReportFieldMaster previousValue = this._ReportFieldMaster.Entity;
+				if (((previousValue != value) 
+							|| (this._ReportFieldMaster.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._ReportFieldMaster.Entity = null;
+						previousValue.UserReportFields.Remove(this);
+					}
+					this._ReportFieldMaster.Entity = value;
+					if ((value != null))
+					{
+						value.UserReportFields.Add(this);
+						this._ReportFieldID = value.ReportFieldID;
+					}
+					else
+					{
+						this._ReportFieldID = default(int);
+					}
+					this.SendPropertyChanged("ReportFieldMaster");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User_UserReportField", Storage="_User", ThisKey="UserID", OtherKey="UserId", IsForeignKey=true)]
+		public User User
+		{
+			get
+			{
+				return this._User.Entity;
+			}
+			set
+			{
+				User previousValue = this._User.Entity;
+				if (((previousValue != value) 
+							|| (this._User.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._User.Entity = null;
+						previousValue.UserReportFields.Remove(this);
+					}
+					this._User.Entity = value;
+					if ((value != null))
+					{
+						value.UserReportFields.Add(this);
+						this._UserID = value.UserId;
+					}
+					else
+					{
+						this._UserID = default(int);
+					}
+					this.SendPropertyChanged("User");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
 		}
 	}
 }

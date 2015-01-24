@@ -221,8 +221,7 @@
                 <TextBox Width="500" Grid.Row="1" Name="UserName" />
                 <PasswordBox  Width="500" Grid.Row="3" x:Name="Password" KeyDown="Password_KeyDown" />
                 <CheckBox Grid.Row="4" Name="RMCheckBox" Foreground="Black"
-                  Canvas.Left="20" Canvas.Top="10" Content="Remember Me"
-                  FontFamily="Helvetica" FontSize="12"  Margin="295,18,291,5"/>
+                  Content="Remember Me" FontSize="12"  Margin="295,18,291,5"/>
                 <Button Content="Login" Grid.Row="5" Width="200" Click="Login_Click" Background="{StaticResource ButtonGreenBackground}" Style="{StaticResource MetroButton}" MaxHeight="60" />
             </Grid>
         </GroupBox>

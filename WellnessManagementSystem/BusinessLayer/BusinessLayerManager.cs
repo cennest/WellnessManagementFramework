@@ -188,6 +188,7 @@ namespace BusinessLayer
 
         private List<BOClient> GetClientBOForClientDBObjects(List<Client> clients)
         {
+            DataLayerManager datalayer = new DataLayerManager();
             List<BOClient> listOfClients = new List<BOClient>();
             if (clients.Count > 0)
             {
@@ -196,7 +197,7 @@ namespace BusinessLayer
                     BOClient clientObject = new BOClient();
                     clientObject.ClientID = client.ClientID;
                     clientObject.ClientName = client.ClientName;
-                    clientObject.ClientNotes = "No Notes";
+                    clientObject.ClientNotes = datalayer.GetNoteForClient(client.ClientID);
                     clientObject.ClientNotification = GetLastLabReportDateForClient(client.ClientID);
                     listOfClients.Add(clientObject);
                 }
@@ -204,6 +205,21 @@ namespace BusinessLayer
             return listOfClients;
         }
 
+        //public string GetNoteOverviewForClient(int clientID)
+        //{
+        //    //System.Windows.Forms.RichTextBox rtBox = new System.Windows.Forms.RichTextBox();
+
+
+        //    //string note = datalayer.GetNoteForClient(client.ClientID);
+        //    //var document = noteEditor.Document;
+        //    //var range = new TextRange(document.ContentStart, document.ContentEnd);
+        //    //var ms = new MemoryStream();
+        //    //var writer = new StreamWriter(ms);
+        //    //writer.Write(note);
+        //    //writer.Flush();
+        //    //ms.Seek(0, SeekOrigin.Begin);
+        //    //range.Load(ms, DataFormats.Rtf);
+        //}
         public string GetLastLabReportDateForClient(int clientID)
         {
             try
@@ -429,6 +445,37 @@ namespace BusinessLayer
                 }
             }
             return listOfDietPlanReports;
+        }
+
+        public bool SaveNote(int clientID, string note)
+        {
+            try
+            {
+                DataLayerManager dataLayer = new DataLayerManager();
+                return dataLayer.SaveNote(clientID, note);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public string GetNoteForClient(int clientID)
+        {
+            try
+            {
+                DataLayerManager dataLayer = new DataLayerManager();
+                string note = dataLayer.GetNoteForClient(clientID);
+                if (note == null)
+                {
+                    note = "No Note";
+                }
+                return note;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
         }
     }
 }
