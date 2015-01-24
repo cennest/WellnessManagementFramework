@@ -36,7 +36,9 @@ namespace PhysioApplication
             InitializeComponent();
             this.listOfAllClientsByCategoryHasTable = new Hashtable();
             BOUser userDetail = new BOUser();
-            userDetail = AppManager.getInstance().GetUserDetails();
+            AppManager appManager = AppManager.getInstance();
+            appManager.CurrentWindow = this;
+            userDetail = appManager.GetUserDetails();
             this.userID = userDetail.UserID;
 
             // Binding with the ChangedIndexCommand on GridPaging.........................................
@@ -67,7 +69,6 @@ namespace PhysioApplication
         void ucBreadCrumb_CrumbSelected(string selectedString)
         {
             AppManager.getInstance().BreadCrumbSelected(selectedString);
-            this.Close();
         }
 
         private void LoadData()
@@ -285,7 +286,7 @@ namespace PhysioApplication
                 AppManager.getInstance().currentClientID = Convert.ToInt32(textBlock.Tag);
                 AppManager.getInstance().CurrentClientName = textBlock.Text;
                 UserReports labReports = new UserReports();
-                labReports.ShowDialog();
+                labReports.Show();
                 this.Close();
             }
         }

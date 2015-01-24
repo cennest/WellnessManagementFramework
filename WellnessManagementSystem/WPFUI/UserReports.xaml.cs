@@ -30,6 +30,8 @@ namespace PhysioApplication
         public UserReports()
         {
             InitializeComponent();
+            AppManager appManager = AppManager.getInstance();
+            appManager.CurrentWindow = this;
             SetBreadCrumb();
             ucBreadCrumb.CrumbSelected += ucBreadCrumb_CrumbSelected;
         }
@@ -37,7 +39,7 @@ namespace PhysioApplication
         void ucBreadCrumb_CrumbSelected(string selectedString)
         {
             AppManager.getInstance().BreadCrumbSelected(selectedString);
-            this.Close();
+          
         }
 
         private void SetBreadCrumb()
@@ -52,15 +54,9 @@ namespace PhysioApplication
             if (this.isSearchByName == true)
             {
                 this.nameToSearch = name;
-                AllClientNotification allClientNotifications = new AllClientNotification();
-                allClientNotifications.ucFilterUC.ComboBoxPageFilter.SelectedIndex = this.ucFilterUC.ComboBoxPageFilter.SelectedIndex;
-                allClientNotifications.ucFilterUC.SearchTextBlock.Text = this.ucFilterUC.SearchTextBlock.Text;
-                allClientNotifications.ReloadData(true, this.ucFilterUC.SearchTextBlock.Text);
-                allClientNotifications.ShowDialog();
-                this.Close();
+                AppManager.getInstance().SearchSelected(this.ucFilterUC.ComboBoxPageFilter.SelectedIndex, this.ucFilterUC.SearchTextBlock.Text);
             }
         }
     }
-
-
+    
 }

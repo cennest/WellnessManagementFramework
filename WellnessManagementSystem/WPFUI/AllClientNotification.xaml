@@ -18,14 +18,15 @@
             <RowDefinition Height=".1*" />
             <RowDefinition Height="*" />
             <RowDefinition Height=".08*" />
+            <RowDefinition Height=".08*" />
         </Grid.RowDefinitions>
         <userControl:FilterUC x:Name="ucFilterUC" OptionChanged = "uc_OptionChanged" Grid.Row="0" HorizontalAlignment="Stretch" Margin="0,0,40,0"></userControl:FilterUC>
         <userControl:UCBreadCrumb Margin="20,0,0,0" Grid.Row="2" x:Name="ucBreadCrumb"></userControl:UCBreadCrumb>
 
         <StackPanel Grid.Row="3">
-            <DataGrid Name="ClientDataGrid" AlternatingRowBackground="Gray"
+            <DataGrid  Name="ClientDataGrid" AlternatingRowBackground="Gray"
 		          HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="10,0"
-		           AutoGenerateColumns="False" MinRowHeight="26" CanUserAddRows="False" Height="300">
+		           AutoGenerateColumns="False" MinRowHeight="26" CanUserAddRows="False">
                 <DataGrid.Columns>
                     <DataGridTemplateColumn  Header="Name" Width="*">
                         <DataGridTemplateColumn.CellTemplate>
@@ -53,9 +54,9 @@
 				                    Header="Last Notes" Width="*"/>
                 </DataGrid.Columns>
             </DataGrid>
-            <my:GridPaging Grid.Row="2" HorizontalAlignment="Center" x:Name="gridPaging" Margin="0,30"/>
         </StackPanel>
-        <userControl:Footer Grid.Row="4"></userControl:Footer>
+        <my:GridPaging Grid.Row="4" HorizontalAlignment="Center" x:Name="gridPaging"/>
+        <userControl:Footer Grid.Row="5"></userControl:Footer>
     </Grid>
 </Window>
 
