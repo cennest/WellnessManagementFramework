@@ -29,6 +29,9 @@ namespace PhysioApplication
         public LoginWindow()
         {
             InitializeComponent();
+
+            AppManager appManager = AppManager.getInstance();
+            appManager.CurrentWindow=this;
             GetLoginCredentialFromStorageFile(); 
         }
 
@@ -117,7 +120,8 @@ namespace PhysioApplication
                     }
                 }
 
-                HomePage homePage = new HomePage();
+                
+                HomePage homePage = new HomePage();                
                 homePage.Show();
                 this.Close();
             }

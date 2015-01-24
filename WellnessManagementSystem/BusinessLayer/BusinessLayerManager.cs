@@ -363,6 +363,7 @@ namespace BusinessLayer
                 {
                     DietPlanReport dietPlan = new DietPlanReport();
                     dietPlan.DietPlanReportID = dietPlanReport.DietPlanReportID;
+                    dietPlan.TestDate = dietPlanReport.TestDate;
                     dietPlan.BMI = dietPlanReport.BMI;
                     dietPlan.Morning = dietPlanReport.Morning;
                     dietPlan.Afternoon = dietPlanReport.Afternoon;

@@ -34,6 +34,9 @@ namespace PhysioApplication
         {
             InitializeComponent();
             AppManager appManager = AppManager.getInstance();
+                
+            
+            appManager.CurrentWindow= this;
             BOUser userDetails = appManager.GetUserDetails();
             DataContext = userDetails;
             InitializeCustomComponents();
@@ -78,7 +81,6 @@ namespace PhysioApplication
         private void ucBreadCrumb_CrumbSelected(string selectedString)
         {
             AppManager.getInstance().BreadCrumbSelected(selectedString);
-            this.Close();
         }
 
         private void Footer_Loaded(object sender, RoutedEventArgs e)
