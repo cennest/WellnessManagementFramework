@@ -29,9 +29,16 @@ namespace PhysioApplication.UserControls
         public FilterUC()
         {
             InitializeComponent();
-            List<BOCategory> categoryList = businessLayer.GetAllCategories();
+            LoadCategories();
+         
+        }
+
+        private void LoadCategories()
+        {
+            var appManagerCategories = AppManager.getInstance().CurrentCategories;
+          
             List<ComboBoxItem> comboBoxItemList = new List<ComboBoxItem>();
-            foreach (BOCategory category in categoryList)
+            foreach (BOCategory category in appManagerCategories)
             {
                 comboBoxItemList.Add(new ComboBoxItem { Content = category.CategoryName, Tag = category.CategoryID.ToString() });
             }

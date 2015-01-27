@@ -64,10 +64,21 @@ namespace PhysioApplication
         {
             Button button = (Button)sender;
             string buttonTitle = button.Content.ToString();
+            switch(buttonTitle)
+            {
+                case "View Historical Trends":
+                    {
+                        HistoricalTrends trends= new HistoricalTrends();
+                        trends.Show();
+                    }break;
+                 default:  
+                    {AllClientNotification client = new AllClientNotification();
+            client.Show();}
+                    break;
 
+            }
             //TODO: temporary same action for all the buttons
-            AllClientNotification client = new AllClientNotification();
-            client.Show();
+        
             this.Close();
         }
         private void SetBreadCrumb()

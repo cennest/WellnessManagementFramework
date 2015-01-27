@@ -65,6 +65,9 @@
       <DependentUpon>GridPaging.xaml</DependentUpon>
     </Compile>
     <Compile Include="Helper\CenterBorderGapMaskConverter.cs" />
+    <Compile Include="HistoricalTrends.xaml.cs">
+      <DependentUpon>HistoricalTrends.xaml</DependentUpon>
+    </Compile>
     <Compile Include="HomePage.xaml.cs">
       <DependentUpon>HomePage.xaml</DependentUpon>
     </Compile>
@@ -102,6 +105,10 @@
       <DependentUpon>ResourceConstants.resx</DependentUpon>
     </Compile>
     <Page Include="GridPaging\GridPaging.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="HistoricalTrends.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

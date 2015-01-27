@@ -5,11 +5,30 @@ using System.Text;
 using System.Threading.Tasks;
 using BusinessLayer.Entities;
 using System.Windows;
+using BusinessLayer;
 
 namespace PhysioApplication
 {
     public class AppManager
     {
+        private List<BOCategory> appManagerCategories;
+        public List<BOCategory> CurrentCategories
+        {
+            get
+            {
+                
+                if (appManagerCategories == null)
+                {
+                    BusinessLayerManager businessLayer = new BusinessLayerManager();
+                    appManagerCategories = businessLayer.GetAllCategories();
+
+                }
+                return appManagerCategories;
+
+            }
+        }
+            
+            
         private static AppManager instance = null;
         private BOUser userDetails;
         private List<BOUserField> labReportFieldsForUser;
