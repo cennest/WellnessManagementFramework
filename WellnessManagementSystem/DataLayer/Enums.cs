@@ -16,4 +16,11 @@ namespace DataLayer
         Boxer,
         Sprinter
     }
+
+    public enum ReportType
+    {
+        LabReport = 1,
+        DietPlanReport,
+        PhysicalConditionReport
+    }
 }

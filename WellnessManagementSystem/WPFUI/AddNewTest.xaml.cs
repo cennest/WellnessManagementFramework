@@ -24,9 +24,6 @@ namespace PhysioApplication
         public AddNewTest()
         {
             InitializeComponent();
-            AppManager appManager = AppManager.getInstance();
-            appManager.CurrentWindow = this;
-
         }
 
         private void AddTest_Click(object sender, RoutedEventArgs e)
