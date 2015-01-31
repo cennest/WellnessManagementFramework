@@ -83,6 +83,17 @@ namespace PhysioApplication
                      
                     }
                     break;
+                case "Settings":
+                    {
+                        Window previousWindow = CurrentWindow;
+                        AddNewMainScreen mainScreen = new AddNewMainScreen();
+                        if (previousWindow != null)
+                        {
+                            previousWindow.Close();
+                        }
+                        mainScreen.Show();
+                    }
+                    break;
             }
             return true;
         }

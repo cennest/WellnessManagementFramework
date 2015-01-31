@@ -55,7 +55,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="AddNewMainScreen.xaml.cs">
+    <Compile Include="AddNewAthlete.xaml.cs">
+      <DependentUpon>AddNewAthlete.xaml</DependentUpon>
+ </Compile>
+   <Compile Include="AddNewMainScreen.xaml.cs">
       <DependentUpon>AddNewMainScreen.xaml</DependentUpon>
     </Compile>
     <Compile Include="AddNewTest.xaml.cs">
@@ -102,9 +105,10 @@
     <Compile Include="UserControls\LabReportUC.xaml.cs" />
     <Compile Include="UserControls\UCBreadCrumb.xaml.cs">
       <DependentUpon>UCBreadCrumb.xaml</DependentUpon>
-    </Compile>
-    <Page Include="AddNewMainScreen.xaml">
-      <SubType>Designer</SubType>
+    </Compile> <Page Include="AddNewAthlete.xaml">
+ </Page>
+   <Page Include="AddNewMainScreen.xaml">
+<SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="AddNewTest.xaml">
