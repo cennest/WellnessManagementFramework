@@ -578,5 +578,34 @@ namespace DataLayer
                              select clientObj).FirstOrDefault();
             return client.Notes;
         }
+
+        public bool SaveTestForUser(int userID, string testName)
+        {
+            try
+            {
+                WellnessManagementFrameworkDBMLDataContext dataContext = new WellnessManagementFrameworkDBMLDataContext();
+                ReportFieldMaster reportFieldMaster = new ReportFieldMaster();
+                reportFieldMaster.ReportFieldName = testName;
+                reportFieldMaster.ReportTypeID = 1;
+                dataContext.ReportFieldMasters.InsertOnSubmit(reportFieldMaster);
+                dataContext.SubmitChanges();
+                if (reportFieldMaster.ReportFieldID != 0)
+                {
+                    UserReportField userReportField = new UserReportField();
+                    userReportField.UserID = userID;
+                    userReportField.ReportFieldID = reportFieldMaster.ReportFieldID;
+                    dataContext.UserReportFields.InsertOnSubmit(userReportField);
+                    dataContext.SubmitChanges();
+                    return true;
+                }
+                return false;
+            }
+            catch (Exception exception)
+            {
+                throw exception;
+            }
+            
+
+        }
     }
 }

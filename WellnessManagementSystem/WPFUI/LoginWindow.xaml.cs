@@ -120,9 +120,10 @@ namespace PhysioApplication
                     }
                 }
 
-                
-                HomePage homePage = new HomePage();                
-                homePage.Show();
+                AddNewTest addNewTest = new AddNewTest();
+                addNewTest.ShowDialog();
+                //HomePage homePage = new HomePage();                
+                //homePage.Show();
                 this.Close();
             }
         }

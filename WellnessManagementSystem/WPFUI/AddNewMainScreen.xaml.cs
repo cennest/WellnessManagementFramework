@@ -25,15 +25,12 @@ namespace PhysioApplication
     {
         public const string NO_OF_ADD_BUTTONS = "NoOfAddButtons";
         public const string BUTTON_TEXT = "AddNewButton";
-        public const string BUTTON_DESCRIPTION_TEXT = "Description";
         public const string BUTTON_TITLE_TEXT = "Title";
         public const string COLUMN_NAME_BUTTONS = "ButtonsList";
-        public const string COLUMN_NAME_DESCRIPTIONS = "Description";
         public AddNewMainScreen()
         {
             InitializeComponent();
             AppManager appManager = AppManager.getInstance();
-
 
             appManager.CurrentWindow = this;
             BOUser userDetails = appManager.GetUserDetails();

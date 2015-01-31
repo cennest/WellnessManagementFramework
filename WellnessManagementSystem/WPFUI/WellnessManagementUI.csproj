@@ -58,6 +58,9 @@
     <Compile Include="AddNewMainScreen.xaml.cs">
       <DependentUpon>AddNewMainScreen.xaml</DependentUpon>
     </Compile>
+    <Compile Include="AddNewTest.xaml.cs">
+      <DependentUpon>AddNewTest.xaml</DependentUpon>
+    </Compile>
     <Compile Include="AllClientNotification.xaml.cs">
       <DependentUpon>AllClientNotification.xaml</DependentUpon>
     </Compile>
@@ -101,6 +104,10 @@
       <DependentUpon>UCBreadCrumb.xaml</DependentUpon>
     </Compile>
     <Page Include="AddNewMainScreen.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AddNewTest.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
