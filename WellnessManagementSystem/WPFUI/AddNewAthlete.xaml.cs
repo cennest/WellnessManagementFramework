@@ -40,9 +40,20 @@ namespace PhysioApplication
             }
             this.CategoryComboBox.ItemsSource = comboBoxItemList;
             this.CategoryComboBox.SelectedIndex = 0;
+            SetLogOut();
             SetBreadCrumb();
         }
 
+        private void SetLogOut()
+        {
+            this.ucLogoutUC.OnLogout += new EventHandler(ucLogoutUC_OnLogout);
+        }
+
+        public void ucLogoutUC_OnLogout(object sender, EventArgs e)
+        {
+            AppManager.getInstance().LogOut();
+
+        }
         private void SetBreadCrumb()
         {
             List<string> headers = new List<string> { "Home","Settings","Add New Athlete" };
