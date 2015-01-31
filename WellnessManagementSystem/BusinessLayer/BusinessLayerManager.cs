@@ -478,6 +478,106 @@ namespace BusinessLayer
             }
         }
 
+        public ObservableCollection<BOLabTest> GetLabTestTypesForUser(int userID)
+        {
+            try
+            {
+                DataLayerManager dataLayer = new DataLayerManager();
+                List<ReportFieldMaster> listOfLabTestTypes = dataLayer.GetAllLabTestTypes();
+                List<ReportFieldMaster> listOfLabTestTypesForUser = dataLayer.GetLabTestTypesForUser(userID);
+
+                ObservableCollection<BOLabTest> listOfLabTests = new ObservableCollection<BOLabTest>();
+
+                if (listOfLabTestTypes.Count > 0)
+                {
+                    foreach (ReportFieldMaster reportField in listOfLabTestTypes)
+                    {
+                        BOLabTest labTest = new BOLabTest();
+                        labTest.LabTestID = reportField.ReportFieldID;
+                        labTest.LabTest = reportField.ReportFieldName;
+                        labTest.IsSelected = (from obj in listOfLabTestTypesForUser where obj.ReportFieldID == reportField.ReportFieldID select true).FirstOrDefault();
+                        listOfLabTests.Add(labTest);
+                    }
+                }
+                return listOfLabTests;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        private ObservableCollection<BOLabTest> GetLabTestsForReportFields(List<ReportFieldMaster> reportFields)
+        {
+            try
+            {
+                ObservableCollection<BOLabTest> listOfLabTests = new ObservableCollection<BOLabTest>();
+                if (reportFields.Count > 0)
+                {
+                    foreach (ReportFieldMaster reportField in reportFields)
+                    {
+                        BOLabTest labTest = new BOLabTest();
+                        labTest.LabTestID = reportField.ReportFieldID;
+                        labTest.LabTest = reportField.ReportFieldName;
+                        listOfLabTests.Add(labTest);
+                    }
+                }
+                return listOfLabTests;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public bool SaveLabTests(int userID, List<BOLabTest> listOfUpdatedTests)
+        {
+            try
+            {
+                DataLayerManager dataLayer = new DataLayerManager();
+                List<int> deleteTestsForUser = new List<int>();
+                List<int> addTestsForUser = new List<int>();
+                List<ReportFieldMaster> existingReportFields = dataLayer.GetLabTestTypesForUser(userID);
+                if (existingReportFields.Count > 0)
+                {
+                    if (listOfUpdatedTests.Count > 0)
+                    {
+                        foreach (BOLabTest test in listOfUpdatedTests)
+                        {
+                            ReportFieldMaster reportField = (from field in existingReportFields
+                                                             where field.ReportFieldID == test.LabTestID
+                                                             select field).FirstOrDefault();
+                            if (reportField != null)
+                            {
+                                if (test.IsSelected == false)
+                                {
+                                    deleteTestsForUser.Add(test.LabTestID);
+                                }
+                            }
+                            else
+                            {
+                                if (test.IsSelected == true)
+                                {
+                                    addTestsForUser.Add(test.LabTestID);
+                                }
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    addTestsForUser = (from labTest in listOfUpdatedTests
+                                       where labTest.IsSelected == true
+                                       select labTest.LabTestID).ToList();
+                }
+                return dataLayer.SaveLabTests(userID, deleteTestsForUser, addTestsForUser);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
         public bool AddClient(string clientName, long phone, string address, int userID, int categoryID)
         {
             try
