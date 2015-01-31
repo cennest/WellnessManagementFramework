@@ -648,5 +648,58 @@ namespace DataLayer
                 throw;
             }
         }
+
+
+        
+ 
+        public bool AddClient(string clientName, long phone, string address, int userID, int categoryID)
+        {
+            try
+            {
+                WellnessManagementFrameworkDBMLDataContext dataContext = new WellnessManagementFrameworkDBMLDataContext();
+                Client client = new Client();
+                client.ClientName = clientName;
+                client.ClientPhone = phone.ToString();
+                client.ClientAddress = address;
+                client.UserID = userID;
+                client.CategoryID = categoryID;
+                client.Notes = "";
+                dataContext.Clients.InsertOnSubmit(client);
+                dataContext.SubmitChanges();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+                throw ex;
+            }
+        }
+
+        public bool SaveTestForUser(int userID, string testName)
+        {
+            try
+            {
+                WellnessManagementFrameworkDBMLDataContext dataContext = new WellnessManagementFrameworkDBMLDataContext();
+                ReportFieldMaster reportFieldMaster = new ReportFieldMaster();
+                reportFieldMaster.ReportFieldName = testName;
+                reportFieldMaster.ReportTypeID = 1;
+                dataContext.ReportFieldMasters.InsertOnSubmit(reportFieldMaster);
+                dataContext.SubmitChanges();
+                if (reportFieldMaster.ReportFieldID != 0)
+                {
+                    UserReportField userReportField = new UserReportField();
+                    userReportField.UserID = userID;
+                    userReportField.ReportFieldID = reportFieldMaster.ReportFieldID;
+                    dataContext.UserReportFields.InsertOnSubmit(userReportField);
+                    dataContext.SubmitChanges();
+                    return true;
+                }
+                return false;
+            }
+            catch (Exception exception)
+            {
+                throw exception;
+            }
+        }
     }
 }

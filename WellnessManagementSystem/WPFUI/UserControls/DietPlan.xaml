@@ -39,10 +39,12 @@
         <Style x:Key="DataGridCellStyle" TargetType="{x:Type DataGridCell}">
             <Setter Property="BorderBrush" Value="White"/>
             <Setter Property="HorizontalAlignment" Value="Stretch"></Setter>
-            <Setter Property="VerticalAlignment" Value="Center"></Setter>
+            <Setter Property="VerticalContentAlignment" Value="Center"></Setter>
+            <Setter Property="TextBlock.VerticalAlignment" Value="Stretch"></Setter>
             <Setter Property="TextBlock.TextAlignment" Value="Center"></Setter>
+            <Setter Property="TextBlock.TextWrapping" Value="Wrap"></Setter>
             <Setter Property="BorderThickness" Value="1"/>
-            <Setter Property="Height" Value="30"/>
+            <Setter Property="MinHeight" Value="30"/>
             <Setter Property="FontFamily" Value="Calibri"/>
             <Setter Property="FontSize" Value="14"/>
         </Style>
@@ -86,7 +88,8 @@
         <TextBlock Grid.Row="1" Margin="5,0,0,0" Text="View Conditioning Report(s)" FontFamily="Calibri(Body)" FontSize="18" FontWeight="Bold" ></TextBlock>
 
         <DataGrid Name="dietPlanGrid" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="10,0"
-		           AutoGenerateColumns="False" MinRowHeight="26" CellStyle="{StaticResource DataGridCellStyle}" Grid.Row="2" GridLinesVisibility="None" CanUserAddRows="False" CanUserResizeColumns="False" CanUserReorderColumns="False">
+		           AutoGenerateColumns="False" MinRowHeight="26" CellStyle="{StaticResource DataGridCellStyle}" Grid.Row="2" GridLinesVisibility="None" 
+                  CanUserAddRows="False" CanUserResizeColumns="False" CanUserReorderColumns="False" >
 
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Test Date" Width="0.2*" Binding="{Binding TestDate, StringFormat='dd MMM, yyyy'}" TextBlock.FontWeight="Bold" >
@@ -94,8 +97,9 @@
                         <Style TargetType="{x:Type TextBlock}">
                             <Setter Property="Background" Value="#F79646"/>
                             <Setter Property="HorizontalAlignment" Value="Stretch"/>
+                            <Setter Property="Padding" Value="5"/>
                             <Setter Property="TextAlignment" Value="Center" />
-                            <Setter Property="Height" Value="30"/>
+                            <Setter Property="TextWrapping" Value="Wrap"/>
                             <Setter Property="FontFamily" Value="Calibri"/>
                             <Setter Property="FontSize" Value="14"/>
                             <Setter Property="FontWeight" Value="Bold"/>
@@ -107,7 +111,16 @@
 
                 <DataGridTextColumn Binding="{Binding BMI}"
 				                    Header="BMI" Width="0.2*" >
+                    <DataGridTextColumn.ElementStyle>
+                        <Style>
+                            <Setter Property="TextBlock.TextWrapping" Value="Wrap" />
+                            <Setter Property="TextBlock.TextAlignment" Value="Center"/>
+                            <Setter Property="TextBlock.TextTrimming" Value="CharacterEllipsis"/>
+                            <Setter Property="TextBlock.Padding" Value="5"/>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
                 </DataGridTextColumn>
+
                 <DataGridTextColumn Binding="{Binding Morning}"
 				                    Header="Morning" Width="0.4*">
                     <DataGridTextColumn.ElementStyle>
@@ -115,15 +128,45 @@
                             <Setter Property="TextBlock.TextWrapping" Value="Wrap" />
                             <Setter Property="TextBlock.TextAlignment" Value="Center"/>
                             <Setter Property="TextBlock.TextTrimming" Value="CharacterEllipsis"/>
+                            <Setter Property="TextBlock.Padding" Value="5"/>
                         </Style>
                     </DataGridTextColumn.ElementStyle>
                 </DataGridTextColumn>
                 <DataGridTextColumn Binding="{Binding Afternoon}"
-				                    Header="Afternoon" Width="0.4*" />
+				                    Header="Afternoon" Width="0.4*" >
+                    <DataGridTextColumn.ElementStyle>
+                        <Style>
+                            <Setter Property="TextBlock.TextWrapping" Value="Wrap" />
+                            <Setter Property="TextBlock.TextAlignment" Value="Center"/>
+                            <Setter Property="TextBlock.TextTrimming" Value="CharacterEllipsis"/>
+                            <Setter Property="TextBlock.Padding" Value="5"/>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+
                 <DataGridTextColumn Binding="{Binding Evening}"
-				                    Header="Evening" Width="0.4*" />
+				                    Header="Evening" Width="0.4*" >
+                    <DataGridTextColumn.ElementStyle>
+                        <Style>
+                            <Setter Property="TextBlock.TextWrapping" Value="Wrap" />
+                            <Setter Property="TextBlock.TextAlignment" Value="Center"/>
+                            <Setter Property="TextBlock.TextTrimming" Value="CharacterEllipsis"/>
+                            <Setter Property="TextBlock.Padding" Value="5"/>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+
                 <DataGridTextColumn Binding="{Binding Night}"
-				                    Header="Night" Width="0.4*" />
+				                    Header="Night" Width="0.4*" >
+                    <DataGridTextColumn.ElementStyle>
+                        <Style>
+                            <Setter Property="TextBlock.TextWrapping" Value="Wrap" />
+                            <Setter Property="TextBlock.TextAlignment" Value="Center"/>
+                            <Setter Property="TextBlock.TextTrimming" Value="CharacterEllipsis"/>
+                            <Setter Property="TextBlock.Padding" Value="5"/>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
 
             </DataGrid.Columns>
         </DataGrid>

@@ -117,6 +117,12 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AddNewButton1Title" xml:space="preserve">
+    <value>Add New Athlete</value>
+  </data>
+  <data name="AddNewButton2Title" xml:space="preserve">
+    <value>View Tests</value>
+  </data>
   <data name="Button1Description" xml:space="preserve">
     <value>All information pertaining to athletes including medical reports, diet, physical conditioning can be viewed here.</value>
   </data>
@@ -140,6 +146,9 @@
   </data>
   <data name="Button4Title" xml:space="preserve">
     <value>View  Historical Trends</value>
+  </data>
+  <data name="NoOfAddButtons" xml:space="preserve">
+    <value>2</value>
   </data>
   <data name="NoOfButtons" xml:space="preserve">
     <value>4</value>

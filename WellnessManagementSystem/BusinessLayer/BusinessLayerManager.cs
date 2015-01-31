@@ -577,5 +577,26 @@ namespace BusinessLayer
                 throw new Exception(ex.Message);
             }
         }
+
+        public bool AddClient(string clientName, long phone, string address, int userID, int categoryID)
+        {
+            try
+            {
+                DataLayerManager dataLayer = new DataLayerManager();
+                bool isClientAdded = dataLayer.AddClient(clientName, phone, address, userID, categoryID);
+                return isClientAdded;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public bool SaveTestForUser(int userID, string testName)
+        {
+            DataLayerManager dataLayer = new DataLayerManager();
+            bool saveSuccessful = dataLayer.SaveTestForUser(userID, testName);
+            return saveSuccessful;
+        }
     }
 }
