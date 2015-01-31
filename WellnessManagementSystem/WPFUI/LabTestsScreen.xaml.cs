@@ -30,10 +30,21 @@ namespace PhysioApplication
             businessLayer = new BusinessLayerManager();
             AppManager appManager = AppManager.getInstance();
             appManager.CurrentWindow = this;
+            SetLogOut();
             SetBreadCrumb();
             GetAllTests();
         }
 
+        private void SetLogOut()
+        {
+            this.ucLogoutUC.OnLogout += new EventHandler(ucLogoutUC_OnLogout);
+        }
+
+        public void ucLogoutUC_OnLogout(object sender, EventArgs e)
+        {
+            AppManager.getInstance().LogOut();
+
+        }
         private void GetAllTests()
         {
             AppManager appManager = AppManager.getInstance();

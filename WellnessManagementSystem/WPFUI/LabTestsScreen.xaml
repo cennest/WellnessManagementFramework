@@ -23,6 +23,7 @@
     
     <Grid>
         <Grid.RowDefinitions>
+            <RowDefinition Height="0.1*"/>
             <RowDefinition Height=".2*" />
             <RowDefinition Height=".2*" />
             <RowDefinition Height=".2*" />
@@ -30,15 +31,16 @@
             <RowDefinition Height=".2*" />
             <RowDefinition Height=".08*" />
         </Grid.RowDefinitions>
+        <userControl:Logout x:Name="ucLogoutUC" OnLogout="ucLogoutUC_OnLogout" Grid.Row="0" HorizontalAlignment="Right" Margin="0,0,40,0"/>
+        <userControl:ACESUC Grid.Row="1" />
         
-        <userControl:ACESUC Grid.Row="0" />
-        <userControl:UCBreadCrumb Margin="20,0,0,0" Grid.Row="1" x:Name="ucBreadCrumb" />
+        <userControl:UCBreadCrumb Margin="20,0,0,0" Grid.Row="2" x:Name="ucBreadCrumb" />
 
-        <Button x:Name="btnAdd" Click="AddNewTests_Click" Grid.Row="1" Width="50" Height="50" Background="Transparent" BorderBrush="Transparent" Margin="0,20,15,0" HorizontalAlignment="Right">
+        <Button x:Name="btnAdd" Click="AddNewTests_Click" Grid.Row="2" Width="50" Height="50" Background="Transparent" BorderBrush="Transparent" Margin="0,20,15,0" HorizontalAlignment="Right">
             <Image Source="..\Images\Add.png" Width="30" Height="30" />
         </Button>
-        <Grid Grid.Row="3" Width="auto" Margin="0,20,0,0">
-            <ListBox ItemsSource="{Binding}" ItemTemplate="{DynamicResource ListBoxItemTemplate}" BorderThickness="0" Height="300" HorizontalAlignment="Center" Name="listOfTests" VerticalAlignment="Top" Width="200" Background="Transparent">
+        <Grid Grid.Row="4" Width="auto" Margin="0,20,0,0">
+            <ListBox ItemsSource="{Binding}" ItemTemplate="{DynamicResource ListBoxItemTemplate}" BorderThickness="0" Height="300" HorizontalAlignment="Center" Name="listOfTests" VerticalAlignment="Top" Width="350" Background="Transparent">
                 <ListBox.ItemsPanel>
                     <ItemsPanelTemplate>
                         <WrapPanel Orientation="Vertical"></WrapPanel>
@@ -47,7 +49,7 @@
                 
             </ListBox>
         </Grid>
-        <Button Content="Save" Grid.Row="4" Grid.Column="1" Width="150" Click="Save_Click" Background="{StaticResource ButtonGreenBackground}" Style="{StaticResource MetroButton}" MaxHeight="50" Margin="65,0,10,0"/>
-        <userControl:Footer Grid.Row="5"/>
+        <Button Content="Save" Grid.Row="5" Grid.Column="1" Width="150" Click="Save_Click" Background="{StaticResource ButtonGreenBackground}" Style="{StaticResource MetroButton}" MaxHeight="50" Margin="0,0,10,0"/>
+        <userControl:Footer Grid.Row="6"/>
     </Grid>
 </Window>
