@@ -28,6 +28,8 @@ namespace PhysioApplication
         {
             InitializeComponent();
             businessLayer = new BusinessLayerManager();
+            AppManager appManager = AppManager.getInstance();
+            appManager.CurrentWindow = this;
             SetBreadCrumb();
             GetAllTests();
         }
@@ -57,15 +59,15 @@ namespace PhysioApplication
                 bool saved = businessLayer.SaveLabTests(userID, labTests);
                 if (saved == true)
                 {
-                    MessageBox.Show("Saved");
-                    this.Close();
+                    MessageBox.Show("Saved successfully");
                 }
             }
         }
 
         private void AddNewTests_Click(object sender, RoutedEventArgs e)
         {
-            
+            AddNewTest addtest = new AddNewTest();
+            addtest.ShowDialog();
         }
 
         private void SetBreadCrumb()
