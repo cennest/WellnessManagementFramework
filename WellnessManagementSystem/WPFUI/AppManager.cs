@@ -98,6 +98,16 @@ namespace PhysioApplication
             return true;
         }
 
+        public void LogOut()
+        {
+            Window previousWindow = CurrentWindow;
+            LoginWindow loginWindow = new LoginWindow();
+            if (previousWindow != null)
+            {
+                previousWindow.Close();
+            }
+            loginWindow.Show();
+        }
         public void SearchSelected(int selectedIndex, string searchText)
         {
             Window previousWindow = CurrentWindow;

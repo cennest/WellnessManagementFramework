@@ -55,10 +55,21 @@ namespace PhysioApplication
             abinding.Executed += this.OnChangeIndexCommandHandler;
             this.CommandBindings.Add(abinding);
             //ucFilterUC.OptionChanged += new UserControls.FilterUC.OptionChangedEventHandler(uc_OptionChanged);
+            SetLogOut();
             LoadData();
             SetBreadCrumb();
         }
 
+        private void SetLogOut()
+        {
+            this.ucLogoutUC.OnLogout += new EventHandler(ucLogoutUC_OnLogout);
+        }
+
+       public void ucLogoutUC_OnLogout(object sender, EventArgs e)
+        {
+            AppManager.getInstance().LogOut();
+
+        }
         private void SetBreadCrumb()
         {
             List<string> headers = new List<string> { "Home", "All Athletes" };
@@ -294,6 +305,10 @@ namespace PhysioApplication
         void uc_OptionChanged(bool isSearchByName, string name)
         {
             ReloadData(isSearchByName, name);
+        }
+        void Logout()
+        {
+            
         }
 
         public void ReloadData(bool isSearchByName, string name)

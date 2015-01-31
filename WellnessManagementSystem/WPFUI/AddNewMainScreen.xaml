@@ -71,22 +71,24 @@
 
         </Grid.Resources>
         <Grid.RowDefinitions>
+            <RowDefinition Height="0.1*"/>
             <RowDefinition Height=".2*" />
             <RowDefinition Height=".1*" />
             <RowDefinition Height=".2*"/>
             <RowDefinition Height="*" />
             <RowDefinition Height=".08*" />
         </Grid.RowDefinitions>
-        <userControl:ACESUC Grid.Row="0"/>
-        <userControl:UCBreadCrumb Margin="20,0,0,0" Grid.Row="1" x:Name="ucBreadCrumb" />
+        <userControl:Logout x:Name="ucLogoutUC" OnLogout="ucLogoutUC_OnLogout" Grid.Row="0" HorizontalAlignment="Right" Margin="0,0,40,0"/>
+        <userControl:ACESUC Grid.Row="1"/>
+        <userControl:UCBreadCrumb Margin="20,0,0,0" Grid.Row="2" x:Name="ucBreadCrumb" />
 
-        <StackPanel Grid.Row="2" VerticalAlignment="Center">
+        <StackPanel Grid.Row="3" VerticalAlignment="Center">
             <TextBlock Width="Auto" FontSize="15" HorizontalAlignment="Center"><Run Text="Welcome "/><InlineUIContainer> 
 			<TextBlock Foreground="blue" Text="{Binding UserName}"/>
 				</InlineUIContainer><Run Text=" , What would you like to Add?"/></TextBlock>
         </StackPanel>
         
-        <Grid Grid.Row="3" Width="auto">
+        <Grid Grid.Row="4" Width="auto">
             <DataGrid  Style="{StaticResource DataGridStyle1}" x:Name="dtGrid" MinWidth="300" MaxWidth="500" ColumnWidth="200">
                 <DataGrid.Columns>
                     <DataGridTemplateColumn Header="ButtonsList" Width="1*">
@@ -99,6 +101,6 @@
                 </DataGrid.Columns>
             </DataGrid>
         </Grid>
-        <userControl:Footer Grid.Row="4"/>
+        <userControl:Footer Grid.Row="5"/>
     </Grid>
 </Window>

@@ -72,16 +72,17 @@
         </Grid.Resources>
         
         <Grid.RowDefinitions>
+            <RowDefinition Height="0.1*"/>
             <RowDefinition Height=".2*" />
             <RowDefinition Height=".1*" />
             <RowDefinition Height="*" />
             <RowDefinition Height=".08*" />
         </Grid.RowDefinitions>
-        
-        <userControl:ACESUC Grid.Row="0"/>
-        <userControl:UCBreadCrumb Margin="20,0,0,0" Grid.Row="1" x:Name="ucBreadCrumb" />
+        <userControl:Logout x:Name="ucLogoutUC" OnLogout="ucLogoutUC_OnLogout" Grid.Row="0" HorizontalAlignment="Right" Margin="0,0,40,0"/>
+        <userControl:ACESUC Grid.Row="1"/>
+        <userControl:UCBreadCrumb Margin="20,0,0,0" Grid.Row="2" x:Name="ucBreadCrumb" />
 
-        <GroupBox Header="Add New Athlete" Grid.Row="2" Margin="30,40,0,30" MinWidth="500" MaxWidth="500" >
+        <GroupBox Header="Add New Athlete" Grid.Row="3" Margin="30,40,0,30" MinWidth="500" MaxWidth="500" >
             <Grid Grid.Row="2" MinWidth="500" MaxWidth="500">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="0.03*"/>
@@ -109,6 +110,6 @@
                 <Button Content="Add" Grid.Row="7" Grid.Column="1" Width="150" Click="btnAdd_Click" Background="{StaticResource ButtonGreenBackground}" Style="{StaticResource MetroButton}" MaxHeight="60" Margin="65,0,10,0"/>
             </Grid>
         </GroupBox>
-        <userControl:Footer Grid.Row="3"/>
+        <userControl:Footer Grid.Row="4"/>
     </Grid>
 </Window>
