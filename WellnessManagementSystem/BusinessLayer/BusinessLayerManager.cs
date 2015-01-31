@@ -482,7 +482,7 @@ namespace BusinessLayer
         {
             try
             {
-                DataLayerManager dataLayer = new DataLayerManager(); 
+                DataLayerManager dataLayer = new DataLayerManager();
                 bool isClientAdded = dataLayer.AddClient(clientName, phone, address, userID, categoryID);
                 return isClientAdded;
             }
@@ -490,6 +490,13 @@ namespace BusinessLayer
             {
                 throw ex;
             }
+        }
+
+        public bool SaveTestForUser(int userID, string testName)
+        {
+            DataLayerManager dataLayer = new DataLayerManager();
+            bool saveSuccessful = dataLayer.SaveTestForUser(userID, testName);
+            return saveSuccessful;
         }
     }
 }
