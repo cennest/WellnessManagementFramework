@@ -14,6 +14,15 @@
     </Window.Resources>
     <Grid>
         <Grid.Resources>
+            <Style TargetType="{x:Type TextBlock}">
+                <Setter Property="FontSize" Value="13"/>
+            </Style>
+            <Style TargetType="{x:Type TextBox}">
+                <Setter Property="FontSize" Value="13"/>
+            </Style>
+            <Style TargetType="{x:Type ComboBox}">
+                <Setter Property="FontSize" Value="13"/>
+            </Style>
             <Style x:Key="{x:Type GroupBox}" TargetType="{x:Type GroupBox}">
                 <Setter Property="BorderBrush" Value="#FFA620" />
                 <Setter Property="BorderThickness" Value="2" />
@@ -89,14 +98,14 @@
                     <ColumnDefinition Width="0.4*"/>
                     <ColumnDefinition Width="0.6*"/>
                 </Grid.ColumnDefinitions>
-                <TextBlock FontSize="13" Text="Name" Grid.Row="1" Grid.Column="0" Width="150" TextAlignment="Left"  Height="30"/>
-                <TextBox FontSize="13" Name="txtName" ToolTip="Enter Athlete Name" Grid.Row="1" Grid.Column="1" Width="200" Height="30" Padding="5"/>
-                <TextBlock FontSize="13" Text="Phone Number" Grid.Row="2" Grid.Column="0" Width="150" TextAlignment="Left"  Height="30"/>
-                <TextBox FontSize="13" Name="txtPhone" ToolTip="Enter Phone Number" Grid.Row="2" Grid.Column="1" Width="200"  Height="30" PreviewKeyDown="check_space" PreviewTextInput="textbox_input" Padding="5"/>
-                <TextBlock FontSize="13" Text="Address" Grid.Row="4" Grid.Column="0" Width="150" TextAlignment="Left"  Height="30" Margin="10,0,10,50"/>
-                <TextBox FontSize="13" Name="txtAddress" ToolTip="Enter Address"  AcceptsReturn="True" TextWrapping="Wrap" Grid.Row="4" Grid.Column="1" Width="200" MinHeight="60" Padding="5"/>
-                <TextBlock FontSize="13" Text="Category" Grid.Row="6" Grid.Column="0" Width="150" TextAlignment="Left" Height="30"/>
-                <ComboBox FontSize="13" ToolTip="Select Category" Grid.Row="6" Grid.Column="1" Name="CategoryComboBox" Width="200" Height="30" Padding="5"/>
+                <TextBlock Text="Name" Grid.Row="1" Grid.Column="0" Width="150" TextAlignment="Left"  Height="30"/>
+                <TextBox Name="txtName" ToolTip="Enter Athlete Name" Grid.Row="1" Grid.Column="1" Width="200" Height="30" Padding="5"/>
+                <TextBlock Text="Phone Number" Grid.Row="2" Grid.Column="0" Width="150" TextAlignment="Left"  Height="30"/>
+                <TextBox Name="txtPhone" ToolTip="Enter Phone Number" Grid.Row="2" Grid.Column="1" Width="200"  Height="30" PreviewKeyDown="check_space" PreviewTextInput="textbox_input" Padding="5"/>
+                <TextBlock Text="Address" Grid.Row="4" Grid.Column="0" Width="150" TextAlignment="Left"  Height="30" Margin="10,0,10,50"/>
+                <TextBox  Name="txtAddress" ToolTip="Enter Address"  AcceptsReturn="True" TextWrapping="Wrap" Grid.Row="4" Grid.Column="1" Width="200" MinHeight="60" Padding="5"/>
+                <TextBlock Text="Category" Grid.Row="6" Grid.Column="0" Width="150" TextAlignment="Left" Height="30"/>
+                <ComboBox  ToolTip="Select Category" Grid.Row="6" Grid.Column="1" Name="CategoryComboBox" Width="200" Height="30" Padding="5"/>
                 <Button Content="Add" Grid.Row="7" Grid.Column="1" Width="150" Click="btnAdd_Click" Background="{StaticResource ButtonGreenBackground}" Style="{StaticResource MetroButton}" MaxHeight="60" Margin="65,0,10,0"/>
             </Grid>
         </GroupBox>
