@@ -59,6 +59,8 @@ namespace PhysioApplication
             string buttonTitle = button.Content.ToString();
             if (buttonTitle == "Add New Athlete")
             {
+                AddNewAthlete addNewAthlete = new AddNewAthlete();
+                addNewAthlete.Show();
             }
             else if (buttonTitle == "Add New Test")
             {
