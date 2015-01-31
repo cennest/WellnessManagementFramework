@@ -578,5 +578,75 @@ namespace DataLayer
                              select clientObj).FirstOrDefault();
             return client.Notes;
         }
+
+        public List<ReportFieldMaster> GetAllLabTestTypes()
+        {
+            try
+            {
+                WellnessManagementFrameworkDBMLDataContext dataContext = new WellnessManagementFrameworkDBMLDataContext();
+                List<ReportFieldMaster> listOfReportFields = (from test in dataContext.ReportFieldMasters
+                                                              where test.ReportTypeID == Convert.ToInt32(ReportType.LabReport)
+                                                              select test).ToList();
+                return listOfReportFields;
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
+        public List<ReportFieldMaster> GetLabTestTypesForUser(int userID)
+        {
+            try
+            {
+                WellnessManagementFrameworkDBMLDataContext dataContext = new WellnessManagementFrameworkDBMLDataContext();
+                List<ReportFieldMaster> listOfReportFields = (from test in dataContext.UserReportFields
+                                                              where test.ReportFieldMaster.ReportTypeID == Convert.ToInt32(ReportType.LabReport) && test.UserID == userID 
+                                                              select test.ReportFieldMaster).ToList();
+                return listOfReportFields;
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
+        public bool SaveLabTests(int userID, List<int> deleteLabTestForUser, List<int> newAddedLabTestsForUser)
+        {
+            try
+            {
+                WellnessManagementFrameworkDBMLDataContext dataContext = new WellnessManagementFrameworkDBMLDataContext();
+                if (newAddedLabTestsForUser.Count > 0)
+                {
+                    foreach (int labTestID in newAddedLabTestsForUser)
+                    {
+                        UserReportField reportField = new UserReportField();
+                        reportField.UserID = userID;
+                        reportField.ReportFieldID = labTestID;
+                        dataContext.UserReportFields.InsertOnSubmit(reportField);
+                        dataContext.SubmitChanges();
+                    }
+                }
+                if (deleteLabTestForUser.Count > 0)
+                {
+                    foreach (int labTestID in deleteLabTestForUser)
+                    {
+                        UserReportField reportField = (from field in dataContext.UserReportFields
+                                                       where field.ReportFieldID == labTestID
+                                                       select field).FirstOrDefault();
+                        if (reportField != null)
+                        {
+                            dataContext.UserReportFields.DeleteOnSubmit(reportField);
+                        }
+                    }
+                    dataContext.SubmitChanges();
+                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
     }
 }
