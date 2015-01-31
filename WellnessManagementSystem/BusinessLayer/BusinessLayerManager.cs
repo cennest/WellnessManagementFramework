@@ -477,5 +477,12 @@ namespace BusinessLayer
                 throw new Exception(ex.Message);
             }
         }
+
+        public bool SaveTestForUser(int userID, string testName)
+        {
+            DataLayerManager dataLayer = new DataLayerManager();
+            bool saveSuccessful = dataLayer.SaveTestForUser(userID, testName);
+            return saveSuccessful;
+        }
     }
 }
