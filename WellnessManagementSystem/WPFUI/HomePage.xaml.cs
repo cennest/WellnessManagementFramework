@@ -34,8 +34,6 @@ namespace PhysioApplication
         {
             InitializeComponent();
             AppManager appManager = AppManager.getInstance();
-                
-            
             appManager.CurrentWindow= this;
             BOUser userDetails = appManager.GetUserDetails();
             DataContext = userDetails;
@@ -66,8 +64,16 @@ namespace PhysioApplication
             string buttonTitle = button.Content.ToString();
 
             //TODO: temporary same action for all the buttons
-            AllClientNotification client = new AllClientNotification();
-            client.Show();
+            if (buttonTitle == "Access Athletes Information")
+            {
+                AllClientNotification client = new AllClientNotification();
+                client.Show();
+            }
+            else if (buttonTitle == "Change Settings")
+            {
+                AddNewMainScreen addNewMainScreen = new AddNewMainScreen();
+                addNewMainScreen.Show();
+            }
             this.Close();
         }
         private void SetBreadCrumb()

@@ -27,7 +27,7 @@ namespace PhysioApplication
         {
             InitializeComponent();
             AppManager appManager = AppManager.getInstance();
-            //appManager.CurrentWindow = this;
+            appManager.CurrentWindow = this;
             BOUser userDetails = appManager.GetUserDetails();
             DataContext = userDetails;
             BusinessLayerManager businessLayer = new BusinessLayerManager();
