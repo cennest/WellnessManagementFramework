@@ -578,5 +578,28 @@ namespace DataLayer
                              select clientObj).FirstOrDefault();
             return client.Notes;
         }
+
+        public bool AddClient(string clientName, long phone, string address, int userID, int categoryID)
+        {
+            try
+            {
+                WellnessManagementFrameworkDBMLDataContext dataContext = new WellnessManagementFrameworkDBMLDataContext();
+                Client client = new Client();
+                client.ClientName = clientName;
+                client.ClientPhone = phone.ToString();
+                client.ClientAddress = address;
+                client.UserID = userID;
+                client.CategoryID = categoryID;
+                client.Notes = "";
+                dataContext.Clients.InsertOnSubmit(client);
+                dataContext.SubmitChanges();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+                throw ex;
+            }
+        }
     }
 }

@@ -23,13 +23,14 @@ namespace PhysioApplication
     /// </summary>
     public partial class AddNewAthlete : Window
     {
+        BOUser userDetails = new BOUser();
+        string errorMsg = "";
         public AddNewAthlete()
         {
             InitializeComponent();
             AppManager appManager = AppManager.getInstance();
             appManager.CurrentWindow = this;
-            BOUser userDetails = appManager.GetUserDetails();
-            DataContext = userDetails;
+            userDetails = appManager.GetUserDetails();
             BusinessLayerManager businessLayer = new BusinessLayerManager();
             List<BOCategory> categoryList = businessLayer.GetAllCategories();
             List<ComboBoxItem> comboBoxItemList = new List<ComboBoxItem>();
@@ -58,21 +59,61 @@ namespace PhysioApplication
         {
             try
             {
-                bool isPhoneNumberValid = IsValidTextNumber(txtPhone.Text);
-                if (isPhoneNumberValid)
+                bool isDataValid = IsDataValid();
+                if (isDataValid)
                 {
-                    
+                    string clientName = txtName.Text;
+                    long phone = Convert.ToInt64(txtPhone.Text);
+                    string address = txtAddress.Text;
+                    int userID = userDetails.UserID;
+                    int CategoryID = Convert.ToInt32(((ComboBoxItem)CategoryComboBox.SelectedItem).Tag);
+                    BusinessLayerManager businessLayer = new BusinessLayerManager();
+                    bool isClientAdded = businessLayer.AddClient(clientName, phone, address, userID, CategoryID);
+                    if (isClientAdded == true)
+                    {
+                        MessageBox.Show("Athlete added successfully!");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Failed to add New Athelete!");
+                    }
                 }
                 else
                 {
-                    MessageBox.Show("Please enter valid phone number");
+                    MessageBox.Show(errorMsg);
                 }
-
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
+        }
+
+        private bool IsDataValid()
+        {
+            bool isDataValid = true;
+            bool isPhoneNumberValid = IsValidTextNumber(txtPhone.Text);
+            if (txtAddress.Text == "")
+            {
+                isDataValid = false;
+                errorMsg = "Please enter Address";
+            }
+            if (isPhoneNumberValid == false)
+            {
+                isDataValid = false;
+                errorMsg = "Please enter correct phone number";
+            }
+            if (txtPhone.Text == "")
+            {
+                isDataValid = false;
+                errorMsg = "Please enter phone number";
+            }
+            if (txtName.Text == "")
+            {
+                isDataValid = false;
+                errorMsg = "Please enter Athlete Name";
+            }
+            return isDataValid;
         }
 
         private void check_space(object sender, KeyEventArgs e)
