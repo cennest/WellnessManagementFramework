@@ -80,6 +80,9 @@
     <Compile Include="UserControls\FilterUC.xaml.cs">
       <DependentUpon>FilterUC.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\Logout.xaml.cs">
+      <DependentUpon>Logout.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\PhysicalConditioning.xaml.cs">
       <DependentUpon>PhysicalConditioning.xaml</DependentUpon>
     </Compile>
@@ -125,6 +128,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControls\FilterUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\Logout.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
