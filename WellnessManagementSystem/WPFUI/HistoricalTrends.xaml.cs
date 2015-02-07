@@ -20,17 +20,46 @@ namespace PhysioApplication
     /// </summary>
     public partial class HistoricalTrends : Window
     {
+        List<int> listOfCategories;
+        List<int> listOfTests;
+        DateTime? fromSelectedDate;
+        DateTime? toSelectedDate;
         public HistoricalTrends()
         {
             InitializeComponent();
+            AppManager appManager = AppManager.getInstance();
+            appManager.CurrentWindow = this;
+            SetBreadCrumb();
             LoadControls();
         }
 
         private void LoadControls()
         {
             BusinessLayerManager businessLayer = new BusinessLayerManager();
-            lvCategory.ItemsSource = AppManager.getInstance().CurrentCategories;
+            cbCategories.ItemsSource = AppManager.getInstance().CurrentCategories;
 
+        }
+
+        private void FromDate_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        {
+            fromSelectedDate = FromDate.SelectedDate;
+        }
+
+        private void ToDate_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        {
+            toSelectedDate = ToDate.SelectedDate;
+        }
+
+        private void SetBreadCrumb()
+        {
+            List<string> headers = new List<string> { "Home", "Settings", "Historical Trends" };
+            ucBreadCrumb.ResetBreadCrumb(headers);
+            ucBreadCrumb.CrumbSelected += ucBreadCrumb_CrumbSelected;
+        }
+
+        void ucBreadCrumb_CrumbSelected(string selectedString)
+        {
+            AppManager.getInstance().BreadCrumbSelected(selectedString);
         }
     }
 }
