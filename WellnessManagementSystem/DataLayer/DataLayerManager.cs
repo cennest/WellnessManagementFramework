@@ -675,7 +675,7 @@ namespace DataLayer
             }
         }
 
-        public bool SaveTestForUser(int userID, string testName)
+        public int SaveTestForUser(int userID, string testName)
         {
             try
             {
@@ -692,9 +692,8 @@ namespace DataLayer
                     userReportField.ReportFieldID = reportFieldMaster.ReportFieldID;
                     dataContext.UserReportFields.InsertOnSubmit(userReportField);
                     dataContext.SubmitChanges();
-                    return true;
                 }
-                return false;
+                return reportFieldMaster.ReportFieldID;
             }
             catch (Exception exception)
             {

@@ -21,6 +21,8 @@ namespace PhysioApplication
     /// </summary>
     public partial class AddNewTest : Window
     {
+        public delegate void TestAddedEventHandler(int testID,string testName);
+        public event TestAddedEventHandler testAdded;
         public AddNewTest()
         {
             InitializeComponent();
@@ -38,10 +40,12 @@ namespace PhysioApplication
                 AppManager appManager=AppManager.getInstance();
                 BOUser userDetails=appManager.GetUserDetails();
                 BusinessLayerManager businessLayer=new BusinessLayerManager();
-                bool isSaveSuccessful= businessLayer.SaveTestForUser(userDetails.UserID,testName);
-                if (isSaveSuccessful)
+                int testID = businessLayer.SaveTestForUser(userDetails.UserID,testName);
+                if (testID > 0)
                 {
                     MessageBox.Show("Save Sucessful");
+                    this.testAdded(testID,testName);
+                    this.Close();
                 }
                 else
                 {

@@ -592,11 +592,11 @@ namespace BusinessLayer
             }
         }
 
-        public bool SaveTestForUser(int userID, string testName)
+        public int SaveTestForUser(int userID, string testName)
         {
             DataLayerManager dataLayer = new DataLayerManager();
-            bool saveSuccessful = dataLayer.SaveTestForUser(userID, testName);
-            return saveSuccessful;
+            int testID = dataLayer.SaveTestForUser(userID, testName);
+            return testID;
         }
     }
 }

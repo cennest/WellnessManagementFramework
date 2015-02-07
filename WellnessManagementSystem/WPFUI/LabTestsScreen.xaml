@@ -18,9 +18,9 @@
             <GradientStop Color="#99C049" Offset="0.1"/>
             <GradientStop Color="#7A9443" Offset="0.8"/>
         </LinearGradientBrush>
-        
+
     </Window.Resources>
-    
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="0.1*"/>
@@ -33,20 +33,21 @@
         </Grid.RowDefinitions>
         <userControl:Logout x:Name="ucLogoutUC" OnLogout="ucLogoutUC_OnLogout" Grid.Row="0" HorizontalAlignment="Right" Margin="0,0,40,0"/>
         <userControl:ACESUC Grid.Row="1" />
-        
+
         <userControl:UCBreadCrumb Margin="20,0,0,0" Grid.Row="2" x:Name="ucBreadCrumb" />
 
-        <Button x:Name="btnAdd" Click="AddNewTests_Click" Grid.Row="2" Width="50" Height="50" Background="Transparent" BorderBrush="Transparent" Margin="0,20,15,0" HorizontalAlignment="Right">
-            <Image Source="..\Images\Add.png" Width="30" Height="30" />
+        <TextBlock Text="Choose your Tests" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" Foreground="#FF9A31" FontWeight="Bold" Grid.Row="3" />
+        <Button x:Name="btnAdd" ToolTip="Add new Test" Click="AddNewTests_Click" Grid.Row="3" Width="60" Height="60" Background="Transparent" BorderBrush="Transparent" Margin="0,0,20,0" HorizontalAlignment="Right">
+            <Image Source="..\Images\Add.png" Width="40" Height="40" />
         </Button>
         <Grid Grid.Row="4" Width="auto" Margin="0,20,0,0">
-            <ListBox ItemsSource="{Binding}" ItemTemplate="{DynamicResource ListBoxItemTemplate}" BorderThickness="0" Height="300" HorizontalAlignment="Center" Name="listOfTests" VerticalAlignment="Top" Width="350" Background="Transparent">
+            <ListBox ItemsSource="{Binding}" ItemTemplate="{DynamicResource ListBoxItemTemplate}" BorderThickness="2" Height="auto" HorizontalAlignment="Center" Name="listOfTests" VerticalAlignment="Top" MaxWidth="350" Width="auto" Background="Transparent" Margin="270,0">
                 <ListBox.ItemsPanel>
                     <ItemsPanelTemplate>
-                        <WrapPanel Orientation="Vertical"></WrapPanel>
+                        <WrapPanel Margin="15,10,0,0" Width="200" Orientation="Vertical"></WrapPanel>
                     </ItemsPanelTemplate>
                 </ListBox.ItemsPanel>
-                
+
             </ListBox>
         </Grid>
         <Button Content="Save" Grid.Row="5" Grid.Column="1" Width="150" Click="Save_Click" Background="{StaticResource ButtonGreenBackground}" Style="{StaticResource MetroButton}" MaxHeight="50" Margin="0,0,10,0"/>

@@ -24,6 +24,8 @@ namespace PhysioApplication
     {
         BusinessLayerManager businessLayer;
         int userID;
+        AddNewTest addtest;
+        ObservableCollection<BOLabTest> testsList;
         public LabTestsScreen()
         {
             InitializeComponent();
@@ -49,8 +51,8 @@ namespace PhysioApplication
         {
             AppManager appManager = AppManager.getInstance();
             int userID = appManager.GetUserDetails().UserID;
-            ObservableCollection<BOLabTest> listOfTests = businessLayer.GetLabTestTypesForUser(userID);
-            this.DataContext = listOfTests;
+            testsList = businessLayer.GetLabTestTypesForUser(userID);
+            this.DataContext = testsList;
         }
 
         private void Save_Click(object sender, RoutedEventArgs e)
@@ -77,7 +79,8 @@ namespace PhysioApplication
 
         private void AddNewTests_Click(object sender, RoutedEventArgs e)
         {
-            AddNewTest addtest = new AddNewTest();
+            addtest = new AddNewTest();
+            addtest.testAdded += new AddNewTest.TestAddedEventHandler(AddTestForUser);
             addtest.ShowDialog();
         }
 
@@ -96,6 +99,11 @@ namespace PhysioApplication
         private void CheckBoxZone_Checked(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        private void AddTestForUser(int testID, string testName)
+        {
+            testsList.Add(new BOLabTest { LabTestID = testID, LabTest = testName, IsSelected = true });
         }
     }
 }
