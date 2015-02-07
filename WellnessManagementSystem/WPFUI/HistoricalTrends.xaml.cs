@@ -29,6 +29,7 @@ namespace PhysioApplication
             InitializeComponent();
             AppManager appManager = AppManager.getInstance();
             appManager.CurrentWindow = this;
+            SetLogOut();
             SetBreadCrumb();
             LoadControls();
         }
@@ -36,7 +37,7 @@ namespace PhysioApplication
         private void LoadControls()
         {
             BusinessLayerManager businessLayer = new BusinessLayerManager();
-            cbCategories.ItemsSource = AppManager.getInstance().CurrentCategories;
+            lvTests.ItemsSource = AppManager.getInstance().CurrentCategories;
 
         }
 
@@ -52,7 +53,7 @@ namespace PhysioApplication
 
         private void SetBreadCrumb()
         {
-            List<string> headers = new List<string> { "Home", "Settings", "Historical Trends" };
+            List<string> headers = new List<string> { "Home", "Historical Trends" };
             ucBreadCrumb.ResetBreadCrumb(headers);
             ucBreadCrumb.CrumbSelected += ucBreadCrumb_CrumbSelected;
         }
@@ -60,6 +61,17 @@ namespace PhysioApplication
         void ucBreadCrumb_CrumbSelected(string selectedString)
         {
             AppManager.getInstance().BreadCrumbSelected(selectedString);
+        }
+
+        private void SetLogOut()
+        {
+            this.ucLogoutUC.OnLogout += new EventHandler(ucLogoutUC_OnLogout);
+        }
+
+        public void ucLogoutUC_OnLogout(object sender, EventArgs e)
+        {
+            AppManager.getInstance().LogOut();
+
         }
     }
 }

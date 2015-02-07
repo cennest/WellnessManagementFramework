@@ -73,20 +73,7 @@ namespace PhysioApplication
         {
             Button button = (Button)sender;
             string buttonTitle = button.Content.ToString();
-            switch(buttonTitle)
-            {
-                case "View Historical Trends":
-                    {
-                        HistoricalTrends trends= new HistoricalTrends();
-                        trends.Show();
-                    }break;
-                 default:  
-                    {AllClientNotification client = new AllClientNotification();
-            client.Show();}
-                    break;
-
-            }
-            //TODO: temporary same action for all the buttons
+            
             if (buttonTitle == "Access Athletes Information")
             {
                 AllClientNotification client = new AllClientNotification();
@@ -96,6 +83,11 @@ namespace PhysioApplication
             {
                 AddNewMainScreen addNewMainScreen = new AddNewMainScreen();
                 addNewMainScreen.Show();
+            }
+            else if (buttonTitle == "View Historical Trends")
+            {
+                HistoricalTrends trends = new HistoricalTrends();
+                trends.Show();
             }
             this.Close();
         }
