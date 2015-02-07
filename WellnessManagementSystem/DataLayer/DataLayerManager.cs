@@ -578,5 +578,49 @@ namespace DataLayer
                              select clientObj).FirstOrDefault();
             return client.Notes;
         }
+
+        public List<int> GetClientsForCategoryID(int categoryID, int userID)
+        {
+            try
+            {
+                WellnessManagementFrameworkDBMLDataContext dataContext = new WellnessManagementFrameworkDBMLDataContext();
+                List<int> listOfClientIDs = null;
+                if (categoryID == Convert.ToInt32(Category.AllSports))
+                {
+                    listOfClientIDs = (from client in dataContext.Clients
+                                       where client.UserID == userID
+                                       select client.ClientID).ToList();
+                }
+                else
+                {
+                    listOfClientIDs = (from client in dataContext.Clients
+                                       where client.UserID == userID && client.CategoryID == categoryID
+                                       select client.ClientID).ToList();
+                }
+                return listOfClientIDs;
+            }
+            catch (Exception exception)
+            {
+                throw new Exception(exception.Message);
+            }
+        }
+
+        public List<LabReport> GetLabReportsForClientID(int clientID, int userID, int reportID)
+        {
+            try
+            {
+                WellnessManagementFrameworkDBMLDataContext dataContext = new WellnessManagementFrameworkDBMLDataContext();
+                List<LabReport> listOfLabReports = (from labReport in dataContext.LabReports
+                                                    where labReport.UserID == userID && labReport.ClientID == clientID
+                                                    && labReport.ReportFieldID == reportID
+                                                    select labReport).OrderByDescending(t => t.TestDate).ToList();
+
+                return listOfLabReports;
+            }
+            catch (Exception exception)
+            {
+                throw (exception);
+            }
+        }
     }
 }
