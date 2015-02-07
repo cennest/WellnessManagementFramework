@@ -598,5 +598,84 @@ namespace BusinessLayer
             bool saveSuccessful = dataLayer.SaveTestForUser(userID, testName);
             return saveSuccessful;
         }
+
+        public Hashtable GetLabReportsForCategoriesForReports(List<int> categoryIDs, List<int> reportFieldIDs, DateTime fromDate, DateTime tilDate, int userID)
+        {
+            Hashtable listOfCategoriesReportsHasTable = new Hashtable();
+            if (categoryIDs.Count > 0)
+            {
+                foreach (int categoryID in categoryIDs)
+                {
+                    Hashtable labReports = this.GetLabReportsForCategoryForReports(categoryID, reportFieldIDs, userID);
+                    listOfCategoriesReportsHasTable.Remove(categoryID);
+                    listOfCategoriesReportsHasTable.Add(categoryID, labReports);
+                }
+            }
+            return listOfCategoriesReportsHasTable;
+        }
+
+        public Hashtable GetLabReportsForCategoryForReports(int categoryID, List<int> reportIDs, int userID)
+        {
+            Hashtable listOfClientsReportsHasTable = new Hashtable();
+            if (reportIDs.Count > 0)
+            {
+                foreach (int reportID in reportIDs)
+                {
+                    Hashtable labReports = this.GetLabReportsForCategory(categoryID, reportID, userID);
+                    listOfClientsReportsHasTable.Remove(reportID);
+                    listOfClientsReportsHasTable.Add(reportID, labReports);
+                }
+            }
+            return listOfClientsReportsHasTable;
+        }
+
+        public Hashtable GetLabReportsForCategory(int categoryID, int reportID, int userID)
+        {
+            try
+            {
+                DataLayerManager dataLayer = new DataLayerManager();
+                List<int> clientList = dataLayer.GetClientsForCategoryID(categoryID, userID);
+                Hashtable listOfClientsReportHasTable = new Hashtable();
+                if (clientList.Count > 0)
+                {
+                    foreach (int clientID in clientList)
+                    {
+                        List<BOLabReport> labReports = this.GetLabReportsForClientID(clientID, userID, reportID);
+                        listOfClientsReportHasTable.Remove(clientID);
+                        listOfClientsReportHasTable.Add(clientID, labReports);
+                    }
+                }
+                return listOfClientsReportHasTable;
+            }
+            catch (Exception exception)
+            {
+                throw (exception);
+            }
+        }
+
+        public List<BOLabReport> GetLabReportsForClientID(int clientID, int userID, int reportID)
+        {
+            try
+            {
+                DataLayerManager dataLayer = new DataLayerManager();
+                List<LabReport> reports = dataLayer.GetLabReportsForClientID(clientID, userID, reportID);
+                List<BOLabReport> labReports = (from report in reports
+                                                select new BOLabReport
+                                                {
+                                                    LabReportID = report.LabReportID,
+                                                    ReportFieldName = report.ReportFieldMaster.ReportFieldName,
+                                                    ReportFieldValue = report.ReportFieldValue,
+                                                    ReportFieldID = report.ReportFieldID,
+                                                    TestDate = report.TestDate,
+                                                    Remark1 = report.Remark1,
+                                                    Remark2 = report.Remark2
+                                                }).ToList();
+                return labReports;
+            }
+            catch (Exception exception)
+            {
+                throw (exception);
+            }
+        }
     }
 }
