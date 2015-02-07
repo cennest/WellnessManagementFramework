@@ -55,6 +55,15 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="AddNewAthlete.xaml.cs">
+      <DependentUpon>AddNewAthlete.xaml</DependentUpon>
+ </Compile>
+   <Compile Include="AddNewMainScreen.xaml.cs">
+      <DependentUpon>AddNewMainScreen.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AddNewTest.xaml.cs">
+      <DependentUpon>AddNewTest.xaml</DependentUpon>
+    </Compile>
     <Compile Include="AllClientNotification.xaml.cs">
       <DependentUpon>AllClientNotification.xaml</DependentUpon>
     </Compile>
@@ -71,6 +80,9 @@
     <Compile Include="HomePage.xaml.cs">
       <DependentUpon>HomePage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="LabTestsScreen.xaml.cs">
+      <DependentUpon>LabTestsScreen.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\ClientNote.xaml.cs">
       <DependentUpon>ClientNote.xaml</DependentUpon>
     </Compile>
@@ -79,6 +91,9 @@
     </Compile>
     <Compile Include="UserControls\FilterUC.xaml.cs">
       <DependentUpon>FilterUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Logout.xaml.cs">
+      <DependentUpon>Logout.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserControls\PhysicalConditioning.xaml.cs">
       <DependentUpon>PhysicalConditioning.xaml</DependentUpon>
@@ -96,7 +111,16 @@
     <Compile Include="UserControls\LabReportUC.xaml.cs" />
     <Compile Include="UserControls\UCBreadCrumb.xaml.cs">
       <DependentUpon>UCBreadCrumb.xaml</DependentUpon>
-    </Compile>
+    </Compile> <Page Include="AddNewAthlete.xaml">
+ </Page>
+   <Page Include="AddNewMainScreen.xaml">
+<SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AddNewTest.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="AllClientNotification.xaml">
     </Page>
     <Compile Include="ResourceConstants.Designer.cs">
@@ -116,6 +140,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="LabTestsScreen.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UserControls\ClientNote.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -125,6 +153,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControls\FilterUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\Logout.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

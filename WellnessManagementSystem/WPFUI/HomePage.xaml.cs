@@ -34,15 +34,24 @@ namespace PhysioApplication
         {
             InitializeComponent();
             AppManager appManager = AppManager.getInstance();
-                
-            
             appManager.CurrentWindow= this;
             BOUser userDetails = appManager.GetUserDetails();
             DataContext = userDetails;
             InitializeCustomComponents();
+            SetLogOut();
             SetBreadCrumb();
         }
 
+        private void SetLogOut()
+        {
+            this.ucLogoutUC.OnLogout += new EventHandler(ucLogoutUC_OnLogout);
+        }
+
+        public void ucLogoutUC_OnLogout(object sender, EventArgs e)
+        {
+            AppManager.getInstance().LogOut();
+
+        }
         public void InitializeCustomComponents()
         {
             DataTable dataTable = new DataTable();
@@ -78,7 +87,16 @@ namespace PhysioApplication
 
             }
             //TODO: temporary same action for all the buttons
-        
+            if (buttonTitle == "Access Athletes Information")
+            {
+                AllClientNotification client = new AllClientNotification();
+                client.Show();
+            }
+            else if (buttonTitle == "Change Settings")
+            {
+                AddNewMainScreen addNewMainScreen = new AddNewMainScreen();
+                addNewMainScreen.Show();
+            }
             this.Close();
         }
         private void SetBreadCrumb()

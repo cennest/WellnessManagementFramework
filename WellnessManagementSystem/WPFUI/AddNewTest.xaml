@@ -1,0 +1,58 @@
+﻿<Window x:Class="PhysioApplication.AddNewTest"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:userControl="clr-namespace:PhysioApplication.UserControls"
+        Title="Add New Test" WindowStartupLocation="CenterScreen"
+     MinHeight="250" MinWidth="500" MaxHeight="250" MaxWidth="500">
+    <Window.Resources>
+        <Style TargetType="{x:Type TextBox}">
+            <Setter Property="Height" Value="30"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="HorizontalAlignment" Value="Stretch"/>
+        </Style>
+        <Style TargetType="{x:Type Label}">
+            <Setter Property="Height" Value="40"/>
+            <Setter Property="FontFamily" Value="Calibri(body)"/>
+            <Setter Property="FontSize" Value="18"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+        <LinearGradientBrush x:Key="ButtonGreenBackground" StartPoint="0.5,0" EndPoint="0.5,1">
+            <GradientStop Color="#EEFF92" Offset="0"/>
+            <GradientStop Color="#99C049" Offset="0.1"/>
+            <GradientStop Color="#7A9443" Offset="0.8"/>
+        </LinearGradientBrush>
+    </Window.Resources>
+    <Grid VerticalAlignment="Center" Margin="5">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.1*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="0.1*"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="0.1*"/>
+                    <RowDefinition Height="0.1*"/>
+                    <RowDefinition Height="0.1*"/>
+                    <RowDefinition Height="0.1*"/>
+
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.05*"/>
+                    <ColumnDefinition Width="0.4*"/>
+                    <ColumnDefinition Width="0.6*"/>
+                    <ColumnDefinition Width="0.05*"/>
+                </Grid.ColumnDefinitions>
+                <Label Content="Test Name" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+                <TextBox Name="TestNameTextBox" Grid.Row="0" Grid.Column="2" Margin="5"/>
+                <Label Content="Range" Grid.Row="1" Grid.Column="1" />
+                <StackPanel Grid.Row="1" Grid.Column="2" Orientation="Horizontal" IsEnabled="False">
+                    <TextBox Name="FromRangeTextBox" Width="100" Margin="5"/>
+                    <Label Content="To" Margin="5"/>
+                <TextBox Name="ToRangeTextBox" Width="100"/>
+                </StackPanel>
+                <Label Content="Unit" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Left"/>
+                <TextBox Name="UnitTextBox" Grid.Row="2" Grid.Column="2" Margin="5"  IsEnabled="False"/>
+                <Button Content="Add" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" Click="AddTest_Click" Width="150" Background="{StaticResource ButtonGreenBackground}" Style="{StaticResource MetroButton}" MinHeight="40"/>
+            </Grid>
+    </Grid>
+</Window>

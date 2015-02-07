@@ -114,8 +114,8 @@ namespace DatabaseEntities.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=192.168.0.21;Initial Catalog=WellnessManagementFrameworkDB;Persist Se" +
-            "curity Info=True;User ID=cennest;Password=cennest")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=192.168.0.5;Initial Catalog=WellnessManagementFrameworkDB;Persist Sec" +
+            "urity Info=True;User ID=cennest;Password=cennest")]
         public string WellnessManagementFrameworkDBConnectionString7 {
             get {
                 return ((string)(this["WellnessManagementFrameworkDBConnectionString7"]));

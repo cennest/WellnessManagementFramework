@@ -578,5 +578,128 @@ namespace DataLayer
                              select clientObj).FirstOrDefault();
             return client.Notes;
         }
+
+        public List<ReportFieldMaster> GetAllLabTestTypes()
+        {
+            try
+            {
+                WellnessManagementFrameworkDBMLDataContext dataContext = new WellnessManagementFrameworkDBMLDataContext();
+                List<ReportFieldMaster> listOfReportFields = (from test in dataContext.ReportFieldMasters
+                                                              where test.ReportTypeID == Convert.ToInt32(ReportType.LabReport)
+                                                              select test).ToList();
+                return listOfReportFields;
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
+        public List<ReportFieldMaster> GetLabTestTypesForUser(int userID)
+        {
+            try
+            {
+                WellnessManagementFrameworkDBMLDataContext dataContext = new WellnessManagementFrameworkDBMLDataContext();
+                List<ReportFieldMaster> listOfReportFields = (from test in dataContext.UserReportFields
+                                                              where test.ReportFieldMaster.ReportTypeID == Convert.ToInt32(ReportType.LabReport) && test.UserID == userID 
+                                                              select test.ReportFieldMaster).ToList();
+                return listOfReportFields;
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
+        public bool SaveLabTests(int userID, List<int> deleteLabTestForUser, List<int> newAddedLabTestsForUser)
+        {
+            try
+            {
+                WellnessManagementFrameworkDBMLDataContext dataContext = new WellnessManagementFrameworkDBMLDataContext();
+                if (newAddedLabTestsForUser.Count > 0)
+                {
+                    foreach (int labTestID in newAddedLabTestsForUser)
+                    {
+                        UserReportField reportField = new UserReportField();
+                        reportField.UserID = userID;
+                        reportField.ReportFieldID = labTestID;
+                        dataContext.UserReportFields.InsertOnSubmit(reportField);
+                        dataContext.SubmitChanges();
+                    }
+                }
+                if (deleteLabTestForUser.Count > 0)
+                {
+                    foreach (int labTestID in deleteLabTestForUser)
+                    {
+                        UserReportField reportField = (from field in dataContext.UserReportFields
+                                                       where field.ReportFieldID == labTestID
+                                                       select field).FirstOrDefault();
+                        if (reportField != null)
+                        {
+                            dataContext.UserReportFields.DeleteOnSubmit(reportField);
+                        }
+                    }
+                    dataContext.SubmitChanges();
+                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
+
+        
+ 
+        public bool AddClient(string clientName, long phone, string address, int userID, int categoryID)
+        {
+            try
+            {
+                WellnessManagementFrameworkDBMLDataContext dataContext = new WellnessManagementFrameworkDBMLDataContext();
+                Client client = new Client();
+                client.ClientName = clientName;
+                client.ClientPhone = phone.ToString();
+                client.ClientAddress = address;
+                client.UserID = userID;
+                client.CategoryID = categoryID;
+                client.Notes = "";
+                dataContext.Clients.InsertOnSubmit(client);
+                dataContext.SubmitChanges();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+                throw ex;
+            }
+        }
+
+        public bool SaveTestForUser(int userID, string testName)
+        {
+            try
+            {
+                WellnessManagementFrameworkDBMLDataContext dataContext = new WellnessManagementFrameworkDBMLDataContext();
+                ReportFieldMaster reportFieldMaster = new ReportFieldMaster();
+                reportFieldMaster.ReportFieldName = testName;
+                reportFieldMaster.ReportTypeID = 1;
+                dataContext.ReportFieldMasters.InsertOnSubmit(reportFieldMaster);
+                dataContext.SubmitChanges();
+                if (reportFieldMaster.ReportFieldID != 0)
+                {
+                    UserReportField userReportField = new UserReportField();
+                    userReportField.UserID = userID;
+                    userReportField.ReportFieldID = reportFieldMaster.ReportFieldID;
+                    dataContext.UserReportFields.InsertOnSubmit(userReportField);
+                    dataContext.SubmitChanges();
+                    return true;
+                }
+                return false;
+            }
+            catch (Exception exception)
+            {
+                throw exception;
+            }
+        }
     }
 }

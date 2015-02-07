@@ -32,10 +32,21 @@ namespace PhysioApplication
             InitializeComponent();
             AppManager appManager = AppManager.getInstance();
             appManager.CurrentWindow = this;
+            SetLogOut();
             SetBreadCrumb();
             ucBreadCrumb.CrumbSelected += ucBreadCrumb_CrumbSelected;
         }
 
+        private void SetLogOut()
+        {
+            this.ucLogoutUC.OnLogout += new EventHandler(ucLogoutUC_OnLogout);
+        }
+
+        public void ucLogoutUC_OnLogout(object sender, EventArgs e)
+        {
+            AppManager.getInstance().LogOut();
+
+        }
         void ucBreadCrumb_CrumbSelected(string selectedString)
         {
             AppManager.getInstance().BreadCrumbSelected(selectedString);

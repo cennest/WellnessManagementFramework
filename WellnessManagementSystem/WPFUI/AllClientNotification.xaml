@@ -13,6 +13,7 @@
     </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
+            <RowDefinition Height="0.1*"/>
             <RowDefinition Height=".2*" />
             <RowDefinition Height=".00001*" />
             <RowDefinition Height=".1*" />
@@ -20,10 +21,11 @@
             <RowDefinition Height=".08*" />
             <RowDefinition Height=".08*" />
         </Grid.RowDefinitions>
-        <userControl:FilterUC x:Name="ucFilterUC" OptionChanged = "uc_OptionChanged" Grid.Row="0" HorizontalAlignment="Stretch" Margin="0,0,40,0"></userControl:FilterUC>
+        <userControl:Logout x:Name="ucLogoutUC" OnLogout="ucLogoutUC_OnLogout" Grid.Row="0" HorizontalAlignment="Right" Margin="0,0,40,0"/>
+        <userControl:FilterUC x:Name="ucFilterUC" OptionChanged = "uc_OptionChanged" Grid.Row="1" HorizontalAlignment="Stretch" Margin="0,0,40,0"></userControl:FilterUC>
         <userControl:UCBreadCrumb Margin="20,0,0,0" Grid.Row="2" x:Name="ucBreadCrumb"></userControl:UCBreadCrumb>
 
-        <StackPanel Grid.Row="3">
+        <StackPanel Grid.Row="4">
             <DataGrid  Name="ClientDataGrid" AlternatingRowBackground="Gray"
 		          HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="10,0"
 		           AutoGenerateColumns="False" MinRowHeight="26" CanUserAddRows="False">
@@ -55,8 +57,8 @@
                 </DataGrid.Columns>
             </DataGrid>
         </StackPanel>
-        <my:GridPaging Grid.Row="4" HorizontalAlignment="Center" x:Name="gridPaging"/>
-        <userControl:Footer Grid.Row="5"></userControl:Footer>
+        <my:GridPaging Grid.Row="5" HorizontalAlignment="Center" x:Name="gridPaging"/>
+        <userControl:Footer Grid.Row="6"></userControl:Footer>
     </Grid>
 </Window>
 

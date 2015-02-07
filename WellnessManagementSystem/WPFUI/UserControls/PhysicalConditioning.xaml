@@ -21,7 +21,7 @@
             <Setter Property="BorderBrush" Value="White"/>
             <Setter Property="BorderThickness" Value="1 0 1 2"/>
         </Style>
-        
+
         <Style TargetType="{x:Type DataGrid}">
             <Setter Property="RowBackground" Value="#D9D9D9" />
             <Setter Property="AlternatingRowBackground" Value="#F2F2F2" />
@@ -29,14 +29,16 @@
         <Style x:Key="DataGridCellStyle" TargetType="{x:Type DataGridCell}">
             <Setter Property="BorderBrush" Value="White"/>
             <Setter Property="HorizontalAlignment" Value="Stretch"></Setter>
-            <Setter Property="VerticalAlignment" Value="Center"></Setter>
+            <Setter Property="VerticalContentAlignment" Value="Center"></Setter>
+            <Setter Property="TextBlock.VerticalAlignment" Value="Stretch"></Setter>
             <Setter Property="TextBlock.TextAlignment" Value="Center"></Setter>
+            <Setter Property="TextBlock.TextWrapping" Value="Wrap"></Setter>
             <Setter Property="BorderThickness" Value="1"/>
-            <Setter Property="Height" Value="30"/>
+            <Setter Property="MinHeight" Value="30"/>
             <Setter Property="FontFamily" Value="Calibri"/>
             <Setter Property="FontSize" Value="14"/>
         </Style>
-       
+
         <Style TargetType="{x:Type DatePickerTextBox}">
             <Setter Property="Text" Value=" " />
         </Style>
@@ -101,20 +103,38 @@
                             <Setter Property="Background" Value="#F79646"/>
                             <Setter Property="HorizontalAlignment" Value="Stretch"/>
                             <Setter Property="VerticalAlignment" Value="Center"/>
-                            <Setter Property="Height" Value="30"/>
                             <Setter Property="FontFamily" Value="Calibri"/>
                             <Setter Property="FontSize" Value="14"/>
                             <Setter Property="FontWeight" Value="Bold"/>
+                            <Setter Property="Padding" Value="5"/>
                             <Setter Property="Foreground" Value="White"/>
                         </Style>
                     </DataGridTextColumn.ElementStyle>
                 </DataGridTextColumn>
 
 
-                <DataGridTextColumn Binding="{Binding MSKAssessment}"
-				                    Header="MSK Assessment" Width="0.45*" />
-                <DataGridTextColumn Binding="{Binding Advice}"
-				                    Header="Advice" Width="0.45*" IsReadOnly="False"/>
+                <DataGridTextColumn Binding="{Binding MSKAssessment}" Header="MSK Assessment" Width="0.45*" >
+                    <DataGridTextColumn.ElementStyle>
+                        <Style>
+                            <Setter Property="TextBlock.TextWrapping" Value="Wrap" />
+                            <Setter Property="TextBlock.TextAlignment" Value="Center"/>
+                            <Setter Property="TextBlock.TextTrimming" Value="CharacterEllipsis"/>
+                            <Setter Property="TextBlock.Padding" Value="5"/>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+
+                <DataGridTextColumn Binding="{Binding Advice}" Header="Advice" Width="0.45*" IsReadOnly="False">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style>
+                            <Setter Property="TextBlock.TextWrapping" Value="Wrap" />
+                            <Setter Property="TextBlock.TextAlignment" Value="Center"/>
+                            <Setter Property="TextBlock.TextTrimming" Value="CharacterEllipsis"/>
+                            <Setter Property="TextBlock.Padding" Value="5"/>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+
             </DataGrid.Columns>
         </DataGrid>
         <my:GridPaging HorizontalAlignment="Center" x:Name="gridPaging" Grid.Row="3"/>

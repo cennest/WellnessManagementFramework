@@ -120,8 +120,7 @@ namespace PhysioApplication
                     }
                 }
 
-                
-                HomePage homePage = new HomePage();                
+                HomePage homePage = new HomePage();
                 homePage.Show();
                 this.Close();
             }

@@ -102,10 +102,31 @@ namespace PhysioApplication
                      
                     }
                     break;
+                case "Settings":
+                    {
+                        Window previousWindow = CurrentWindow;
+                        AddNewMainScreen mainScreen = new AddNewMainScreen();
+                        if (previousWindow != null)
+                        {
+                            previousWindow.Close();
+                        }
+                        mainScreen.Show();
+                    }
+                    break;
             }
             return true;
         }
 
+        public void LogOut()
+        {
+            Window previousWindow = CurrentWindow;
+            LoginWindow loginWindow = new LoginWindow();
+            if (previousWindow != null)
+            {
+                previousWindow.Close();
+            }
+            loginWindow.Show();
+        }
         public void SearchSelected(int selectedIndex, string searchText)
         {
             Window previousWindow = CurrentWindow;
