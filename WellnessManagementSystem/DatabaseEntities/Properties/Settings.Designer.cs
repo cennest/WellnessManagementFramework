@@ -121,5 +121,27 @@ namespace DatabaseEntities.Properties {
                 return ((string)(this["WellnessManagementFrameworkDBConnectionString7"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=192.168.0.5;Initial Catalog=WellnessManagementFrameworkDB;Persist Sec" +
+            "urity Info=True;User ID=cennest;Password=cennest")]
+        public string WellnessManagementFrameworkDBConnectionString8 {
+            get {
+                return ((string)(this["WellnessManagementFrameworkDBConnectionString8"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=192.168.0.7;Initial Catalog=WellnessManagementFrameworkDB;User ID=cen" +
+            "nest;Password=cennest")]
+        public string WellnessManagementFrameworkDBConnectionString9 {
+            get {
+                return ((string)(this["WellnessManagementFrameworkDBConnectionString9"]));
+            }
+        }
     }
 }
