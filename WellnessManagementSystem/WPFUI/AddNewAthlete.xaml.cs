@@ -39,7 +39,6 @@ namespace PhysioApplication
                 comboBoxItemList.Add(new ComboBoxItem { Content = category.CategoryName, Tag = category.CategoryID.ToString() });
             }
             this.CategoryComboBox.ItemsSource = comboBoxItemList;
-            this.CategoryComboBox.SelectedIndex = 0;
             SetLogOut();
             SetBreadCrumb();
         }
@@ -83,6 +82,9 @@ namespace PhysioApplication
                     if (isClientAdded == true)
                     {
                         MessageBox.Show("Athlete added successfully!");
+                        txtName.Text = "";
+                        txtPhone.Text = "";
+                        txtAddress.Text = "";
                     }
                     else
                     {
@@ -102,29 +104,35 @@ namespace PhysioApplication
 
         private bool IsDataValid()
         {
-            bool isDataValid = true;
             bool isPhoneNumberValid = IsValidTextNumber(txtPhone.Text);
-            if (txtAddress.Text == "")
+
+            if (txtName.Text == "")
             {
-                isDataValid = false;
-                errorMsg = "Please enter Address";
-            }
-            if (isPhoneNumberValid == false)
-            {
-                isDataValid = false;
-                errorMsg = "Please enter correct phone number";
+                errorMsg = "Please enter Athlete Name";
+                return false;
             }
             if (txtPhone.Text == "")
             {
-                isDataValid = false;
                 errorMsg = "Please enter phone number";
+                return false;
             }
-            if (txtName.Text == "")
+            if (isPhoneNumberValid == false)
             {
-                isDataValid = false;
-                errorMsg = "Please enter Athlete Name";
+                errorMsg = "Please enter correct phone number";
+                return false;
             }
-            return isDataValid;
+            if (txtAddress.Text == "")
+            {
+                errorMsg = "Please enter Address";
+                return false;
+            }
+            ComboBoxItem item = (ComboBoxItem)CategoryComboBox.SelectedItem;
+            if (item == null)
+            {
+                errorMsg = "Please select Category";
+                return false;
+            }
+            return true;
         }
 
         private void check_space(object sender, KeyEventArgs e)

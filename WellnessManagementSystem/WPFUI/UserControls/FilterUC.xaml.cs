@@ -31,12 +31,14 @@ namespace PhysioApplication.UserControls
             InitializeComponent();
             List<BOCategory> categoryList = businessLayer.GetAllCategories();
             List<ComboBoxItem> comboBoxItemList = new List<ComboBoxItem>();
+            int firstIndex = 0;
+            comboBoxItemList.Add(new ComboBoxItem { Content = "All Sports", Tag = firstIndex.ToString() });
             foreach (BOCategory category in categoryList)
             {
                 comboBoxItemList.Add(new ComboBoxItem { Content = category.CategoryName, Tag = category.CategoryID.ToString() });
             }
             this.ComboBoxPageFilter.ItemsSource = comboBoxItemList;
-            this.ComboBoxPageFilter.SelectedIndex = 0;
+            this.ComboBoxPageFilter.SelectedIndex = firstIndex;
         }
 
         private void FilterComboBoxSelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
