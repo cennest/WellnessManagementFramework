@@ -466,7 +466,7 @@ namespace BusinessLayer
             {
                 DataLayerManager dataLayer = new DataLayerManager();
                 string note = dataLayer.GetNoteForClient(clientID);
-                if (note == null)
+                if (note == null || note == "")
                 {
                     note = "No Note";
                 }

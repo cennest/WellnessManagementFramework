@@ -8,13 +8,14 @@ namespace DataLayer
 {
     public enum Category
     {
-        AllSports = 1,
+        AllSports = 0,
         Shooter,
         WeightLifter,
         Archer,
         Swimmer,
         Boxer,
-        Sprinter
+        Sprinter,
+        Squash
     }
 
     public enum ReportType

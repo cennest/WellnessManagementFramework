@@ -35,15 +35,17 @@ namespace PhysioApplication.UserControls
             BOUser user = appmanager.GetUserDetails();
             BusinessLayerManager businessLayer = new BusinessLayerManager();
             String note = businessLayer.GetNoteForClient(appmanager.currentClientID);
-
-            var document = noteEditor.Document;
-            var range = new TextRange(document.ContentStart, document.ContentEnd);
-            var ms = new MemoryStream();
-            var writer = new StreamWriter(ms);
-            writer.Write(note);
-            writer.Flush();
-            ms.Seek(0, SeekOrigin.Begin);
-            range.Load(ms, DataFormats.Rtf);
+            if (note != "" && note != null)
+            {
+                var document = noteEditor.Document;
+                var range = new TextRange(document.ContentStart, document.ContentEnd);
+                var ms = new MemoryStream();
+                var writer = new StreamWriter(ms);
+                writer.Write(note);
+                writer.Flush();
+                ms.Seek(0, SeekOrigin.Begin);
+                range.Load(ms, DataFormats.Rtf);
+            }
         }
 
         private void noteEditor_SelectionChanged(object sender, RoutedEventArgs e)

@@ -39,7 +39,6 @@ namespace PhysioApplication
                 comboBoxItemList.Add(new ComboBoxItem { Content = category.CategoryName, Tag = category.CategoryID.ToString() });
             }
             this.CategoryComboBox.ItemsSource = comboBoxItemList;
-            this.CategoryComboBox.SelectedIndex = 0;
             SetLogOut();
             SetBreadCrumb();
         }
@@ -125,6 +124,12 @@ namespace PhysioApplication
             if (txtAddress.Text == "")
             {
                 errorMsg = "Please enter Address";
+                return false;
+            }
+            ComboBoxItem item = (ComboBoxItem)CategoryComboBox.SelectedItem;
+            if (item == null)
+            {
+                errorMsg = "Please select Category";
                 return false;
             }
             return true;
