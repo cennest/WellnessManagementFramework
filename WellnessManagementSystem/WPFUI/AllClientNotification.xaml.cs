@@ -173,7 +173,7 @@ namespace PhysioApplication
         public string FormateNoteValue(string noteValue)
         {
             string note = null;
-            if (noteValue != null)
+            if (noteValue != null && noteValue != "" && noteValue != "No Notes")
             {
                 RichTextBox rtBox = new RichTextBox();
                 var document = rtBox.Document;
@@ -224,9 +224,12 @@ namespace PhysioApplication
                 int cachedDataCount = clientListByCategory.Count;
                 if (cachedDataCount < finalRow)
                 {
-                    FetchDataFromDatabaseToTemporaryStorage(cachedDataCount, skip, take, CategoryID);
+                    clientList = FetchDataFromDatabaseToTemporaryStorage(cachedDataCount, skip, take, CategoryID);
                 }
-                clientList = FetchDataFromTemporaryStorage(skip, take, CategoryID);
+                if (clientList.Count == 0)
+                {
+                    clientList = FetchDataFromTemporaryStorage(skip, take, CategoryID);
+                }
                 return clientList;
             }
             catch (Exception ex)
@@ -255,12 +258,13 @@ namespace PhysioApplication
             {
                 throw ex;
             }
-        } 
+        }
 
-        private void FetchDataFromDatabaseToTemporaryStorage(int cachedDataCount, int skip, int take, int CategoryID)
+        private List<BOClient> FetchDataFromDatabaseToTemporaryStorage(int cachedDataCount, int skip, int take, int CategoryID)
         {
             try
             {
+                List<BOClient> clientList = new List<BOClient>();
                 BusinessLayerManager businessLayer = new BusinessLayerManager();
                 List<BOClient> clientListByCategory = (List<BOClient>)this.listOfAllClientsByCategoryHasTable[CategoryID];
                 if (clientListByCategory == null)
@@ -269,19 +273,30 @@ namespace PhysioApplication
                 }
                 List<BOClient> clientListForCategory = businessLayer.GetClientsForCategories(CategoryID, this.userID, skip, take);
                 int skipDataFromAddingToCategoryList = cachedDataCount - skip;
-                int rowCounter = 0;
-                if (clientListForCategory.Count > 0)
+                if (skipDataFromAddingToCategoryList >= 0)
                 {
-                    foreach (BOClient client in clientListForCategory)
+                    if (skipDataFromAddingToCategoryList != clientListForCategory.Count)
                     {
-                        rowCounter++;
-                        if (rowCounter > skipDataFromAddingToCategoryList)
+                        int rowCounter = 0;
+                        if (clientListForCategory.Count > 0)
                         {
-                            clientListByCategory.Add(client);
+                            foreach (BOClient client in clientListForCategory)
+                            {
+                                rowCounter++;
+                                if (rowCounter > skipDataFromAddingToCategoryList)
+                                {
+                                    clientListByCategory.Add(client);
+                                }
+                            }
+                            this.listOfAllClientsByCategoryHasTable.Remove(CategoryID);
+                            this.listOfAllClientsByCategoryHasTable.Add(CategoryID, clientListByCategory);
                         }
                     }
-                    this.listOfAllClientsByCategoryHasTable.Remove(CategoryID);
-                    this.listOfAllClientsByCategoryHasTable.Add(CategoryID, clientListByCategory);
+                    return clientList;
+                }
+                else
+                {
+                    return clientListForCategory;
                 }
             }
             catch (Exception ex)
