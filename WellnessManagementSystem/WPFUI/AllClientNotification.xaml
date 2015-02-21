@@ -23,7 +23,7 @@
         </Grid.RowDefinitions>
         <userControl:Logout x:Name="ucLogoutUC" OnLogout="ucLogoutUC_OnLogout" Grid.Row="0" HorizontalAlignment="Right" Margin="0,0,40,0"/>
         <userControl:FilterUC x:Name="ucFilterUC" OptionChanged = "uc_OptionChanged" Grid.Row="1" HorizontalAlignment="Stretch" Margin="0,0,40,0"></userControl:FilterUC>
-        <userControl:UCBreadCrumb Margin="20,0,0,0" Grid.Row="2" x:Name="ucBreadCrumb"></userControl:UCBreadCrumb>
+        <userControl:UCBreadCrumb Margin="20,0,0,0" Grid.Row="3" x:Name="ucBreadCrumb"></userControl:UCBreadCrumb>
 
         <StackPanel Grid.Row="4">
             <DataGrid  Name="ClientDataGrid" AlternatingRowBackground="Gray"
