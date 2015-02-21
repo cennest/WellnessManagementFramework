@@ -150,7 +150,7 @@ namespace PhysioApplication
         public string FormateNoteValue(string noteValue)
         {
             string note = null;
-            if (noteValue != null)
+            if (noteValue != null && noteValue != "" && noteValue != "No Notes")
             {
                 RichTextBox rtBox = new RichTextBox();
                 var document = rtBox.Document;
