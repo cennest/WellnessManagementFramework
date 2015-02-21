@@ -594,9 +594,16 @@ namespace BusinessLayer
 
         public int SaveTestForUser(int userID, string testName)
         {
-            DataLayerManager dataLayer = new DataLayerManager();
-            int testID = dataLayer.SaveTestForUser(userID, testName);
-            return testID;
+            try
+            {
+                DataLayerManager dataLayer = new DataLayerManager();
+                int testID = dataLayer.SaveTestForUser(userID, testName);
+                return testID;
+            }
+            catch(Exception exception)
+            {
+                throw exception;
+            }
         }
     }
 }

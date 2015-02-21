@@ -72,6 +72,7 @@ namespace PhysioApplication
                 bool saved = businessLayer.SaveLabTests(userID, labTests);
                 if (saved == true)
                 {
+                    appManager.FetchAndSetLabReportFieldsForUser();
                     MessageBox.Show("Saved successfully");
                 }
             }

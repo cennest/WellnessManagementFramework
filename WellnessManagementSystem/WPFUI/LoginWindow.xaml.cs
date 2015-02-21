@@ -111,14 +111,7 @@ namespace PhysioApplication
             {
                 AppManager appManager = AppManager.getInstance();
                 appManager.SetUserDetails(userDetails);
-                Dictionary<string, List<BOUserField>> userReportFields = businessLayer.GetReportFieldsForUser(userDetails.UserID);
-                foreach (KeyValuePair<string, List<BOUserField>> keyValuePair in userReportFields)
-                {
-                    if (keyValuePair.Key == "LabReport")
-                    {
-                        appManager.SetLabReportFieldsForUser(keyValuePair.Value);
-                    }
-                }
+                appManager.FetchAndSetLabReportFieldsForUser();
 
                 HomePage homePage = new HomePage();
                 homePage.Show();

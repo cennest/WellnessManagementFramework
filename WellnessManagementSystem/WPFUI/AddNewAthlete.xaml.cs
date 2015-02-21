@@ -38,7 +38,10 @@ namespace PhysioApplication
             {
                 comboBoxItemList.Add(new ComboBoxItem { Content = category.CategoryName, Tag = category.CategoryID.ToString() });
             }
+            string defaultComboboxString="<Select Category>";
+            comboBoxItemList.Insert(0, new ComboBoxItem { Content = defaultComboboxString });
             this.CategoryComboBox.ItemsSource = comboBoxItemList;
+            CategoryComboBox.SelectedIndex = 0;
             SetLogOut();
             SetBreadCrumb();
         }
@@ -82,9 +85,7 @@ namespace PhysioApplication
                     if (isClientAdded == true)
                     {
                         MessageBox.Show("Athlete added successfully!");
-                        txtName.Text = "";
-                        txtPhone.Text = "";
-                        txtAddress.Text = "";
+                        ResetContents();
                     }
                     else
                     {
@@ -102,6 +103,14 @@ namespace PhysioApplication
             }
         }
 
+        private void ResetContents()
+        {
+            txtName.Text = "";
+            txtPhone.Text = "";
+            txtAddress.Text = "";
+            CategoryComboBox.SelectedIndex = 0;
+
+        }
         private bool IsDataValid()
         {
             bool isPhoneNumberValid = IsValidTextNumber(txtPhone.Text);
@@ -126,8 +135,8 @@ namespace PhysioApplication
                 errorMsg = "Please enter Address";
                 return false;
             }
-            ComboBoxItem item = (ComboBoxItem)CategoryComboBox.SelectedItem;
-            if (item == null)
+
+            if(CategoryComboBox.SelectedIndex==0)
             {
                 errorMsg = "Please select Category";
                 return false;

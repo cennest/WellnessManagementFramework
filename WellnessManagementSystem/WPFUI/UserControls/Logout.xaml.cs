@@ -28,6 +28,7 @@ namespace PhysioApplication.UserControls
             AppManager appManager = AppManager.getInstance();
             BOUser userDetails = appManager.GetUserDetails();
             DataContext = userDetails;
+           
         }        
 
         private void Label_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
@@ -36,6 +37,11 @@ namespace PhysioApplication.UserControls
             {
                 OnLogout(this, new EventArgs());
             }
+        }
+
+        private void Run_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+           
         }
     }
 }
