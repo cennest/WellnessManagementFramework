@@ -37,19 +37,30 @@ namespace PhysioApplication
             }
             else
             {
-                AppManager appManager=AppManager.getInstance();
-                BOUser userDetails=appManager.GetUserDetails();
-                BusinessLayerManager businessLayer=new BusinessLayerManager();
-                int testID = businessLayer.SaveTestForUser(userDetails.UserID,testName);
-                if (testID > 0)
+                try
                 {
-                    MessageBox.Show("Save Sucessful");
-                    this.testAdded(testID,testName);
-                    this.Close();
-                }
-                else
+                    AppManager appManager = AppManager.getInstance();
+                    BOUser userDetails = appManager.GetUserDetails();
+                    BusinessLayerManager businessLayer = new BusinessLayerManager();
+                    int testID = businessLayer.SaveTestForUser(userDetails.UserID, testName);
+                    if (testID > 0)
+                    {
+                        appManager.FetchAndSetLabReportFieldsForUser();
+                        MessageBox.Show("Save Sucessful");
+                        this.testAdded(testID, testName);
+                        this.Close();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Save Unsuccessful");
+                    }
+                }catch(Exception exception)
                 {
-                    MessageBox.Show("Save Unsuccessful");
+                    
+                    if(exception.Message=="Test already Exists")
+                    {
+                        MessageBox.Show(exception.Message);
+                    }
                 }
               
             }

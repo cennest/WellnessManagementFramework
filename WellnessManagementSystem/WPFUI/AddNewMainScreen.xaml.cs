@@ -74,7 +74,7 @@ namespace PhysioApplication
                 AddNewAthlete addNewAthlete = new AddNewAthlete();
                 addNewAthlete.Show();
             }
-            else if (buttonTitle == "View Tests")
+            else if (buttonTitle == "Manage Tests")
             {
                 LabTestsScreen labTestScreen = new LabTestsScreen();
                 labTestScreen.Show();

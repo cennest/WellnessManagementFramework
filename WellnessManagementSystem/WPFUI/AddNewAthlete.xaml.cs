@@ -38,6 +38,8 @@ namespace PhysioApplication
             {
                 comboBoxItemList.Add(new ComboBoxItem { Content = category.CategoryName, Tag = category.CategoryID.ToString() });
             }
+            string defaultComboboxString="<No Category>";
+            comboBoxItemList.Insert(0, new ComboBoxItem { Content = defaultComboboxString });
             this.CategoryComboBox.ItemsSource = comboBoxItemList;
             this.CategoryComboBox.SelectedIndex = 0;
             SetLogOut();
@@ -83,6 +85,8 @@ namespace PhysioApplication
                     if (isClientAdded == true)
                     {
                         MessageBox.Show("Athlete added successfully!");
+                        ResetContents();
+                        
                     }
                     else
                     {
@@ -100,6 +104,14 @@ namespace PhysioApplication
             }
         }
 
+        private void ResetContents()
+        {
+            txtName.Text = "";
+            txtPhone.Text = "";
+            txtAddress.Text = "";
+            CategoryComboBox.SelectedIndex = 0;
+
+        }
         private bool IsDataValid()
         {
             bool isDataValid = true;
@@ -123,6 +135,11 @@ namespace PhysioApplication
             {
                 isDataValid = false;
                 errorMsg = "Please enter Athlete Name";
+            }
+            if(CategoryComboBox.SelectedIndex==0)
+            {
+                isDataValid = false;
+                errorMsg = "Please select Category";
             }
             return isDataValid;
         }

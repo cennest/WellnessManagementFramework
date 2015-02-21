@@ -17,9 +17,32 @@ using System.Windows.Navigation;
 using System.Collections;
 using System.IO;
 using System.Text.RegularExpressions;
+using System.Globalization;
 
 namespace PhysioApplication
 {
+   public class NotificationConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            if (value.ToString().ToLower().Contains("Upcoming".ToLower()))
+            {
+                return "Upcoming";
+            }
+            else if (value.ToString().ToLower().Contains("Date Elapsed".ToLower()))
+            {
+                return "Date Elapsed";
+            }
+            else
+            {
+                return "No Notification";
+            }
+        }
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new InvalidOperationException("NotificationConverter is a OneWay converter.");
+        }
+    }
     /// <summary>
     /// Interaction logic for AllClientNotification.xaml
     /// </summary>
