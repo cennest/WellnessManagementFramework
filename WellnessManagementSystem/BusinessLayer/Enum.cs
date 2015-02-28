@@ -14,6 +14,13 @@ namespace BusinessLayer
         DietPlan=2,
         PhysicalCondition=3
     }
+
+    public enum TestDateStatus
+    {
+        Elapsed=1,
+        NoNotification=2,
+        Upcoming=3
+    }
     class Enum
     {
       
