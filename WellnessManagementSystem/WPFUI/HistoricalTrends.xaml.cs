@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using BusinessLayer;
 using BusinessLayer.Entities;
+using System.Collections.ObjectModel;
 
 namespace PhysioApplication
 {
@@ -21,8 +22,6 @@ namespace PhysioApplication
     /// </summary>
     public partial class HistoricalTrends : Window
     {
-        List<int> listOfCategories;
-        List<int> listOfTests;
         DateTime? fromSelectedDate;
         DateTime? toSelectedDate;
         public HistoricalTrends()
@@ -38,8 +37,21 @@ namespace PhysioApplication
         private void LoadControls()
         {
             BusinessLayerManager businessLayer = new BusinessLayerManager();
-            lvTests.ItemsSource = AppManager.getInstance().CurrentCategories;
+            this.DataContext = businessLayer.GetLabTestsForUser(AppManager.getInstance().GetUserDetails().UserID);
+            LoadCategories();
+        }
 
+        private void LoadCategories()
+        {
+            var appManagerCategories = AppManager.getInstance().CurrentCategories;
+
+            List<ComboBoxItem> comboBoxItemList = new List<ComboBoxItem>();
+            foreach (BOCategory category in appManagerCategories)
+            {
+                comboBoxItemList.Add(new ComboBoxItem { Content = category.CategoryName, Tag = category.CategoryID.ToString() });
+            }
+            this.cbCategories.ItemsSource = comboBoxItemList;
+            this.cbCategories.SelectedIndex = 0;
         }
 
         private void FromDate_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
@@ -77,17 +89,21 @@ namespace PhysioApplication
 
         private void reportBtn_Click(object sender, RoutedEventArgs e)
         {
+            ObservableCollection<BOLabTest> editedLabTests = (ObservableCollection<BOLabTest>)listOfTests.DataContext;
+            List<BOLabTest> selectedTests = new List<BOLabTest>();
+            foreach (BOLabTest test in editedLabTests)
+            {
+                if (test.IsSelected)
+                {
+                    selectedTests.Add(test);
+                }
+            }
             BusinessLayerManager blManager= new BusinessLayerManager();
-          
             List<BOCategory> categories=   blManager.GetAllCategories();
-            List<BOLabTest> test = blManager.GetLabTestTypesForUser(AppManager.getInstance().currentClientID).ToList();
-            TestReports reports = new TestReports(test, DateTime.Now, DateTime.Now, categories);
+            TestReports reports = new TestReports(selectedTests, DateTime.Now, DateTime.Now, categories);
             reports.Show();
             this.Close();
             
-        }
-
-     
-      
+        } 
     }
 }

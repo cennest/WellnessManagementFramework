@@ -530,6 +530,19 @@ namespace BusinessLayer
             }
         }
 
+        public ObservableCollection<BOLabTest> GetLabTestsForUser(int userID)
+        {
+            try
+            {
+                DataLayerManager dataLayer = new DataLayerManager();
+                return GetLabTestsForReportFields(dataLayer.GetLabTestTypesForUser(userID));
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
         public bool SaveLabTests(int userID, List<BOLabTest> listOfUpdatedTests)
         {
             try
