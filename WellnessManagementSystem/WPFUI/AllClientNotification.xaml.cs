@@ -25,18 +25,8 @@ namespace PhysioApplication
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if (value.ToString().ToLower().Contains("Upcoming".ToLower()))
-            {
-                return "Upcoming";
-            }
-            else if (value.ToString().ToLower().Contains("Date Elapsed".ToLower()))
-            {
-                return "Date Elapsed";
-            }
-            else
-            {
-                return "No Notification";
-            }
+            TestDateStatus testDateStatus=(TestDateStatus)value;
+            return (int)testDateStatus;
         }
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {

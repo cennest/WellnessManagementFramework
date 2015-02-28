@@ -60,12 +60,12 @@
                         <DataGridTextColumn.CellStyle>
                             <Style TargetType="DataGridCell">
                                 <Style.Triggers>
-                                    <DataTrigger Binding="{Binding ClientNotification,Converter={StaticResource NotificationConverter}}" Value="Upcoming">
+                                    <DataTrigger Binding="{Binding TestDateStatus,Converter={StaticResource NotificationConverter}}" Value="3">
                                         <Setter  Property="Foreground" Value="Green" />
                                         <Setter Property="FontWeight" Value="Bold"/>
                                         <Setter Property="Background" Value="LightGreen"/>
                                     </DataTrigger>
-                                    <DataTrigger Binding="{Binding ClientNotification,Converter={StaticResource NotificationConverter}}" Value="Date Elapsed">
+                                    <DataTrigger Binding="{Binding TestDateStatus,Converter={StaticResource NotificationConverter}}" Value="1">
                                         <Setter  Property="Foreground" Value="Red" />
                                         <Setter Property="FontWeight" Value="Bold"/>
                                         <Setter Property="Background" Value="LightPink"/>

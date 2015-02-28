@@ -12,6 +12,7 @@ namespace BusinessLayer.Entities
         public string ClientName { get; set; }
         public string ClientNotes { get; set; }
         public string ClientNotification { get; set; }
+        public TestDateStatus TestDateStatus { get; set; }
 
     }
 }

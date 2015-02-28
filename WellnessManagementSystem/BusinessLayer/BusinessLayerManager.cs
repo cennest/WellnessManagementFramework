@@ -198,7 +198,7 @@ namespace BusinessLayer
                     clientObject.ClientID = client.ClientID;
                     clientObject.ClientName = client.ClientName;
                     clientObject.ClientNotes = datalayer.GetNoteForClient(client.ClientID);
-                    clientObject.ClientNotification = GetLastLabReportDateForClient(client.ClientID);
+                    clientObject = GetLastLabReportDateForClient(clientObject);
                     listOfClients.Add(clientObject);
                 }
             }
@@ -220,36 +220,40 @@ namespace BusinessLayer
         //    //ms.Seek(0, SeekOrigin.Begin);
         //    //range.Load(ms, DataFormats.Rtf);
         //}
-        public string GetLastLabReportDateForClient(int clientID)
+        public BOClient GetLastLabReportDateForClient(BOClient clientObject)
         {
             try
             {
                 string notification = null;
                 DataLayerManager datalayer = new DataLayerManager();
-                DateTime? lastLabReportDate = datalayer.GetLastLabReportDateForClient(clientID);
+                DateTime? lastLabReportDate = datalayer.GetLastLabReportDateForClient(clientObject.ClientID);
                 if (lastLabReportDate == null)
                 {
-                    return notification = NO_NOTIFICATION;
+                    clientObject.ClientNotification = NO_NOTIFICATION;
+                    clientObject.TestDateStatus = TestDateStatus.NoNotification;
+                    return clientObject;
                 }
                 DateTime nextLabReportDate = lastLabReportDate.Value.AddMonths(TEST_INTERVAL);
                 TimeSpan timeSpan = nextLabReportDate.Subtract(DateTime.Now);
                 if (timeSpan.Days > NOTIFICATION_TIME)
                 {
-                    notification = NO_NOTIFICATION;
+                    clientObject.ClientNotification = NO_NOTIFICATION;
+                    clientObject.TestDateStatus = TestDateStatus.NoNotification;
                 }
                 else
                 {
                     if (nextLabReportDate > DateTime.Now)
                     {
-                        notification = UPCOMMING_TEST + nextLabReportDate.ToString(NOTIFICATION_DATE_FORMATE);
+                        clientObject.ClientNotification = UPCOMMING_TEST + nextLabReportDate.ToString(NOTIFICATION_DATE_FORMATE); ;
+                        clientObject.TestDateStatus = TestDateStatus.Upcoming;
                     }
                     else if (nextLabReportDate < DateTime.Now)
                     {
-
-                        notification = ELAPSED_TEST + nextLabReportDate.ToString(NOTIFICATION_DATE_FORMATE);
+                        clientObject.ClientNotification = ELAPSED_TEST + nextLabReportDate.ToString(NOTIFICATION_DATE_FORMATE);
+                        clientObject.TestDateStatus = TestDateStatus.Elapsed;
                     }
                 }
-                return notification;
+                return clientObject;
             }
             catch (Exception ex)
             {
