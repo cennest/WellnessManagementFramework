@@ -466,7 +466,7 @@ namespace BusinessLayer
             {
                 DataLayerManager dataLayer = new DataLayerManager();
                 string note = dataLayer.GetNoteForClient(clientID);
-                if (note == null)
+                if (note == null || note == "")
                 {
                     note = "No Note";
                 }
@@ -592,11 +592,18 @@ namespace BusinessLayer
             }
         }
 
-        public bool SaveTestForUser(int userID, string testName)
+        public int SaveTestForUser(int userID, string testName)
         {
-            DataLayerManager dataLayer = new DataLayerManager();
-            bool saveSuccessful = dataLayer.SaveTestForUser(userID, testName);
-            return saveSuccessful;
+            try
+            {
+                DataLayerManager dataLayer = new DataLayerManager();
+                int testID = dataLayer.SaveTestForUser(userID, testName);
+                return testID;
+            }
+            catch(Exception exception)
+            {
+                throw exception;
+            }
         }
 
         public Hashtable GetLabReportsForCategoriesForReports(List<int> categoryIDs, List<int> reportFieldIDs, DateTime fromDate, DateTime tilDate, int userID)

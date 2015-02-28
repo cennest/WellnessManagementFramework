@@ -63,9 +63,18 @@ namespace PhysioApplication
         { get; set; }
 
       
-        public void SetLabReportFieldsForUser(List<BOUserField> labReportFields)
+        public void FetchAndSetLabReportFieldsForUser()
         {
-            this.labReportFieldsForUser = labReportFields;
+            BusinessLayerManager businessLayer=new BusinessLayerManager();
+            Dictionary<string, List<BOUserField>> userReportFields = businessLayer.GetReportFieldsForUser(userDetails.UserID);
+            foreach (KeyValuePair<string, List<BOUserField>> keyValuePair in userReportFields)
+            {
+                if (keyValuePair.Key == "LabReport")
+                {
+                    this.labReportFieldsForUser = keyValuePair.Value;
+                }
+            }
+           
         }
 
         public List<BOUserField> GetLabReportFieldsForUser()

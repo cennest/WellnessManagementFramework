@@ -675,7 +675,7 @@ namespace DataLayer
             }
         }
 
-        public bool SaveTestForUser(int userID, string testName)
+        public int SaveTestForUser(int userID, string testName)
         {
             try
             {
@@ -683,20 +683,49 @@ namespace DataLayer
                 ReportFieldMaster reportFieldMaster = new ReportFieldMaster();
                 reportFieldMaster.ReportFieldName = testName;
                 reportFieldMaster.ReportTypeID = 1;
-                dataContext.ReportFieldMasters.InsertOnSubmit(reportFieldMaster);
-                dataContext.SubmitChanges();
-                if (reportFieldMaster.ReportFieldID != 0)
+                bool testExists=CheckTestAlreadyExists(testName);
+                if (!testExists)
                 {
-                    UserReportField userReportField = new UserReportField();
-                    userReportField.UserID = userID;
-                    userReportField.ReportFieldID = reportFieldMaster.ReportFieldID;
-                    dataContext.UserReportFields.InsertOnSubmit(userReportField);
+                    dataContext.ReportFieldMasters.InsertOnSubmit(reportFieldMaster);
                     dataContext.SubmitChanges();
-                    return true;
+                    if (reportFieldMaster.ReportFieldID != 0)
+                    {
+                        UserReportField userReportField = new UserReportField();
+                        userReportField.UserID = userID;
+                        userReportField.ReportFieldID = reportFieldMaster.ReportFieldID;
+                        dataContext.UserReportFields.InsertOnSubmit(userReportField);
+                        dataContext.SubmitChanges();
+                    }
+                    return reportFieldMaster.ReportFieldID;
                 }
-                return false;
+                else
+                {
+                    throw new Exception("Test already Exists");
+                }
             }
             catch (Exception exception)
+            {
+                throw exception;
+            }
+        }
+
+        public bool CheckTestAlreadyExists(string testName)
+        {
+            try 
+            { 
+            WellnessManagementFrameworkDBMLDataContext dataContext = new WellnessManagementFrameworkDBMLDataContext();
+            ReportFieldMaster reportField = (from field in dataContext.ReportFieldMasters
+                                           where field.ReportFieldName == testName
+                                           select field).FirstOrDefault();
+           if(reportField!=null)
+           {
+               return true;
+           }
+           else
+           {
+               return false;
+           }
+            }catch(Exception exception)
             {
                 throw exception;
             }

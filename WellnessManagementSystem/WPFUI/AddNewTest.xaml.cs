@@ -21,6 +21,8 @@ namespace PhysioApplication
     /// </summary>
     public partial class AddNewTest : Window
     {
+        public delegate void TestAddedEventHandler(int testID,string testName);
+        public event TestAddedEventHandler testAdded;
         public AddNewTest()
         {
             InitializeComponent();
@@ -35,17 +37,30 @@ namespace PhysioApplication
             }
             else
             {
-                AppManager appManager=AppManager.getInstance();
-                BOUser userDetails=appManager.GetUserDetails();
-                BusinessLayerManager businessLayer=new BusinessLayerManager();
-                bool isSaveSuccessful= businessLayer.SaveTestForUser(userDetails.UserID,testName);
-                if (isSaveSuccessful)
+                try
                 {
-                    MessageBox.Show("Save Sucessful");
-                }
-                else
+                    AppManager appManager = AppManager.getInstance();
+                    BOUser userDetails = appManager.GetUserDetails();
+                    BusinessLayerManager businessLayer = new BusinessLayerManager();
+                    int testID = businessLayer.SaveTestForUser(userDetails.UserID, testName);
+                    if (testID > 0)
+                    {
+                        appManager.FetchAndSetLabReportFieldsForUser();
+                        MessageBox.Show("Save Sucessful");
+                        this.testAdded(testID, testName);
+                        this.Close();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Save Unsuccessful");
+                    }
+                }catch(Exception exception)
                 {
-                    MessageBox.Show("Save Unsuccessful");
+                    
+                    if(exception.Message=="Test already Exists")
+                    {
+                        MessageBox.Show(exception.Message);
+                    }
                 }
               
             }

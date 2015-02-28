@@ -3,10 +3,12 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:userControl="clr-namespace:PhysioApplication.UserControls"
         WindowState="Maximized" WindowStyle="SingleBorderWindow" WindowStartupLocation="CenterScreen"
+        xmlns:chartingToolkit="clr-namespace:System.Windows.Controls.DataVisualization.Charting;assembly=System.Windows.Controls.DataVisualization.Toolkit"
+
         Title="TestsSettingScreen" MinWidth="768" MinHeight="540">
     <Grid>
         <TabControl x:Name="reportsTab" SelectionChanged="reportsTab_SelectionChanged">
-           
+          
         </TabControl>
     </Grid>
 </Window>

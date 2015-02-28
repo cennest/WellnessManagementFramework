@@ -38,8 +38,10 @@ namespace PhysioApplication
             {
                 comboBoxItemList.Add(new ComboBoxItem { Content = category.CategoryName, Tag = category.CategoryID.ToString() });
             }
+            string defaultComboboxString="<Select Category>";
+            comboBoxItemList.Insert(0, new ComboBoxItem { Content = defaultComboboxString });
             this.CategoryComboBox.ItemsSource = comboBoxItemList;
-            this.CategoryComboBox.SelectedIndex = 0;
+            CategoryComboBox.SelectedIndex = 0;
             SetLogOut();
             SetBreadCrumb();
         }
@@ -83,6 +85,7 @@ namespace PhysioApplication
                     if (isClientAdded == true)
                     {
                         MessageBox.Show("Athlete added successfully!");
+                        ResetContents();
                     }
                     else
                     {
@@ -100,31 +103,45 @@ namespace PhysioApplication
             }
         }
 
+        private void ResetContents()
+        {
+            txtName.Text = "";
+            txtPhone.Text = "";
+            txtAddress.Text = "";
+            CategoryComboBox.SelectedIndex = 0;
+
+        }
         private bool IsDataValid()
         {
-            bool isDataValid = true;
             bool isPhoneNumberValid = IsValidTextNumber(txtPhone.Text);
-            if (txtAddress.Text == "")
+
+            if (txtName.Text == "")
             {
-                isDataValid = false;
-                errorMsg = "Please enter Address";
-            }
-            if (isPhoneNumberValid == false)
-            {
-                isDataValid = false;
-                errorMsg = "Please enter correct phone number";
+                errorMsg = "Please enter Athlete Name";
+                return false;
             }
             if (txtPhone.Text == "")
             {
-                isDataValid = false;
                 errorMsg = "Please enter phone number";
+                return false;
             }
-            if (txtName.Text == "")
+            if (isPhoneNumberValid == false)
             {
-                isDataValid = false;
-                errorMsg = "Please enter Athlete Name";
+                errorMsg = "Please enter correct phone number";
+                return false;
             }
-            return isDataValid;
+            if (txtAddress.Text == "")
+            {
+                errorMsg = "Please enter Address";
+                return false;
+            }
+
+            if(CategoryComboBox.SelectedIndex==0)
+            {
+                errorMsg = "Please select Category";
+                return false;
+            }
+            return true;
         }
 
         private void check_space(object sender, KeyEventArgs e)

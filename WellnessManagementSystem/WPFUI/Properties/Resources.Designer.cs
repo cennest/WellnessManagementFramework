@@ -70,7 +70,7 @@ namespace PhysioApplication.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to View Tests.
+        ///   Looks up a localized string similar to Manage Tests.
         /// </summary>
         public static string AddNewButton2Title {
             get {

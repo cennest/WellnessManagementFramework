@@ -9,9 +9,14 @@
         Title="All Athletes"  WindowState="Maximized"
         WindowStartupLocation="CenterScreen">
     <Window.Resources>
+        
         <ResourceDictionary Source="/Resources/DataGridStyle.xaml" />
     </Window.Resources>
+   
     <Grid>
+        <Grid.Resources>
+            <l:NotificationConverter x:Key="NotificationConverter"/>
+        </Grid.Resources>
         <Grid.RowDefinitions>
             <RowDefinition Height="0.1*"/>
             <RowDefinition Height=".2*" />
@@ -23,7 +28,7 @@
         </Grid.RowDefinitions>
         <userControl:Logout x:Name="ucLogoutUC" OnLogout="ucLogoutUC_OnLogout" Grid.Row="0" HorizontalAlignment="Right" Margin="0,0,40,0"/>
         <userControl:FilterUC x:Name="ucFilterUC" OptionChanged = "uc_OptionChanged" Grid.Row="1" HorizontalAlignment="Stretch" Margin="0,0,40,0"></userControl:FilterUC>
-        <userControl:UCBreadCrumb Margin="20,0,0,0" Grid.Row="2" x:Name="ucBreadCrumb"></userControl:UCBreadCrumb>
+        <userControl:UCBreadCrumb Margin="20,0,0,0" Grid.Row="3" x:Name="ucBreadCrumb"></userControl:UCBreadCrumb>
 
         <StackPanel Grid.Row="4">
             <DataGrid  Name="ClientDataGrid" AlternatingRowBackground="Gray"
@@ -50,7 +55,25 @@
                     </DataGridTemplateColumn>
                     <DataGridTextColumn IsReadOnly="True"
 				                    Binding="{Binding ClientNotification}"
-				                    Header="Notification" Width="*"/>
+				                    Header="Notification" Width="*">
+                        
+                        <DataGridTextColumn.CellStyle>
+                            <Style TargetType="DataGridCell">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding ClientNotification,Converter={StaticResource NotificationConverter}}" Value="Upcoming">
+                                        <Setter  Property="Foreground" Value="Green" />
+                                        <Setter Property="FontWeight" Value="Bold"/>
+                                        <Setter Property="Background" Value="LightGreen"/>
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding ClientNotification,Converter={StaticResource NotificationConverter}}" Value="Date Elapsed">
+                                        <Setter  Property="Foreground" Value="Red" />
+                                        <Setter Property="FontWeight" Value="Bold"/>
+                                        <Setter Property="Background" Value="LightPink"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </DataGridTextColumn.CellStyle>
+                    </DataGridTextColumn>
                     <DataGridTextColumn IsReadOnly="True" 
 				                    Binding="{Binding ClientNotes}"
 				                    Header="Last Notes" Width="*"/>

@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using BusinessLayer.Entities;
+using System.Windows.Controls.DataVisualization.Charting;
 
 namespace PhysioApplication
 {
@@ -48,6 +49,7 @@ namespace PhysioApplication
             {
                 TabItem tab = new TabItem();
                 tab.DataContext = test;
+               
                 tab.Header = test.LabTest;
                 tab.Tag = test.LabTestID;
                 reportsTab.Items.Add(tab);
@@ -56,10 +58,31 @@ namespace PhysioApplication
 
         private void reportsTab_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            var selected =(TabItem) reportsTab.SelectedItem;
-            int testID = int.Parse(selected.Tag.ToString());
+            TabItem selectedTab =(TabItem) reportsTab.SelectedItem;
+            int testID = int.Parse(selectedTab.Tag.ToString());
             BusinessLayer.BusinessLayerManager blManager = new BusinessLayer.BusinessLayerManager();
-          var lists=  blManager.GetDataForCategoryLevelReport(AppManager.getInstance().GetUserDetails().UserID, testID, DateTime.Now, DateTime.Now, selectedCategory.CategoryID);
+            var lists=  blManager.GetDataForCategoryLevelReport(AppManager.getInstance().GetUserDetails().UserID, testID, DateTime.Now, DateTime.Now, selectedCategory.CategoryID);
+            Chart chart = new Chart();
+            
+           
+         
+            foreach (List<KeyValuePair<DateTime,float>> valueList in lists)
+            {
+                //LineSeries series = new LineSeries();
+                PieSeries series = new PieSeries();
+                series.DependentValuePath = "Value";
+                series.IndependentValuePath = "Key";
+                series.ItemsSource = valueList;
+                series.DataContext = valueList;
+                chart.Series.Add(series);
+            }
+            selectedTab.Content = chart;
+            reportsTab.SelectedItem = selectedTab;
+        }
+
+        private void Chart_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+
         }
     }
 }
