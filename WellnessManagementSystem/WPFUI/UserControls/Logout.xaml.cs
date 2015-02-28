@@ -31,17 +31,16 @@ namespace PhysioApplication.UserControls
            
         }        
 
-        private void Label_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        private void Button_Click(object sender, RoutedEventArgs e)
         {
-            if (OnLogout != null)
+            if (MessageBox.Show("Are you sure you want to log out?",
+                "Log Out", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
             {
-                OnLogout(this, new EventArgs());
+                if (OnLogout != null)
+                {
+                    OnLogout(this, new EventArgs());
+                }
             }
-        }
-
-        private void Run_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
-        {
-           
         }
     }
 }

@@ -14,11 +14,18 @@
             <Label >
                 <Label.Content>
                     <TextBlock Text="Welcome: ">
-                        <Run Text="{Binding UserName}"/>
+                        <Run Text="{Binding UserName}" Foreground="Blue"/>
                     </TextBlock>
                 </Label.Content>
             </Label>            
-            <Label Content="_Logout:" Foreground="Blue" Cursor="Hand" MouseLeftButtonUp="Label_MouseLeftButtonUp"/>
+            <Button Content="Logout" Click="Button_Click" Height="20" Width="60">
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Setter  Property="Foreground" Value="Black" />
+                        <Setter Property="Background" Value="LightBlue"/>
+                    </Style>
+                </Button.Style>
+            </Button>
             <!--<TextBlock Text="Logout"   >
                 <TextBlock.InputBindings>
                     
