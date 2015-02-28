@@ -74,7 +74,7 @@
                 <DatePicker x:Name="ToDate" SelectedDateChanged="ToDate_SelectedDateChanged"  Margin="0,1"/>
             </StackPanel>
         </DockPanel>
-        <Button Content="Show Report" Grid.Row="6" Background="{StaticResource ButtonGreenBackground}" Style="{StaticResource MetroButton}" Width="200" Margin="0,0,0,5"/>
+        <Button x:Name="reportBtn" Content="Show Report" Grid.Row="6" Background="{StaticResource ButtonGreenBackground}" Style="{StaticResource MetroButton}" Width="200" Margin="0,0,0,5" Click="reportBtn_Click" />
         <userControl:Footer Grid.Row="7"></userControl:Footer>
     </Grid>
 </Window>

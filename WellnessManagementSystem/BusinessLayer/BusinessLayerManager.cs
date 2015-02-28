@@ -12,7 +12,7 @@ using System.Dynamic;
 
 namespace BusinessLayer
 {
-    public class BusinessLayerManager
+    public partial class BusinessLayerManager
     {
         //Notification string
         const string UPCOMMING_TEST = "Upcoming test date on ";
@@ -629,29 +629,7 @@ namespace BusinessLayer
             return listOfClientsReportsHasTable;
         }
 
-        public Hashtable GetLabReportsForCategory(int categoryID, int reportID, int userID)
-        {
-            try
-            {
-                DataLayerManager dataLayer = new DataLayerManager();
-                List<int> clientList = dataLayer.GetClientsForCategoryID(categoryID, userID);
-                Hashtable listOfClientsReportHasTable = new Hashtable();
-                if (clientList.Count > 0)
-                {
-                    foreach (int clientID in clientList)
-                    {
-                        List<BOLabReport> labReports = this.GetLabReportsForClientID(clientID, userID, reportID);
-                        listOfClientsReportHasTable.Remove(clientID);
-                        listOfClientsReportHasTable.Add(clientID, labReports);
-                    }
-                }
-                return listOfClientsReportHasTable;
-            }
-            catch (Exception exception)
-            {
-                throw (exception);
-            }
-        }
+  
 
         public List<BOLabReport> GetLabReportsForClientID(int clientID, int userID, int reportID)
         {

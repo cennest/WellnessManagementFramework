@@ -1,0 +1,12 @@
+﻿<Window x:Class="PhysioApplication.TestReports"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:userControl="clr-namespace:PhysioApplication.UserControls"
+        WindowState="Maximized" WindowStyle="SingleBorderWindow" WindowStartupLocation="CenterScreen"
+        Title="TestsSettingScreen" MinWidth="768" MinHeight="540">
+    <Grid>
+        <TabControl x:Name="reportsTab" SelectionChanged="reportsTab_SelectionChanged">
+           
+        </TabControl>
+    </Grid>
+</Window>

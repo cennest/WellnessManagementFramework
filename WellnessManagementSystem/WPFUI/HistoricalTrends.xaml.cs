@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using BusinessLayer;
+using BusinessLayer.Entities;
 
 namespace PhysioApplication
 {
@@ -73,5 +74,20 @@ namespace PhysioApplication
             AppManager.getInstance().LogOut();
 
         }
+
+        private void reportBtn_Click(object sender, RoutedEventArgs e)
+        {
+            BusinessLayerManager blManager= new BusinessLayerManager();
+          
+            List<BOCategory> categories=   blManager.GetAllCategories();
+            List<BOLabTest> test = blManager.GetLabTestTypesForUser(AppManager.getInstance().currentClientID).ToList();
+            TestReports reports = new TestReports(test, DateTime.Now, DateTime.Now, categories);
+            reports.Show();
+            this.Close();
+            
+        }
+
+     
+      
     }
 }

@@ -57,8 +57,8 @@
     </ApplicationDefinition>
     <Compile Include="AddNewAthlete.xaml.cs">
       <DependentUpon>AddNewAthlete.xaml</DependentUpon>
- </Compile>
-   <Compile Include="AddNewMainScreen.xaml.cs">
+    </Compile>
+    <Compile Include="AddNewMainScreen.xaml.cs">
       <DependentUpon>AddNewMainScreen.xaml</DependentUpon>
     </Compile>
     <Compile Include="AddNewTest.xaml.cs">
@@ -82,6 +82,9 @@
     </Compile>
     <Compile Include="LabTestsScreen.xaml.cs">
       <DependentUpon>LabTestsScreen.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TestReports.xaml.cs">
+      <DependentUpon>TestReports.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserControls\ClientNote.xaml.cs">
       <DependentUpon>ClientNote.xaml</DependentUpon>
@@ -111,10 +114,11 @@
     <Compile Include="UserControls\LabReportUC.xaml.cs" />
     <Compile Include="UserControls\UCBreadCrumb.xaml.cs">
       <DependentUpon>UCBreadCrumb.xaml</DependentUpon>
-    </Compile> <Page Include="AddNewAthlete.xaml">
- </Page>
-   <Page Include="AddNewMainScreen.xaml">
-<SubType>Designer</SubType>
+    </Compile>
+    <Page Include="AddNewAthlete.xaml">
+    </Page>
+    <Page Include="AddNewMainScreen.xaml">
+      <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="AddNewTest.xaml">
@@ -141,6 +145,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="LabTestsScreen.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TestReports.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

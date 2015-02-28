@@ -40,6 +40,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BusinessLayerManager.cs" />
+    <Compile Include="BusinessLayerManagerReports.cs" />
     <Compile Include="Entities\BOCategory.cs" />
     <Compile Include="Entities\BOClient.cs" />
     <Compile Include="Entities\BOClientDetail.cs" />
