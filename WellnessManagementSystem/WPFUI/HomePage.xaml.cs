@@ -79,13 +79,20 @@ namespace PhysioApplication
             {
                 AllClientNotification client = new AllClientNotification();
                 client.Show();
+                this.Close();
             }
             else if (buttonTitle == "Change Settings")
             {
                 AddNewMainScreen addNewMainScreen = new AddNewMainScreen();
                 addNewMainScreen.Show();
+                this.Close();
             }
-            this.Close();
+            else
+            {
+              MessageBox.Show("Feature is pending implementation");
+                
+            }
+          
         }
         private void SetBreadCrumb()
         {
