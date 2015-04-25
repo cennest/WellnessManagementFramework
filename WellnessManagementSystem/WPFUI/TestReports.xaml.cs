@@ -26,12 +26,14 @@ namespace PhysioApplication
         DateTime fromDate;
         DateTime toDate;
         BOCategory selectedCategory;
+        List<KeyValuePair<int, DateTime>> keyValuePair;
         public TestReports()
         {
             InitializeComponent();
             AppManager appManager = AppManager.getInstance();
             appManager.CurrentWindow = this;
         }
+
         public TestReports(List<BOLabTest>boTests,DateTime from, DateTime to, List<BOCategory> categories)
         {
             InitializeComponent();
@@ -58,31 +60,61 @@ namespace PhysioApplication
 
         private void reportsTab_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            keyValuePair = new List<KeyValuePair<int, DateTime>>();
             TabItem selectedTab =(TabItem) reportsTab.SelectedItem;
             int testID = int.Parse(selectedTab.Tag.ToString());
             BusinessLayer.BusinessLayerManager blManager = new BusinessLayer.BusinessLayerManager();
             var lists=  blManager.GetDataForCategoryLevelReport(AppManager.getInstance().GetUserDetails().UserID, testID, DateTime.Now, DateTime.Now, selectedCategory.CategoryID);
             Chart chart = new Chart();
-            
-           
-         
             foreach (List<KeyValuePair<DateTime,float>> valueList in lists)
             {
-                //LineSeries series = new LineSeries();
-                PieSeries series = new PieSeries();
+                List<KeyValuePair<int, float>> seriesList = new List<KeyValuePair<int, float>>();
+                foreach (KeyValuePair<DateTime,float> keyValue in valueList)
+                {
+                    KeyValuePair<int, float> kv = new KeyValuePair<int, float>(((DateTime)keyValue.Key).Month, keyValue.Value);
+                    seriesList.Add(kv);
+                }
+                foreach (KeyValuePair<DateTime, float> keyValue in valueList)
+                {
+                    KeyValuePair<int, DateTime> kv = new KeyValuePair<int, DateTime>(((DateTime)keyValue.Key).Month,((DateTime)keyValue.Key));
+                    keyValuePair.Add(kv);
+                }
+                LineSeries series = new LineSeries();
+                //PieSeries series = new PieSeries();
+                Style style = this.FindResource("lineSeriesStyle") as Style;
+                series.DataPointStyle = style;
                 series.DependentValuePath = "Value";
                 series.IndependentValuePath = "Key";
-                series.ItemsSource = valueList;
-                series.DataContext = valueList;
+                series.ItemsSource = seriesList;
+                series.DataContext = seriesList;
                 chart.Series.Add(series);
             }
+            LinearAxis linearAxis = new LinearAxis();
+            linearAxis.Orientation = AxisOrientation.X;
+            linearAxis.Minimum = 1;
+            linearAxis.Maximum = 12;
+            linearAxis.Interval = 1;
+            chart.Axes.Add(linearAxis);
             selectedTab.Content = chart;
             reportsTab.SelectedItem = selectedTab;
         }
 
-        private void Chart_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        private void ContentControl_Initialized(object sender, EventArgs e)
         {
-
+            ContentControl cc = (ContentControl)sender;
+            int key = (int)cc.Tag;
+            List<DateTime> dtList = new List<DateTime>();
+            foreach (KeyValuePair<int, DateTime> keyValue in keyValuePair)
+            {
+                if((int)keyValue.Key == key)
+                {
+                    dtList.Add(keyValue.Value);
+                }
+            }
+            dtList.Sort();
+            cc.Content = dtList.FirstOrDefault();
+            KeyValuePair<int, DateTime> kvalue = new KeyValuePair<int, DateTime>(key, dtList.FirstOrDefault());
+            keyValuePair.Remove(kvalue);
         }
     }
 }
