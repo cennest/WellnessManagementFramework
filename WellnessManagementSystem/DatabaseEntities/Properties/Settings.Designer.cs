@@ -12,7 +12,7 @@ namespace DatabaseEntities.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "12.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "11.0.0.0")]
     internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
         
         private static Settings defaultInstance = ((Settings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new Settings())));
@@ -33,12 +33,22 @@ namespace DatabaseEntities.Properties {
                 return ((string)(this["WellnessManagementFrameworkDBConnectionString"]));
             }
         }
-
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=POULOMEE-PC;Initial Catalog=WellnessManagementFrameworkDB;Integrated " +
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=192.168.0.7;Initial Catalog=WellnessManagementFrameworkDB;User ID=cen" +
+            "nest;Password=cennest")]
+        public string WellnessManagementFrameworkDBConnectionString9 {
+            get {
+                return ((string)(this["WellnessManagementFrameworkDBConnectionString9"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=localhost\\SQLExpress;Initial Catalog=WellnessManagementDB;Integrated " +
             "Security=True")]
         public string WellnessManagementFrameworkDBConnectionString1 {
             get {
@@ -137,11 +147,11 @@ namespace DatabaseEntities.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=192.168.0.7;Initial Catalog=WellnessManagementFrameworkDB;User ID=cen" +
-            "nest;Password=cennest")]
-        public string WellnessManagementFrameworkDBConnectionString9 {
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=localhost\\SQLExpress;Initial Catalog=WellnessManagementDB;Integrated " +
+            "Security=True")]
+        public string WellnessManagementDBConnectionString {
             get {
-                return ((string)(this["WellnessManagementFrameworkDBConnectionString9"]));
+                return ((string)(this["WellnessManagementDBConnectionString"]));
             }
         }
     }

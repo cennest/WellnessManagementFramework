@@ -22,7 +22,7 @@ namespace DatabaseEntities
 	using System;
 	
 	
-	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="WellnessManagementFrameworkDB")]
+	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="WellnessManagementDB")]
 	public partial class WellnessManagementFrameworkDBMLDataContext : System.Data.Linq.DataContext
 	{
 		
@@ -66,7 +66,7 @@ namespace DatabaseEntities
     #endregion
 		
 		public WellnessManagementFrameworkDBMLDataContext() : 
-				base(global::DatabaseEntities.Properties.Settings.Default.WellnessManagementFrameworkDBConnectionString1, mappingSource)
+				base(global::DatabaseEntities.Properties.Settings.Default.WellnessManagementDBConnectionString, mappingSource)
 		{
 			OnCreated();
 		}

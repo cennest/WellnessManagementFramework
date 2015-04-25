@@ -56,20 +56,35 @@ namespace PhysioApplication
             }
         }
 
+        private void loadClientList(int testID)
+        {
+            try
+            {
+                BusinessLayer.BusinessLayerManager businessLayer = new BusinessLayer.BusinessLayerManager();
+                AppManager appManager = AppManager.getInstance();
+                List<BOClient> listOfClients = businessLayer.GetClientWithReportData(appManager.GetUserDetails().UserID, testID, selectedCategory.CategoryID);
+                this.DataContext = listOfClients;
+            }
+            catch (Exception ex)
+            {
+                //TODO : show alert
+            }
+        }
+
         private void reportsTab_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             TabItem selectedTab =(TabItem) reportsTab.SelectedItem;
             int testID = int.Parse(selectedTab.Tag.ToString());
+            loadClientList(testID);
             BusinessLayer.BusinessLayerManager blManager = new BusinessLayer.BusinessLayerManager();
             var lists=  blManager.GetDataForCategoryLevelReport(AppManager.getInstance().GetUserDetails().UserID, testID, DateTime.Now, DateTime.Now, selectedCategory.CategoryID);
+
             Chart chart = new Chart();
-            
-           
-         
+
             foreach (List<KeyValuePair<DateTime,float>> valueList in lists)
             {
-                //LineSeries series = new LineSeries();
-                PieSeries series = new PieSeries();
+                LineSeries series = new LineSeries();
+                //PieSeries series = new PieSeries();
                 series.DependentValuePath = "Value";
                 series.IndependentValuePath = "Key";
                 series.ItemsSource = valueList;
@@ -84,5 +99,11 @@ namespace PhysioApplication
         {
 
         }
+
+        private void Apply_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
     }
 }

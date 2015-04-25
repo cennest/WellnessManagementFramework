@@ -118,6 +118,23 @@ namespace DataLayer
             }
         }
 
+        public List<Client> GetClientsForCategory(int categoryID, int userID)
+        {
+            try
+            {
+                WellnessManagementFrameworkDBMLDataContext dataContext = new WellnessManagementFrameworkDBMLDataContext();
+
+                List<Client> listOfClients = (from client in dataContext.Clients
+                                              where client.UserID == userID && client.CategoryID == categoryID
+                                              select client).ToList();
+                return listOfClients;
+            }
+            catch (Exception exception)
+            {
+                throw new Exception(exception.Message);
+            }
+        }
+
         public int GetCountOfClientsForCategories(int categoryID, int userID)
         {
             try
