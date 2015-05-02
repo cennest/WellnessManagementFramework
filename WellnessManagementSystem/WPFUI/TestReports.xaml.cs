@@ -27,6 +27,7 @@ namespace PhysioApplication
         DateTime toDate;
         BOCategory selectedCategory;
         List<KeyValuePair<int, DateTime>> keyValuePair;
+        Random random = new Random();
         public TestReports()
         {
             InitializeComponent();
@@ -61,33 +62,40 @@ namespace PhysioApplication
         private void reportsTab_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             keyValuePair = new List<KeyValuePair<int, DateTime>>();
-            TabItem selectedTab =(TabItem) reportsTab.SelectedItem;
+            TabItem selectedTab = (TabItem)reportsTab.SelectedItem;
             int testID = int.Parse(selectedTab.Tag.ToString());
             BusinessLayer.BusinessLayerManager blManager = new BusinessLayer.BusinessLayerManager();
-            var lists=  blManager.GetDataForCategoryLevelReport(AppManager.getInstance().GetUserDetails().UserID, testID, DateTime.Now, DateTime.Now, selectedCategory.CategoryID);
+            var lists = blManager.GetDataForCategoryLevelReport(AppManager.getInstance().GetUserDetails().UserID, testID, DateTime.Now, DateTime.Now, selectedCategory.CategoryID);
             Chart chart = new Chart();
-            foreach (List<KeyValuePair<DateTime,float>> valueList in lists)
+            foreach (List<KeyValuePair<DateTime, float>> valueList in lists)
             {
                 List<KeyValuePair<int, float>> seriesList = new List<KeyValuePair<int, float>>();
-                foreach (KeyValuePair<DateTime,float> keyValue in valueList)
+                foreach (KeyValuePair<DateTime, float> keyValue in valueList)
                 {
                     KeyValuePair<int, float> kv = new KeyValuePair<int, float>(((DateTime)keyValue.Key).Month, keyValue.Value);
                     seriesList.Add(kv);
                 }
                 foreach (KeyValuePair<DateTime, float> keyValue in valueList)
                 {
-                    KeyValuePair<int, DateTime> kv = new KeyValuePair<int, DateTime>(((DateTime)keyValue.Key).Month,((DateTime)keyValue.Key));
+                    KeyValuePair<int, DateTime> kv = new KeyValuePair<int, DateTime>(((DateTime)keyValue.Key).Month, ((DateTime)keyValue.Key));
                     keyValuePair.Add(kv);
                 }
-                LineSeries series = new LineSeries();
-                //PieSeries series = new PieSeries();
-                Style style = this.FindResource("lineSeriesStyle") as Style;
-                series.DataPointStyle = style;
-                series.DependentValuePath = "Value";
-                series.IndependentValuePath = "Key";
-                series.ItemsSource = seriesList;
-                series.DataContext = seriesList;
-                chart.Series.Add(series);
+                if (valueList.Count > 0)
+                {
+                    LineSeries series = new LineSeries();
+
+                    Style style = this.FindResource("lineSeriesStyle") as Style;
+                    Style customStyle = new Style(typeof(LineDataPoint), style);
+                    Color background = Color.FromRgb((byte)random.Next(255),(byte)random.Next(255),(byte)random.Next(255));
+                    customStyle.Setters.Add(new Setter(Label.BackgroundProperty, new SolidColorBrush(background)));
+                    series.DataPointStyle = customStyle;
+                    series.DependentValuePath = "Value";
+                    series.IndependentValuePath = "Key";
+                    series.ItemsSource = seriesList;
+                    series.DataContext = seriesList;
+                    //series.Title = "data";
+                    chart.Series.Add(series);
+                }
             }
             LinearAxis linearAxis = new LinearAxis();
             linearAxis.Orientation = AxisOrientation.X;
@@ -111,9 +119,9 @@ namespace PhysioApplication
                     dtList.Add(keyValue.Value);
                 }
             }
-            dtList.Sort();
-            cc.Content = dtList.FirstOrDefault();
-            KeyValuePair<int, DateTime> kvalue = new KeyValuePair<int, DateTime>(key, dtList.FirstOrDefault());
+            //dtList.Sort();
+            cc.Content = dtList.LastOrDefault();
+            KeyValuePair<int, DateTime> kvalue = new KeyValuePair<int, DateTime>(key, dtList.LastOrDefault());
             keyValuePair.Remove(kvalue);
         }
     }

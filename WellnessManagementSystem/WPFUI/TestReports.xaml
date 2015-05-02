@@ -30,6 +30,12 @@
     </Window.Resources>
     <Grid>
         <TabControl x:Name="reportsTab" SelectionChanged="reportsTab_SelectionChanged">
+            <!--<chartingToolkit:Chart  Name="lineChart" Title="Line Series Demo" 
+		VerticalAlignment="Top" Margin="33,611,440,0" Height="254">
+                <chartingToolkit:LineSeries  DependentValuePath="Value" 
+		IndependentValuePath="Key" ItemsSource="{Binding}" 
+		IsSelectionEnabled="True"/>
+            </chartingToolkit:Chart>-->
         </TabControl>
     </Grid>
 </Window>
