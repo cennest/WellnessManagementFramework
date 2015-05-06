@@ -12,27 +12,28 @@ namespace BusinessLayer
   public partial  class BusinessLayerManager
     {
 
-      public  List<List<KeyValuePair<DateTime,float>>> GetDataForCategoryLevelReport(int userID, int testID, DateTime startDate, DateTime toDate,int categoryID )
+      public List<KeyValuePair<string, List<KeyValuePair<DateTime, float>>>> GetDataForCategoryLevelReport(int userID, int testID, DateTime startDate, DateTime toDate, int categoryID)
       {
-          List<List<KeyValuePair<DateTime,float>>> playerLists = new List<List<KeyValuePair<DateTime,float>>>();
-
+          //List<List<KeyValuePair<DateTime,float>>> playerLists = new List<List<KeyValuePair<DateTime,float>>>();
+          List<KeyValuePair<string, List<KeyValuePair<DateTime, float>>>> playerLists2 = new List<KeyValuePair<string, List<KeyValuePair<DateTime, float>>>>();
                DataLayerManager dataLayer = new DataLayerManager();
               List<int> clientList = dataLayer.GetClientsForCategoryID(categoryID, userID);
               if (clientList.Count > 0)
               {
                   foreach (int clientID in clientList)
                   {
+                      string clientName = dataLayer.GetClientNameClientID(clientID);
                       List<KeyValuePair<DateTime, float>> listOfTestValues = new List<KeyValuePair<DateTime, float>>();
-
                       List<BOLabReport> labReports = this.GetLabReportsForClientID(clientID, userID, testID);
                       foreach(BOLabReport report in labReports)
                       {
                           listOfTestValues.Add(new KeyValuePair<DateTime, float>(report.TestDate, float.Parse(report.ReportFieldValue)));
                       }
-                      playerLists.Add(listOfTestValues);
+                      playerLists2.Add(new KeyValuePair<string, List<KeyValuePair<DateTime, float>>>(clientName, listOfTestValues));
+                      //playerLists.Add(listOfTestValues);
                   }
               }
-          return playerLists;
+          return playerLists2;
        
       }
 

@@ -776,5 +776,22 @@ namespace DataLayer
                 throw (exception);
             }
         }
+
+        public string GetClientNameClientID(int clientID)
+        {
+            try
+            {
+                WellnessManagementFrameworkDBMLDataContext dataContext = new WellnessManagementFrameworkDBMLDataContext();
+                string clientName = (from clients in dataContext.Clients
+                                     where clients.ClientID == clientID
+                                     select clients.ClientName).FirstOrDefault();
+
+                return clientName;
+            }
+            catch (Exception exception)
+            {
+                throw (exception);
+            }
+        }
     }
 }

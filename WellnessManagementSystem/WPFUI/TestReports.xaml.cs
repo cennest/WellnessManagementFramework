@@ -67,8 +67,10 @@ namespace PhysioApplication
             BusinessLayer.BusinessLayerManager blManager = new BusinessLayer.BusinessLayerManager();
             var lists = blManager.GetDataForCategoryLevelReport(AppManager.getInstance().GetUserDetails().UserID, testID, DateTime.Now, DateTime.Now, selectedCategory.CategoryID);
             Chart chart = new Chart();
-            foreach (List<KeyValuePair<DateTime, float>> valueList in lists)
+            foreach (KeyValuePair<string, List<KeyValuePair<DateTime, float>>> keyValuePairList in lists)
             {
+                string clientName = keyValuePairList.Key;
+                List<KeyValuePair<DateTime, float>> valueList = keyValuePairList.Value;
                 List<KeyValuePair<int, float>> seriesList = new List<KeyValuePair<int, float>>();
                 foreach (KeyValuePair<DateTime, float> keyValue in valueList)
                 {
@@ -86,14 +88,14 @@ namespace PhysioApplication
 
                     Style style = this.FindResource("lineSeriesStyle") as Style;
                     Style customStyle = new Style(typeof(LineDataPoint), style);
-                    Color background = Color.FromRgb((byte)random.Next(255),(byte)random.Next(255),(byte)random.Next(255));
+                    Color background = Color.FromRgb((byte)random.Next(255), (byte)random.Next(255), (byte)random.Next(255));
                     customStyle.Setters.Add(new Setter(Label.BackgroundProperty, new SolidColorBrush(background)));
                     series.DataPointStyle = customStyle;
                     series.DependentValuePath = "Value";
                     series.IndependentValuePath = "Key";
                     series.ItemsSource = seriesList;
                     series.DataContext = seriesList;
-                    //series.Title = "data";
+                    series.Title = clientName;
                     chart.Series.Add(series);
                 }
             }
