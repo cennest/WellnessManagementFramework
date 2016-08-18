@@ -1,0 +1,80 @@
+﻿<UserControl x:Class="PhysioApplication.UserControls.FilterUC"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+            >
+    <UserControl.Resources>
+        
+        <Style x:Key="commonStyle" TargetType="{x:Type Control}">
+            <Setter Property="HorizontalAlignment" Value="Right"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center" />
+            <Setter Property="Height" Value="23" />
+            <Setter Property="Margin" Value="15,0,5,0" />
+        </Style>
+        
+        <Style x:Key="acesStyle" TargetType="{x:Type TextBlock}" >
+            <Setter Property="FontFamily" Value="Calibri" />
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="FontSize" Value="25" />
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="Padding" Value="5" />
+        </Style>
+
+        <Style TargetType="{x:Type TextBox}" BasedOn="{StaticResource commonStyle}" >
+            <Setter Property="Width" Value="100" />
+        </Style>
+
+        <Style TargetType="ComboBox" BasedOn="{StaticResource commonStyle}">
+            <Setter Property="Width" Value="100" />
+            <Setter Property="FontSize" Value="10" />
+            <Setter Property="IsEditable" Value="False" />
+        </Style>
+        
+        <Style x:Key="filterStyle"  TargetType="{x:Type TextBlock}" >
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="HorizontalAlignment" Value="Right"/>
+            <Setter Property="FontSize" Value="14" />
+            <Setter Property="FontWeight" Value="Normal" />
+            <Setter Property="Width" Value="70" />
+        </Style>
+        
+        <Style TargetType="Button" BasedOn="{StaticResource commonStyle}">
+            <Setter Property="Width" Value="50" />
+        </Style>
+    </UserControl.Resources>
+
+    <DockPanel HorizontalAlignment="Stretch">
+        <Button DockPanel.Dock="Right" Content="Search" x:Name="Search" Click="SearchButton_Click"/>
+        <TextBlock DockPanel.Dock="Left" Style="{StaticResource acesStyle}">ACES</TextBlock>
+        <TextBox DockPanel.Dock="Right" Height="22" Width="100" x:Name="SearchTextBlock" KeyDown="Search_KeyDown">
+            <TextBox.Style>
+                <Style TargetType="TextBox" xmlns:sys="clr-namespace:System;assembly=mscorlib">
+                    <Style.Resources>
+                        <VisualBrush x:Key="CueBannerBrush" AlignmentX="Left" AlignmentY="Center" Stretch="None">
+                            <VisualBrush.Visual>
+                                <Label Content="Search by Name" Foreground="LightGray" />
+                            </VisualBrush.Visual>
+                        </VisualBrush>
+                    </Style.Resources>
+                    <Style.Triggers>
+                        <Trigger Property="Text" Value="{x:Static sys:String.Empty}">
+                            <Setter Property="Background" Value="{StaticResource CueBannerBrush}" />
+                        </Trigger>
+                        <Trigger Property="Text" Value="{x:Null}">
+                            <Setter Property="Background" Value="{StaticResource CueBannerBrush}" />
+                        </Trigger>
+                        <Trigger Property="IsKeyboardFocused" Value="True">
+                            <Setter Property="Background" Value="White" />
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </TextBox.Style>
+        </TextBox>
+        <ComboBox DockPanel.Dock="Right" ToolTip="Rows x Page" x:Name="ComboBoxPageFilter" SelectionChanged="FilterComboBoxSelectionChanged" />
+        <TextBlock  DockPanel.Dock="Right" Style="{StaticResource filterStyle}" x:Name="FilterLabel" Text="Filter by" />
+    </DockPanel>
+
+</UserControl>
