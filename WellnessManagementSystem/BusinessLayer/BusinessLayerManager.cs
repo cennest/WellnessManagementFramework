@@ -22,11 +22,11 @@ namespace BusinessLayer
         const int TEST_INTERVAL = 3; // values in Months
         const int NOTIFICATION_TIME = 30; // Values in Days
 
-        
-        public static Hashtable reportTypeStrings =new Hashtable(){{(int)ReportType.LabReport,ReportTypeResource.LabReport},
+
+        public static Hashtable reportTypeStrings = new Hashtable(){{(int)ReportType.LabReport,ReportTypeResource.LabReport},
                                                                    {(int)ReportType.DietPlan,ReportTypeResource.DietPlan},
                                                                    {(int)ReportType.PhysicalCondition,ReportTypeResource.PhysicalCondition}};
-        public List<BOLabReport> GetLabReportsForClient(int clientID,int userID)
+        public List<BOLabReport> GetLabReportsForClient(int clientID, int userID)
         {
             try
             {
@@ -55,25 +55,117 @@ namespace BusinessLayer
             DataLayerManager dataLayer = new DataLayerManager();
 
             List<UserReportField> listOfReportFieldsForUser = dataLayer.GetUserFields(userID);
-            Dictionary<string, List<BOUserField>> userFieldsDictionary = new Dictionary<string,List<BOUserField>>();
+            Dictionary<string, List<BOUserField>> userFieldsDictionary = new Dictionary<string, List<BOUserField>>();
             for (int reportType = (int)ReportType.LabReport; reportType < (int)ReportType.PhysicalCondition; reportType++)
             {
                 List<BOUserField> userReportFields = GetUserFieldNamesForReportType(listOfReportFieldsForUser, (int)ReportType.LabReport);
                 userFieldsDictionary.Add(BusinessLayerManager.reportTypeStrings[reportType].ToString(), userReportFields);
             }
-            
+
+
+
+            dataLayer = new DataLayerManager();
+
+            listOfReportFieldsForUser = dataLayer.GetUserFields(userID);
+            userFieldsDictionary = new Dictionary<string, List<BOUserField>>();
+            for (int reportType = (int)ReportType.LabReport; reportType < (int)ReportType.PhysicalCondition; reportType++)
+            {
+                List<BOUserField> userReportFields = GetUserFieldNamesForReportType(listOfReportFieldsForUser, (int)ReportType.LabReport);
+                userFieldsDictionary.Add(BusinessLayerManager.reportTypeStrings[reportType].ToString(), userReportFields);
+            }
+
+            dataLayer = new DataLayerManager();
+
+            listOfReportFieldsForUser = dataLayer.GetUserFields(userID);
+            userFieldsDictionary = new Dictionary<string, List<BOUserField>>();
+            for (int reportType = (int)ReportType.LabReport; reportType < (int)ReportType.PhysicalCondition; reportType++)
+            {
+                List<BOUserField> userReportFields = GetUserFieldNamesForReportType(listOfReportFieldsForUser, (int)ReportType.LabReport);
+                userFieldsDictionary.Add(BusinessLayerManager.reportTypeStrings[reportType].ToString(), userReportFields);
+            }
+
+            dataLayer = new DataLayerManager();
+
+            listOfReportFieldsForUser = dataLayer.GetUserFields(userID);
+            userFieldsDictionary = new Dictionary<string, List<BOUserField>>();
+            for (int reportType = (int)ReportType.LabReport; reportType < (int)ReportType.PhysicalCondition; reportType++)
+            {
+                List<BOUserField> userReportFields = GetUserFieldNamesForReportType(listOfReportFieldsForUser, (int)ReportType.LabReport);
+                userFieldsDictionary.Add(BusinessLayerManager.reportTypeStrings[reportType].ToString(), userReportFields);
+            }
+
             return userFieldsDictionary;
         }
 
-        private static List<BOUserField> GetUserFieldNamesForReportType(List<UserReportField> listOfUserReportFields,int reportType)
+        public Dictionary<string, List<BOUserField>> GetReportFieldsForUser1(int userID)
+        {
+            DataLayerManager dataLayer = new DataLayerManager();
+
+            List<UserReportField> listOfReportFieldsForUser = dataLayer.GetUserFields(userID);
+            Dictionary<string, List<BOUserField>> userFieldsDictionary = new Dictionary<string, List<BOUserField>>();
+            for (int reportType = (int)ReportType.LabReport; reportType < (int)ReportType.PhysicalCondition; reportType++)
+            {
+                List<BOUserField> userReportFields = GetUserFieldNamesForReportType(listOfReportFieldsForUser, (int)ReportType.LabReport);
+                userFieldsDictionary.Add(BusinessLayerManager.reportTypeStrings[reportType].ToString(), userReportFields);
+            }
+
+
+            listOfReportFieldsForUser = dataLayer.GetUserFields(userID);
+            userFieldsDictionary = new Dictionary<string, List<BOUserField>>();
+            for (int reportType = (int)ReportType.LabReport; reportType < (int)ReportType.PhysicalCondition; reportType++)
+            {
+                List<BOUserField> userReportFields = GetUserFieldNamesForReportType(listOfReportFieldsForUser, (int)ReportType.LabReport);
+                userFieldsDictionary.Add(BusinessLayerManager.reportTypeStrings[reportType].ToString(), userReportFields);
+            }
+
+            dataLayer = new DataLayerManager();
+
+            listOfReportFieldsForUser = dataLayer.GetUserFields(userID);
+            userFieldsDictionary = new Dictionary<string, List<BOUserField>>();
+            for (int reportType = (int)ReportType.LabReport; reportType < (int)ReportType.PhysicalCondition; reportType++)
+            {
+                List<BOUserField> userReportFields = GetUserFieldNamesForReportType(listOfReportFieldsForUser, (int)ReportType.LabReport);
+                userFieldsDictionary.Add(BusinessLayerManager.reportTypeStrings[reportType].ToString(), userReportFields);
+            }
+
+            dataLayer = new DataLayerManager();
+
+            listOfReportFieldsForUser = dataLayer.GetUserFields(userID);
+            userFieldsDictionary = new Dictionary<string, List<BOUserField>>();
+            for (int reportType = (int)ReportType.LabReport; reportType < (int)ReportType.PhysicalCondition; reportType++)
+            {
+                List<BOUserField> userReportFields = GetUserFieldNamesForReportType(listOfReportFieldsForUser, (int)ReportType.LabReport);
+                userFieldsDictionary.Add(BusinessLayerManager.reportTypeStrings[reportType].ToString(), userReportFields);
+            }
+
+
+            return userFieldsDictionary;
+        }
+
+        public Dictionary<string, List<BOUserField>> GetReportFieldsForUser2(int userID)
+        {
+            DataLayerManager dataLayer = new DataLayerManager();
+
+            List<UserReportField> listOfReportFieldsForUser = dataLayer.GetUserFields(userID);
+            Dictionary<string, List<BOUserField>> userFieldsDictionary = new Dictionary<string, List<BOUserField>>();
+            for (int reportType = (int)ReportType.LabReport; reportType < (int)ReportType.PhysicalCondition; reportType++)
+            {
+                List<BOUserField> userReportFields = GetUserFieldNamesForReportType(listOfReportFieldsForUser, (int)ReportType.LabReport);
+                userFieldsDictionary.Add(BusinessLayerManager.reportTypeStrings[reportType].ToString(), userReportFields);
+            }
+
+            return userFieldsDictionary;
+        }
+
+        private static List<BOUserField> GetUserFieldNamesForReportType(List<UserReportField> listOfUserReportFields, int reportType)
         {
             List<BOUserField> listOfReportFieldsForReportType = (from reportField in listOfUserReportFields
-                                                                 where reportField.ReportFieldMaster.ReportTypeID==reportType
-                                                 select new BOUserField
-                                                 {
-                                                    ReportFieldID = reportField.ReportFieldID,
-                                                    ReportFieldName = reportField.ReportFieldMaster.ReportFieldName
-                                                 }).ToList();
+                                                                 where reportField.ReportFieldMaster.ReportTypeID == reportType
+                                                                 select new BOUserField
+                                                                 {
+                                                                     ReportFieldID = reportField.ReportFieldID,
+                                                                     ReportFieldName = reportField.ReportFieldMaster.ReportFieldName
+                                                                 }).ToList();
             return listOfReportFieldsForReportType;
         }
         public BOUser GetUser(string userName, string password)
@@ -87,8 +179,8 @@ namespace BusinessLayer
                 {
                     BOUser appUser = new BOUser();
                     appUser.UserID = user.UserId;
-               	    appUser.UserName = user.UserName;
-               	    appUser.OccupationID = user.OccupationID;
+                    appUser.UserName = user.UserName;
+                    appUser.OccupationID = user.OccupationID;
                     return appUser;
                 }
                 else
@@ -162,7 +254,7 @@ namespace BusinessLayer
             try
             {
                 DataLayerManager datalayer = new DataLayerManager();
-                List<Client> listOfClients = datalayer.GetClientsForCategoryByName(categoryID,searchString, userID, skip, take);
+                List<Client> listOfClients = datalayer.GetClientsForCategoryByName(categoryID, searchString, userID, skip, take);
                 List<BOClient> clients = GetClientBOForClientDBObjects(listOfClients);
                 return clients;
             }
@@ -283,11 +375,11 @@ namespace BusinessLayer
 
             }
             DataLayer.DataLayerManager dataLayerObject = new DataLayer.DataLayerManager();
-            dataLayerObject.SaveLabReportsForClient(labReports, clientID,userID);
+            dataLayerObject.SaveLabReportsForClient(labReports, clientID, userID);
             return true;
         }
 
-        public bool SavePhysicalConditionReportsForClient(List<int> deletedPhysicalConditionRecordIds,List<BOPhysicalConditionReport> physicalConditionReportList, int clientID, int userID)
+        public bool SavePhysicalConditionReportsForClient(List<int> deletedPhysicalConditionRecordIds, List<BOPhysicalConditionReport> physicalConditionReportList, int clientID, int userID)
         {
             try
             {
@@ -302,21 +394,21 @@ namespace BusinessLayer
                     physicalConditionList.Add(physicalCondition);
                 }
                 DataLayer.DataLayerManager dataLayerObject = new DataLayer.DataLayerManager();
-                dataLayerObject.SavePhysicalConditionReportsForClient(deletedPhysicalConditionRecordIds,physicalConditionList, clientID, userID);
+                dataLayerObject.SavePhysicalConditionReportsForClient(deletedPhysicalConditionRecordIds, physicalConditionList, clientID, userID);
                 return true;
             }
-            catch(Exception exception)
+            catch (Exception exception)
             {
                 throw new Exception(exception.Message);
             }
         }
 
-        public int GetPhysicalConditioningReportsCount(int userID,int clientID,DateTime? fromDate,DateTime? toDate)
+        public int GetPhysicalConditioningReportsCount(int userID, int clientID, DateTime? fromDate, DateTime? toDate)
         {
             try
             {
                 DataLayerManager dataLayer = new DataLayerManager();
-                int physicalConditioningReportCount = dataLayer.GetPhysicalConditioningReportsCount(userID, clientID, fromDate,toDate);
+                int physicalConditioningReportCount = dataLayer.GetPhysicalConditioningReportsCount(userID, clientID, fromDate, toDate);
                 return physicalConditioningReportCount;
             }
             catch (Exception ex)
@@ -604,7 +696,7 @@ namespace BusinessLayer
                 int testID = dataLayer.SaveTestForUser(userID, testName);
                 return testID;
             }
-            catch(Exception exception)
+            catch (Exception exception)
             {
                 throw exception;
             }
