@@ -162,6 +162,45 @@ namespace DataLayer
                                      where client.UserID == userID && client.CategoryID == categoryID && client.ClientName.ToLower().Contains(searchString.ToLower())
                                      select client).Skip(skip).Take(take).ToList();
                 }
+
+                if (categoryID == Convert.ToInt32(Category.AllSports))
+                {
+                    listOfClients = (from client in dataContext.Clients
+                                     where client.UserID == userID && client.ClientName.ToLower().Contains(searchString.ToLower())
+                                     select client).Skip(skip).Take(take).ToList();
+                }
+                else
+                {
+                    listOfClients = (from client in dataContext.Clients
+                                     where client.UserID == userID && client.CategoryID == categoryID && client.ClientName.ToLower().Contains(searchString.ToLower())
+                                     select client).Skip(skip).Take(take).ToList();
+                }
+
+                if (categoryID == Convert.ToInt32(Category.AllSports))
+                {
+                    listOfClients = (from client in dataContext.Clients
+                                     where client.UserID == userID && client.ClientName.ToLower().Contains(searchString.ToLower())
+                                     select client).Skip(skip).Take(take).ToList();
+                }
+                else
+                {
+                    listOfClients = (from client in dataContext.Clients
+                                     where client.UserID == userID && client.CategoryID == categoryID && client.ClientName.ToLower().Contains(searchString.ToLower())
+                                     select client).Skip(skip).Take(take).ToList();
+                }
+
+                if (categoryID == Convert.ToInt32(Category.AllSports))
+                {
+                    listOfClients = (from client in dataContext.Clients
+                                     where client.UserID == userID && client.ClientName.ToLower().Contains(searchString.ToLower())
+                                     select client).Skip(skip).Take(take).ToList();
+                }
+                else
+                {
+                    listOfClients = (from client in dataContext.Clients
+                                     where client.UserID == userID && client.CategoryID == categoryID && client.ClientName.ToLower().Contains(searchString.ToLower())
+                                     select client).Skip(skip).Take(take).ToList();
+                }
                 return listOfClients;
             }
             catch (Exception exception)
@@ -176,9 +215,9 @@ namespace DataLayer
             {
                 WellnessManagementFrameworkDBMLDataContext dataContext = new WellnessManagementFrameworkDBMLDataContext();
                 DateTime? labReportDate = (from report in dataContext.LabReports
-                                          where report.ClientID == clientID
-                                          select (DateTime?)report.TestDate).Max();
-               return labReportDate;
+                                           where report.ClientID == clientID
+                                           select (DateTime?)report.TestDate).Max();
+                return labReportDate;
             }
             catch (Exception ex)
             {
@@ -308,7 +347,7 @@ namespace DataLayer
 
                 return true;
             }
-            catch(Exception exception)
+            catch (Exception exception)
             {
                 throw new Exception(exception.Message);
 
@@ -325,7 +364,7 @@ namespace DataLayer
                 if (fromDate != null && toDate == null)
                 {
                     listOfPhysicalConditioningReports = (from physicalConditioningReport in dataContext.PhysicalConditionReports
-                                                         where physicalConditioningReport.UserID == userID && physicalConditioningReport.ClientID == clientID && physicalConditioningReport.TestDate >= fromDate && physicalConditioningReport.TestDate <= DateTime.Now.Date 
+                                                         where physicalConditioningReport.UserID == userID && physicalConditioningReport.ClientID == clientID && physicalConditioningReport.TestDate >= fromDate && physicalConditioningReport.TestDate <= DateTime.Now.Date
                                                          orderby physicalConditioningReport.TestDate descending
                                                          select physicalConditioningReport).Skip(skip).Take(take).ToList();
                 }
@@ -349,7 +388,7 @@ namespace DataLayer
                                                          where physicalConditioningReport.UserID == userID && physicalConditioningReport.ClientID == clientID
                                                          orderby physicalConditioningReport.TestDate descending
                                                          select physicalConditioningReport).Skip(skip).Take(take).ToList();
-                } 
+                }
                 return listOfPhysicalConditioningReports;
             }
             catch (Exception ex)
@@ -380,7 +419,7 @@ namespace DataLayer
                          where physicalConditioningReport.UserID == userID && physicalConditioningReport.ClientID == clientID && physicalConditioningReport.TestDate >= fromDate && physicalConditioningReport.TestDate <= toDate
                          select physicalConditioningReport).Count();
             }
-            else 
+            else
             {
                 count = (from physicalConditioningReport in dataContext.PhysicalConditionReports
                          where physicalConditioningReport.UserID == userID && physicalConditioningReport.ClientID == clientID
@@ -431,7 +470,7 @@ namespace DataLayer
                 {
                     DietPlanReport existingReport = (from dbRecord in dataContext.DietPlanReports
                                                      where dbRecord.DietPlanReportID == dietPlanReport.DietPlanReportID
-                                                              select dbRecord).FirstOrDefault();
+                                                     select dbRecord).FirstOrDefault();
                     if (existingReport != null)
                     {
                         existingReport.TestDate = dietPlanReport.TestDate;
@@ -470,7 +509,7 @@ namespace DataLayer
 
                 return true;
             }
-            catch(Exception exception)
+            catch (Exception exception)
             {
                 throw new Exception(exception.Message);
 
@@ -487,7 +526,7 @@ namespace DataLayer
                 if (fromDate != null && toDate == null)
                 {
                     listOfDietPlanReports = (from dietPlanReport in dataContext.DietPlanReports
-                                             where dietPlanReport.UserID == userID && dietPlanReport.ClientID == clientID 
+                                             where dietPlanReport.UserID == userID && dietPlanReport.ClientID == clientID
                                              && dietPlanReport.TestDate >= fromDate && dietPlanReport.TestDate <= DateTime.Now.Date
                                              orderby dietPlanReport.TestDate descending
                                              select dietPlanReport).Skip(skip).Take(take).ToList();
@@ -495,25 +534,25 @@ namespace DataLayer
                 else if (fromDate == null && toDate != null)
                 {
                     listOfDietPlanReports = (from dietPlanReport in dataContext.DietPlanReports
-                                                         where dietPlanReport.UserID == userID && dietPlanReport.ClientID == clientID 
-                                                         && dietPlanReport.TestDate <= DateTime.Now.Date
-                                                         orderby dietPlanReport.TestDate descending
-                                                         select dietPlanReport).Skip(skip).Take(take).ToList();
+                                             where dietPlanReport.UserID == userID && dietPlanReport.ClientID == clientID
+                                             && dietPlanReport.TestDate <= DateTime.Now.Date
+                                             orderby dietPlanReport.TestDate descending
+                                             select dietPlanReport).Skip(skip).Take(take).ToList();
                 }
                 else if (fromDate != null && toDate != null)
                 {
                     listOfDietPlanReports = (from dietPlanReport in dataContext.DietPlanReports
-                                                         where dietPlanReport.UserID == userID && dietPlanReport.ClientID == clientID 
-                                                         && dietPlanReport.TestDate >= fromDate && dietPlanReport.TestDate <= toDate
-                                                         orderby dietPlanReport.TestDate descending
-                                                         select dietPlanReport).Skip(skip).Take(take).ToList();
+                                             where dietPlanReport.UserID == userID && dietPlanReport.ClientID == clientID
+                                             && dietPlanReport.TestDate >= fromDate && dietPlanReport.TestDate <= toDate
+                                             orderby dietPlanReport.TestDate descending
+                                             select dietPlanReport).Skip(skip).Take(take).ToList();
                 }
                 else
                 {
                     listOfDietPlanReports = (from dietPlanReport in dataContext.DietPlanReports
-                                                         where dietPlanReport.UserID == userID && dietPlanReport.ClientID == clientID
-                                                         orderby dietPlanReport.TestDate descending
-                                                         select dietPlanReport).Skip(skip).Take(take).ToList();
+                                             where dietPlanReport.UserID == userID && dietPlanReport.ClientID == clientID
+                                             orderby dietPlanReport.TestDate descending
+                                             select dietPlanReport).Skip(skip).Take(take).ToList();
                 }
                 return listOfDietPlanReports;
             }
@@ -546,7 +585,7 @@ namespace DataLayer
                          where dietPlanReport.UserID == userID && dietPlanReport.ClientID == clientID && dietPlanReport.TestDate >= fromDate && dietPlanReport.TestDate <= toDate
                          select dietPlanReport).Count();
             }
-            else 
+            else
             {
                 count = (from dietPlanReport in dataContext.DietPlanReports
                          where dietPlanReport.UserID == userID && dietPlanReport.ClientID == clientID
@@ -601,7 +640,7 @@ namespace DataLayer
             {
                 WellnessManagementFrameworkDBMLDataContext dataContext = new WellnessManagementFrameworkDBMLDataContext();
                 List<ReportFieldMaster> listOfReportFields = (from test in dataContext.UserReportFields
-                                                              where test.ReportFieldMaster.ReportTypeID == Convert.ToInt32(ReportType.LabReport) && test.UserID == userID 
+                                                              where test.ReportFieldMaster.ReportTypeID == Convert.ToInt32(ReportType.LabReport) && test.UserID == userID
                                                               select test.ReportFieldMaster).ToList();
                 return listOfReportFields;
             }
@@ -650,8 +689,8 @@ namespace DataLayer
         }
 
 
-        
- 
+
+
         public bool AddClient(string clientName, long phone, string address, int userID, int categoryID)
         {
             try
@@ -683,7 +722,7 @@ namespace DataLayer
                 ReportFieldMaster reportFieldMaster = new ReportFieldMaster();
                 reportFieldMaster.ReportFieldName = testName;
                 reportFieldMaster.ReportTypeID = 1;
-                bool testExists=CheckTestAlreadyExists(testName);
+                bool testExists = CheckTestAlreadyExists(testName);
                 if (!testExists)
                 {
                     dataContext.ReportFieldMasters.InsertOnSubmit(reportFieldMaster);
@@ -710,21 +749,22 @@ namespace DataLayer
         }
         public bool CheckTestAlreadyExists(string testName)
         {
-            try 
-            { 
-            WellnessManagementFrameworkDBMLDataContext dataContext = new WellnessManagementFrameworkDBMLDataContext();
-            ReportFieldMaster reportField = (from field in dataContext.ReportFieldMasters
-                                           where field.ReportFieldName == testName
-                                           select field).FirstOrDefault();
-           if(reportField!=null)
-           {
-               return true;
-           }
-           else
-           {
-               return false;
-           }
-            }catch(Exception exception)
+            try
+            {
+                WellnessManagementFrameworkDBMLDataContext dataContext = new WellnessManagementFrameworkDBMLDataContext();
+                ReportFieldMaster reportField = (from field in dataContext.ReportFieldMasters
+                                                 where field.ReportFieldName == testName
+                                                 select field).FirstOrDefault();
+                if (reportField != null)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch (Exception exception)
             {
                 throw exception;
             }
